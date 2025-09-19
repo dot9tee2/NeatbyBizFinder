@@ -25,6 +25,12 @@ import { Metadata } from 'next';
 import Script from 'next/script';
 import { businesses as db } from '@/lib/supabase';
 
+export const dynamic = 'force-static';
+
+export async function generateStaticParams() {
+  return mockBusinesses.map((b) => ({ id: b.id }));
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;
   const { data } = await db.getById(id);
@@ -56,6 +62,20 @@ export default async function BusinessPage({ params }: { params: Promise<{ id: s
   if (!business) {
     notFound();
   }
+
+  // Prepare typed opening hours for JSON-LD
+  const openingHoursSpec = Object.entries(business.hours as Record<string, string>).map(([dayKey, hoursValue]) => {
+    const parts = (hoursValue || '').split('-');
+    const opens = parts[0]?.trim();
+    const closes = parts[1]?.trim();
+    const dayOfWeek = dayKey.charAt(0).toUpperCase() + dayKey.slice(1);
+    return {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek,
+      opens,
+      closes,
+    };
+  });
 
   const renderStars = (rating: number, size: 'sm' | 'md' = 'md') => {
     const starSize = size === 'sm' ? 'h-4 w-4' : 'h-5 w-5';
@@ -134,12 +154,7 @@ export default async function BusinessPage({ params }: { params: Promise<{ id: s
             latitude: business.latitude,
             longitude: business.longitude,
           } : undefined,
-          openingHoursSpecification: Object.entries(business.hours).map(([day, hours]) => ({
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: day.charAt(0).toUpperCase() + day.slice(1),
-            opens: hours.split('-')[0]?.trim(),
-            closes: hours.split('-')[1]?.trim(),
-          })),
+          openingHoursSpecification: openingHoursSpec,
           aggregateRating: {
             '@type': 'AggregateRating',
             ratingValue: business.rating,
@@ -247,7 +262,7 @@ export default async function BusinessPage({ params }: { params: Promise<{ id: s
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-wrap gap-2">
-                    {business.amenities.map((amenity, index) => (
+                    {business.amenities.map((amenity: string, index: number) => (
                       <Badge key={index} variant="outline">
                         {amenity}
                       </Badge>
@@ -267,13 +282,13 @@ export default async function BusinessPage({ params }: { params: Promise<{ id: s
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
-                  {Object.entries(business.hours).map(([day, hours]) => (
+                  {Object.entries(business.hours as Record<string, string>).map(([day, hoursValue]) => (
                     <div key={day} className="flex justify-between py-2 border-b border-gray-100 last:border-0">
                       <span className="font-medium capitalize text-gray-900">
                         {day}
                       </span>
                       <span className="text-gray-600">
-                        {hours}
+                        {hoursValue}
                       </span>
                     </div>
                   ))}
@@ -291,7 +306,7 @@ export default async function BusinessPage({ params }: { params: Promise<{ id: s
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {business.images.map((image, index) => (
+                  {business.images.map((image: string, index: number) => (
                     <div key={index} className="relative h-32 rounded-lg overflow-hidden">
                       <Image
                         src={image}

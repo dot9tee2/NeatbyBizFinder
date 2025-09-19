@@ -33,7 +33,7 @@ export default function Header() {
 
     return () => {
       isMounted = false;
-      subscription?.unsubscribe?.();
+      subscription?.subscription?.unsubscribe?.();
     };
   }, []);
 
