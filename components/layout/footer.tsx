@@ -1,0 +1,130 @@
+import Link from 'next/link';
+import { MapPin, Mail, Phone, Facebook, Twitter, Instagram } from 'lucide-react';
+
+export default function Footer() {
+  return (
+    <footer className="bg-gray-900 text-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Company Info */}
+          <div className="space-y-4">
+            <Link href="/" className="flex items-center space-x-2">
+              <div className="rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 p-2">
+                <MapPin className="h-6 w-6" />
+              </div>
+              <span className="text-xl font-bold">NearbyBizFinder</span>
+            </Link>
+            <p className="text-gray-400 text-sm">
+              Discover and connect with local businesses in your area. Find the best restaurants, services, and shops near you.
+            </p>
+            <div className="flex space-x-4">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <Facebook className="h-5 w-5" />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <Twitter className="h-5 w-5" />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <Instagram className="h-5 w-5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/search" className="text-gray-400 hover:text-white transition-colors">
+                  Browse Businesses
+                </Link>
+              </li>
+              <li>
+                <Link href="/categories" className="text-gray-400 hover:text-white transition-colors">
+                  Categories
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="text-gray-400 hover:text-white transition-colors">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-gray-400 hover:text-white transition-colors">
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* For Business Owners */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">For Businesses</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/business/add" className="text-gray-400 hover:text-white transition-colors">
+                  Add Your Business
+                </Link>
+              </li>
+              <li>
+                <Link href="/business/claim" className="text-gray-400 hover:text-white transition-colors">
+                  Claim Your Business
+                </Link>
+              </li>
+              <li>
+                <Link href="/business/advertise" className="text-gray-400 hover:text-white transition-colors">
+                  Advertise
+                </Link>
+              </li>
+              <li>
+                <Link href="/business/support" className="text-gray-400 hover:text-white transition-colors">
+                  Business Support
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
+            <ul className="space-y-2 text-sm">
+              <li className="flex items-center space-x-2">
+                <Mail className="h-4 w-4 text-gray-400" />
+                <span className="text-gray-400">info@nearbybizfinder.com</span>
+              </li>
+              <li className="flex items-center space-x-2">
+                <Phone className="h-4 w-4 text-gray-400" />
+                <span className="text-gray-400">(555) 123-4567</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <MapPin className="h-4 w-4 text-gray-400 mt-1" />
+                <span className="text-gray-400">
+                  123 Business Ave<br />
+                  San Francisco, CA 94105
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Section */}
+        <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-400 text-sm">
+            © 2024 NearbyBizFinder. All rights reserved.
+          </p>
+          <div className="flex space-x-6 mt-4 md:mt-0 text-sm">
+            <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="text-gray-400 hover:text-white transition-colors">
+              Terms of Service
+            </Link>
+            <Link href="/cookies" className="text-gray-400 hover:text-white transition-colors">
+              Cookie Policy
+            </Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
