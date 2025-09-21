@@ -90,21 +90,62 @@ export const businesses = {
 
   search: async (query: string, location: string) => {
     if (!supabase) return { data: [], error: new Error('Supabase not configured') };
-    const { data, error } = await supabase
+    
+    // Enhanced search across multiple fields
+    const searchFields = [
+      `name.ilike.%${query}%`,
+      `description.ilike.%${query}%`,
+      `category.ilike.%${query}%`,
+      `address.ilike.%${query}%`,
+      `phone.ilike.%${query}%`,
+      `email.ilike.%${query}%`,
+      `amenities.cs.{${query}}` // Search in amenities array
+    ].join(',');
+    
+    let supabaseQuery = supabase
       .from('businesses')
       .select('*')
-      .or(`name.ilike.%${query}%,description.ilike.%${query}%,category.ilike.%${query}%`)
-      .ilike('city', `%${location}%`);
+      .or(searchFields);
+    
+    // Add location filter if provided
+    if (location) {
+      supabaseQuery = supabaseQuery.or(`city.ilike.%${location}%,state.ilike.%${location}%,address.ilike.%${location}%`);
+    }
+    
+    const { data, error } = await supabaseQuery;
     return { data, error };
   },
 
   create: async (business: Omit<Business, 'id' | 'created_at' | 'updated_at'>) => {
     if (!supabase) return { data: null, error: new Error('Supabase not configured') };
-    const { data, error } = await supabase
+    // Attempt to include owner_id for common RLS policies; if column doesn't exist, retry without it
+    let toInsert: Record<string, unknown> = { ...business };
+    try {
+      const { data: authData } = await supabase.auth.getUser();
+      const userId = authData?.user?.id;
+      if (userId) {
+        toInsert = { ...toInsert, owner_id: userId };
+      }
+    } catch {}
+
+    let { data, error } = await supabase
       .from('businesses')
-      .insert([business])
+      .insert([toInsert])
       .select()
       .single();
+
+    // If insert failed due to unknown column owner_id, retry without it
+    if (error && /column\s+"?owner_id"?\s+of\s+relation/i.test(error.message || '')) {
+      const fallbackInsert = { ...business } as Record<string, unknown>;
+      const retry = await supabase
+        .from('businesses')
+        .insert([fallbackInsert])
+        .select()
+        .single();
+      data = retry.data;
+      error = retry.error;
+    }
+
     return { data, error };
   },
 

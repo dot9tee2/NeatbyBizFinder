@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { MapPin, Mail, Phone, Facebook, Twitter, Instagram } from 'lucide-react';
 
 export default function Footer() {
@@ -9,9 +10,14 @@ export default function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2">
-              <div className="rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 p-2">
-                <MapPin className="h-6 w-6" />
-              </div>
+              <Image
+                src="/logo.png"
+                alt="NearbyBizFinder logo"
+                width={40}
+                height={40}
+                className="h-10 w-10"
+                priority
+              />
               <span className="text-xl font-bold">NearbyBizFinder</span>
             </Link>
             <p className="text-gray-400 text-sm">
@@ -35,22 +41,22 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/search" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/search/" className="text-gray-400 hover:text-white transition-colors">
                   Browse Businesses
                 </Link>
               </li>
               <li>
-                <Link href="/categories" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/categories/" className="text-gray-400 hover:text-white transition-colors">
                   Categories
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/about/" className="text-gray-400 hover:text-white transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/contact/" className="text-gray-400 hover:text-white transition-colors">
                   Contact
                 </Link>
               </li>
@@ -62,22 +68,17 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">For Businesses</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/business/add" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/business/new/" className="text-gray-400 hover:text-white transition-colors">
                   Add Your Business
                 </Link>
               </li>
               <li>
-                <Link href="/business/claim" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/business/claim/" className="text-gray-400 hover:text-white transition-colors">
                   Claim Your Business
                 </Link>
               </li>
               <li>
-                <Link href="/business/advertise" className="text-gray-400 hover:text-white transition-colors">
-                  Advertise
-                </Link>
-              </li>
-              <li>
-                <Link href="/business/support" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/business/support/" className="text-gray-400 hover:text-white transition-colors">
                   Business Support
                 </Link>
               </li>
@@ -113,14 +114,11 @@ export default function Footer() {
             © 2024 NearbyBizFinder. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0 text-sm">
-            <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors">
+            <Link href="/privacy/" className="text-gray-400 hover:text-white transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="text-gray-400 hover:text-white transition-colors">
+            <Link href="/terms/" className="text-gray-400 hover:text-white transition-colors">
               Terms of Service
-            </Link>
-            <Link href="/cookies" className="text-gray-400 hover:text-white transition-colors">
-              Cookie Policy
             </Link>
           </div>
         </div>

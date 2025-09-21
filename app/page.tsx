@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Script from 'next/script';
+import type { Metadata } from 'next';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import SearchForm from '@/components/search/search-form';
@@ -7,6 +8,26 @@ import BusinessList from '@/components/business/business-list';
 import { mockBusinesses, businessCategories } from '@/lib/mock-data';
 import { businesses as db } from '@/lib/supabase';
 import { MapPin, Star, Users, Search, Shield, Clock } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'NearbyBizFinder | Find Local Businesses Near You',
+  description: 'Discover top-rated local restaurants, services, and shops near you. Browse categories, read reviews, and connect with nearby businesses across the United States.',
+  robots: 'index, follow',
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'website',
+    url: 'https://nearbybizfinder.com/',
+    title: 'NearbyBizFinder | Find Local Businesses Near You',
+    description: 'Discover top-rated local restaurants, services, and shops near you.',
+    images: [{ url: '/logo.png' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'NearbyBizFinder | Find Local Businesses Near You',
+    description: 'Discover top-rated local restaurants, services, and shops near you.',
+    images: ['/logo.png'],
+  },
+};
 
 export default async function HomePage() {
   const { data, error } = await db.getAll();

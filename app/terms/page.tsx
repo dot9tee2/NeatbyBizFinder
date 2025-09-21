@@ -4,6 +4,9 @@ export const metadata: Metadata = {
 	title: 'Terms of Service | NearbyBizFinder',
 	description: 'Terms of Service governing the use of NearbyBizFinder in the United States.',
 	robots: 'index, follow',
+	alternates: { canonical: '/terms/' },
+	openGraph: { title: 'Terms of Service | NearbyBizFinder', description: 'Rules for using NearbyBizFinder and your responsibilities.' },
+	twitter: { card: 'summary', title: 'Terms of Service | NearbyBizFinder', description: 'Rules for using NearbyBizFinder and your responsibilities.' },
 };
 
 export default function TermsPage() {

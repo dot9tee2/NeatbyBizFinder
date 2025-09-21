@@ -6,13 +6,15 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Star, MapPin, Phone, Clock, Heart } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import SearchHighlight from '@/components/search/search-highlight';
 
 interface BusinessCardProps {
   business: Business;
   className?: string;
+  searchTerm?: string;
 }
 
-export default function BusinessCard({ business, className }: BusinessCardProps) {
+export default function BusinessCard({ business, className, searchTerm }: BusinessCardProps) {
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (
       <Star
@@ -72,11 +74,11 @@ export default function BusinessCard({ business, className }: BusinessCardProps)
           <div className="flex items-start justify-between mb-2">
             <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-1">
               <Link href={`/business/${business.id}`}>
-                {business.name}
+                <SearchHighlight text={business.name} searchTerm={searchTerm || ''} />
               </Link>
             </h3>
             <Badge variant="secondary" className="text-xs ml-2">
-              {business.category}
+              <SearchHighlight text={business.category} searchTerm={searchTerm || ''} />
             </Badge>
           </div>
 
@@ -95,14 +97,17 @@ export default function BusinessCard({ business, className }: BusinessCardProps)
 
           {/* Description */}
           <p className="text-sm text-gray-600 line-clamp-2 mb-4">
-            {business.description}
+            <SearchHighlight text={business.description} searchTerm={searchTerm || ''} />
           </p>
 
           {/* Location */}
           <div className="flex items-center text-sm text-gray-500 mb-2">
             <MapPin className="h-4 w-4 mr-2 flex-shrink-0" />
             <span className="line-clamp-1">
-              {business.address}, {business.city}, {business.state}
+              <SearchHighlight 
+                text={`${business.address}, ${business.city}, ${business.state}`} 
+                searchTerm={searchTerm || ''} 
+              />
             </span>
           </div>
 

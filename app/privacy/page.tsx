@@ -4,6 +4,9 @@ export const metadata: Metadata = {
 	title: 'Privacy Policy | NearbyBizFinder',
 	description: 'Privacy Policy describing how NearbyBizFinder collects and uses data in the United States.',
 	robots: 'index, follow',
+	alternates: { canonical: '/privacy/' },
+	openGraph: { title: 'Privacy Policy | NearbyBizFinder', description: 'How we collect, use, and protect your data.' },
+	twitter: { card: 'summary', title: 'Privacy Policy | NearbyBizFinder', description: 'How we collect, use, and protect your data.' },
 };
 
 export default function PrivacyPage() {

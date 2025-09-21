@@ -25,11 +25,8 @@ import { Metadata } from 'next';
 import Script from 'next/script';
 import { businesses as db } from '@/lib/supabase';
 
-export const dynamic = 'force-static';
-
-export async function generateStaticParams() {
-  return mockBusinesses.map((b) => ({ id: b.id }));
-}
+// Keep static for Next.js export, but page reads dynamic data when available
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;
@@ -116,6 +113,8 @@ export default async function BusinessPage({ params }: { params: Promise<{ id: s
     const address = encodeURIComponent(formatAddress());
     return `https://www.google.com/maps/search/?api=1&query=${address}`;
   };
+
+  const claimHref = `/business/claim/?listing=${encodeURIComponent(`https://nearbybizfinder.com/business/${business.id}/`)}`;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -422,6 +421,16 @@ export default async function BusinessPage({ params }: { params: Promise<{ id: s
                     </div>
                   </>
                 )}
+
+                <Separator />
+                <div className="flex items-center justify-between">
+                  <p className="text-sm text-gray-600">Are you the owner?</p>
+                  <Link href={claimHref}>
+                    <Button size="sm" variant="outline" className="text-blue-600 border-blue-600 hover:bg-blue-50">
+                      Claim this business
+                    </Button>
+                  </Link>
+                </div>
               </CardContent>
             </Card>
 

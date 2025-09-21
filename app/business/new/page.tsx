@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -18,7 +18,46 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
-import { auth, businesses as bizApi } from '@/lib/supabase';
+import { auth, businesses as bizApi, supabase } from '@/lib/supabase';
+import { useToast } from '@/hooks/use-toast';
+import { cn } from '@/lib/utils';
+
+// Image validation and compression helpers
+const MAX_FILE_BYTES = 10 * 1024 * 1024; // 10MB
+const ACCEPTED_MIME_TYPES = new Set(['image/jpeg', 'image/png']);
+
+async function compressImageToJpeg(file: File, opts?: { maxWidth?: number; maxHeight?: number; quality?: number }): Promise<File> {
+  const { maxWidth = 1600, maxHeight = 1600, quality = 0.82 } = opts || {};
+  const objectUrl = URL.createObjectURL(file);
+  try {
+    const img = await new Promise<HTMLImageElement>((resolve, reject) => {
+      const image = new Image();
+      image.onload = () => resolve(image);
+      image.onerror = (e) => reject(e);
+      image.src = objectUrl;
+    });
+
+    let { width, height } = img;
+    const ratio = Math.min(1, maxWidth / width, maxHeight / height);
+    const targetWidth = Math.max(1, Math.floor(width * ratio));
+    const targetHeight = Math.max(1, Math.floor(height * ratio));
+
+    const canvas = document.createElement('canvas');
+    canvas.width = targetWidth;
+    canvas.height = targetHeight;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return file;
+    ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
+
+    const blob: Blob | null = await new Promise((resolve) => canvas.toBlob(resolve, 'image/jpeg', quality));
+    if (!blob) return file;
+
+    const newName = file.name.replace(/\.[^.]+$/, '') + '.jpg';
+    return new File([blob], newName, { type: 'image/jpeg', lastModified: Date.now() });
+  } finally {
+    URL.revokeObjectURL(objectUrl);
+  }
+}
 import { businessCategories } from '@/lib/mock-data';
 import type { Business } from '@/types/business';
 
@@ -34,7 +73,10 @@ const schema = z.object({
   zip_code: z.string().min(1, 'Enter a ZIP/postal code'),
   latitude: z.coerce.number().optional().default(0),
   longitude: z.coerce.number().optional().default(0),
-  phone: z.string().min(5, 'Enter a phone number'),
+  phone: z
+    .string()
+    .min(5, 'Enter a phone number')
+    .refine((v) => v.replace(/\D/g, '').length === 10, 'Enter a valid 10-digit phone number'),
   website: z.string().url('Enter a valid URL').optional().or(z.literal('')).transform(v => v || undefined),
   email: z.string().email('Enter a valid email').optional().or(z.literal('')).transform(v => v || undefined),
   price_range: z.enum(['$', '$$', '$$$', '$$$$']),
@@ -42,19 +84,59 @@ const schema = z.object({
     Object.fromEntries(hoursDays.map(d => [d, z.string().min(1, 'Enter hours')])) as Record<keyof Business['hours'], z.ZodString>
   ),
   imagesCsv: z.string().optional().default(''),
+  image_files: z.any().optional(),
   featured_image: z.string().url('Enter a valid URL').optional().or(z.literal('')).transform(v => v || undefined),
   amenitiesCsv: z.string().optional().default(''),
 });
 
 type FormValues = z.infer<typeof schema>;
 
+function formatPhone(value: string): string {
+  const digits = value.replace(/\D/g, '').slice(0, 10);
+  if (digits.length === 0) return '';
+  if (digits.length < 4) return `(${digits}`;
+  if (digits.length < 7) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+  return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+}
+
+function formatStateInput(value: string): string {
+  return value.replace(/[^a-zA-Z]/g, '').toUpperCase().slice(0, 2);
+}
+
+function formatZipInput(value: string): string {
+  return value.replace(/\D/g, '').slice(0, 5);
+}
+
+function normalizeWebsiteOnBlur(value: string): string {
+  const v = (value || '').trim();
+  if (!v) return '';
+  if (!/^https?:\/\//i.test(v)) return `https://${v}`;
+  return v;
+}
+
+function normalizeEmailOnBlur(value: string): string {
+  return (value || '').trim().toLowerCase();
+}
+
 export default function NewBusinessPage() {
   const router = useRouter();
   const [checkingAuth, setCheckingAuth] = useState(true);
+  const { toast } = useToast();
+
+  const [droppedFiles, setDroppedFiles] = useState<File[]>([]);
+  const [filePreviews, setFilePreviews] = useState<string[]>([]);
+  const [featuredLocalIndex, setFeaturedLocalIndex] = useState<number | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     let mounted = true;
     (async () => {
+      // If Supabase is not configured, allow access to the form (demo mode)
+      if (!supabase) {
+        if (mounted) setCheckingAuth(false);
+        return;
+      }
       const { user } = await auth.getCurrentUser();
       if (!user && mounted) {
         router.replace('/auth/signin?redirect=/business/new');
@@ -67,6 +149,7 @@ export default function NewBusinessPage() {
 
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
+    mode: 'onChange',
     defaultValues: {
       name: '',
       description: '',
@@ -96,15 +179,172 @@ export default function NewBusinessPage() {
     },
   });
 
+  useEffect(() => {
+    return () => {
+      filePreviews.forEach((url) => URL.revokeObjectURL(url));
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const [currentUserId, setCurrentUserId] = useState<string>('anon');
+  useEffect(() => {
+    (async () => {
+      const { user } = await auth.getCurrentUser();
+      setCurrentUserId(user?.id || 'anon');
+    })();
+  }, []);
+
+  const draftKey = useMemo(() => `new-business-draft:${currentUserId}`, [currentUserId]);
+
+  useEffect(() => {
+    if (checkingAuth) return;
+    try {
+      const raw = localStorage.getItem(draftKey);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        // Do not restore FileList
+        delete (parsed as any).image_files;
+        form.reset({ ...form.getValues(), ...parsed });
+      }
+    } catch {}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [checkingAuth, draftKey]);
+
+  useEffect(() => {
+    const sub = form.watch((value) => {
+      try {
+        const { image_files, ...rest } = value as unknown as Record<string, unknown> & { image_files?: unknown };
+        localStorage.setItem(draftKey, JSON.stringify(rest));
+      } catch {}
+    });
+    return () => sub.unsubscribe();
+  }, [form, draftKey]);
+
+  const descriptionValue = form.watch('description');
+
+  const csvImages = useMemo(() => {
+    return (form.watch('imagesCsv') || '')
+      .split(',')
+      .map(s => s.trim())
+      .filter(Boolean);
+  }, [form]);
+
+  const handleFilesAdd = (list: FileList | null) => {
+    if (!list || list.length === 0) return;
+    const newFiles: File[] = [];
+    const newPreviews: string[] = [];
+    for (let i = 0; i < list.length; i += 1) {
+      const f = list.item(i)!;
+      if (!ACCEPTED_MIME_TYPES.has(f.type)) {
+        toast({ title: 'Unsupported file type', description: 'Please upload JPEG or PNG images.', variant: 'destructive' as any });
+        continue;
+      }
+      if (f.size > MAX_FILE_BYTES) {
+        toast({ title: 'File too large', description: 'Each image must be 10MB or smaller.', variant: 'destructive' as any });
+        continue;
+      }
+      newFiles.push(f);
+      newPreviews.push(URL.createObjectURL(f));
+    }
+    setDroppedFiles((prev) => [...prev, ...newFiles]);
+    setFilePreviews((prev) => [...prev, ...newPreviews]);
+    const current = (form.getValues() as unknown as { image_files?: FileList }).image_files;
+    const dt = new DataTransfer();
+    if (current) {
+      for (let i = 0; i < current.length; i += 1) dt.items.add(current.item(i)!);
+    }
+    newFiles.forEach((f) => dt.items.add(f));
+    form.setValue('image_files', dt.files as unknown as any);
+  };
+
+  const removeLocalFile = (index: number) => {
+    setDroppedFiles((prev) => prev.filter((_, i) => i !== index));
+    const toRemove = filePreviews[index];
+    URL.revokeObjectURL(toRemove);
+    setFilePreviews((prev) => prev.filter((_, i) => i !== index));
+    const current = (form.getValues() as unknown as { image_files?: FileList }).image_files;
+    if (current) {
+      const dt = new DataTransfer();
+      for (let i = 0; i < current.length; i += 1) {
+        if (i !== index) dt.items.add(current.item(i)!);
+      }
+      form.setValue('image_files', dt.files as unknown as any);
+    }
+    if (featuredLocalIndex === index) setFeaturedLocalIndex(null);
+    if (featuredLocalIndex !== null && featuredLocalIndex > index) setFeaturedLocalIndex(featuredLocalIndex - 1);
+  };
+
+  const removeCsvImage = (url: string) => {
+    const remaining = csvImages.filter((u) => u !== url);
+    form.setValue('imagesCsv', remaining.join(', '));
+    if (form.getValues().featured_image === url) form.setValue('featured_image', '');
+  };
+
   const onSubmit = async (values: FormValues) => {
+    // Gather images from both CSV input and uploaded files
     const images = (values.imagesCsv || '')
       .split(',')
       .map(s => s.trim())
       .filter(Boolean);
+    const uploadedUrls: string[] = [];
+    const files = (values as unknown as { image_files?: FileList }).image_files;
+
+    if (files && files.length) {
+      if (!supabase) {
+        form.setError('imagesCsv', { message: 'Uploads unavailable: Supabase not configured' });
+        return;
+      }
+      toast({ title: 'Uploading images…', description: `${files.length} file(s)` });
+      const { user } = await auth.getCurrentUser();
+      const userId = user?.id || 'anonymous';
+
+      for (let i = 0; i < files.length; i += 1) {
+        const original = files.item(i)!;
+        let file = original;
+        // Compress if larger than ~1MB or either dimension likely large (we don't know before load, so size heuristic)
+        if (file.size > 1024 * 1024 || !ACCEPTED_MIME_TYPES.has(file.type)) {
+          try {
+            file = await compressImageToJpeg(original);
+          } catch {
+            // fall back to original
+            file = original;
+          }
+        }
+        const safeName = file.name.replace(/[^a-zA-Z0-9_.-]/g, '_');
+        const unique = (globalThis as unknown as { crypto?: Crypto }).crypto?.randomUUID?.() || `${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
+        const path = `${userId}/${unique}_${safeName}`;
+        const { error: uploadError } = await supabase.storage.from('business-images').upload(path, file, { contentType: file.type || 'image/jpeg' });
+        if (uploadError) {
+          const friendly = /bucket/i.test(uploadError.message || '')
+            ? 'Storage bucket "business-images" missing. Create a public bucket named business-images in Supabase Storage.'
+            : uploadError.message || 'Failed to upload image';
+          form.setError('imagesCsv', { message: friendly });
+          toast({ title: 'Upload failed', description: friendly, variant: 'destructive' as any });
+          return;
+        }
+        const { data: publicData } = supabase.storage.from('business-images').getPublicUrl(path);
+        if (publicData?.publicUrl) uploadedUrls.push(publicData.publicUrl);
+      }
+    }
     const amenities = (values.amenitiesCsv || '')
       .split(',')
       .map(s => s.trim())
       .filter(Boolean);
+
+    // Reorder so featured is first
+    let combinedImages = [...uploadedUrls, ...images];
+    let featuredToUse = values.featured_image;
+    if (!featuredToUse && featuredLocalIndex !== null && uploadedUrls[featuredLocalIndex]) {
+      const f = uploadedUrls[featuredLocalIndex];
+      combinedImages = [f, ...combinedImages.filter((u) => u !== f)];
+      featuredToUse = f;
+    } else if (featuredToUse) {
+      combinedImages = [featuredToUse, ...combinedImages.filter((u) => u !== featuredToUse)];
+    }
+
+    if (combinedImages.length === 0) {
+      combinedImages = ['/logo.png'];
+    }
 
     const payload: Omit<Business, 'id' | 'created_at' | 'updated_at'> = {
       name: values.name,
@@ -123,8 +363,8 @@ export default function NewBusinessPage() {
       review_count: 0,
       price_range: values.price_range,
       hours: values.hours,
-      images,
-      featured_image: values.featured_image || images[0],
+      images: combinedImages,
+      featured_image: featuredToUse || combinedImages[0],
       amenities,
     };
 
@@ -132,9 +372,11 @@ export default function NewBusinessPage() {
     if (error) {
       // Attach error to any field; show generic if unknown
       form.setError('name', { message: error.message || 'Failed to create business' });
+      toast({ title: 'Could not create business', description: error.message || 'Please try again', variant: 'destructive' as any });
       return;
     }
     if (data?.id) {
+      toast({ title: 'Business created', description: 'Your business has been added successfully.' });
       router.push(`/business/${data.id}`);
     } else {
       router.push('/search');
@@ -213,6 +455,7 @@ export default function NewBusinessPage() {
                       <FormControl>
                         <Textarea rows={4} placeholder="Describe your business..." {...field} />
                       </FormControl>
+                      <div className="text-xs text-gray-500 text-right">{descriptionValue?.length || 0} / 5000</div>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -253,7 +496,12 @@ export default function NewBusinessPage() {
                         <FormItem>
                           <FormLabel>State</FormLabel>
                           <FormControl>
-                            <Input placeholder="CA" {...field} />
+                            <Input
+                              placeholder="CA"
+                              value={field.value}
+                              onChange={(e) => field.onChange(formatStateInput(e.target.value))}
+                              maxLength={2}
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -266,7 +514,13 @@ export default function NewBusinessPage() {
                         <FormItem>
                           <FormLabel>ZIP</FormLabel>
                           <FormControl>
-                            <Input placeholder="94105" {...field} />
+                            <Input
+                              placeholder="94105"
+                              value={field.value}
+                              onChange={(e) => field.onChange(formatZipInput(e.target.value))}
+                              inputMode="numeric"
+                              maxLength={5}
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -283,7 +537,19 @@ export default function NewBusinessPage() {
                       <FormItem>
                         <FormLabel>Phone</FormLabel>
                         <FormControl>
-                          <Input placeholder="(415) 555-0123" {...field} />
+                          <Input
+                            placeholder="(415) 555-0123"
+                            value={field.value}
+                            onChange={(e) => {
+                              const formatted = formatPhone(e.target.value);
+                              field.onChange(formatted);
+                            }}
+                            onBlur={(e) => {
+                              const digits = (e.target.value || '').replace(/\D/g, '');
+                              if (digits.length === 10) field.onChange(formatPhone(digits));
+                            }}
+                            inputMode="tel"
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -296,7 +562,13 @@ export default function NewBusinessPage() {
                       <FormItem>
                         <FormLabel>Website (optional)</FormLabel>
                         <FormControl>
-                          <Input placeholder="https://example.com" {...field} />
+                          <Input
+                            placeholder="https://example.com"
+                            value={field.value}
+                            onChange={field.onChange}
+                            onBlur={(e) => field.onChange(normalizeWebsiteOnBlur(e.target.value))}
+                            inputMode="url"
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -309,7 +581,13 @@ export default function NewBusinessPage() {
                       <FormItem>
                         <FormLabel>Email (optional)</FormLabel>
                         <FormControl>
-                          <Input placeholder="info@example.com" {...field} />
+                          <Input
+                            placeholder="info@example.com"
+                            value={field.value}
+                            onChange={field.onChange}
+                            onBlur={(e) => field.onChange(normalizeEmailOnBlur(e.target.value))}
+                            inputMode="email"
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -380,6 +658,66 @@ export default function NewBusinessPage() {
                         <FormControl>
                           <Textarea placeholder="https://... , https://..." rows={3} {...field} />
                         </FormControl>
+                        <div className="mt-2 grid grid-cols-3 gap-2">
+                          {csvImages.map((url) => (
+                            <div key={url} className="relative group border rounded overflow-hidden">
+                              <img src={url} alt="preview" className="w-full h-24 object-cover" />
+                              <div className="absolute inset-0 flex items-center justify-between gap-1 p-1 opacity-0 group-hover:opacity-100 transition">
+                                <Button type="button" size="sm" variant="secondary" className="text-xs" onClick={() => form.setValue('featured_image', url)}>Featured</Button>
+                                <Button type="button" size="sm" variant="destructive" className="text-xs" onClick={() => removeCsvImage(url)}>Remove</Button>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="image_files"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Upload Images</FormLabel>
+                        <FormControl>
+                          <>
+                            <div
+                              className={cn(
+                                'mt-1 border-2 border-dashed rounded-md p-6 text-center cursor-pointer',
+                                isDragging ? 'border-blue-500 bg-blue-50' : 'border-gray-300'
+                              )}
+                              onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
+                              onDragLeave={() => setIsDragging(false)}
+                              onDrop={(e) => { e.preventDefault(); setIsDragging(false); handleFilesAdd(e.dataTransfer.files); }}
+                              onClick={() => fileInputRef.current?.click()}
+                            >
+                              <div className="text-sm text-gray-600">Drag & drop images here, or click to browse</div>
+                              <div className="text-xs text-gray-500">JPEG, PNG up to 10MB each</div>
+                            </div>
+                            <input
+                              ref={fileInputRef}
+                              type="file"
+                              accept="image/jpeg,image/png"
+                              multiple
+                              className="hidden"
+                              name={field.name}
+                              onChange={(e) => { handleFilesAdd(e.target.files); }}
+                            />
+                            {filePreviews.length > 0 && (
+                              <div className="mt-3 grid grid-cols-3 gap-2">
+                                {filePreviews.map((url, idx) => (
+                                  <div key={url} className={cn('relative group border rounded overflow-hidden', featuredLocalIndex === idx && 'ring-2 ring-blue-500')}> 
+                                    <img src={url} alt="preview" className="w-full h-24 object-cover" />
+                                    <div className="absolute inset-0 flex items-center justify-between gap-1 p-1 opacity-0 group-hover:opacity-100 transition">
+                                      <Button type="button" size="sm" variant="secondary" className="text-xs" onClick={() => setFeaturedLocalIndex(idx)}>Featured</Button>
+                                      <Button type="button" size="sm" variant="destructive" className="text-xs" onClick={() => removeLocalFile(idx)}>Remove</Button>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                          </>
+                        </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -439,6 +777,9 @@ export default function NewBusinessPage() {
                 </div>
 
                 <div className="flex items-center justify-end gap-3">
+                  <Button type="button" variant="outline" onClick={() => { try { localStorage.removeItem(draftKey); } catch {}; form.reset(); }}>
+                    Clear draft
+                  </Button>
                   <Button type="button" variant="outline" onClick={() => router.back()}>
                     Cancel
                   </Button>

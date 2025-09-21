@@ -11,13 +11,15 @@ interface BusinessListProps {
   title?: string;
   showPagination?: boolean;
   itemsPerPage?: number;
+  searchTerm?: string;
 }
 
 export default function BusinessList({ 
   businesses, 
   title, 
   showPagination = true, 
-  itemsPerPage = 6 
+  itemsPerPage = 6,
+  searchTerm
 }: BusinessListProps) {
   const [currentPage, setCurrentPage] = useState(1);
   
@@ -55,7 +57,7 @@ export default function BusinessList({
       {/* Business Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {currentBusinesses.map((business) => (
-          <BusinessCard key={business.id} business={business} />
+          <BusinessCard key={business.id} business={business} searchTerm={searchTerm} />
         ))}
       </div>
 
