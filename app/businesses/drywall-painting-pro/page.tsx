@@ -1,10 +1,13 @@
 import { Metadata } from 'next';
 import Script from 'next/script';
-import Image from 'next/image';
+import OptimizedVideo from '@/components/ui/optimized-video';
+import OptimizedImage from '@/components/ui/optimized-image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Star, Phone, MapPin, Clock, Mail, Globe, Hammer, Paintbrush, Wrench, Home, Lightbulb, Shield, CheckCircle, ArrowRight } from 'lucide-react';
+import BusinessHeader from '@/components/business-landing/business-header';
+import BusinessFooter from '@/components/business-landing/business-footer';
 
 export const metadata: Metadata = {
   title: 'Drywall and Painting Pro - Professional Home Services | NearbyBizFinder',
@@ -94,6 +97,15 @@ export default function DrywallPaintingProPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Business Header */}
+      <BusinessHeader
+        businessName={businessData.name}
+        businessPhone={businessData.phone}
+        businessEmail={businessData.email}
+        businessWebsite={businessData.website}
+        businessCategory={businessData.category}
+      />
+
       {/* Structured Data */}
       <Script
         id="business-structured-data"
@@ -143,14 +155,18 @@ export default function DrywallPaintingProPage() {
 
       {/* Hero Section */}
       <div className="relative h-screen w-full overflow-hidden">
-        <Image
-          src={businessData.featuredImage}
+        <OptimizedVideo
+          src="/videos/drywall-painting-hero.mp4"
+          fallbackImage={businessData.featuredImage}
           alt={businessData.name}
-          fill
-          className="object-cover"
+          className="absolute inset-0 w-full h-full"
+          autoPlay
+          muted
+          loop
+          playsInline
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-blue-900/90 via-blue-800/60 to-blue-700/40"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/40"></div>
         
         {/* Decorative Elements */}
         <div className="absolute top-20 left-10 w-32 h-32 bg-orange-500/20 rounded-full blur-3xl"></div>
@@ -191,7 +207,7 @@ export default function DrywallPaintingProPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
               <Button 
                 size="lg" 
-                className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 text-lg font-semibold rounded-lg shadow-2xl"
+                className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl"
               >
                 <Phone className="h-5 w-5 mr-3" />
                 Call Now: {businessData.phone}
@@ -199,7 +215,7 @@ export default function DrywallPaintingProPage() {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="bg-white/20 border-white/30 text-white hover:bg-white/30 px-8 py-4 text-lg font-semibold rounded-lg backdrop-blur-sm"
+                className="bg-white/20 border-white/30 text-white hover:bg-white/30 px-8 py-4 text-lg font-semibold rounded-full backdrop-blur-sm"
                 asChild
               >
                 <a href={businessData.website} target="_blank" rel="noopener noreferrer">
@@ -400,6 +416,17 @@ export default function DrywallPaintingProPage() {
           </div>
         </div>
       </div>
+
+      {/* Business Footer */}
+      <BusinessFooter
+        businessName={businessData.name}
+        businessPhone={businessData.phone}
+        businessEmail={businessData.email}
+        businessWebsite={businessData.website}
+        businessRating={businessData.rating}
+        businessReviewCount={businessData.reviewCount}
+        serviceAreas={serviceAreas}
+      />
     </div>
   );
 }

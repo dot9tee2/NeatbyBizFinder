@@ -1,8 +1,7 @@
 import './globals.css';
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
-import Header from '@/components/layout/header';
-import Footer from '@/components/layout/footer';
+import ConditionalLayout from '@/components/layout/conditional-layout';
 import Script from 'next/script';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -77,23 +76,19 @@ export default function RootLayout({
   return (
     <html lang="en-US">
       <body className={inter.className}>
-        <div className="flex flex-col min-h-screen">
-          <Header />
-          <Script id="ld-json-organization" type="application/ld+json">
-            {JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'Organization',
-              name: 'NearbyBizFinder',
-              url: 'https://nearbybizfinder.com/',
-              logo: 'https://nearbybizfinder.com/logo.png',
-              areaServed: 'US',
-            })}
-          </Script>
-          <main className="flex-1">
-            {children}
-          </main>
-          <Footer />
-        </div>
+        <Script id="ld-json-organization" type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'NearbyBizFinder',
+            url: 'https://nearbybizfinder.com/',
+            logo: 'https://nearbybizfinder.com/logo.png',
+            areaServed: 'US',
+          })}
+        </Script>
+        <ConditionalLayout>
+          {children}
+        </ConditionalLayout>
       </body>
     </html>
   );

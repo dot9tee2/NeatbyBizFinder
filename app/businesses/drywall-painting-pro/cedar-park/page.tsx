@@ -1,10 +1,12 @@
 import { Metadata } from 'next';
 import Script from 'next/script';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/optimized-image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Star, Phone, Mail, Globe, Hammer, Paintbrush, Wrench, Home, Shield, CheckCircle, ArrowRight } from 'lucide-react';
+import BusinessHeader from '@/components/business-landing/business-header';
+import BusinessFooter from '@/components/business-landing/business-footer';
 
 export const metadata: Metadata = {
   title: 'Drywall and Painting Pro - Cedar Park Location | Professional Home Services',
@@ -83,6 +85,15 @@ export default function CedarParkPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Business Header */}
+      <BusinessHeader
+        businessName={`${businessData.name} - ${businessData.locationName}`}
+        businessPhone={businessData.phone}
+        businessEmail={businessData.email}
+        businessWebsite={businessData.website}
+        businessCategory={businessData.category}
+      />
+
       {/* Structured Data */}
       <Script
         id="business-structured-data"
@@ -120,12 +131,14 @@ export default function CedarParkPage() {
 
       {/* Hero Section */}
       <div className="relative h-screen w-full overflow-hidden">
-        <Image
+        <OptimizedImage
           src={businessData.featuredImage}
           alt={`${businessData.name} - ${businessData.locationName}`}
           fill
           className="object-cover"
           priority
+          quality={90}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-blue-900/90 via-blue-800/60 to-blue-700/40"></div>
         
@@ -365,6 +378,19 @@ export default function CedarParkPage() {
           </div>
         </div>
       </div>
+
+      {/* Business Footer */}
+      <BusinessFooter
+        businessName={`${businessData.name} - ${businessData.locationName}`}
+        businessPhone={businessData.phone}
+        businessEmail={businessData.email}
+        businessWebsite={businessData.website}
+        businessCity={businessData.city}
+        businessState={businessData.state}
+        businessRating={businessData.rating}
+        businessReviewCount={businessData.reviewCount}
+        serviceAreas={serviceAreas}
+      />
     </div>
   );
 }

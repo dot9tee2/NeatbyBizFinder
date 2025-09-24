@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/optimized-image';
 import { Camera } from 'lucide-react';
 
 interface BusinessGalleryProps {
@@ -24,11 +24,13 @@ export default function BusinessGallery({ images, businessName }: BusinessGaller
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {images.map((image, index) => (
             <div key={index} className="relative h-32 rounded-lg overflow-hidden">
-              <Image
+              <OptimizedImage
                 src={image}
                 alt={`${businessName} photo ${index + 1}`}
                 fill
                 className="object-cover hover:scale-105 transition-transform duration-200 cursor-pointer"
+                quality={85}
+                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
               />
             </div>
           ))}

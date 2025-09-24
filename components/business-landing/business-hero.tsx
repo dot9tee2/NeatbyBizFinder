@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/optimized-image';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Star, Phone, Globe, MapPin, Navigation } from 'lucide-react';
@@ -66,12 +66,14 @@ export default function BusinessHero({
 
   return (
     <div className="relative h-96 md:h-[500px] w-full">
-      <Image
+      <OptimizedImage
         src={featuredImage}
         alt={name}
         fill
         className="object-cover"
         priority
+        quality={90}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
       />
       <div className="absolute inset-0 bg-black/40"></div>
       

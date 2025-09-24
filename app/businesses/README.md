@@ -34,6 +34,8 @@ Create `app/businesses/my-business-name/page.tsx`:
 ```tsx
 import { Metadata } from 'next';
 import Script from 'next/script';
+import BusinessHeader from '@/components/business-landing/business-header';
+import BusinessFooter from '@/components/business-landing/business-footer';
 import BusinessHero from '@/components/business-landing/business-hero';
 import BusinessContact from '@/components/business-landing/business-contact';
 import BusinessHours from '@/components/business-landing/business-hours';
@@ -119,6 +121,15 @@ export default function MyBusinessPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Business Header */}
+      <BusinessHeader
+        businessName={businessData.name}
+        businessPhone={businessData.phone}
+        businessEmail={businessData.email}
+        businessWebsite={businessData.website}
+        businessCategory={businessData.category}
+      />
+
       <Script
         id="business-structured-data"
         type="application/ld+json"
@@ -161,6 +172,21 @@ export default function MyBusinessPage() {
           </div>
         </div>
       </div>
+
+      {/* Business Footer */}
+      <BusinessFooter
+        businessName={businessData.name}
+        businessPhone={businessData.phone}
+        businessEmail={businessData.email}
+        businessWebsite={businessData.website}
+        businessAddress={businessData.address}
+        businessCity={businessData.city}
+        businessState={businessData.state}
+        businessZipCode={businessData.zipCode}
+        businessRating={businessData.rating}
+        businessReviewCount={businessData.reviewCount}
+        serviceAreas={businessData.serviceAreas}
+      />
     </div>
   );
 }
@@ -179,6 +205,22 @@ Create `app/businesses/my-business-name/location-name/page.tsx` with location-sp
 Add your business data to `lib/business-landing-data.ts` for centralized management.
 
 ## 🎨 Available Components
+
+### BusinessHeader
+Dedicated header component for business landing pages with:
+- Business logo and name display
+- Contact information (phone, email, website)
+- Call-to-action button
+- Mobile-responsive design
+- Sticky positioning
+
+### BusinessFooter
+Dedicated footer component for business landing pages with:
+- Business information and branding
+- Contact details and service areas
+- Quick links to main website
+- Rating and review display
+- Professional styling
 
 ### BusinessHero
 Hero section with business info, rating, and call-to-action buttons.
