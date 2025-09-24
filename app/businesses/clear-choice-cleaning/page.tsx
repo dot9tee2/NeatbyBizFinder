@@ -1,15 +1,15 @@
 'use client';
 
-import { Metadata } from 'next';
 import Script from 'next/script';
+import Head from 'next/head';
 import OptimizedVideo from '@/components/ui/optimized-video';
 import OptimizedImage from '@/components/ui/optimized-image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Sparkles, Briefcase, Building, Layers, Star, Phone, MapPin, Clock, Mail, Globe, Shield, CheckCircle, ArrowRight, Users, Award, Clock3, Leaf, Zap, Heart, Home, DoorOpen, Menu, X, ChevronDown, Play, Download, Plus, Minus } from 'lucide-react';
-import BusinessHeader from '@/components/business-landing/business-header';
-import BusinessFooter from '@/components/business-landing/business-footer';
+// import BusinessHeader from '@/components/business-landing/business-header';
+// import BusinessFooter from '@/components/business-landing/business-footer';
 import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -649,7 +649,48 @@ export default function ClearChoiceCleaningPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <>
+      <Head>
+        <title>Clear Choice Cleaning - Professional Cleaning Services in Las Vegas, NV</title>
+        <meta name="description" content="Professional cleaning services for homes and offices in Las Vegas, NV. Experienced cleaners, eco-friendly products, flexible scheduling. Book your cleaning service today!" />
+        <meta name="keywords" content="cleaning services, house cleaning, office cleaning, Las Vegas cleaning, professional cleaners, eco-friendly cleaning, residential cleaning, commercial cleaning" />
+        <meta name="author" content="Clear Choice Cleaning" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://nearbybizfinder.com/businesses/clear-choice-cleaning/" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://nearbybizfinder.com/businesses/clear-choice-cleaning/" />
+        <meta property="og:title" content="Clear Choice Cleaning - Professional Cleaning Services in Las Vegas, NV" />
+        <meta property="og:description" content="Professional cleaning services for homes and offices in Las Vegas, NV. Experienced cleaners, eco-friendly products, flexible scheduling. Book your cleaning service today!" />
+        <meta property="og:image" content="https://nearbybizfinder.com/clear-choice-cleaning/featured-image.jpeg" />
+        <meta property="og:site_name" content="Nearby Biz Finder" />
+        
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://nearbybizfinder.com/businesses/clear-choice-cleaning/" />
+        <meta property="twitter:title" content="Clear Choice Cleaning - Professional Cleaning Services in Las Vegas, NV" />
+        <meta property="twitter:description" content="Professional cleaning services for homes and offices in Las Vegas, NV. Experienced cleaners, eco-friendly products, flexible scheduling. Book your cleaning service today!" />
+        <meta property="twitter:image" content="https://nearbybizfinder.com/clear-choice-cleaning/featured-image.jpeg" />
+        
+        {/* Additional SEO */}
+        <meta name="geo.region" content="US-NV" />
+        <meta name="geo.placename" content="Las Vegas" />
+        <meta name="geo.position" content="36.1699;-115.1398" />
+        <meta name="ICBM" content="36.1699, -115.1398" />
+        
+        {/* Business Schema */}
+        <meta name="business:contact_data:street_address" content="1234 Main Street" />
+        <meta name="business:contact_data:locality" content="Las Vegas" />
+        <meta name="business:contact_data:region" content="NV" />
+        <meta name="business:contact_data:postal_code" content="89101" />
+        <meta name="business:contact_data:country_name" content="United States" />
+        <meta name="business:contact_data:phone_number" content="(702) 820-5479" />
+        <meta name="business:contact_data:email" content="wesleyv@clearchoicelv.com" />
+        <meta name="business:contact_data:website" content="https://clearchoicelv.com/" />
+      </Head>
+      
+      <div className="min-h-screen bg-white">
       {/* Custom Header */}
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 max-w-7xl">
@@ -849,23 +890,23 @@ export default function ClearChoiceCleaningPage() {
             <div className="feature-item text-center">
               <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Sparkles className="h-8 w-8 text-white" />
-              </div>
+          </div>
               <h3 className="text-lg font-semibold text-gray-900">Clean</h3>
-            </div>
+        </div>
             <div className="feature-item text-center">
               <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Heart className="h-8 w-8 text-white" />
-              </div>
+      </div>
               <h3 className="text-lg font-semibold text-gray-900">Care</h3>
-            </div>
+                </div>
             <div className="feature-item text-center">
               <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Zap className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-lg font-semibold text-gray-900">Sparkle</h3>
-            </div>
           </div>
         </div>
+      </div>
       </section>
 
       {/* Why Choose Us Section */}
@@ -876,18 +917,18 @@ export default function ClearChoiceCleaningPage() {
               <Badge className="mb-4 bg-yellow-100 text-yellow-800 border-yellow-200">
                 Why Us
               </Badge>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Why Choose The Best Cleaning Service
-              </h2>
+            </h2>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
                 We're committed to delivering exceptional cleaning services that exceed your expectations. 
                 Our experienced team uses eco-friendly products and modern techniques to ensure your space is spotless.
-              </p>
+            </p>
               <div className="space-y-4">
                 <div className="flex items-center">
                   <div className="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center mr-4">
                     <CheckCircle className="h-5 w-5 text-white" />
-                  </div>
+          </div>
                   <span className="text-lg text-gray-700">Experienced Staff</span>
                 </div>
                 <div className="flex items-center">
@@ -914,15 +955,15 @@ export default function ClearChoiceCleaningPage() {
               </Button>
             </div>
             <div className="why-choose-image relative">
-              <OptimizedImage
+                  <OptimizedImage
                 src="/clear-choice-cleaning/why-choose-us-image.jpeg"
                 alt="Clean modern living room"
                 width={600}
                 height={400}
                 className="rounded-lg shadow-lg"
               />
-            </div>
-          </div>
+                    </div>
+                  </div>
         </div>
       </section>
 
@@ -932,14 +973,14 @@ export default function ClearChoiceCleaningPage() {
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-yellow-100 text-yellow-800 border-yellow-200">
               Our Services
-            </Badge>
+                    </Badge>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Services We Provide
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Comprehensive cleaning solutions tailored to meet your specific needs and exceed your expectations.
             </p>
-          </div>
+                  </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {services.slice(0, 3).map((service, index) => (
@@ -947,7 +988,7 @@ export default function ClearChoiceCleaningPage() {
                 <CardContent className="p-8 text-center">
                   <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-6">
                     <service.icon className="h-8 w-8 text-white" />
-                  </div>
+                </div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-4">
                     {service.title}
                   </h3>
@@ -991,8 +1032,8 @@ export default function ClearChoiceCleaningPage() {
                 </blockquote>
                 <div className="text-lg font-semibold text-gray-900">Sarah Johnson</div>
                 <div className="text-gray-600">Las Vegas, NV</div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
           </div>
 
           {/* Statistics */}
@@ -1099,7 +1140,7 @@ export default function ClearChoiceCleaningPage() {
               Our Photo Gallery
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              See the quality of our cleaning services through our before and after photos. 
+              See the quality of our cleaning services through our before and after photos.
               We take pride in delivering exceptional results for every client.
             </p>
           </div>
@@ -1137,7 +1178,7 @@ export default function ClearChoiceCleaningPage() {
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center mr-4">
                     <Leaf className="h-6 w-6 text-white" />
-                  </div>
+      </div>
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900">Eco-Friendly Products</h3>
                     <p className="text-gray-600">Safe for your family and pets</p>
@@ -1198,7 +1239,7 @@ export default function ClearChoiceCleaningPage() {
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Select the perfect cleaning plan that fits your needs and budget. All plans include our satisfaction guarantee.
             </p>
-                  </div>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {pricingPlans.map((plan, index) => (
@@ -1211,7 +1252,7 @@ export default function ClearChoiceCleaningPage() {
                 <CardContent className="p-8 text-center">
                   <h3 className={`text-2xl font-bold mb-4 ${plan.featured ? 'text-white' : 'text-gray-900'}`}>
                     {plan.name}
-                  </h3>
+                </h3>
                   <div className="mb-6">
                     <span className={`text-4xl font-bold ${plan.featured ? 'text-white' : 'text-gray-900'}`}>
                       {plan.price}
@@ -1219,7 +1260,7 @@ export default function ClearChoiceCleaningPage() {
                     <span className={`text-lg ${plan.featured ? 'text-yellow-100' : 'text-gray-600'}`}>
                       {plan.period}
                     </span>
-                  </div>
+              </div>
                   <ul className="space-y-3 mb-8">
                     {plan.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className={`flex items-center text-left ${plan.featured ? 'text-yellow-100' : 'text-gray-600'}`}>
@@ -1251,13 +1292,13 @@ export default function ClearChoiceCleaningPage() {
             <Badge className="mb-4 bg-yellow-100 text-yellow-800 border-yellow-200">
               Team
             </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               The Best Team to Clean Your Surrounding Area
-            </h2>
+              </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Meet our professional cleaning team who are dedicated to delivering exceptional results for every client.
-            </p>
-          </div>
+              </p>
+                    </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {teamMembers.map((member, index) => (
@@ -1275,10 +1316,10 @@ export default function ClearChoiceCleaningPage() {
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">{member.name}</h3>
                 <p className="text-gray-600">{member.role}</p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
+            </div>
       </section> */}
 
       {/* FAQ Section */}
@@ -1296,7 +1337,7 @@ export default function ClearChoiceCleaningPage() {
             </p>
           </div>
 
-          <div className="space-y-4">
+              <div className="space-y-4">
             {faqData.map((faq, index) => (
               <Card key={index} className="faq-item bg-white border-0 shadow-md">
                 <CardContent className="p-0">
@@ -1314,13 +1355,13 @@ export default function ClearChoiceCleaningPage() {
                   {openFAQ === index && (
                     <div className="px-6 pb-6">
                       <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
-              </div>
+                </div>
                   )}
                 </CardContent>
               </Card>
             ))}
-          </div>
-        </div>
+                </div>
+                </div>
       </section>
 
       {/* Contact Section */}
@@ -1339,7 +1380,7 @@ export default function ClearChoiceCleaningPage() {
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center mr-4">
                     <Phone className="h-6 w-6 text-white" />
-                    </div>
+              </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900">{businessData.phone}</h3>
                     <p className="text-gray-600">Call us anytime</p>
@@ -1536,6 +1577,7 @@ export default function ClearChoiceCleaningPage() {
           animation: fade-in 1s ease-out 0.9s both;
         }
       `}</style>
-    </div>
+      </div>
+    </>
   );
 }
