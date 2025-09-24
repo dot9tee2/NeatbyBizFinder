@@ -10,15 +10,382 @@ import { Badge } from '@/components/ui/badge';
 import { Sparkles, Briefcase, Building, Layers, Star, Phone, MapPin, Clock, Mail, Globe, Shield, CheckCircle, ArrowRight, Users, Award, Clock3, Leaf, Zap, Heart, Home, DoorOpen, Menu, X, ChevronDown, Play, Download, Plus, Minus } from 'lucide-react';
 import BusinessHeader from '@/components/business-landing/business-header';
 import BusinessFooter from '@/components/business-landing/business-footer';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export default function ClearChoiceCleaningPage() {
   const [isVisible, setIsVisible] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
 
+  // GSAP Refs
+  const heroRef = useRef<HTMLDivElement>(null);
+  const featuresRef = useRef<HTMLDivElement>(null);
+  const whyChooseUsRef = useRef<HTMLDivElement>(null);
+  const servicesRef = useRef<HTMLDivElement>(null);
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const testimonialsRef = useRef<HTMLDivElement>(null);
+  const howItWorksRef = useRef<HTMLDivElement>(null);
+  const benefitsRef = useRef<HTMLDivElement>(null);
+  const pricingRef = useRef<HTMLDivElement>(null);
+  const faqRef = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     setIsVisible(true);
+    
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero section animation
+    if (heroRef.current) {
+      gsap.fromTo(heroRef.current.querySelector('.hero-content'), 
+        { 
+          opacity: 0, 
+          y: 100,
+          scale: 0.8
+        },
+        { 
+          opacity: 1, 
+          y: 0,
+          scale: 1,
+          duration: 1.5,
+          ease: "power3.out",
+          delay: 0.5
+        }
+      );
+    }
+
+    // Features section animation
+    if (featuresRef.current) {
+      gsap.fromTo(featuresRef.current.querySelectorAll('.feature-item'),
+        { 
+          opacity: 0, 
+          y: 50,
+          scale: 0.8
+        },
+        { 
+          opacity: 1, 
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          ease: "back.out(1.7)",
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: featuresRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }
+
+    // Why Choose Us section animation
+    if (whyChooseUsRef.current) {
+      gsap.fromTo(whyChooseUsRef.current.querySelector('.why-choose-content'),
+        { 
+          opacity: 0, 
+          x: -100
+        },
+        { 
+          opacity: 1, 
+          x: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: whyChooseUsRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      gsap.fromTo(whyChooseUsRef.current.querySelector('.why-choose-image'),
+        { 
+          opacity: 0, 
+          x: 100,
+          scale: 0.8
+        },
+        { 
+          opacity: 1, 
+          x: 0,
+          scale: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: whyChooseUsRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }
+
+    // Services section animation
+    if (servicesRef.current) {
+      gsap.fromTo(servicesRef.current.querySelectorAll('.service-card'),
+        { 
+          opacity: 0, 
+          y: 80,
+          rotation: 5
+        },
+        { 
+          opacity: 1, 
+          y: 0,
+          rotation: 0,
+          duration: 0.8,
+          ease: "back.out(1.7)",
+          stagger: 0.15,
+          scrollTrigger: {
+            trigger: servicesRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }
+
+    // Gallery section animation
+    if (galleryRef.current) {
+      gsap.fromTo(galleryRef.current.querySelectorAll('.gallery-item'),
+        { 
+          opacity: 0, 
+          scale: 0,
+          rotation: 180
+        },
+        { 
+          opacity: 1, 
+          scale: 1,
+          rotation: 0,
+          duration: 0.6,
+          ease: "back.out(1.7)",
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: galleryRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }
+
+    // Testimonials section animation
+    if (testimonialsRef.current) {
+      gsap.fromTo(testimonialsRef.current.querySelector('.testimonial-card'),
+        { 
+          opacity: 0, 
+          y: 100,
+          scale: 0.8
+        },
+        { 
+          opacity: 1, 
+          y: 0,
+          scale: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: testimonialsRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      gsap.fromTo(testimonialsRef.current.querySelectorAll('.stat-item'),
+        { 
+          opacity: 0, 
+          y: 50,
+          scale: 0.5
+        },
+        { 
+          opacity: 1, 
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          ease: "back.out(1.7)",
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: testimonialsRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }
+
+    // How It Works section animation
+    if (howItWorksRef.current) {
+      gsap.fromTo(howItWorksRef.current.querySelectorAll('.how-it-works-item'),
+        { 
+          opacity: 0, 
+          y: 100,
+          x: (index) => index % 2 === 0 ? -100 : 100
+        },
+        { 
+          opacity: 1, 
+          y: 0,
+          x: 0,
+          duration: 1,
+          ease: "power3.out",
+          stagger: 0.3,
+          scrollTrigger: {
+            trigger: howItWorksRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }
+
+    // Benefits section animation
+    if (benefitsRef.current) {
+      gsap.fromTo(benefitsRef.current.querySelector('.benefits-content'),
+        { 
+          opacity: 0, 
+          x: -100
+        },
+        { 
+          opacity: 1, 
+          x: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: benefitsRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      gsap.fromTo(benefitsRef.current.querySelector('.benefits-image'),
+        { 
+          opacity: 0, 
+          x: 100,
+          scale: 0.8
+        },
+        { 
+          opacity: 1, 
+          x: 0,
+          scale: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: benefitsRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }
+
+    // Pricing section animation
+    if (pricingRef.current) {
+      gsap.fromTo(pricingRef.current.querySelectorAll('.pricing-card'),
+        { 
+          opacity: 0, 
+          y: 100,
+          scale: 0.8
+        },
+        { 
+          opacity: 1, 
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          ease: "back.out(1.7)",
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: pricingRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }
+
+    // FAQ section animation
+    if (faqRef.current) {
+      gsap.fromTo(faqRef.current.querySelectorAll('.faq-item'),
+        { 
+          opacity: 0, 
+          x: -50,
+          scale: 0.9
+        },
+        { 
+          opacity: 1, 
+          x: 0,
+          scale: 1,
+          duration: 0.6,
+          ease: "power3.out",
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: faqRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }
+
+    // Contact section animation
+    if (contactRef.current) {
+      gsap.fromTo(contactRef.current.querySelector('.contact-content'),
+        { 
+          opacity: 0, 
+          x: -100
+        },
+        { 
+          opacity: 1, 
+          x: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: contactRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      gsap.fromTo(contactRef.current.querySelector('.contact-form'),
+        { 
+          opacity: 0, 
+          x: 100,
+          scale: 0.9
+        },
+        { 
+          opacity: 1, 
+          x: 0,
+          scale: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: contactRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }
+
+    // Cleanup function
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
   }, []);
 
   const businessData = {
@@ -422,7 +789,7 @@ export default function ClearChoiceCleaningPage() {
       />
 
       {/* Hero Section */}
-      <section id="home" className="relative h-screen w-full overflow-hidden">
+      <section id="home" ref={heroRef} className="relative h-screen w-full overflow-hidden">
         <OptimizedVideo
           src="/videos/clear-choice-cleaning-hero.mp4"
           fallbackImage="/clear-choice-cleaning/hero-image.png"
@@ -439,7 +806,7 @@ export default function ClearChoiceCleaningPage() {
         {/* Content */}
         <div className="absolute inset-0 flex items-center">
           <div className="container mx-auto px-4 max-w-7xl">
-            <div className="max-w-2xl text-white">
+            <div className="hero-content max-w-2xl text-white">
               <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
                 The Perfect Clean Guaranteed
               </h1>
@@ -476,22 +843,22 @@ export default function ClearChoiceCleaningPage() {
       </section>
 
       {/* Feature Highlights */}
-      <section className="py-16 bg-gray-50">
+      <section ref={featuresRef} className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex justify-center space-x-16">
-            <div className="text-center">
+            <div className="feature-item text-center">
               <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Sparkles className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-lg font-semibold text-gray-900">Clean</h3>
             </div>
-            <div className="text-center">
+            <div className="feature-item text-center">
               <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Heart className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-lg font-semibold text-gray-900">Care</h3>
             </div>
-            <div className="text-center">
+            <div className="feature-item text-center">
               <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Zap className="h-8 w-8 text-white" />
               </div>
@@ -502,10 +869,10 @@ export default function ClearChoiceCleaningPage() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section id="about" className="py-20 bg-white">
+      <section id="about" ref={whyChooseUsRef} className="py-20 bg-white">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className="why-choose-content">
               <Badge className="mb-4 bg-yellow-100 text-yellow-800 border-yellow-200">
                 Why Us
               </Badge>
@@ -546,7 +913,7 @@ export default function ClearChoiceCleaningPage() {
                 Learn More
               </Button>
             </div>
-            <div className="relative">
+            <div className="why-choose-image relative">
               <OptimizedImage
                 src="/clear-choice-cleaning/why-choose-us-image.jpeg"
                 alt="Clean modern living room"
@@ -554,13 +921,13 @@ export default function ClearChoiceCleaningPage() {
                 height={400}
                 className="rounded-lg shadow-lg"
               />
+            </div>
           </div>
-        </div>
         </div>
       </section>
 
       {/* What We Provide Section */}
-      <section id="services" className="py-20 bg-gray-50">
+      <section id="services" ref={servicesRef} className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-yellow-100 text-yellow-800 border-yellow-200">
@@ -576,11 +943,11 @@ export default function ClearChoiceCleaningPage() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {services.slice(0, 3).map((service, index) => (
-              <Card key={index} className="bg-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+              <Card key={index} className="service-card bg-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
                 <CardContent className="p-8 text-center">
                   <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-6">
                     <service.icon className="h-8 w-8 text-white" />
-        </div>
+                  </div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-4">
                     {service.title}
                   </h3>
@@ -593,12 +960,12 @@ export default function ClearChoiceCleaningPage() {
                 </CardContent>
               </Card>
             ))}
-      </div>
+          </div>
         </div>
       </section>
 
       {/* Testimonials & Statistics Section */}
-      <section className="py-20 bg-white">
+      <section ref={testimonialsRef} className="py-20 bg-white">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-yellow-100 text-yellow-800 border-yellow-200">
@@ -611,7 +978,7 @@ export default function ClearChoiceCleaningPage() {
 
           {/* Testimonial */}
           <div className="max-w-4xl mx-auto mb-16">
-            <Card className="bg-gray-50 border-0 shadow-lg">
+            <Card className="testimonial-card bg-gray-50 border-0 shadow-lg">
               <CardContent className="p-8 text-center">
                 <div className="flex justify-center mb-6">
                   {Array.from({ length: 5 }, (_, i) => (
@@ -631,7 +998,7 @@ export default function ClearChoiceCleaningPage() {
           {/* Statistics */}
           <div className="grid grid-cols-3 gap-8 max-w-4xl mx-auto">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center">
+              <div key={index} className="stat-item text-center">
                 <div className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">{stat.number}</div>
                 <div className="text-lg text-gray-600">{stat.label}</div>
               </div>
@@ -657,7 +1024,7 @@ export default function ClearChoiceCleaningPage() {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-20 bg-gray-50">
+      <section ref={howItWorksRef} className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-yellow-100 text-yellow-800 border-yellow-200">
@@ -672,22 +1039,22 @@ export default function ClearChoiceCleaningPage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
+            <div className="how-it-works-item text-center">
               <div className="relative mb-6">
-                  <OptimizedImage
+                <OptimizedImage
                   src="/clear-choice-cleaning/how-it-works-booking.jpeg"
                   alt="Booking online"
                   width={300}
                   height={200}
                   className="rounded-lg shadow-lg mx-auto"
                 />
-                    </div>
+              </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Book Online</h3>
               <p className="text-gray-600 leading-relaxed">
                 Schedule your cleaning service in just a few clicks. Choose your preferred date and time that works best for you.
               </p>
                   </div>
-            <div className="text-center">
+            <div className="how-it-works-item text-center">
               <div className="relative mb-6">
                 <OptimizedImage
                   src="/clear-choice-cleaning/how-it-works-cleaning.jpeg"
@@ -702,7 +1069,7 @@ export default function ClearChoiceCleaningPage() {
                 Our experienced team arrives on time with all necessary supplies and equipment to deliver exceptional results.
               </p>
             </div>
-            <div className="text-center">
+            <div className="how-it-works-item text-center">
               <div className="relative mb-6">
                 <OptimizedImage
                   src="/clear-choice-cleaning/how-it-works-enjoy.jpeg"
@@ -722,7 +1089,7 @@ export default function ClearChoiceCleaningPage() {
       </section>
 
       {/* Gallery Section */}
-      <section className="py-20 bg-white">
+      <section ref={galleryRef} className="py-20 bg-white">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-yellow-100 text-yellow-800 border-yellow-200">
@@ -739,7 +1106,7 @@ export default function ClearChoiceCleaningPage() {
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {galleryImages.map((image, index) => (
-              <div key={index} className="group relative overflow-hidden rounded-lg aspect-square">
+              <div key={index} className="gallery-item group relative overflow-hidden rounded-lg aspect-square">
                 <OptimizedImage
                   src={image.src}
                   alt={image.alt}
@@ -762,10 +1129,10 @@ export default function ClearChoiceCleaningPage() {
       </section>
 
       {/* Detailed Benefits Section */}
-      <section className="py-20 bg-white">
+      <section ref={benefitsRef} className="py-20 bg-white">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className="benefits-content">
               <div className="space-y-6">
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center mr-4">
@@ -805,7 +1172,7 @@ export default function ClearChoiceCleaningPage() {
                 </div>
               </div>
             </div>
-            <div className="relative">
+            <div className="benefits-image relative">
               <OptimizedImage
                 src="/clear-choice-cleaning/benefits-section-image.jpeg"
                 alt="Professional cleaners at work"
@@ -819,7 +1186,7 @@ export default function ClearChoiceCleaningPage() {
       </section>
 
       {/* Pricing Plans Section */}
-      <section id="pricing" className="py-20 bg-gray-50">
+      <section id="pricing" ref={pricingRef} className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-yellow-100 text-yellow-800 border-yellow-200">
@@ -835,7 +1202,7 @@ export default function ClearChoiceCleaningPage() {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {pricingPlans.map((plan, index) => (
-              <Card key={index} className={`relative ${plan.featured ? 'bg-yellow-500 text-white border-yellow-500' : 'bg-white'} border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2`}>
+              <Card key={index} className={`pricing-card relative ${plan.featured ? 'bg-yellow-500 text-white border-yellow-500' : 'bg-white'} border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2`}>
                 {plan.featured && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                     <Badge className="bg-yellow-600 text-white px-4 py-1">Most Popular</Badge>
@@ -915,7 +1282,7 @@ export default function ClearChoiceCleaningPage() {
       </section> */}
 
       {/* FAQ Section */}
-      <section className="py-20 bg-gray-50">
+      <section ref={faqRef} className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-yellow-100 text-yellow-800 border-yellow-200">
@@ -931,7 +1298,7 @@ export default function ClearChoiceCleaningPage() {
 
           <div className="space-y-4">
             {faqData.map((faq, index) => (
-              <Card key={index} className="bg-white border-0 shadow-md">
+              <Card key={index} className="faq-item bg-white border-0 shadow-md">
                 <CardContent className="p-0">
                   <button
                     className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
@@ -957,10 +1324,10 @@ export default function ClearChoiceCleaningPage() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-white">
+      <section id="contact" ref={contactRef} className="py-20 bg-white">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className="contact-content">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Let's Schedule Your First Clean. Special Offers Available.
               </h2>
@@ -999,7 +1366,7 @@ export default function ClearChoiceCleaningPage() {
               </div>
             </div>
             
-            <div className="bg-gray-50 rounded-lg p-8">
+            <div className="contact-form bg-gray-50 rounded-lg p-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Get Your Free Estimate</h3>
               <form className="space-y-4">
                 <div>
