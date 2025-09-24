@@ -64,17 +64,15 @@ export function getOptimalQuality(useCase: keyof typeof IMAGE_OPTIMIZATION.quali
 
 // Generate blur data URL for placeholder
 export function generateBlurDataURL(width: number = 10, height: number = 10, color: string = '#f3f4f6'): string {
-  const canvas = document.createElement('canvas');
-  canvas.width = width;
-  canvas.height = height;
-  const ctx = canvas.getContext('2d');
+  // Return a simple base64 SVG placeholder for SSR compatibility
+  const svg = `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="${width}" height="${height}" fill="${color}"/></svg>`;
   
-  if (ctx) {
-    ctx.fillStyle = color;
-    ctx.fillRect(0, 0, width, height);
+  // Use Buffer in Node.js environment, btoa in browser
+  if (typeof window === 'undefined') {
+    return `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`;
+  } else {
+    return `data:image/svg+xml;base64,${btoa(svg)}`;
   }
-  
-  return canvas.toDataURL();
 }
 
 // Check if device supports modern video formats

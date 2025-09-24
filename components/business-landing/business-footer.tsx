@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/optimized-image';
 import { Phone, Mail, Globe, MapPin, Clock, Star } from 'lucide-react';
 
 interface BusinessFooterProps {
@@ -152,12 +152,13 @@ export default function BusinessFooter({
         {/* Bottom Section */}
         <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center space-x-2 mb-4 md:mb-0">
-            <Image
+            <OptimizedImage
               src="/logo.png"
               alt="NearbyBizFinder logo"
               width={24}
               height={24}
               className="h-6 w-6"
+              quality={90}
             />
             <p className="text-gray-400 text-sm">
               Powered by NearbyBizFinder

@@ -251,11 +251,13 @@ export default function DrywallPaintingProPage() {
             {services.map((service, index) => (
               <Card key={index} className="group hover:shadow-2xl transition-all duration-500 border-0 bg-white shadow-lg">
                 <div className="relative h-48 overflow-hidden rounded-t-lg">
-                  <Image
+                  <OptimizedImage
                     src={service.image}
                     alt={service.title}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    quality={85}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent"></div>
                   <div className="absolute top-4 left-4">

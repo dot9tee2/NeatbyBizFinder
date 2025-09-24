@@ -84,16 +84,8 @@ export default function OptimizedImage({
   const generateBlurDataURL = () => {
     if (blurDataURL) return blurDataURL;
     
-    // Create a simple blur placeholder
-    const canvas = document.createElement('canvas');
-    canvas.width = 10;
-    canvas.height = 10;
-    const ctx = canvas.getContext('2d');
-    if (ctx) {
-      ctx.fillStyle = '#f3f4f6';
-      ctx.fillRect(0, 0, 10, 10);
-    }
-    return canvas.toDataURL();
+    // Return a simple base64 blur placeholder for SSR
+    return 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIHZpZXdCb3g9IjAgMCAxMCAxMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIiBmaWxsPSIjZjNmNGY2Ii8+Cjwvc3ZnPgo=';
   };
 
   if (!isInView) {
