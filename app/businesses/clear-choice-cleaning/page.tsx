@@ -1,6 +1,5 @@
 'use client';
 
-import { Metadata } from 'next';
 import Script from 'next/script';
 import OptimizedVideo from '@/components/ui/optimized-video';
 import OptimizedImage from '@/components/ui/optimized-image';
@@ -34,6 +33,31 @@ export default function ClearChoiceCleaningPage() {
 
   useEffect(() => {
     setIsVisible(true);
+    
+    // Set document title and meta tags
+    document.title = 'Clear Choice Cleaning - Professional Cleaning Services in Las Vegas, NV | NearbyBizFinder';
+    
+    // Update meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Professional cleaning services for homes and offices in Las Vegas, NV. We provide reliable, eco-friendly cleaning solutions with experienced staff and flexible scheduling. Book your cleaning service today!');
+    }
+    
+    // Update Open Graph tags
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+      ogTitle.setAttribute('content', 'Clear Choice Cleaning - Professional Cleaning Services in Las Vegas, NV');
+    }
+    
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if (ogDescription) {
+      ogDescription.setAttribute('content', 'Professional cleaning services for homes and offices in Las Vegas, NV. We provide reliable, eco-friendly cleaning solutions with experienced staff and flexible scheduling.');
+    }
+    
+    const ogImage = document.querySelector('meta[property="og:image"]');
+    if (ogImage) {
+      ogImage.setAttribute('content', '/clear-choice-cleaning/hero-image.png');
+    }
     
     // Register ScrollTrigger plugin
     gsap.registerPlugin(ScrollTrigger);
@@ -828,9 +852,9 @@ export default function ClearChoiceCleaningPage() {
                 <div className="flex items-center">
                   <CheckCircle className="h-5 w-5 text-yellow-400 mr-3" />
                   <span className="text-lg">Flexible Scheduling</span>
-            </div>
-            </div>
-
+                </div>
+              </div>
+              
               <Button 
                 size="lg" 
                 className="bg-yellow-500 hover:bg-yellow-600 text-white px-8 py-4 text-lg font-semibold rounded-lg transform hover:scale-105 transition-all duration-300"
