@@ -28,7 +28,7 @@ export default function LouisvilleHeader({
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Business Logo and Name */}
-          <Link href="/" className="flex items-center space-x-3">
+          <Link href="/businesses/superior-electric-service/" className="flex items-center space-x-3">
             <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-lg flex items-center justify-center shadow-lg">
               <Zap className="h-6 w-6 text-gray-900" />
             </div>
@@ -40,6 +40,21 @@ export default function LouisvilleHeader({
               </div>
             </div>
           </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-6">
+            <nav className="flex items-center space-x-4">
+              <Link href="/businesses/superior-electric-service/" className="text-white hover:text-yellow-400 transition-colors font-medium">
+                Louisville
+              </Link>
+              <Link href="/businesses/superior-electric-service/prospect/" className="text-gray-300 hover:text-yellow-400 transition-colors">
+                Prospect
+              </Link>
+              <Link href="/businesses/superior-electric-service/hill-view/" className="text-gray-300 hover:text-yellow-400 transition-colors">
+                Hill View
+              </Link>
+            </nav>
+          </div>
 
           {/* Desktop Contact Info */}
           <div className="hidden md:flex items-center space-x-6">
@@ -92,6 +107,19 @@ export default function LouisvilleHeader({
         {isMobileMenuOpen && (
           <div className="md:hidden border-t border-white/20 py-4">
             <div className="flex flex-col space-y-4">
+              {/* Mobile Navigation */}
+              <nav className="flex flex-col space-y-3 pb-4 border-b border-white/20">
+                <Link href="/businesses/superior-electric-service/" className="text-white hover:text-yellow-400 transition-colors font-medium">
+                  Louisville Main
+                </Link>
+                <Link href="/businesses/superior-electric-service/prospect/" className="text-gray-300 hover:text-yellow-400 transition-colors">
+                  Prospect Location
+                </Link>
+                <Link href="/businesses/superior-electric-service/hill-view/" className="text-gray-300 hover:text-yellow-400 transition-colors">
+                  Hill View Location
+                </Link>
+              </nav>
+              
               {/* Mobile Contact Info */}
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">

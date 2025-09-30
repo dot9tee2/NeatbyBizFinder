@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import OptimizedImage from '@/components/ui/optimized-image';
+import Image from 'next/image';
 import { Phone, Mail, Globe, MapPin, Clock, Star, Zap, Award } from 'lucide-react';
 
 interface LouisvilleFooterProps {
@@ -119,33 +119,28 @@ export default function LouisvilleFooter({
             </div>
           )}
 
-          {/* Quick Links */}
+          {/* Our Locations */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-yellow-300">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4 text-yellow-300">Our Locations</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/" className="text-gray-300 hover:text-yellow-400 transition-colors">
+                <Link href="/businesses/superior-electric-service/" className="text-white hover:text-yellow-400 transition-colors font-medium">
+                  Louisville Main Location
+                </Link>
+              </li>
+              <li>
+                <Link href="/businesses/superior-electric-service/prospect/" className="text-gray-300 hover:text-yellow-400 transition-colors">
+                  Prospect Location
+                </Link>
+              </li>
+              <li>
+                <Link href="/businesses/superior-electric-service/hill-view/" className="text-gray-300 hover:text-yellow-400 transition-colors">
+                  Hill View Location
+                </Link>
+              </li>
+              <li className="pt-2 border-t border-gray-700">
+                <Link href="/" className="text-gray-400 hover:text-yellow-400 transition-colors">
                   NearbyBizFinder Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/search/" className="text-gray-300 hover:text-yellow-400 transition-colors">
-                  Browse Businesses
-                </Link>
-              </li>
-              <li>
-                <Link href="/categories/" className="text-gray-300 hover:text-yellow-400 transition-colors">
-                  Categories
-                </Link>
-              </li>
-              <li>
-                <Link href="/about/" className="text-gray-300 hover:text-yellow-400 transition-colors">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact/" className="text-gray-300 hover:text-yellow-400 transition-colors">
-                  Contact
                 </Link>
               </li>
             </ul>
@@ -155,7 +150,7 @@ export default function LouisvilleFooter({
         {/* Bottom Section */}
         <div className="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center space-x-2 mb-4 md:mb-0">
-            <OptimizedImage
+            <Image
               src="/logo.png"
               alt="NearbyBizFinder logo"
               width={24}

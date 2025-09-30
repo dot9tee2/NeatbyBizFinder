@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import OptimizedImage from '@/components/ui/optimized-image';
+import Image from 'next/image';
 import { Phone, Mail, Globe, MapPin, Clock, Star, Mountain, TreePine } from 'lucide-react';
 
 interface HillViewFooterProps {
@@ -119,33 +119,28 @@ export default function HillViewFooter({
             </div>
           )}
 
-          {/* Quick Links */}
+          {/* Our Locations */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-green-300">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4 text-green-300">Our Locations</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/" className="text-green-100 hover:text-green-300 transition-colors">
+                <Link href="/businesses/superior-electric-service/" className="text-green-100 hover:text-green-300 transition-colors">
+                  Louisville Main Location
+                </Link>
+              </li>
+              <li>
+                <Link href="/businesses/superior-electric-service/prospect/" className="text-green-100 hover:text-green-300 transition-colors">
+                  Prospect Location
+                </Link>
+              </li>
+              <li>
+                <Link href="/businesses/superior-electric-service/hill-view/" className="text-white hover:text-green-300 transition-colors font-medium">
+                  Hill View Location
+                </Link>
+              </li>
+              <li className="pt-2 border-t border-green-300/20">
+                <Link href="/" className="text-green-200 hover:text-green-300 transition-colors">
                   NearbyBizFinder Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/search/" className="text-green-100 hover:text-green-300 transition-colors">
-                  Browse Businesses
-                </Link>
-              </li>
-              <li>
-                <Link href="/categories/" className="text-green-100 hover:text-green-300 transition-colors">
-                  Categories
-                </Link>
-              </li>
-              <li>
-                <Link href="/about/" className="text-green-100 hover:text-green-300 transition-colors">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact/" className="text-green-100 hover:text-green-300 transition-colors">
-                  Contact
                 </Link>
               </li>
             </ul>
@@ -155,7 +150,7 @@ export default function HillViewFooter({
         {/* Bottom Section */}
         <div className="border-t border-green-300/20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center space-x-2 mb-4 md:mb-0">
-            <OptimizedImage
+            <Image
               src="/logo.png"
               alt="NearbyBizFinder logo"
               width={24}
