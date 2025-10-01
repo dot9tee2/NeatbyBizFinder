@@ -180,12 +180,22 @@ export function checkSitemapLimits(urls: SitemapUrl[]): {withinLimits: boolean; 
 /**
  * Auto-discover business pages from file system
  * This function should be used in a build-time context or API route
+ * Falls back to static data for static export builds
  */
 export async function discoverBusinessPages(): Promise<{businesses: string[], locations: Record<string, string[]>}> {
-  const fs = await import('fs/promises');
-  const path = await import('path');
+  // Check if we're in a static export build or serverless environment
+  const isStaticBuild = process.env.NODE_ENV === 'production' && !process.env.VERCEL && !process.env.NETLIFY;
+  
+  if (isStaticBuild) {
+    // Fallback to static data for static exports
+    console.warn('Using static data fallback for sitemap generation in static build');
+    return getStaticBusinessData();
+  }
   
   try {
+    const fs = await import('fs/promises');
+    const path = await import('path');
+    
     const businessesDir = path.join(process.cwd(), 'app', 'businesses');
     const entries = await fs.readdir(businessesDir, { withFileTypes: true });
     
@@ -213,9 +223,26 @@ export async function discoverBusinessPages(): Promise<{businesses: string[], lo
     
     return { businesses, locations };
   } catch (error) {
-    console.error('Error discovering business pages:', error);
-    return { businesses: [], locations: {} };
+    console.error('Error discovering business pages, falling back to static data:', error);
+    return getStaticBusinessData();
   }
+}
+
+/**
+ * Static fallback data for when file system access is not available
+ */
+function getStaticBusinessData(): {businesses: string[], locations: Record<string, string[]>} {
+  return {
+    businesses: [
+      'clear-choice-cleaning',
+      'drywall-painting-pro', 
+      'superior-electric-service'
+    ],
+    locations: {
+      'drywall-painting-pro': ['cedar-park', 'georgetown'],
+      'superior-electric-service': ['prospect', 'hill-view']
+    }
+  };
 }
 
 /**
