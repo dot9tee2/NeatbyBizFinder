@@ -106,6 +106,37 @@ export const businessData: Record<string, BusinessLandingData> = {
     ],
     updated_at: '2024-01-21T10:00:00Z',
   },
+  'clear-choice-cleaning': {
+    name: 'Clear Choice Cleaning',
+    category: 'Home Services',
+    rating: 4.9,
+    reviewCount: 156,
+    priceRange: '$$',
+    address: 'Various Locations',
+    city: 'Multiple Cities',
+    state: 'Multiple States',
+    zipCode: '00000',
+    phone: '(555) 123-4567',
+    website: 'https://www.clearchoicecleaning.com/',
+    email: 'info@clearchoicecleaning.com',
+    featuredImage: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg',
+    description: 'Professional residential and commercial cleaning services. We provide reliable, thorough cleaning solutions for homes and businesses.',
+    hours: {
+      monday: '8:00 AM - 6:00 PM',
+      tuesday: '8:00 AM - 6:00 PM',
+      wednesday: '8:00 AM - 6:00 PM',
+      thursday: '8:00 AM - 6:00 PM',
+      friday: '8:00 AM - 6:00 PM',
+      saturday: '9:00 AM - 4:00 PM',
+      sunday: 'Closed',
+    },
+    amenities: ['Licensed & Insured', 'Eco-Friendly Products', 'Satisfaction Guaranteed', 'Flexible Scheduling', 'Free Estimates'],
+    images: [
+      'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg',
+      'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg',
+    ],
+    updated_at: '2024-01-22T10:00:00Z',
+  },
 };
 
 // Location data for businesses with multiple locations

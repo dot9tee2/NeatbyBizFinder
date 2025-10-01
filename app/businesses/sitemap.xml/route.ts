@@ -1,49 +1,30 @@
-import { getAllBusinesses, getBusinessLocations, getBusinessData, getLocationData } from '@/lib/business-landing-data';
+import { generateBusinessSitemapFromFS, generateSitemapXml } from '@/lib/sitemap-utils';
 
 export async function GET() {
-  const businesses = getAllBusinesses();
-  
-  // Generate business main pages
-  const businessUrls = businesses.map(businessSlug => {
-    const business = getBusinessData(businessSlug);
-    return {
-      url: `https://nearbybizfinder.com/businesses/${businessSlug}/`,
-      lastModified: business ? new Date(business.updated_at || Date.now()).toISOString() : new Date().toISOString(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    };
-  });
+  try {
+    // Use file system discovery for more reliable sitemap generation
+    const urls = await generateBusinessSitemapFromFS();
+    
+    const sitemap = generateSitemapXml(urls);
 
-  // Generate location-specific pages
-  const locationUrls = businesses.flatMap(businessSlug => {
-    const locations = getBusinessLocations(businessSlug);
-    return locations.map(locationSlug => {
-      const location = getLocationData(businessSlug, locationSlug);
-      return {
-        url: `https://nearbybizfinder.com/businesses/${businessSlug}/${locationSlug}/`,
-        lastModified: location ? new Date(location.updated_at || Date.now()).toISOString() : new Date().toISOString(),
-        changeFrequency: 'weekly' as const,
-        priority: 0.7,
-      };
+    return new Response(sitemap, {
+      headers: {
+        'Content-Type': 'application/xml',
+        'Cache-Control': 'public, max-age=3600, s-maxage=3600', // Cache for 1 hour
+      },
     });
-  });
-
-  const allUrls = [...businessUrls, ...locationUrls];
-
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+  } catch (error) {
+    console.error('Error generating business sitemap:', error);
+    
+    // Fallback to empty sitemap on error
+    const fallbackSitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${allUrls.map(url => `
-  <url>
-    <loc>${url.url}</loc>
-    <lastmod>${url.lastModified}</lastmod>
-    <changefreq>${url.changeFrequency}</changefreq>
-    <priority>${url.priority}</priority>
-  </url>`).join('')}
 </urlset>`;
 
-  return new Response(sitemap, {
-    headers: {
-      'Content-Type': 'application/xml',
-    },
-  });
+    return new Response(fallbackSitemap, {
+      headers: {
+        'Content-Type': 'application/xml',
+      },
+    });
+  }
 }

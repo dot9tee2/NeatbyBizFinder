@@ -1,18 +1,16 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { getAllBusinesses, getBusinessLocations } from '@/lib/business-landing-data';
+import { discoverBusinessPages } from '@/lib/sitemap-utils';
 import { ExternalLink, RefreshCw, CheckCircle, AlertTriangle, FileText, Globe } from 'lucide-react';
 import Link from 'next/link';
 
-export default function SitemapAdminPage() {
-  const businesses = getAllBusinesses();
+export default async function SitemapAdminPage() {
+  const { businesses, locations } = await discoverBusinessPages();
   
   // Calculate sitemap statistics
   const businessPages = businesses.length;
-  const locationPages = businesses.reduce((total, business) => {
-    return total + getBusinessLocations(business).length;
-  }, 0);
+  const locationPages = Object.values(locations).flat().length;
   const totalPages = businessPages + locationPages;
   
   const sitemaps = [
@@ -43,12 +41,12 @@ export default function SitemapAdminPage() {
   ];
 
   const businessStats = businesses.map(business => {
-    const locations = getBusinessLocations(business);
+    const businessLocations = locations[business] || [];
     return {
       name: business,
       mainPage: true,
-      locationPages: locations.length,
-      totalPages: 1 + locations.length,
+      locationPages: businessLocations.length,
+      totalPages: 1 + businessLocations.length,
     };
   });
 

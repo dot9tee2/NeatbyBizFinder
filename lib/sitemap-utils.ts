@@ -176,3 +176,77 @@ export function checkSitemapLimits(urls: SitemapUrl[]): {withinLimits: boolean; 
     issues,
   };
 }
+
+/**
+ * Auto-discover business pages from file system
+ * This function should be used in a build-time context or API route
+ */
+export async function discoverBusinessPages(): Promise<{businesses: string[], locations: Record<string, string[]>}> {
+  const fs = await import('fs/promises');
+  const path = await import('path');
+  
+  try {
+    const businessesDir = path.join(process.cwd(), 'app', 'businesses');
+    const entries = await fs.readdir(businessesDir, { withFileTypes: true });
+    
+    const businesses: string[] = [];
+    const locations: Record<string, string[]> = {};
+    
+    for (const entry of entries) {
+      if (entry.isDirectory() && !['admin', 'sitemap.xml'].includes(entry.name)) {
+        const businessSlug = entry.name;
+        businesses.push(businessSlug);
+        
+        // Check for location subdirectories
+        const businessPath = path.join(businessesDir, businessSlug);
+        const subEntries = await fs.readdir(businessPath, { withFileTypes: true });
+        
+        const businessLocations = subEntries
+          .filter(subEntry => subEntry.isDirectory() && subEntry.name !== 'README.md')
+          .map(subEntry => subEntry.name);
+        
+        if (businessLocations.length > 0) {
+          locations[businessSlug] = businessLocations;
+        }
+      }
+    }
+    
+    return { businesses, locations };
+  } catch (error) {
+    console.error('Error discovering business pages:', error);
+    return { businesses: [], locations: {} };
+  }
+}
+
+/**
+ * Generate business sitemap from file system discovery
+ * This is a more reliable approach than relying on manual data files
+ */
+export async function generateBusinessSitemapFromFS(): Promise<SitemapUrl[]> {
+  const { businesses, locations } = await discoverBusinessPages();
+  const urls: SitemapUrl[] = [];
+  const currentDate = new Date().toISOString();
+  
+  for (const businessSlug of businesses) {
+    // Main business page
+    urls.push({
+      url: `https://nearbybizfinder.com/businesses/${businessSlug}/`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    });
+    
+    // Location pages
+    const businessLocations = locations[businessSlug] || [];
+    for (const locationSlug of businessLocations) {
+      urls.push({
+        url: `https://nearbybizfinder.com/businesses/${businessSlug}/${locationSlug}/`,
+        lastModified: currentDate,
+        changeFrequency: 'weekly',
+        priority: 0.7,
+      });
+    }
+  }
+  
+  return urls;
+}
