@@ -1,12 +1,15 @@
 import { Metadata } from 'next';
 import Script from 'next/script';
 import OptimizedImage from '@/components/ui/optimized-image';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Star, Phone, MapPin, Clock, Mail, Globe, Shield, CheckCircle, ArrowRight, Award, Users, Clock3, Zap, Home, Building, Sparkles, Wrench, Hammer, Layers, Heart, Users2, Baby, Smile, TreePine, Sun } from 'lucide-react';
 import BusinessHeader from '@/components/business-landing/business-header';
 import BusinessFooter from '@/components/business-landing/business-footer';
+import NMConcreteGallery from '@/components/business-landing/nm-concrete-gallery';
+import { getGalleryImagesForPage } from '@/lib/nm-concrete-gallery-data';
 
 export const metadata: Metadata = {
   title: 'NM Concrete Coating Pros Los Lunas - Family-Friendly Epoxy Floor Coating | Los Lunas, NM',
@@ -46,28 +49,28 @@ export default function NMConcreteCoatingProsLosLunasPage() {
       description: 'Non-toxic, child and pet-safe epoxy coatings perfect for family homes',
       icon: Heart,
       features: ['Non-Toxic Formula', 'Pet Safe', 'Child Friendly', 'Low VOC'],
-      image: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg'
+      image: '/images/nm-concrete-coating-pros/epoxy-floor-coating.png'
     },
     {
       title: 'Playroom Flooring',
       description: 'Durable, easy-to-clean flooring perfect for children\'s play areas',
       icon: Baby,
       features: ['Easy Cleanup', 'Stain Resistant', 'Soft Feel', 'Colorful Options'],
-      image: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg'
+      image: '/images/nm-concrete-coating-pros/garage-floor-coating.png'
     },
     {
       title: 'Garage Family Space',
       description: 'Transform your garage into a family-friendly multi-purpose space',
       icon: Home,
       features: ['Multi-Purpose', 'Family Activities', 'Storage Solutions', 'Safe Surface'],
-      image: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg'
+      image: '/images/nm-concrete-coating-pros/garage-floor-coating.png'
     },
     {
       title: 'Outdoor Patio Coating',
       description: 'Weather-resistant coatings for family outdoor spaces and patios',
       icon: Sun,
       features: ['Weather Resistant', 'UV Protection', 'Slip Resistant', 'Family Fun'],
-      image: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg'
+      image: '/images/nm-concrete-coating-pros/commercial-floor-coating.png'
     }
   ];
 
@@ -305,10 +308,12 @@ export default function NMConcreteCoatingProsLosLunasPage() {
             {services.map((service, index) => (
               <Card key={index} className="group hover:shadow-xl transition-all duration-300 overflow-hidden bg-white/95 backdrop-blur-sm">
                 <div className="relative h-48 overflow-hidden">
-                  <OptimizedImage
+                  <Image
                     src={service.image}
                     alt={service.title}
                     fill
+                    quality={85}
+                    priority={true}
                     className="object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-green-900/60 to-transparent"></div>
@@ -364,6 +369,17 @@ export default function NMConcreteCoatingProsLosLunasPage() {
               </Card>
             ))}
           </div>
+        </div>
+
+        {/* Gallery Section */}
+        <div className="mb-20">
+          <NMConcreteGallery
+            images={getGalleryImagesForPage('los-lunas', 6)}
+            title="Family-Friendly Projects"
+            subtitle="Showcasing our safe and beautiful concrete coating projects perfect for Los Lunas families"
+            maxImages={6}
+            className="mb-16"
+          />
         </div>
 
         {/* Testimonials Section */}

@@ -1,12 +1,15 @@
 import { Metadata } from 'next';
 import Script from 'next/script';
 import OptimizedImage from '@/components/ui/optimized-image';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Star, Phone, MapPin, Clock, Mail, Globe, Shield, CheckCircle, ArrowRight, Award, Users, Clock3, Zap, Home, Building, Sparkles, Wrench, Hammer, Layers, TreePine, Mountain, Compass, Leaf } from 'lucide-react';
 import BusinessHeader from '@/components/business-landing/business-header';
 import BusinessFooter from '@/components/business-landing/business-footer';
+import NMConcreteGallery from '@/components/business-landing/nm-concrete-gallery';
+import { getGalleryImagesForPage } from '@/lib/nm-concrete-gallery-data';
 
 export const metadata: Metadata = {
   title: 'NM Concrete Coating Pros Edgewood - Rustic Epoxy Floor Coating Services | Edgewood, NM',
@@ -46,28 +49,28 @@ export default function NMConcreteCoatingProsEdgewoodPage() {
       description: 'Natural, earthy epoxy coatings that complement rural and mountain properties',
       icon: TreePine,
       features: ['Earth Tones', 'Natural Textures', 'Rustic Patterns', 'Mountain Inspired'],
-      image: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg'
+      image: '/images/nm-concrete-coating-pros/epoxy-floor-coating.png'
     },
     {
       title: 'Barn & Workshop Flooring',
       description: 'Durable coatings perfect for agricultural buildings and workshops',
       icon: Building,
       features: ['Heavy Duty', 'Agricultural Grade', 'Easy Maintenance', 'Weather Resistant'],
-      image: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg'
+      image: '/images/nm-concrete-coating-pros/commercial-floor-coating.png'
     },
     {
       title: 'Mountain Home Coatings',
       description: 'Specialized coatings designed for high-altitude mountain properties',
       icon: Mountain,
       features: ['Altitude Tested', 'Temperature Stable', 'UV Resistant', 'Mountain Tough'],
-      image: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg'
+      image: '/images/nm-concrete-coating-pros/polyaspartic-coating.png'
     },
     {
       title: 'Natural Stone Polishing',
       description: 'Concrete polishing that mimics natural stone and rustic materials',
       icon: Leaf,
       features: ['Natural Stone Look', 'Rustic Finish', 'Organic Patterns', 'Earth Colors'],
-      image: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg'
+      image: '/images/nm-concrete-coating-pros/concrete-polishing.png'
     }
   ];
 
@@ -305,10 +308,12 @@ export default function NMConcreteCoatingProsEdgewoodPage() {
             {services.map((service, index) => (
               <Card key={index} className="group hover:shadow-xl transition-all duration-300 overflow-hidden bg-white/95 backdrop-blur-sm border-amber-200">
                 <div className="relative h-48 overflow-hidden">
-                  <OptimizedImage
+                  <Image
                     src={service.image}
                     alt={service.title}
                     fill
+                    quality={85}
+                    priority={true}
                     className="object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-amber-900/60 to-transparent"></div>
@@ -364,6 +369,17 @@ export default function NMConcreteCoatingProsEdgewoodPage() {
               </Card>
             ))}
           </div>
+        </div>
+
+        {/* Gallery Section */}
+        <div className="mb-20">
+          <NMConcreteGallery
+            images={getGalleryImagesForPage('edgewood', 6)}
+            title="Rustic Mountain Projects"
+            subtitle="Showcasing our rugged concrete coating projects perfect for Edgewood's mountain environment"
+            maxImages={6}
+            className="mb-16"
+          />
         </div>
 
         {/* Testimonials Section */}

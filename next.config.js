@@ -13,6 +13,7 @@ const nextConfig = {
     minimumCacheTTL: 60,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    qualities: [25, 50, 75, 85, 100],
   },
   redirects: async () => {
     return [

@@ -1,12 +1,15 @@
 import { Metadata } from 'next';
 import Script from 'next/script';
 import OptimizedImage from '@/components/ui/optimized-image';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Star, Phone, MapPin, Clock, Mail, Globe, Shield, CheckCircle, ArrowRight, Award, Users, Clock3, Zap, Home, Building, Sparkles, Wrench, Hammer, Layers, Mountain, Sun } from 'lucide-react';
 import BusinessHeader from '@/components/business-landing/business-header';
 import BusinessFooter from '@/components/business-landing/business-footer';
+import NMConcreteGallery from '@/components/business-landing/nm-concrete-gallery';
+import { getGalleryImagesForPage } from '@/lib/nm-concrete-gallery-data';
 
 export const metadata: Metadata = {
   title: 'NM Concrete Coating Pros Santa Fe - Professional Epoxy Floor Coating Services | Santa Fe, NM',
@@ -46,28 +49,28 @@ export default function NMConcreteCoatingProsSantaFePage() {
       description: 'Custom epoxy designs inspired by Santa Fe\'s rich cultural heritage',
       icon: Mountain,
       features: ['Terracotta Colors', 'Adobe Patterns', 'Cultural Motifs', 'Local Inspiration'],
-      image: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg'
+      image: '/images/nm-concrete-coating-pros/epoxy-floor-coating.png'
     },
     {
       title: 'Luxury Metallic Coatings',
       description: 'Premium metallic resin coatings perfect for Santa Fe\'s upscale properties',
       icon: Sparkles,
       features: ['Copper Accents', 'Gold Highlights', 'Silver Details', 'Custom Blends'],
-      image: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg'
+      image: '/images/nm-concrete-coating-pros/metallic-resin-coatings.png'
     },
     {
       title: 'High-Altitude Polyaspartic',
       description: 'Specialized polyaspartic coatings designed for Santa Fe\'s unique climate',
       icon: Sun,
       features: ['UV Protection', 'Temperature Stable', 'Quick Cure', 'Weather Resistant'],
-      image: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg'
+      image: '/images/nm-concrete-coating-pros/polyaspartic-coating.png'
     },
     {
       title: 'Artisan Concrete Polishing',
       description: 'Hand-crafted concrete polishing that complements Santa Fe\'s artistic community',
       icon: Wrench,
       features: ['Hand Polished', 'Artistic Finishes', 'Natural Stone Look', 'Custom Textures'],
-      image: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg'
+      image: '/images/nm-concrete-coating-pros/concrete-polishing.png'
     }
   ];
 
@@ -281,10 +284,12 @@ export default function NMConcreteCoatingProsSantaFePage() {
             {services.map((service, index) => (
               <Card key={index} className="group hover:shadow-xl transition-all duration-300 overflow-hidden bg-white/90 backdrop-blur-sm">
                 <div className="relative h-48 overflow-hidden">
-                  <OptimizedImage
+                  <Image
                     src={service.image}
                     alt={service.title}
                     fill
+                    quality={85}
+                    priority={true}
                     className="object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-orange-900/60 to-transparent"></div>
@@ -309,6 +314,18 @@ export default function NMConcreteCoatingProsSantaFePage() {
               </Card>
             ))}
           </div>
+        </div>
+
+        {/* Gallery Section */}
+        <div className="mb-20">
+          <NMConcreteGallery
+            images={getGalleryImagesForPage('santa-fe', 6)}
+            title="Santa Fe Style Projects"
+            subtitle="Showcasing our authentic Southwestern concrete coating projects that honor Santa Fe's heritage"
+            maxImages={6}
+            showRandom={true}
+            className="mb-16"
+          />
         </div>
 
         {/* Testimonials Section */}

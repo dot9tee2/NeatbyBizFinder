@@ -1,12 +1,15 @@
 import { Metadata } from 'next';
 import Script from 'next/script';
 import OptimizedImage from '@/components/ui/optimized-image';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Star, Phone, MapPin, Clock, Mail, Globe, Shield, CheckCircle, ArrowRight, Award, Users, Clock3, Zap, Home, Building, Sparkles, Wrench, Hammer, Layers, Crown, Gem, Diamond, Trophy } from 'lucide-react';
 import BusinessHeader from '@/components/business-landing/business-header';
 import BusinessFooter from '@/components/business-landing/business-footer';
+import NMConcreteGallery from '@/components/business-landing/nm-concrete-gallery';
+import { getGalleryImagesForPage } from '@/lib/nm-concrete-gallery-data';
 
 export const metadata: Metadata = {
   title: 'NM Concrete Coating Pros Rio Rancho - Luxury Epoxy Floor Coating Services | Rio Rancho, NM',
@@ -46,28 +49,28 @@ export default function NMConcreteCoatingProsRioRanchoPage() {
       description: 'Premium epoxy flooring systems designed for high-end residential and commercial properties',
       icon: Crown,
       features: ['Premium Materials', 'Custom Designs', 'Lifetime Warranty', 'Exclusive Finishes'],
-      image: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg'
+      image: '/images/nm-concrete-coating-pros/epoxy-floor-coating.png'
     },
     {
       title: 'Diamond Metallic Coatings',
       description: 'Ultra-premium metallic resin coatings with diamond-like finishes and luxury aesthetics',
       icon: Diamond,
       features: ['Diamond Particles', '3D Depth Effects', 'Custom Color Blends', 'Luxury Appeal'],
-      image: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg'
+      image: '/images/nm-concrete-coating-pros/metallic-resin-coatings.png'
     },
     {
       title: 'Elite Polyaspartic Systems',
       description: 'High-performance polyaspartic coatings for demanding commercial and luxury applications',
       icon: Trophy,
       features: ['Industrial Grade', 'Chemical Resistant', 'UV Stable', 'Premium Performance'],
-      image: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg'
+      image: '/images/nm-concrete-coating-pros/polyaspartic-coating.png'
     },
     {
       title: 'Master Craft Polishing',
       description: 'Artisan-level concrete polishing with mirror finishes and luxury stone aesthetics',
       icon: Gem,
       features: ['Mirror Finish', 'Natural Stone Look', 'Hand Polished', 'Luxury Grade'],
-      image: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg'
+      image: '/images/nm-concrete-coating-pros/concrete-polishing.png'
     }
   ];
 
@@ -309,10 +312,12 @@ export default function NMConcreteCoatingProsRioRanchoPage() {
             {services.map((service, index) => (
               <Card key={index} className="group hover:shadow-2xl transition-all duration-500 overflow-hidden bg-white/95 backdrop-blur-sm border-0 shadow-xl">
                 <div className="relative h-56 overflow-hidden">
-                  <OptimizedImage
+                  <Image
                     src={service.image}
                     alt={service.title}
                     fill
+                    quality={85}
+                    priority={true}
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent"></div>
@@ -368,6 +373,18 @@ export default function NMConcreteCoatingProsRioRanchoPage() {
               </Card>
             ))}
           </div>
+        </div>
+
+        {/* Gallery Section */}
+        <div className="mb-24">
+          <NMConcreteGallery
+            images={getGalleryImagesForPage('rio-rancho', 6)}
+            title="Luxury Project Gallery"
+            subtitle="Showcasing our premium concrete coating projects for discerning Rio Rancho clients"
+            maxImages={6}
+            showRandom={true}
+            className="mb-16"
+          />
         </div>
 
         {/* Testimonials Section */}
