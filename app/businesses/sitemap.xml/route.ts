@@ -61,6 +61,36 @@ export async function GET() {
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://nearbybizfinder.com/businesses/nm-concrete-coating-pros/</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nearbybizfinder.com/businesses/nm-concrete-coating-pros/santa-fe/</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nearbybizfinder.com/businesses/nm-concrete-coating-pros/rio-rancho/</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nearbybizfinder.com/businesses/nm-concrete-coating-pros/los-lunas/</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nearbybizfinder.com/businesses/nm-concrete-coating-pros/edgewood/</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>`;
 
     return new Response(fallbackSitemap, {

@@ -236,11 +236,13 @@ function getStaticBusinessData(): {businesses: string[], locations: Record<strin
     businesses: [
       'clear-choice-cleaning',
       'drywall-painting-pro', 
-      'superior-electric-service'
+      'superior-electric-service',
+      'nm-concrete-coating-pros'
     ],
     locations: {
       'drywall-painting-pro': ['cedar-park', 'georgetown'],
-      'superior-electric-service': ['prospect', 'hill-view']
+      'superior-electric-service': ['prospect', 'hill-view'],
+      'nm-concrete-coating-pros': ['santa-fe', 'rio-rancho', 'los-lunas', 'edgewood']
     }
   };
 }
