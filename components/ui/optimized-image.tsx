@@ -114,7 +114,7 @@ export default function OptimizedImage({
         quality={quality}
         placeholder={placeholder}
         blurDataURL={placeholder === 'blur' ? generateBlurDataURL() : undefined}
-        sizes={sizes}
+        sizes={sizes ?? (fill ? '100vw' : undefined)}
         onLoad={handleLoad}
         onError={handleError}
         className={cn(

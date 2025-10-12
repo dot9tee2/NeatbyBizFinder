@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Script from 'next/script';
-import OptimizedImage from '@/components/ui/optimized-image';
+import Link from 'next/link';
+import OptimizedVideo from '@/components/ui/optimized-video';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -10,18 +11,40 @@ import BusinessHeader from '@/components/business-landing/business-header';
 import BusinessFooter from '@/components/business-landing/business-footer';
 import NMConcreteGallery from '@/components/business-landing/nm-concrete-gallery';
 import { getGalleryImagesForPage } from '@/lib/nm-concrete-gallery-data';
+import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
 
 export const metadata: Metadata = {
-  title: 'NM Concrete Coating Pros Rio Rancho - Luxury Epoxy Floor Coating Services | Rio Rancho, NM',
-  description: 'Luxury epoxy floor coating, premium metallic resin, high-end polyaspartic coating, and elite concrete polishing services in Rio Rancho, NM. Elevate your space with our premium services.',
+  title: 'Epoxy Floor Coating Rio Rancho NM | NM Concrete Coating Pros',
+  description: 'Epoxy floor coating Rio Rancho NM with polyaspartic topcoat. Metallic resin floors, concrete polishing, and commercial coatings by NM Concrete Coating Pros.',
   alternates: { 
     canonical: '/businesses/nm-concrete-coating-pros/rio-rancho/',
   },
+  keywords: [
+    'epoxy floor coating Rio Rancho NM',
+    'garage floor epoxy Rio Rancho',
+    'metallic resin flooring Rio Rancho',
+    'metallic epoxy Rio Rancho NM',
+    'polyaspartic floor coating Rio Rancho',
+    'concrete polishing Rio Rancho NM',
+    'eco concrete polishing Rio Rancho',
+    'commercial floor coating Rio Rancho',
+    'patio & deck concrete coating Rio Rancho'
+  ],
   openGraph: {
-    title: 'NM Concrete Coating Pros Rio Rancho - Luxury Epoxy Floor Coating Services',
-    description: 'Luxury epoxy floor coating, premium metallic resin, high-end polyaspartic coating, and elite concrete polishing services in Rio Rancho, NM.',
-    images: ['https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg'],
+    title: 'Epoxy Floor Coating Rio Rancho NM | NM Concrete Coating Pros',
+    description: 'Epoxy and polyaspartic garage floor coatings in Rio Rancho, NM. Metallic resin and polished concrete.',
+    images: ['/images/nm-concrete-coating-pros/og-albuquerque-epoxy-garage-floor-luxury-nmccpros-1200x630.webp'],
+    url: 'https://nearbybizfinder.com/businesses/nm-concrete-coating-pros/rio-rancho/',
+    type: 'website',
+    siteName: 'NearbyBizFinder',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Epoxy Floor Coating Rio Rancho NM | NM Concrete Coating Pros',
+    description: 'Garage floor epoxy Rio Rancho with polyaspartic topcoat.',
+    images: ['/images/nm-concrete-coating-pros/og-albuquerque-epoxy-garage-floor-luxury-nmccpros-1200x630.webp']
+  },
+  robots: { index: true, follow: true }
 };
 
 export default function NMConcreteCoatingProsRioRanchoPage() {
@@ -35,8 +58,8 @@ export default function NMConcreteCoatingProsRioRanchoPage() {
     phone: '(505) 289-0676',
     email: 'john@nmccpros.com',
     website: 'https://www.nmccpros.com/',
-    featuredImage: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg',
-    description: 'Luxury epoxy floor coating, premium metallic resin, high-end polyaspartic coating, and elite concrete polishing services in Rio Rancho, NM. Elevate your space with our premium services.',
+    featuredImage: '/images/nm-concrete-coating-pros/og-albuquerque-epoxy-garage-floor-luxury-nmccpros-1200x630.webp',
+    description: 'Epoxy floor coating Rio Rancho NM, metallic resin floors, polyaspartic coating, and concrete polishing for homes and businesses.',
     address: 'Rio Rancho, NM',
     city: 'Rio Rancho',
     state: 'NM',
@@ -159,7 +182,7 @@ export default function NMConcreteCoatingProsRioRanchoPage() {
   // Generate structured data
   const structuredData = {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
+    '@type': ['LocalBusiness', 'HomeAndConstructionBusiness'],
     name: `${businessData.name} - ${businessData.locationName}`,
     description: businessData.description,
     url: `https://nearbybizfinder.com/businesses/nm-concrete-coating-pros/rio-rancho/`,
@@ -176,6 +199,7 @@ export default function NMConcreteCoatingProsRioRanchoPage() {
     telephone: businessData.phone,
     email: businessData.email,
     website: businessData.website,
+    hasMap: `https://www.google.com/maps/search/?api=1&query=NM+Concrete+Coating+Pros+Rio+Rancho+NM`,
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
@@ -201,6 +225,39 @@ export default function NMConcreteCoatingProsRioRanchoPage() {
     }))
   };
 
+  const howToStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How to get a luxury floor in Rio Rancho',
+    step: [
+      { '@type': 'HowToStep', name: 'Consultation', text: 'Concierge consultation to define luxury scope and finishes.' },
+      { '@type': 'HowToStep', name: 'Installation', text: 'White-glove installation with minimal disruption.' },
+      { '@type': 'HowToStep', name: 'Aftercare', text: 'Premium aftercare and maintenance guidance.' }
+    ]
+  };
+
+  const breadcrumbStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://nearbybizfinder.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Businesses', item: 'https://nearbybizfinder.com/businesses/' },
+      { '@type': 'ListItem', position: 3, name: 'NM Concrete Coating Pros', item: 'https://nearbybizfinder.com/businesses/nm-concrete-coating-pros/' },
+      { '@type': 'ListItem', position: 4, name: 'Rio Rancho', item: 'https://nearbybizfinder.com/businesses/nm-concrete-coating-pros/rio-rancho/' }
+    ]
+  };
+
+  const faqs = [
+    { q: 'What is the cost of epoxy garage floor in Rio Rancho, NM?', a: 'Two-car garages often start in the low thousands; pricing depends on slab prep, chips/metallic options, and topcoat selection.' },
+    { q: 'Do you install metallic epoxy in Rio Rancho?', a: 'Yes. We offer luxury metallic resin floors with premium, custom color effects.' },
+    { q: 'Polyaspartic floor coating Rio Rancho — is it worth it?', a: 'Polyaspartic systems cure fast, are UV stable, and resist chemicals, making them excellent for Rio Rancho conditions.' },
+    { q: 'Do you offer concrete polishing in Rio Rancho?', a: 'Yes. We provide polished concrete with multiple sheen levels for homes and businesses.' },
+    { q: 'How long does a garage install take?', a: 'Most Rio Rancho garages complete in 1–2 days, depending on size and condition.' },
+    { q: 'Do you handle commercial floor coating?', a: 'We install durable commercial coatings engineered for high traffic and quick return to service.' }
+  ];
+
+  const faqStructuredData = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
       {/* Business Header */}
@@ -210,6 +267,7 @@ export default function NMConcreteCoatingProsRioRanchoPage() {
         businessEmail={businessData.email}
         businessWebsite={businessData.website}
         businessCategory={businessData.category}
+        theme="amber"
       />
 
       <Script
@@ -219,17 +277,50 @@ export default function NMConcreteCoatingProsRioRanchoPage() {
           __html: JSON.stringify(structuredData),
         }}
       />
+      <Script id="breadcrumb-structured-data" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }} />
+      <Script id="faq-structured-data" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }} />
+      <Script id="howto-structured-data" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToStructuredData) }} />
+
+      {/* Breadcrumbs */}
+      <div className="bg-white/60 border-b">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/businesses/">Businesses</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/businesses/nm-concrete-coating-pros/">NM Concrete Coating Pros</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/businesses/nm-concrete-coating-pros/rio-rancho/">Rio Rancho</BreadcrumbLink>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
+      </div>
 
       {/* Hero Section */}
       <div className="relative h-96 md:h-[700px] w-full bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900">
-        <OptimizedImage
-          src="https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg"
-          alt="Luxury concrete coating services in Rio Rancho"
-          fill
-          className="object-cover opacity-20"
+        <OptimizedVideo
+          src="/videos/mn-concrete-coating.mp4"
+          alt="Epoxy floor coating Rio Rancho NM with polyaspartic topcoat"
+          className="absolute inset-0 w-full h-full object-cover opacity-20"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/images/nm-concrete-coating-pros/project-7.jpg"
+          fallbackImage="/images/nm-concrete-coating-pros/project-7.jpg"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/60"></div>
+        {/* Overlay removed per request */}
         
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center text-white px-4 max-w-6xl">
@@ -317,7 +408,6 @@ export default function NMConcreteCoatingProsRioRanchoPage() {
                     alt={service.title}
                     fill
                     quality={85}
-                    priority={true}
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent"></div>
@@ -384,7 +474,32 @@ export default function NMConcreteCoatingProsRioRanchoPage() {
             maxImages={6}
             showRandom={true}
             className="mb-16"
+            headerIconClass="text-yellow-600"
+            badgeClass="bg-yellow-600 text-white border-yellow-500 px-4 py-2"
+            categoryBadgeClass="bg-yellow-600/80 text-white border-yellow-500"
+            hoverOverlayClass="bg-yellow-600/20"
           />
+        </div>
+
+        {/* Nearby Locations */}
+        <div className="mb-24 text-center">
+          <p className="text-gray-700">Also serving: <a className="text-orange-600 hover:underline" href="/businesses/nm-concrete-coating-pros/">Epoxy floor coating Albuquerque NM</a> • <a className="text-orange-600 hover:underline" href="/businesses/nm-concrete-coating-pros/santa-fe/">Epoxy floor coating Santa Fe NM</a> • <a className="text-orange-600 hover:underline" href="/businesses/nm-concrete-coating-pros/los-lunas/">Garage floor epoxy Los Lunas</a> • <a className="text-orange-600 hover:underline" href="/businesses/nm-concrete-coating-pros/edgewood/">Epoxy floor coating Edgewood NM</a></p>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="mb-24">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">Rio Rancho FAQs</h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto">Answers to common questions about our luxury installations in Rio Rancho.</p>
+          </div>
+          <div className="max-w-4xl mx-auto space-y-6">
+            {faqs.map((f, i) => (
+              <div key={i} className="bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">{f.q}</h3>
+                <p className="text-gray-700 text-lg">{f.a}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Testimonials Section */}
@@ -464,6 +579,14 @@ export default function NMConcreteCoatingProsRioRanchoPage() {
         businessRating={businessData.rating}
         businessReviewCount={businessData.reviewCount}
         serviceAreas={serviceAreas}
+        theme="amber"
+        layout="split"
+        topStripe
+        ctaBanner={{
+          title: 'Experience True Luxury',
+          subtitle: 'Concierge installation and premium finishes for Rio Rancho',
+          buttonText: 'Concierge Line'
+        }}
       />
     </div>
   );

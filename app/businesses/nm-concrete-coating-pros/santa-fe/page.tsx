@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Script from 'next/script';
-import OptimizedImage from '@/components/ui/optimized-image';
+import Link from 'next/link';
+import OptimizedVideo from '@/components/ui/optimized-video';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -10,18 +11,42 @@ import BusinessHeader from '@/components/business-landing/business-header';
 import BusinessFooter from '@/components/business-landing/business-footer';
 import NMConcreteGallery from '@/components/business-landing/nm-concrete-gallery';
 import { getGalleryImagesForPage } from '@/lib/nm-concrete-gallery-data';
+import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
 
 export const metadata: Metadata = {
-  title: 'NM Concrete Coating Pros Santa Fe - Professional Epoxy Floor Coating Services | Santa Fe, NM',
-  description: 'Professional epoxy floor coating, metallic resin, polyaspartic coating, and concrete polishing services in Santa Fe, NM. Over a decade of experience serving the City Different.',
+  title: 'Epoxy Floor Coating Santa Fe NM | NM Concrete Coating Pros',
+  description: 'Epoxy floor coating Santa Fe NM with polyaspartic topcoat. Metallic resin floors, concrete polishing, and commercial coatings by NM Concrete Coating Pros.',
   alternates: { 
     canonical: '/businesses/nm-concrete-coating-pros/santa-fe/',
   },
+  keywords: [
+    'epoxy floor coating Santa Fe NM',
+    'Santa Fe garage floor epoxy',
+    'metallic resin flooring Santa Fe',
+    'metallic epoxy Santa Fe NM',
+    'polyaspartic coating Santa Fe contractors',
+    'polyaspartic vs epoxy Santa Fe',
+    'concrete polishing service Santa Fe NM',
+    'polished concrete Santa Fe NM',
+    'commercial epoxy floors Santa Fe',
+    'patio deck concrete coating Santa Fe',
+    'Santa Fe decorative epoxy floors'
+  ],
   openGraph: {
-    title: 'NM Concrete Coating Pros Santa Fe - Professional Epoxy Floor Coating Services',
-    description: 'Professional epoxy floor coating, metallic resin, polyaspartic coating, and concrete polishing services in Santa Fe, NM.',
-    images: ['https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg'],
+    title: 'Epoxy Floor Coating Santa Fe NM | NM Concrete Coating Pros',
+    description: 'Epoxy and polyaspartic garage floor coatings in Santa Fe, NM. Metallic resin and polished concrete services.',
+    images: ['/images/nm-concrete-coating-pros/og-albuquerque-epoxy-garage-floor-luxury-nmccpros-1200x630.webp'],
+    url: 'https://nearbybizfinder.com/businesses/nm-concrete-coating-pros/santa-fe/',
+    type: 'website',
+    siteName: 'NearbyBizFinder',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Epoxy Floor Coating Santa Fe NM | NM Concrete Coating Pros',
+    description: 'Santa Fe garage floor epoxy and polyaspartic topcoat.',
+    images: ['/images/nm-concrete-coating-pros/og-albuquerque-epoxy-garage-floor-luxury-nmccpros-1200x630.webp']
+  },
+  robots: { index: true, follow: true }
 };
 
 export default function NMConcreteCoatingProsSantaFePage() {
@@ -35,8 +60,8 @@ export default function NMConcreteCoatingProsSantaFePage() {
     phone: '(505) 289-0676',
     email: 'john@nmccpros.com',
     website: 'https://www.nmccpros.com/',
-    featuredImage: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg',
-    description: 'Professional epoxy floor coating, metallic resin, polyaspartic coating, and concrete polishing services in Santa Fe, NM. Over a decade of experience serving the City Different.',
+    featuredImage: '/images/nm-concrete-coating-pros/og-albuquerque-epoxy-garage-floor-luxury-nmccpros-1200x630.webp',
+    description: 'Epoxy floor coating Santa Fe NM, metallic resin floors, polyaspartic coating, and concrete polishing for homes and businesses.',
     address: 'Santa Fe, NM',
     city: 'Santa Fe',
     state: 'NM',
@@ -136,7 +161,7 @@ export default function NMConcreteCoatingProsSantaFePage() {
   // Generate structured data
   const structuredData = {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
+    '@type': ['LocalBusiness', 'HomeAndConstructionBusiness'],
     name: `${businessData.name} - ${businessData.locationName}`,
     description: businessData.description,
     url: `https://nearbybizfinder.com/businesses/nm-concrete-coating-pros/santa-fe/`,
@@ -153,6 +178,7 @@ export default function NMConcreteCoatingProsSantaFePage() {
     telephone: businessData.phone,
     email: businessData.email,
     website: businessData.website,
+    hasMap: `https://www.google.com/maps/search/?api=1&query=NM+Concrete+Coating+Pros+Santa+Fe+NM`,
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
@@ -178,6 +204,43 @@ export default function NMConcreteCoatingProsSantaFePage() {
     }))
   };
 
+  const howToStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How to get a floor coating in Santa Fe',
+    step: [
+      { '@type': 'HowToStep', name: 'Heritage Consultation', text: 'Discuss designs honoring Santa Fe architecture.' },
+      { '@type': 'HowToStep', name: 'Climate-Adapted Installation', text: 'We install using high-altitude methods.' },
+      { '@type': 'HowToStep', name: 'Authentic Finish', text: 'Enjoy an artisan finish suited to Santa Fe homes.' }
+    ]
+  };
+
+  const breadcrumbStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://nearbybizfinder.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Businesses', item: 'https://nearbybizfinder.com/businesses/' },
+      { '@type': 'ListItem', position: 3, name: 'NM Concrete Coating Pros', item: 'https://nearbybizfinder.com/businesses/nm-concrete-coating-pros/' },
+      { '@type': 'ListItem', position: 4, name: 'Santa Fe', item: 'https://nearbybizfinder.com/businesses/nm-concrete-coating-pros/santa-fe/' }
+    ]
+  };
+
+  const faqs = [
+    { q: 'What is the cost of epoxy garage floor in Santa Fe, NM?', a: 'Costs vary by size and prep; many 2-car garages start in the low thousands. We provide firm quotes after on-site assessment.' },
+    { q: 'Metallic epoxy Santa Fe NM — do you install it?', a: 'Yes. We offer custom metallic resin floors with artisan color blends for homes and businesses.' },
+    { q: 'Polyaspartic vs epoxy in Santa Fe — which is better?', a: 'Both are durable. Polyaspartic cures faster and offers UV stability; epoxy is excellent for builds needing extensive customization.' },
+    { q: 'Do you offer polished concrete in Santa Fe, NM?', a: 'We provide concrete polishing with multiple gloss levels and stain-resistant protection.' },
+    { q: 'How long does garage floor epoxy take to install?', a: 'Most Santa Fe residential garages complete in 1–2 days depending on slab condition and chosen system.' },
+    { q: 'Do you service surrounding communities near Santa Fe?', a: 'Yes. We cover Santa Fe and nearby areas—call to confirm your address.' }
+  ];
+
+  const faqStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } }))
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-red-50 to-yellow-50">
       {/* Business Header */}
@@ -187,6 +250,7 @@ export default function NMConcreteCoatingProsSantaFePage() {
         businessEmail={businessData.email}
         businessWebsite={businessData.website}
         businessCategory={businessData.category}
+        theme="orange"
       />
 
       <Script
@@ -196,17 +260,62 @@ export default function NMConcreteCoatingProsSantaFePage() {
           __html: JSON.stringify(structuredData),
         }}
       />
+      <Script
+        id="breadcrumb-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
+      />
+      <Script
+        id="faq-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
+      />
+      <Script
+        id="howto-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToStructuredData) }}
+      />
+
+      {/* Breadcrumbs */}
+      <div className="bg-white/60 border-b">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/businesses/">Businesses</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/businesses/nm-concrete-coating-pros/">NM Concrete Coating Pros</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/businesses/nm-concrete-coating-pros/santa-fe/">Santa Fe</BreadcrumbLink>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
+      </div>
 
       {/* Hero Section */}
       <div className="relative h-96 md:h-[600px] w-full bg-gradient-to-br from-orange-900 via-red-800 to-yellow-700">
-        <OptimizedImage
-          src="https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg"
-          alt="Professional concrete coating services in Santa Fe"
-          fill
-          className="object-cover opacity-30"
+        <OptimizedVideo
+          src="/videos/mn-concrete-coating.mp4"
+          alt="Epoxy floor coating Santa Fe NM with polyaspartic topcoat"
+          className="absolute inset-0 w-full h-full object-cover opacity-30"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/images/nm-concrete-coating-pros/project-6.jpg"
+          fallbackImage="/images/nm-concrete-coating-pros/project-6.jpg"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/50"></div>
+        {/* Overlay removed per request */}
         
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center text-white px-4 max-w-6xl">
@@ -218,8 +327,7 @@ export default function NMConcreteCoatingProsSantaFePage() {
               <span className="block text-orange-300">Concrete Coating</span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-orange-100 max-w-4xl mx-auto">
-              Experience the perfect blend of traditional Santa Fe aesthetics and modern concrete coating technology. 
-              Serving the City Different with over a decade of expertise.
+              Epoxy floor coating Santa Fe NM with metallic resin options, polyaspartic topcoats, and polished concrete—crafted for the City Different.
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
@@ -289,7 +397,6 @@ export default function NMConcreteCoatingProsSantaFePage() {
                     alt={service.title}
                     fill
                     quality={85}
-                    priority={true}
                     className="object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-orange-900/60 to-transparent"></div>
@@ -325,7 +432,32 @@ export default function NMConcreteCoatingProsSantaFePage() {
             maxImages={6}
             showRandom={true}
             className="mb-16"
+            headerIconClass="text-orange-600"
+            badgeClass="bg-orange-600 text-white border-orange-500 px-4 py-2"
+            categoryBadgeClass="bg-orange-600/80 text-white border-orange-500"
+            hoverOverlayClass="bg-orange-600/20"
           />
+        </div>
+
+        {/* Nearby Locations */}
+        <div className="mb-20 text-center">
+          <p className="text-gray-700">Also serving: <a className="text-orange-600 hover:underline" href="/businesses/nm-concrete-coating-pros/">Epoxy floor coating Albuquerque NM</a> • <a className="text-orange-600 hover:underline" href="/businesses/nm-concrete-coating-pros/rio-rancho/">Rio Rancho epoxy floor coating</a> • <a className="text-orange-600 hover:underline" href="/businesses/nm-concrete-coating-pros/los-lunas/">Garage floor epoxy Los Lunas</a> • <a className="text-orange-600 hover:underline" href="/businesses/nm-concrete-coating-pros/edgewood/">Epoxy floor coating Edgewood NM</a></p>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="mb-20">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Santa Fe FAQs</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">Common questions from Santa Fe homeowners and businesses.</p>
+          </div>
+          <div className="max-w-4xl mx-auto space-y-6">
+            {faqs.map((f, i) => (
+              <div key={i} className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{f.q}</h3>
+                <p className="text-gray-700">{f.a}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Testimonials Section */}
@@ -447,6 +579,15 @@ export default function NMConcreteCoatingProsSantaFePage() {
         businessRating={businessData.rating}
         businessReviewCount={businessData.reviewCount}
         serviceAreas={serviceAreas}
+        theme="orange"
+        layout="centered"
+        logoShape="circle"
+        topStripe
+        ctaBanner={{
+          title: 'Santa Fe Heritage Finish',
+          subtitle: "Authentic designs for adobe and Pueblo Revival homes",
+          buttonText: 'Get Santa Fe Quote'
+        }}
       />
     </div>
   );

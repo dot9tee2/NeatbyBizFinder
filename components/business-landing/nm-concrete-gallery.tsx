@@ -24,6 +24,10 @@ interface NMConcreteGalleryProps {
   maxImages?: number;
   showRandom?: boolean;
   className?: string;
+  headerIconClass?: string; // e.g., 'text-orange-500'
+  badgeClass?: string; // e.g., 'bg-orange-500 text-white border-orange-400'
+  categoryBadgeClass?: string; // e.g., 'bg-orange-500/80 text-white border-orange-400'
+  hoverOverlayClass?: string; // e.g., 'bg-orange-500/20'
 }
 
 export default function NMConcreteGallery({
@@ -32,7 +36,11 @@ export default function NMConcreteGallery({
   subtitle = "Showcasing our past projects and beautiful results",
   maxImages,
   showRandom = false,
-  className = ""
+  className = "",
+  headerIconClass = 'text-orange-500',
+  badgeClass = 'bg-orange-500 text-white border-orange-400 px-4 py-2',
+  categoryBadgeClass = 'bg-orange-500/80 text-white border-orange-400',
+  hoverOverlayClass = 'bg-orange-500/20'
 }: NMConcreteGalleryProps) {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -81,7 +89,7 @@ export default function NMConcreteGallery({
       {/* Gallery Header */}
       <div className="text-center mb-12">
         <div className="flex items-center justify-center mb-4">
-          <Camera className="h-8 w-8 text-orange-500 mr-3" />
+          <Camera className={`h-8 w-8 ${headerIconClass} mr-3`} />
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
             {title}
           </h2>
@@ -90,7 +98,7 @@ export default function NMConcreteGallery({
           {subtitle}
         </p>
         <div className="flex items-center justify-center mt-4">
-          <Badge className="bg-orange-500 text-white border-orange-400 px-4 py-2">
+          <Badge className={badgeClass}>
             <Award className="h-4 w-4 mr-2" />
             {displayImages.length} Projects Showcased
           </Badge>
@@ -110,12 +118,17 @@ export default function NMConcreteGallery({
                 src={image.src}
                 alt={image.alt}
                 fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover group-hover:scale-110 transition-transform duration-500"
                 onError={(e) => {
-                  console.error('Gallery image failed to load:', image.src);
+                  if (process.env.NODE_ENV !== 'production') {
+                    console.error('Gallery image failed to load:', image.src);
+                  }
                 }}
                 onLoad={() => {
-                  console.log('Gallery image loaded successfully:', image.src);
+                  if (process.env.NODE_ENV !== 'production') {
+                    console.log('Gallery image loaded successfully:', image.src);
+                  }
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -134,7 +147,7 @@ export default function NMConcreteGallery({
                     </p>
                   )}
                   {image.category && (
-                    <Badge className="bg-orange-500/80 text-white border-orange-400 mt-2">
+                    <Badge className={categoryBadgeClass}>
                       {image.category}
                     </Badge>
                   )}
@@ -152,7 +165,7 @@ export default function NMConcreteGallery({
               )}
 
               {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+              <div className={`absolute inset-0 ${hoverOverlayClass} opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center`}>
                 <div className="bg-white/20 backdrop-blur-sm rounded-full p-3 transform scale-75 group-hover:scale-100 transition-transform duration-300">
                   <Camera className="h-6 w-6 text-white" />
                 </div>
@@ -219,12 +232,17 @@ export default function NMConcreteGallery({
                 alt={selectedImage.alt}
                 width={1200}
                 height={800}
+                sizes="100vw"
                 className="w-full h-auto max-h-[80vh] object-contain rounded-lg"
                 onError={(e) => {
-                  console.error('Modal image failed to load:', selectedImage.src);
+                  if (process.env.NODE_ENV !== 'production') {
+                    console.error('Modal image failed to load:', selectedImage.src);
+                  }
                 }}
                 onLoad={() => {
-                  console.log('Modal image loaded successfully:', selectedImage.src);
+                  if (process.env.NODE_ENV !== 'production') {
+                    console.log('Modal image loaded successfully:', selectedImage.src);
+                  }
                 }}
               />
               

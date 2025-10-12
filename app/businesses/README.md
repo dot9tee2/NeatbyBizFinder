@@ -274,3 +274,69 @@ Visit `/businesses/admin/` to:
 ## 📱 Mobile Responsive
 
 All components are mobile-responsive and follow modern web standards.
+
+## 📚 Current Landing Pages Index
+
+### Businesses and Routes
+
+- **clear-choice-cleaning**
+  - Route: `/businesses/clear-choice-cleaning/`
+  - File: `app/businesses/clear-choice-cleaning/page.tsx`
+
+- **drywall-painting-pro**
+  - Route: `/businesses/drywall-painting-pro/`
+  - File: `app/businesses/drywall-painting-pro/page.tsx`
+  - Locations:
+    - `cedar-park` → `/businesses/drywall-painting-pro/cedar-park/` · `app/businesses/drywall-painting-pro/cedar-park/page.tsx`
+    - `georgetown` → `/businesses/drywall-painting-pro/georgetown/` · `app/businesses/drywall-painting-pro/georgetown/page.tsx`
+
+- **nm-concrete-coating-pros**
+  - Route: `/businesses/nm-concrete-coating-pros/`
+  - File: `app/businesses/nm-concrete-coating-pros/page.tsx`
+  - Locations:
+    - `edgewood` → `/businesses/nm-concrete-coating-pros/edgewood/` · `app/businesses/nm-concrete-coating-pros/edgewood/page.tsx`
+    - `los-lunas` → `/businesses/nm-concrete-coating-pros/los-lunas/` · `app/businesses/nm-concrete-coating-pros/los-lunas/page.tsx`
+    - `rio-rancho` → `/businesses/nm-concrete-coating-pros/rio-rancho/` · `app/businesses/nm-concrete-coating-pros/rio-rancho/page.tsx`
+    - `santa-fe` → `/businesses/nm-concrete-coating-pros/santa-fe/` · `app/businesses/nm-concrete-coating-pros/santa-fe/page.tsx`
+
+- **superior-electric-service**
+  - Route: `/businesses/superior-electric-service/`
+  - File: `app/businesses/superior-electric-service/page.tsx`
+  - Locations:
+    - `hill-view` → `/businesses/superior-electric-service/hill-view/` · `app/businesses/superior-electric-service/hill-view/page.tsx`
+    - `prospect` → `/businesses/superior-electric-service/prospect/` · `app/businesses/superior-electric-service/prospect/page.tsx`
+
+### Admin and Sitemaps
+
+- Admin dashboard: `/businesses/admin/` · `app/businesses/admin/page.tsx`
+- Admin sitemap overview: `/businesses/admin/sitemap/` · `app/businesses/admin/sitemap/page.tsx`
+- Business sitemap (auto-generated): `/businesses/sitemap.xml` · `app/businesses/sitemap.xml/route.ts`
+
+## 🧭 Implementation Map
+
+- **Data source**: `lib/business-landing-data.ts`
+  - `businessData` and `locationData` define available slugs and content
+  - Helpers: `getBusinessData`, `getLocationData`, `getAllBusinesses`, `getBusinessLocations`
+  - Structured data: `generateBusinessStructuredData`, `generateLocationStructuredData`
+
+- **Core UI components**: `components/business-landing/`
+  - `business-header.tsx`, `business-hero.tsx`, `business-contact.tsx`, `business-hours.tsx`, `business-footer.tsx`
+  - Optional: `business-gallery.tsx`, `business-amenities.tsx`, `business-reviews.tsx`
+
+- **Business-specific variants**: `components/business-landing/`
+  - Superior Electric: `hillview-header.tsx`, `hillview-footer.tsx`, `prospect-header.tsx`, `prospect-footer.tsx`, `louisville-header.tsx`, `louisville-footer.tsx`
+  - NM Concrete: `nm-concrete-header.tsx`, `nm-concrete-footer.tsx`, `nm-concrete-gallery.tsx`, `nm-concrete-logo.tsx`
+
+- **Pages**: `app/businesses/<business>/page.tsx` and `app/businesses/<business>/<location>/page.tsx`
+  - Typically import the core UI components above and render with data from `lib/business-landing-data.ts`
+
+## 🔎 Data-to-Page Coverage
+
+Current business slugs in `lib/business-landing-data.ts`:
+
+- `drywall-painting-pro` → pages present (main + `cedar-park`, `georgetown`)
+- `superior-electric-service` → pages present (main + `hill-view`, `prospect`)
+- `clear-choice-cleaning` → page present (main)
+- `nm-concrete-coating-pros` → pages present (main + `edgewood`, `los-lunas`, `rio-rancho`, `santa-fe`)
+
+If you add a new slug to `businessData` and create the corresponding `page.tsx`, it will be included automatically in the business sitemap at `/businesses/sitemap.xml`.

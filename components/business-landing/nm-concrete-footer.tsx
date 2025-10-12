@@ -1,6 +1,20 @@
 import Link from 'next/link';
 import OptimizedImage from '@/components/ui/optimized-image';
 import { Phone, Mail, Globe, MapPin, Clock, Star } from 'lucide-react';
+
+type ThemeKey = 'orange' | 'amber' | 'green' | 'blue' | 'slate';
+const THEMES: Record<ThemeKey, {
+  linkHover: string;
+  gradient: string;
+  ctaBtn: string;
+  ctaBtnHover: string;
+}> = {
+  orange: { linkHover: 'hover:text-orange-400', gradient: 'from-orange-600 to-orange-500', ctaBtn: 'bg-white text-orange-600', ctaBtnHover: 'hover:bg-gray-100' },
+  amber:  { linkHover: 'hover:text-amber-400',  gradient: 'from-amber-600 to-amber-500',   ctaBtn: 'bg-white text-amber-600',  ctaBtnHover: 'hover:bg-gray-100' },
+  green:  { linkHover: 'hover:text-green-400',  gradient: 'from-green-600 to-green-500',   ctaBtn: 'bg-white text-green-600',  ctaBtnHover: 'hover:bg-gray-100' },
+  blue:   { linkHover: 'hover:text-blue-400',   gradient: 'from-blue-600 to-blue-500',     ctaBtn: 'bg-white text-blue-600',   ctaBtnHover: 'hover:bg-gray-100' },
+  slate:  { linkHover: 'hover:text-slate-300',  gradient: 'from-slate-700 to-slate-600',   ctaBtn: 'bg-white text-slate-800',  ctaBtnHover: 'hover:bg-gray-100' },
+};
 import NMConcreteLogo from './nm-concrete-logo';
 
 interface NMConcreteFooterProps {
@@ -16,6 +30,13 @@ interface NMConcreteFooterProps {
   businessRating?: number;
   businessReviewCount?: number;
   serviceAreas?: string[];
+  theme?: ThemeKey;
+  topStripe?: boolean;
+  ctaBanner?: {
+    title: string;
+    subtitle?: string;
+    buttonText: string;
+  };
 }
 
 export default function NMConcreteFooter({
@@ -30,11 +51,29 @@ export default function NMConcreteFooter({
   businessHours,
   businessRating,
   businessReviewCount,
-  serviceAreas = []
+  serviceAreas = [],
+  theme = 'orange',
+  topStripe = false,
+  ctaBanner
 }: NMConcreteFooterProps) {
+  const t = THEMES[theme];
   return (
     <footer className="bg-gray-900 text-white">
+      {topStripe && (
+        <div className={`h-1 w-full bg-gradient-to-r ${t.gradient}`} />
+      )}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {ctaBanner && (
+          <div className={`mb-10 rounded-2xl p-8 text-center text-white bg-gradient-to-r ${t.gradient}`}>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-2">{ctaBanner.title}</h2>
+            {ctaBanner.subtitle && (
+              <p className="text-sm sm:text-base opacity-90 mb-4">{ctaBanner.subtitle}</p>
+            )}
+            <a href={`tel:${businessPhone}`} className={`inline-flex items-center justify-center px-5 py-3 rounded-lg ${t.ctaBtn} ${t.ctaBtnHover} font-semibold transition-colors`}>
+              {ctaBanner.buttonText}
+            </a>
+          </div>
+        )}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Business Info */}
           <div className="space-y-4">
@@ -68,19 +107,19 @@ export default function NMConcreteFooter({
             <ul className="space-y-3 text-sm">
               <li className="flex items-center space-x-3">
                 <Phone className="h-4 w-4 text-gray-400" />
-                <a href={`tel:${businessPhone}`} className="text-gray-400 hover:text-orange-400 transition-colors">
+                <a href={`tel:${businessPhone}`} className={`text-gray-400 ${t.linkHover} transition-colors`}>
                   {businessPhone}
                 </a>
               </li>
               <li className="flex items-center space-x-3">
                 <Mail className="h-4 w-4 text-gray-400" />
-                <a href={`mailto:${businessEmail}`} className="text-gray-400 hover:text-orange-400 transition-colors">
+                <a href={`mailto:${businessEmail}`} className={`text-gray-400 ${t.linkHover} transition-colors`}>
                   {businessEmail}
                 </a>
               </li>
               <li className="flex items-center space-x-3">
                 <Globe className="h-4 w-4 text-gray-400" />
-                <a href={businessWebsite} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-orange-400 transition-colors">
+                <a href={businessWebsite} target="_blank" rel="noopener noreferrer" className={`text-gray-400 ${t.linkHover} transition-colors`}>
                   Visit Our Website
                 </a>
               </li>
@@ -121,27 +160,27 @@ export default function NMConcreteFooter({
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/" className="text-gray-400 hover:text-orange-400 transition-colors">
+                <Link href="/" className={`text-gray-400 ${t.linkHover} transition-colors`}>
                   NearbyBizFinder Home
                 </Link>
               </li>
               <li>
-                <Link href="/search/" className="text-gray-400 hover:text-orange-400 transition-colors">
+                <Link href="/search/" className={`text-gray-400 ${t.linkHover} transition-colors`}>
                   Browse Businesses
                 </Link>
               </li>
               <li>
-                <Link href="/categories/" className="text-gray-400 hover:text-orange-400 transition-colors">
+                <Link href="/categories/" className={`text-gray-400 ${t.linkHover} transition-colors`}>
                   Categories
                 </Link>
               </li>
               <li>
-                <Link href="/about/" className="text-gray-400 hover:text-orange-400 transition-colors">
+                <Link href="/about/" className={`text-gray-400 ${t.linkHover} transition-colors`}>
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/contact/" className="text-gray-400 hover:text-orange-400 transition-colors">
+                <Link href="/contact/" className={`text-gray-400 ${t.linkHover} transition-colors`}>
                   Contact
                 </Link>
               </li>
@@ -165,10 +204,10 @@ export default function NMConcreteFooter({
             </p>
           </div>
           <div className="flex space-x-6 text-sm">
-            <Link href="/privacy/" className="text-gray-400 hover:text-orange-400 transition-colors">
+            <Link href="/privacy/" className={`text-gray-400 ${t.linkHover} transition-colors`}>
               Privacy Policy
             </Link>
-            <Link href="/terms/" className="text-gray-400 hover:text-orange-400 transition-colors">
+            <Link href="/terms/" className={`text-gray-400 ${t.linkHover} transition-colors`}>
               Terms of Service
             </Link>
           </div>

@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Script from 'next/script';
+import Link from 'next/link';
 import OptimizedImage from '@/components/ui/optimized-image';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
@@ -11,18 +12,48 @@ import OptimizedVideo from '@/components/ui/optimized-video';
 import NMConcreteFooter from '@/components/business-landing/nm-concrete-footer';
 import NMConcreteGallery from '@/components/business-landing/nm-concrete-gallery';
 import { getGalleryImagesForPage } from '@/lib/nm-concrete-gallery-data';
+import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
 
 export const metadata: Metadata = {
-  title: 'NM Concrete Coating Pros - #1 Garage Floor Coating Albuquerque | Professional Epoxy Services',
-  description: 'Professional epoxy floor coating, metallic resin, polyaspartic coating, and concrete polishing services in Albuquerque, NM. Over a decade of experience serving residential and commercial clients.',
-  alternates: { 
+  title: 'Epoxy Floor Coating Albuquerque NM | NM Concrete Coating Pros',
+  description:
+    'Durable epoxy and polyaspartic garage floor coatings in Albuquerque, NM. Metallic resin floors, concrete polishing, and commercial floor coating by NM Concrete Coating Pros.',
+  alternates: {
     canonical: '/businesses/nm-concrete-coating-pros/',
   },
+  keywords: [
+    'epoxy floor coating Albuquerque NM',
+    'Albuquerque garage floor epoxy coating',
+    'metallic epoxy floor Albuquerque',
+    'metallic resin floors Albuquerque',
+    'polyaspartic topcoat Albuquerque',
+    'polyaspartic coating contractors Albuquerque',
+    'concrete polishing service Albuquerque NM',
+    'concrete polishing Albuquerque cost',
+    'commercial floor coating Albuquerque NM',
+    'patio and deck concrete coating Albuquerque',
+    'epoxy resin floors Albuquerque residential',
+    'durable epoxy flooring Albuquerque NM'
+  ],
   openGraph: {
-    title: 'NM Concrete Coating Pros - #1 Garage Floor Coating Albuquerque',
-    description: 'Professional epoxy floor coating, metallic resin, polyaspartic coating, and concrete polishing services in Albuquerque, NM.',
-    images: ['https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg'],
+    title: 'Epoxy Floor Coating Albuquerque NM | NM Concrete Coating Pros',
+    description:
+      'Durable epoxy and polyaspartic garage floor coatings in Albuquerque, NM. Metallic resin floors, concrete polishing, and commercial floor coating by NM Concrete Coating Pros.',
+    images: ['/images/nm-concrete-coating-pros/og-albuquerque-epoxy-garage-floor-luxury-nmccpros-1200x630.webp'],
+    url: 'https://nearbybizfinder.com/businesses/nm-concrete-coating-pros/',
+    type: 'website',
+    siteName: 'NearbyBizFinder',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Epoxy Floor Coating Albuquerque NM | NM Concrete Coating Pros',
+    description: 'Albuquerque garage floor epoxy coating with polyaspartic topcoat.',
+    images: ['/images/nm-concrete-coating-pros/og-albuquerque-epoxy-garage-floor-luxury-nmccpros-1200x630.webp']
+  },
+  robots: {
+    index: true,
+    follow: true
+  }
 };
 
 export default function NMConcreteCoatingProsPage() {
@@ -35,8 +66,8 @@ export default function NMConcreteCoatingProsPage() {
     phone: '(505) 289-0676',
     email: 'john@nmccpros.com',
     website: 'https://www.nmccpros.com/',
-    featuredImage: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg',
-    description: 'Professional epoxy floor coating, metallic resin, polyaspartic coating, and concrete polishing services in Albuquerque, NM. Over a decade of experience serving residential and commercial clients.',
+    featuredImage: '/images/nm-concrete-coating-pros/og-albuquerque-epoxy-garage-floor-luxury-nmccpros-1200x630.webp',
+    description: 'Epoxy floor coating Albuquerque NM, metallic resin floors, polyaspartic coating, and concrete polishing for homes and businesses.',
     address: '8214 2nd St NW Suite B',
     city: 'Albuquerque',
     state: 'NM',
@@ -150,7 +181,7 @@ export default function NMConcreteCoatingProsPage() {
   // Generate structured data
   const structuredData = {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
+    '@type': ['LocalBusiness', 'HomeAndConstructionBusiness'],
     name: businessData.name,
     description: businessData.description,
     url: `https://nearbybizfinder.com/businesses/nm-concrete-coating-pros/`,
@@ -167,6 +198,7 @@ export default function NMConcreteCoatingProsPage() {
     telephone: businessData.phone,
     email: businessData.email,
     website: businessData.website,
+    hasMap: `https://www.google.com/maps/search/?api=1&query=NM+Concrete+Coating+Pros+${encodeURIComponent(businessData.city)}+${businessData.state}`,
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
@@ -201,7 +233,71 @@ export default function NMConcreteCoatingProsPage() {
           description: service.description
         }
       }))
+    },
+    potentialAction: {
+      '@type': 'ContactAction',
+      target: `tel:${businessData.phone}`
     }
+  };
+
+  // Breadcrumb structured data
+  const breadcrumbStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://nearbybizfinder.com/'
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Businesses',
+        item: 'https://nearbybizfinder.com/businesses/'
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'NM Concrete Coating Pros',
+        item: 'https://nearbybizfinder.com/businesses/nm-concrete-coating-pros/'
+      }
+    ]
+  };
+
+  // FAQs
+  const faqs = [
+    { q: 'What is the cost of epoxy garage floor in Albuquerque, NM?', a: 'Typical 2-car garages in Albuquerque start around the low thousands; final pricing depends on size, prep, and system (epoxy or polyaspartic).' },
+    { q: 'Is metallic epoxy flooring available in Albuquerque?', a: 'Yes. We install premium metallic resin floors with custom color blends and 3D depth effects.' },
+    { q: 'Do you recommend a polyaspartic topcoat in Albuquerque?', a: 'Yes. Polyaspartic topcoats provide fast cure, UV stability, and excellent chemical resistance for New Mexico sun.' },
+    { q: 'Do you offer concrete polishing in Albuquerque, NM?', a: 'We provide concrete polishing for residential and commercial spaces with multiple sheen and stain-resistant options.' },
+    { q: 'How long does garage floor epoxy take to install?', a: 'Most Albuquerque garage projects complete in 1–2 days depending on condition and chosen system.' },
+    { q: 'Do you service commercial floor coating needs in Albuquerque?', a: 'Yes. We install durable, high-traffic commercial coatings with minimal downtime.' }
+  ];
+
+  const faqStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.a
+      }
+    }))
+  };
+
+  const howToStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How to get a garage floor coating in Albuquerque',
+    step: [
+      { '@type': 'HowToStep', name: 'Get a Quote', text: 'Request a free quote and on-site assessment.' },
+      { '@type': 'HowToStep', name: 'Pick a Day', text: 'Choose your installation date and prepare the area.' },
+      { '@type': 'HowToStep', name: 'Enjoy Your Floor', text: 'After curing, enjoy your new durable floor.' }
+    ]
   };
 
   return (
@@ -213,6 +309,8 @@ export default function NMConcreteCoatingProsPage() {
         businessEmail={businessData.email}
         businessWebsite={businessData.website}
         businessCategory={businessData.category}
+        // align with Albuquerque orange theme
+        
       />
 
       <Script
@@ -222,19 +320,63 @@ export default function NMConcreteCoatingProsPage() {
           __html: JSON.stringify(structuredData),
         }}
       />
+      <Script
+        id="breadcrumb-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbStructuredData),
+        }}
+      />
+      <Script
+        id="faq-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqStructuredData),
+        }}
+      />
+      <Script
+        id="howto-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(howToStructuredData),
+        }}
+      />
+
+      {/* Breadcrumbs */}
+      <div className="bg-white/60 border-b">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/businesses/">Businesses</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/businesses/nm-concrete-coating-pros/">NM Concrete Coating Pros</BreadcrumbLink>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
+      </div>
 
       {/* Hero Section */}
       <div className="relative h-[500px] sm:h-[600px] lg:h-[700px] w-full bg-gradient-to-br from-gray-400 via-blue-200 to-gray-200 overflow-hidden">
         <OptimizedVideo
           src="/videos/mn-concrete-coating.mp4"
-          alt="Professional concrete coating services"
+          alt="Epoxy floor coating Albuquerque NM with polyaspartic topcoat"
           className="absolute inset-0 w-full h-full object-cover opacity-40"
           autoPlay
           muted
           loop
           playsInline
+          poster="/images/nm-concrete-coating-pros/project-1.jpg"
+          fallbackImage="/images/nm-concrete-coating-pros/project-1.jpg"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/40"></div>
+        {/* Overlay removed per request */}
         
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center text-white px-4 sm:px-6 lg:px-8 max-w-7xl w-full">
@@ -246,8 +388,7 @@ export default function NMConcreteCoatingProsPage() {
               <span className="block text-orange-400 mt-2">Luxury in Just One Day</span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 text-gray-200 max-w-5xl mx-auto leading-relaxed">
-              Professional epoxy floor coating, metallic resin, polyaspartic coating, and concrete polishing services. 
-              Over a decade of experience serving Albuquerque and surrounding areas.
+              Epoxy floor coating Albuquerque NM for garages and shops, metallic resin floors, polyaspartic topcoats, and concrete polishing for residential and commercial spaces.
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
@@ -278,7 +419,7 @@ export default function NMConcreteCoatingProsPage() {
         {/* Why Choose Us Section */}
         <div className="text-center mb-12 sm:mb-16 lg:mb-20">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
-            Why Choose <span className="text-orange-500">NM Concrete Coating Pros</span>
+            Why Choose <span className="text-orange-500">NM Concrete Coating Pros</span> for Epoxy Floor Coating in Albuquerque
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
             With over a decade of experience, we provide the highest quality concrete coating services 
@@ -320,7 +461,6 @@ export default function NMConcreteCoatingProsPage() {
                     alt={service.title}
                     fill
                     quality={85}
-                    priority={true}
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/40"></div>
@@ -387,6 +527,43 @@ export default function NMConcreteCoatingProsPage() {
             maxImages={6}
             className="mb-16"
           />
+        </div>
+
+        {/* Nearby Locations (Internal Links) */}
+        <div className="mb-16 sm:mb-20">
+          <div className="text-center mb-10 sm:mb-12">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
+              Nearby Service Locations
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">Explore our city-specific pages.</p>
+          </div>
+          <div className="flex flex-wrap gap-3 justify-center">
+            <Link className="text-orange-600 hover:underline" href="/businesses/nm-concrete-coating-pros/rio-rancho/">Rio Rancho epoxy floor coating</Link>
+            <span className="text-gray-400">•</span>
+            <Link className="text-orange-600 hover:underline" href="/businesses/nm-concrete-coating-pros/santa-fe/">Epoxy floor coating Santa Fe NM</Link>
+            <span className="text-gray-400">•</span>
+            <Link className="text-orange-600 hover:underline" href="/businesses/nm-concrete-coating-pros/los-lunas/">Garage floor epoxy Los Lunas</Link>
+            <span className="text-gray-400">•</span>
+            <Link className="text-orange-600 hover:underline" href="/businesses/nm-concrete-coating-pros/edgewood/">Epoxy floor coating Edgewood NM</Link>
+          </div>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="mb-16 sm:mb-20">
+          <div className="text-center mb-10 sm:mb-12">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
+              Albuquerque FAQs
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">Answers to the most common questions we get in Albuquerque.</p>
+          </div>
+          <div className="max-w-4xl mx-auto space-y-6">
+            {faqs.map((f, i) => (
+              <div key={i} className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{f.q}</h3>
+                <p className="text-gray-700">{f.a}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Process Section */}
@@ -475,6 +652,13 @@ export default function NMConcreteCoatingProsPage() {
         businessRating={businessData.rating}
         businessReviewCount={businessData.reviewCount}
         serviceAreas={serviceAreas}
+        theme="orange"
+        topStripe
+        ctaBanner={{
+          title: 'Transform Your Albuquerque Garage',
+          subtitle: 'Fast, durable, UV-stable coatings in 1–2 days',
+          buttonText: 'Get Fast Quote'
+        }}
       />
     </div>
   );

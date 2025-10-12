@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Script from 'next/script';
-import OptimizedImage from '@/components/ui/optimized-image';
+import Link from 'next/link';
+import OptimizedVideo from '@/components/ui/optimized-video';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -10,18 +11,40 @@ import BusinessHeader from '@/components/business-landing/business-header';
 import BusinessFooter from '@/components/business-landing/business-footer';
 import NMConcreteGallery from '@/components/business-landing/nm-concrete-gallery';
 import { getGalleryImagesForPage } from '@/lib/nm-concrete-gallery-data';
+import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
 
 export const metadata: Metadata = {
-  title: 'NM Concrete Coating Pros Los Lunas - Family-Friendly Epoxy Floor Coating | Los Lunas, NM',
-  description: 'Family-friendly epoxy floor coating, safe polyaspartic coating, and durable concrete polishing services in Los Lunas, NM. Safe, non-toxic solutions perfect for families with children and pets.',
+  title: 'Epoxy Floor Coating Los Lunas NM | NM Concrete Coating Pros',
+  description: 'Garage floor epoxy Los Lunas with polyaspartic topcoat. Family-safe epoxy, metallic resin, and concrete polishing by NM Concrete Coating Pros.',
   alternates: { 
     canonical: '/businesses/nm-concrete-coating-pros/los-lunas/',
   },
+  keywords: [
+    'epoxy floor coating Los Lunas NM',
+    'garage floor epoxy Los Lunas',
+    'metallic resin flooring Los Lunas',
+    'metallic epoxy Los Lunas NM',
+    'polyaspartic topcoat Los Lunas',
+    'concrete polishing Los Lunas NM',
+    'concrete polishing cost Los Lunas',
+    'commercial floor coating Los Lunas',
+    'patio & deck concrete coating Los Lunas'
+  ],
   openGraph: {
-    title: 'NM Concrete Coating Pros Los Lunas - Family-Friendly Epoxy Floor Coating',
-    description: 'Family-friendly epoxy floor coating, safe polyaspartic coating, and durable concrete polishing services in Los Lunas, NM.',
-    images: ['https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg'],
+    title: 'Epoxy Floor Coating Los Lunas NM | NM Concrete Coating Pros',
+    description: 'Epoxy and polyaspartic garage floor coatings in Los Lunas, NM. Family-safe options and polished concrete.',
+    images: ['/images/nm-concrete-coating-pros/og-albuquerque-epoxy-garage-floor-luxury-nmccpros-1200x630.webp'],
+    url: 'https://nearbybizfinder.com/businesses/nm-concrete-coating-pros/los-lunas/',
+    type: 'website',
+    siteName: 'NearbyBizFinder',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Epoxy Floor Coating Los Lunas NM | NM Concrete Coating Pros',
+    description: 'Garage floor epoxy Los Lunas with polyaspartic topcoat.',
+    images: ['/images/nm-concrete-coating-pros/og-albuquerque-epoxy-garage-floor-luxury-nmccpros-1200x630.webp']
+  },
+  robots: { index: true, follow: true }
 };
 
 export default function NMConcreteCoatingProsLosLunasPage() {
@@ -35,8 +58,8 @@ export default function NMConcreteCoatingProsLosLunasPage() {
     phone: '(505) 289-0676',
     email: 'john@nmccpros.com',
     website: 'https://www.nmccpros.com/',
-    featuredImage: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg',
-    description: 'Family-friendly epoxy floor coating, safe polyaspartic coating, and durable concrete polishing services in Los Lunas, NM. Safe, non-toxic solutions perfect for families with children and pets.',
+    featuredImage: '/images/nm-concrete-coating-pros/og-albuquerque-epoxy-garage-floor-luxury-nmccpros-1200x630.webp',
+    description: 'Garage floor epoxy Los Lunas, family-safe epoxy, polyaspartic coating, metallic resin floors, and concrete polishing.',
     address: 'Los Lunas, NM',
     city: 'Los Lunas',
     state: 'NM',
@@ -159,7 +182,7 @@ export default function NMConcreteCoatingProsLosLunasPage() {
   // Generate structured data
   const structuredData = {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
+    '@type': ['LocalBusiness', 'HomeAndConstructionBusiness'],
     name: `${businessData.name} - ${businessData.locationName}`,
     description: businessData.description,
     url: `https://nearbybizfinder.com/businesses/nm-concrete-coating-pros/los-lunas/`,
@@ -176,6 +199,7 @@ export default function NMConcreteCoatingProsLosLunasPage() {
     telephone: businessData.phone,
     email: businessData.email,
     website: businessData.website,
+    hasMap: `https://www.google.com/maps/search/?api=1&query=NM+Concrete+Coating+Pros+Los+Lunas+NM`,
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
@@ -201,6 +225,39 @@ export default function NMConcreteCoatingProsLosLunasPage() {
     }))
   };
 
+  const howToStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How to get a family-safe floor in Los Lunas',
+    step: [
+      { '@type': 'HowToStep', name: 'Family Consultation', text: 'Share family needs and schedule preferences.' },
+      { '@type': 'HowToStep', name: 'Safe Installation', text: 'Non-toxic, low-VOC installation around your schedule.' },
+      { '@type': 'HowToStep', name: 'Family Fun', text: 'Enjoy your new safe, durable family space.' }
+    ]
+  };
+
+  const breadcrumbStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://nearbybizfinder.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Businesses', item: 'https://nearbybizfinder.com/businesses/' },
+      { '@type': 'ListItem', position: 3, name: 'NM Concrete Coating Pros', item: 'https://nearbybizfinder.com/businesses/nm-concrete-coating-pros/' },
+      { '@type': 'ListItem', position: 4, name: 'Los Lunas', item: 'https://nearbybizfinder.com/businesses/nm-concrete-coating-pros/los-lunas/' }
+    ]
+  };
+
+  const faqs = [
+    { q: 'What is the concrete polishing cost in Los Lunas?', a: 'Pricing depends on square footage, desired sheen, and slab condition. We provide firm estimates after inspection.' },
+    { q: 'Is metallic resin flooring available in Los Lunas?', a: 'Yes. We install metallic epoxy floors with child- and pet-safe options.' },
+    { q: 'Do you offer polyaspartic topcoat in Los Lunas?', a: 'Yes. Polyaspartic topcoats cure fast, are UV stable, and ideal for garages and patios.' },
+    { q: 'Are your coatings safe for kids and pets?', a: 'We use low-VOC, non-toxic systems ideal for family spaces and garages.' },
+    { q: 'How long does a garage install take?', a: 'Most Los Lunas garages complete in 1–2 days depending on prep, size, and chosen system.' },
+    { q: 'Do you serve nearby areas?', a: 'Yes. We service Los Lunas and surrounding communities—call to confirm your address.' }
+  ];
+
+  const faqStructuredData = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-yellow-50">
       {/* Business Header */}
@@ -210,6 +267,7 @@ export default function NMConcreteCoatingProsLosLunasPage() {
         businessEmail={businessData.email}
         businessWebsite={businessData.website}
         businessCategory={businessData.category}
+        theme="green"
       />
 
       <Script
@@ -219,17 +277,50 @@ export default function NMConcreteCoatingProsLosLunasPage() {
           __html: JSON.stringify(structuredData),
         }}
       />
+      <Script id="breadcrumb-structured-data" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }} />
+      <Script id="faq-structured-data" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }} />
+      <Script id="howto-structured-data" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToStructuredData) }} />
+
+      {/* Breadcrumbs */}
+      <div className="bg-white/60 border-b">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/businesses/">Businesses</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/businesses/nm-concrete-coating-pros/">NM Concrete Coating Pros</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/businesses/nm-concrete-coating-pros/los-lunas/">Los Lunas</BreadcrumbLink>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
+      </div>
 
       {/* Hero Section */}
       <div className="relative h-96 md:h-[600px] w-full bg-gradient-to-br from-green-600 via-blue-600 to-yellow-500">
-        <OptimizedImage
-          src="https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg"
-          alt="Family-friendly concrete coating services in Los Lunas"
-          fill
-          className="object-cover opacity-30"
+        <OptimizedVideo
+          src="/videos/mn-concrete-coating.mp4"
+          alt="Garage floor epoxy Los Lunas with polyaspartic topcoat"
+          className="absolute inset-0 w-full h-full object-cover opacity-30"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/images/nm-concrete-coating-pros/project-16.jpg"
+          fallbackImage="/images/nm-concrete-coating-pros/project-16.jpg"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/50"></div>
+        {/* Overlay removed per request */}
         
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center text-white px-4 max-w-6xl">
@@ -313,7 +404,6 @@ export default function NMConcreteCoatingProsLosLunasPage() {
                     alt={service.title}
                     fill
                     quality={85}
-                    priority={true}
                     className="object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-green-900/60 to-transparent"></div>
@@ -379,7 +469,32 @@ export default function NMConcreteCoatingProsLosLunasPage() {
             subtitle="Showcasing our safe and beautiful concrete coating projects perfect for Los Lunas families"
             maxImages={6}
             className="mb-16"
+            headerIconClass="text-green-600"
+            badgeClass="bg-green-600 text-white border-green-500 px-4 py-2"
+            categoryBadgeClass="bg-green-600/80 text-white border-green-500"
+            hoverOverlayClass="bg-green-600/20"
           />
+        </div>
+
+        {/* Nearby Locations */}
+        <div className="mb-20 text-center">
+          <p className="text-gray-700">Also serving: <a className="text-orange-600 hover:underline" href="/businesses/nm-concrete-coating-pros/">Epoxy floor coating Albuquerque NM</a> • <a className="text-orange-600 hover:underline" href="/businesses/nm-concrete-coating-pros/rio-rancho/">Rio Rancho epoxy floor coating</a> • <a className="text-orange-600 hover:underline" href="/businesses/nm-concrete-coating-pros/santa-fe/">Epoxy floor coating Santa Fe NM</a> • <a className="text-orange-600 hover:underline" href="/businesses/nm-concrete-coating-pros/edgewood/">Epoxy floor coating Edgewood NM</a></p>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="mb-20">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Los Lunas FAQs</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">Common questions from Los Lunas families and homeowners.</p>
+          </div>
+          <div className="max-w-4xl mx-auto space-y-6">
+            {faqs.map((f, i) => (
+              <div key={i} className="bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{f.q}</h3>
+                <p className="text-gray-700">{f.a}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Testimonials Section */}
@@ -501,6 +616,14 @@ export default function NMConcreteCoatingProsLosLunasPage() {
         businessRating={businessData.rating}
         businessReviewCount={businessData.reviewCount}
         serviceAreas={serviceAreas}
+        theme="green"
+        layout="classic"
+        logoShape="rounded"
+        ctaBanner={{
+          title: 'Family-Safe Flooring',
+          subtitle: 'Non-toxic, low-VOC installs for active families in Los Lunas',
+          buttonText: 'Get Family Quote'
+        }}
       />
     </div>
   );
