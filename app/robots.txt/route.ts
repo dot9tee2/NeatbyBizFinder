@@ -14,6 +14,13 @@ Disallow: /businesses/admin/
 # Allow business landing pages
 Allow: /businesses/*/
 
+# Explicitly allow NM Concrete Coating Pros landing pages
+Allow: /businesses/nm-concrete-coating-pros/
+Allow: /businesses/nm-concrete-coating-pros/santa-fe/
+Allow: /businesses/nm-concrete-coating-pros/rio-rancho/
+Allow: /businesses/nm-concrete-coating-pros/los-lunas/
+Allow: /businesses/nm-concrete-coating-pros/edgewood/
+
 # Allow search and categories
 Allow: /search/
 Allow: /categories/
