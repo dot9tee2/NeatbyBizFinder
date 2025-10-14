@@ -1,11 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Plus, Building, MapPin, ExternalLink } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import Link from 'next/link';
-import { getAllBusinesses, getBusinessLocations } from '@/lib/business-landing-data';
+import { getBusinessData } from '@/lib/business-landing-data';
+import { discoverBusinessPages } from '@/lib/sitemap-utils';
+import AdminBusinessList from '@/components/business/admin-business-list';
 
-export default function BusinessAdminPage() {
-  const businesses = getAllBusinesses();
+export default async function BusinessAdminPage() {
+  const { businesses, locations } = await discoverBusinessPages();
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
@@ -30,7 +32,7 @@ export default function BusinessAdminPage() {
               <CardContent className="p-6">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-green-600">
-                    {businesses.reduce((total, business) => total + getBusinessLocations(business).length, 0)}
+                    {businesses.reduce((total, business) => total + (locations[business]?.length || 0), 0)}
                   </div>
                   <div className="text-sm text-gray-600">Total Locations</div>
                 </div>
@@ -40,7 +42,7 @@ export default function BusinessAdminPage() {
               <CardContent className="p-6">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-purple-600">
-                    {businesses.length + businesses.reduce((total, business) => total + getBusinessLocations(business).length, 0)}
+                    {businesses.length + businesses.reduce((total, business) => total + (locations[business]?.length || 0), 0)}
                   </div>
                   <div className="text-sm text-gray-600">Total Landing Pages</div>
                 </div>
@@ -60,76 +62,13 @@ export default function BusinessAdminPage() {
               </Button>
             </div>
 
-            <div className="grid gap-6">
-              {businesses.map((businessSlug) => {
-                const locations = getBusinessLocations(businessSlug);
-                return (
-                  <Card key={businessSlug}>
-                    <CardHeader>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-3">
-                          <Building className="h-5 w-5 text-gray-400" />
-                          <div>
-                            <CardTitle className="capitalize">
-                              {businessSlug.replace(/-/g, ' ')}
-                            </CardTitle>
-                            <p className="text-sm text-gray-600">
-                              {locations.length} location{locations.length !== 1 ? 's' : ''}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="flex space-x-2">
-                          <Button variant="outline" size="sm" asChild>
-                            <Link href={`/businesses/${businessSlug}/`} target="_blank">
-                              <ExternalLink className="h-4 w-4 mr-1" />
-                              View
-                            </Link>
-                          </Button>
-                          <Button variant="outline" size="sm">
-                            Edit
-                          </Button>
-                        </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-3">
-                        {/* Main Business Page */}
-                        <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                          <div className="flex items-center space-x-3">
-                            <Building className="h-4 w-4 text-gray-400" />
-                            <span className="font-medium">Main Business Page</span>
-                          </div>
-                          <Button variant="outline" size="sm" asChild>
-                            <Link href={`/businesses/${businessSlug}/`} target="_blank">
-                              <ExternalLink className="h-4 w-4 mr-1" />
-                              View
-                            </Link>
-                          </Button>
-                        </div>
-
-                        {/* Location Pages */}
-                        {locations.map((locationSlug) => (
-                          <div key={locationSlug} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                            <div className="flex items-center space-x-3">
-                              <MapPin className="h-4 w-4 text-gray-400" />
-                              <span className="font-medium capitalize">
-                                {locationSlug.replace(/-/g, ' ')} Location
-                              </span>
-                            </div>
-                            <Button variant="outline" size="sm" asChild>
-                              <Link href={`/businesses/${businessSlug}/${locationSlug}/`} target="_blank">
-                                <ExternalLink className="h-4 w-4 mr-1" />
-                                View
-                              </Link>
-                            </Button>
-                          </div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
+            <AdminBusinessList
+              items={businesses.map((slug) => ({
+                slug,
+                name: getBusinessData(slug)?.name || slug.replace(/-/g, ' '),
+                locations: locations[slug] || [],
+              }))}
+            />
           </div>
 
           {/* Instructions */}

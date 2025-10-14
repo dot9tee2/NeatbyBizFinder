@@ -5,7 +5,7 @@ import { Star, Phone, Globe, MapPin, Navigation } from 'lucide-react';
 
 interface BusinessHeroProps {
   name: string;
-  category: string;
+  category?: string;
   rating: number;
   reviewCount: number;
   priceRange: string;
@@ -81,9 +81,11 @@ export default function BusinessHero({
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="text-center text-white px-4 max-w-4xl">
           <div className="mb-6">
-            <Badge className="mb-4 bg-white/20 text-white border-white/30">
-              {category}
-            </Badge>
+            {category ? (
+              <Badge className="mb-4 bg-white/20 text-white border-white/30">
+                {category}
+              </Badge>
+            ) : null}
             <h1 className="text-4xl md:text-6xl font-bold mb-4">
               {name}
               {locationName && (
