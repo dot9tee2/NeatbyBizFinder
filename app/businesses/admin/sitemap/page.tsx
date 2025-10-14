@@ -224,10 +224,17 @@ export default async function SitemapAdminPage() {
                 View Business Sitemap
               </Link>
             </Button>
-            <Button variant="outline">
-              <RefreshCw className="h-4 w-4 mr-2" />
-              Refresh Stats
-            </Button>
+            <form action={async () => {
+              'use server';
+              try {
+                await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || ''}/api/admin/refresh-sitemaps`, { method: 'POST', cache: 'no-store' });
+              } catch {}
+            }}>
+              <Button variant="outline" type="submit">
+                <RefreshCw className="h-4 w-4 mr-2" />
+                Refresh Stats
+              </Button>
+            </form>
           </div>
         </div>
       </div>
