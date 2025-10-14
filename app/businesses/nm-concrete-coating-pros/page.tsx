@@ -129,8 +129,8 @@ export default function NMConcreteCoatingProsPage() {
 
   const whyChooseUs = [
     {
-      title: 'Over a Decade of Experience',
-      description: 'More than 10 years of professional concrete coating experience',
+      title: 'Certified Installers',
+      description: 'Our team has been trained and certified in the concrete coating process',
       icon: Award,
       color: 'text-yellow-500'
     },
