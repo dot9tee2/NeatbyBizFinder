@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -22,6 +22,22 @@ export default function SignInContent() {
   });
   const router = useRouter();
   const search = useSearchParams();
+
+  // If already authenticated, send user to intended page
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      try {
+        const { user } = await auth.getCurrentUser();
+        if (!mounted) return;
+        if (user) {
+          const redirect = search.get('redirect') || '/';
+          router.replace(redirect);
+        }
+      } catch {}
+    })();
+    return () => { mounted = false; };
+  }, [router, search]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({

@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
-import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import { createServerClient } from '@supabase/ssr';
+
+export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   const url = new URL(req.url);
@@ -8,7 +10,24 @@ export async function GET(req: NextRequest) {
   const next = url.searchParams.get('next') || '/';
 
   if (code) {
-    const supabase = createRouteHandlerClient({ cookies });
+    const cookieStore = await cookies();
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        cookies: {
+          get(name: string) {
+            return cookieStore.get(name)?.value;
+          },
+          set(name: string, value: string, options: any) {
+            cookieStore.set(name, value, options);
+          },
+          remove(name: string, options: any) {
+            cookieStore.set(name, '', { ...options, maxAge: 0 });
+          },
+        },
+      }
+    );
     try {
       await supabase.auth.exchangeCodeForSession(code);
     } catch {}

@@ -41,13 +41,9 @@ export const auth = {
 
   signInWithGoogle: async (nextPath?: string) => {
     if (!supabase) return { data: null, error: new Error('Supabase not configured') };
-    let origin = '';
-    try {
-      // Browser
-      origin = window.location.origin;
-    } catch {
-      origin = (process.env.NEXT_PUBLIC_BASE_URL || '').replace(/\/$/, '');
-    }
+    const origin = typeof window !== 'undefined'
+      ? window.location.origin
+      : (process.env.NEXT_PUBLIC_BASE_URL || '').replace(/\/$/, '');
     const redirectTo = origin
       ? `${origin}/auth/callback${nextPath ? `?next=${encodeURIComponent(nextPath)}` : ''}`
       : undefined;
