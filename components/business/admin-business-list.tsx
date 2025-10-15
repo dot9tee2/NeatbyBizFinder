@@ -1,7 +1,6 @@
-'use client';
+ 'use client';
 
 import { useMemo, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -20,7 +19,6 @@ export interface BusinessListItem {
 type SortKey = 'name_asc' | 'name_desc' | 'locations_desc' | 'locations_asc' | 'pages_desc' | 'pages_asc';
 
 export function AdminBusinessList({ items }: { items: BusinessListItem[] }) {
-  const router = useRouter();
   const [query, setQuery] = useState('');
   const [sortKey, setSortKey] = useState<SortKey>('name_asc');
   const [isPending, startTransition] = useTransition();
@@ -110,13 +108,6 @@ export function AdminBusinessList({ items }: { items: BusinessListItem[] }) {
                       View
                     </Link>
                   </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => router.push(`/businesses/admin/${item.slug}/edit`)}
-                  >
-                    Edit
-                  </Button>
                   <AlertDialog>
                     <AlertDialogTrigger asChild>
                       <Button variant="destructive" size="sm" onClick={() => { setTarget({ slug: item.slug }); setConfirmName(''); }}>
@@ -139,7 +130,6 @@ export function AdminBusinessList({ items }: { items: BusinessListItem[] }) {
                             const payload = { slug: item.slug };
                             startTransition(async () => {
                               await fetch('/api/admin/delete-business', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-                              // simple reload to reflect FS changes
                               window.location.reload();
                             });
                           }}

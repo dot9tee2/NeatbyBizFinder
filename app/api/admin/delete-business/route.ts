@@ -1,8 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath, revalidateTag } from 'next/cache';
+import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
 
 export async function POST(req: NextRequest) {
   try {
+    const supabase = createRouteHandlerClient({ cookies });
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return NextResponse.json({ ok: false, error: 'Unauthorized' }, { status: 401 });
+
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('role')
+      .eq('id', user.id)
+      .single();
+    if (!profile || profile.role !== 'admin') {
+      return NextResponse.json({ ok: false, error: 'Forbidden' }, { status: 403 });
+    }
+
     const body = await req.json();
     const slug = String(body.slug || '').trim();
     const location: string | undefined = body.location ? String(body.location).trim() : undefined;
@@ -14,15 +29,12 @@ export async function POST(req: NextRequest) {
     const businessDir = path.join(baseDir, slug);
 
     if (location) {
-      // Delete a specific location folder
       const locationDir = path.join(businessDir, location);
       await fs.rm(locationDir, { recursive: true, force: true });
     } else {
-      // Delete entire business folder
       await fs.rm(businessDir, { recursive: true, force: true });
     }
 
-    // Revalidate sitemaps and affected pages
     try {
       revalidatePath('/businesses/sitemap.xml');
       revalidatePath('/sitemap-index.xml');

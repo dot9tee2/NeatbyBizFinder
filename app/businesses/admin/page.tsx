@@ -1,7 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Plus } from 'lucide-react';
-import Link from 'next/link';
 import { getBusinessData } from '@/lib/business-landing-data';
 import { discoverBusinessPages } from '@/lib/sitemap-utils';
 import AdminBusinessList from '@/components/business/admin-business-list';
@@ -50,16 +48,10 @@ export default async function BusinessAdminPage() {
             </Card>
           </div>
 
-          {/* Business List */}
+          {/* Business List (view-only) */}
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-semibold text-gray-900">Businesses</h2>
-              <Button asChild>
-                <Link href="/businesses/admin/new">
-                  <Plus className="h-4 w-4 mr-2" />
-                  Add New Business
-                </Link>
-              </Button>
             </div>
 
             <AdminBusinessList
