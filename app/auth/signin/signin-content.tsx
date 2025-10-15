@@ -75,12 +75,8 @@ export default function SignInContent() {
   const handleGoogleSignIn = async () => {
     setIsLoading(true);
     try {
-      // Persist redirect target for OAuth return
-      try {
-        const redirect = search.get('redirect');
-        if (redirect) localStorage.setItem('postAuthRedirect', redirect);
-      } catch {}
-      const { error: oauthError } = await auth.signInWithGoogle();
+      const redirect = search.get('redirect') || '/';
+      const { error: oauthError } = await auth.signInWithGoogle(redirect);
       if (oauthError) setError(oauthError.message);
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : 'Failed to sign in with Google';

@@ -39,10 +39,21 @@ export const auth = {
     return { data, error };
   },
 
-  signInWithGoogle: async () => {
+  signInWithGoogle: async (nextPath?: string) => {
     if (!supabase) return { data: null, error: new Error('Supabase not configured') };
+    let origin = '';
+    try {
+      // Browser
+      origin = window.location.origin;
+    } catch {
+      origin = (process.env.NEXT_PUBLIC_BASE_URL || '').replace(/\/$/, '');
+    }
+    const redirectTo = origin
+      ? `${origin}/auth/callback${nextPath ? `?next=${encodeURIComponent(nextPath)}` : ''}`
+      : undefined;
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
+      options: redirectTo ? { redirectTo } : undefined,
     });
     return { data, error };
   },

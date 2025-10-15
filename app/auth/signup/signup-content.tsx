@@ -87,7 +87,7 @@ export default function SignUpContent() {
   const handleGoogleSignUp = async () => {
     setIsLoading(true);
     try {
-      const { error: oauthError } = await auth.signInWithGoogle();
+      const { error: oauthError } = await auth.signInWithGoogle('/');
       if (oauthError) setError(oauthError.message);
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : 'Failed to sign up with Google';
