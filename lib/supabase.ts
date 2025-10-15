@@ -49,7 +49,10 @@ export const auth = {
       : undefined;
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: redirectTo ? { redirectTo } : undefined,
+      options: {
+        redirectTo,
+        flowType: 'pkce',
+      },
     });
     return { data, error };
   },

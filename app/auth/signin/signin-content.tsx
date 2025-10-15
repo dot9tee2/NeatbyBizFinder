@@ -93,6 +93,16 @@ export default function SignInContent() {
     try {
       const redirect = search.get('redirect') || '/';
       const { error: oauthError } = await auth.signInWithGoogle(redirect);
+      // Some environments open a popup or return with hash; push user to callback explicitly
+      // if auth helper didn't immediately navigate
+      setTimeout(() => {
+        try {
+          if (window.location.pathname.includes('/auth/signin')) {
+            const origin = window.location.origin;
+            window.location.assign(`${origin}/auth/callback?next=${encodeURIComponent(redirect)}`);
+          }
+        } catch {}
+      }, 1500);
       if (oauthError) setError(oauthError.message);
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : 'Failed to sign in with Google';

@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   const url = new URL(req.url);
-  const code = url.searchParams.get('code');
+  const code = url.searchParams.get('code') || url.hash.replace(/^#/, '').split('&').find(s => s.startsWith('code='))?.split('=')[1] || null;
   const next = url.searchParams.get('next') || '/';
 
   if (code) {
