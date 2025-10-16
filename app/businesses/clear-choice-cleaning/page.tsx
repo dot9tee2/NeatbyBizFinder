@@ -1,7 +1,6 @@
 'use client';
 
 import Script from 'next/script';
-import Head from 'next/head';
 import OptimizedVideo from '@/components/ui/optimized-video';
 import OptimizedImage from '@/components/ui/optimized-image';
 import { Button } from '@/components/ui/button';
@@ -34,31 +33,6 @@ export default function ClearChoiceCleaningPage() {
 
   useEffect(() => {
     setIsVisible(true);
-    
-    // Set document title and meta tags
-    document.title = 'Clear Choice Cleaning - Professional Cleaning Services in Las Vegas, NV | NearbyBizFinder';
-    
-    // Update meta description
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Professional cleaning services for homes and offices in Las Vegas, NV. We provide reliable, eco-friendly cleaning solutions with experienced staff and flexible scheduling. Book your cleaning service today!');
-    }
-    
-    // Update Open Graph tags
-    const ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) {
-      ogTitle.setAttribute('content', 'Clear Choice Cleaning - Professional Cleaning Services in Las Vegas, NV');
-    }
-    
-    const ogDescription = document.querySelector('meta[property="og:description"]');
-    if (ogDescription) {
-      ogDescription.setAttribute('content', 'Professional cleaning services for homes and offices in Las Vegas, NV. We provide reliable, eco-friendly cleaning solutions with experienced staff and flexible scheduling.');
-    }
-    
-    const ogImage = document.querySelector('meta[property="og:image"]');
-    if (ogImage) {
-      ogImage.setAttribute('content', '/clear-choice-cleaning/hero-image.png');
-    }
     
     // Register ScrollTrigger plugin
     gsap.registerPlugin(ScrollTrigger);
@@ -420,9 +394,10 @@ export default function ClearChoiceCleaningPage() {
     reviewCount: 234,
     priceRange: '$$',
     phone: '(702) 820-5479',
+    phoneE164: '+17028205479',
     email: 'wesleyv@clearchoicelv.com',
     website: 'https://clearchoicelv.com/',
-    featuredImage: '/clear-choice-cleaning/featured-image.jpeg',
+    featuredImage: '/clear-choice-cleaning/hero-image.png',
     description: 'Professional cleaning services for homes and offices. We provide reliable, eco-friendly cleaning solutions throughout the Las Vegas area.',
     address: {
       street: '1234 Main Street',
@@ -437,7 +412,7 @@ export default function ClearChoiceCleaningPage() {
       title: 'Residential Cleaning',
       description: 'Regular home cleaning service to keep your living space consistently fresh and spotless',
       icon: Home,
-      image: '/clear-choice-cleaning/residential-cleaning.jpeg',
+      image: '/clear-choice-cleaning/residential-cleaning.webp',
       features: [
         'Dusting and Surface Wipe Down',
         'Vacuuming and Mopping Floors',
@@ -451,7 +426,7 @@ export default function ClearChoiceCleaningPage() {
       title: 'Move In / Move Out Cleaning',
       description: 'Comprehensive cleaning service to prepare your space for a new move-in or ensure a spotless move-out',
       icon: DoorOpen,
-      image: '/clear-choice-cleaning/move-in-out-cleaning.jpeg',
+      image: '/clear-choice-cleaning/move-in-out-cleaning.webp',
       features: [
         'Deep Cleaning of All Rooms',
         'Inside Cabinets and Closets',
@@ -465,7 +440,7 @@ export default function ClearChoiceCleaningPage() {
       title: 'Office Cleaning',
       description: 'Professional cleaning service for offices to maintain a clean and productive workspace',
       icon: Briefcase,
-      image: '/clear-choice-cleaning/office-cleaning.jpeg',
+      image: '/clear-choice-cleaning/office-cleaning.webp',
       features: [
         'Workstation Cleaning',
         'Conference Room Sanitization',
@@ -479,7 +454,7 @@ export default function ClearChoiceCleaningPage() {
       title: 'Commercial Cleaning',
       description: 'Comprehensive cleaning services for commercial spaces of all sizes',
       icon: Building,
-      image: '/clear-choice-cleaning/commercial-cleaning.jpeg',
+      image: '/clear-choice-cleaning/commercial-cleaning.webp',
       features: [
         'Retail and Restaurant Cleaning',
         'Warehouse and Industrial Cleaning',
@@ -493,7 +468,7 @@ export default function ClearChoiceCleaningPage() {
       title: 'Deep Cleaning',
       description: 'Intensive cleaning service covering hard-to-reach areas and built-up dirt',
       icon: Layers,
-      image: '/clear-choice-cleaning/deep-cleaning.jpeg',
+      image: '/clear-choice-cleaning/deep-cleaning.webp',
       features: [
         'Detailed Bathroom and Kitchen Cleaning',
         'Appliance Interior Cleaning',
@@ -507,7 +482,7 @@ export default function ClearChoiceCleaningPage() {
       title: 'Post-Construction Cleaning',
       description: 'Specialized cleaning service for newly constructed or renovated spaces',
       icon: Sparkles,
-      image: '/clear-choice-cleaning/post-construction-cleaning.jpeg',
+      image: '/clear-choice-cleaning/post-construction-cleaning.webp',
       features: [
         'Construction Debris Removal',
         'Dust and Paint Residue Cleanup',
@@ -543,32 +518,32 @@ export default function ClearChoiceCleaningPage() {
 
   const galleryImages = [
     {
-      src: '/clear-choice-cleaning/gallery-living-room.jpeg',
+      src: '/clear-choice-cleaning/gallery-living-room.png',
       alt: 'Clean living room',
       category: 'Residential'
     },
     {
-      src: '/clear-choice-cleaning/gallery-kitchen.jpeg',
+      src: '/clear-choice-cleaning/gallery-kitchen.png',
       alt: 'Spotless kitchen',
       category: 'Kitchen'
     },
     {
-      src: '/clear-choice-cleaning/gallery-office.jpeg',
+      src: '/clear-choice-cleaning/gallery-office.png',
       alt: 'Office workspace',
       category: 'Commercial'
     },
     {
-      src: '/clear-choice-cleaning/gallery-bathroom.jpeg',
+      src: '/clear-choice-cleaning/gallery-bathroom.png',
       alt: 'Clean bathroom',
       category: 'Bathroom'
     },
     {
-      src: '/clear-choice-cleaning/gallery-bedroom.jpeg',
+      src: '/clear-choice-cleaning/gallery-bedroom.png',
       alt: 'Organized bedroom',
       category: 'Residential'
     },
     {
-      src: '/clear-choice-cleaning/gallery-dining.jpeg',
+      src: '/clear-choice-cleaning/gallery-dining.png',
       alt: 'Clean dining area',
       category: 'Residential'
     }
@@ -626,6 +601,37 @@ export default function ClearChoiceCleaningPage() {
     }
   ];
 
+  const breadcrumbStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://nearbybizfinder.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Businesses', item: 'https://nearbybizfinder.com/businesses/' },
+      { '@type': 'ListItem', position: 3, name: 'Clear Choice Cleaning', item: 'https://nearbybizfinder.com/businesses/clear-choice-cleaning/' }
+    ]
+  };
+
+  const faqStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqData.map((f) => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: { '@type': 'Answer', text: f.answer }
+    }))
+  };
+
+  const howToStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How to book a cleaning service in Las Vegas',
+    step: [
+      { '@type': 'HowToStep', name: 'Book Online', text: 'Choose your preferred date and time and request a free estimate.' },
+      { '@type': 'HowToStep', name: 'Professional Cleaning', text: 'Our trained team arrives with all supplies and equipment.' },
+      { '@type': 'HowToStep', name: 'Enjoy Your Clean Space', text: 'Relax and enjoy a spotless home or office.' }
+    ]
+  };
+
   const pricingPlans = [
     {
       name: 'Standard Plan',
@@ -675,45 +681,7 @@ export default function ClearChoiceCleaningPage() {
 
   return (
     <>
-      <Head>
-        <title>Clear Choice Cleaning - Professional Cleaning Services in Las Vegas, NV</title>
-        <meta name="description" content="Professional cleaning services for homes and offices in Las Vegas, NV. Experienced cleaners, eco-friendly products, flexible scheduling. Book your cleaning service today!" />
-        <meta name="keywords" content="cleaning services, house cleaning, office cleaning, Las Vegas cleaning, professional cleaners, eco-friendly cleaning, residential cleaning, commercial cleaning" />
-        <meta name="author" content="Clear Choice Cleaning" />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://nearbybizfinder.com/businesses/clear-choice-cleaning/" />
-        
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://nearbybizfinder.com/businesses/clear-choice-cleaning/" />
-        <meta property="og:title" content="Clear Choice Cleaning - Professional Cleaning Services in Las Vegas, NV" />
-        <meta property="og:description" content="Professional cleaning services for homes and offices in Las Vegas, NV. Experienced cleaners, eco-friendly products, flexible scheduling. Book your cleaning service today!" />
-        <meta property="og:image" content="https://nearbybizfinder.com/clear-choice-cleaning/featured-image.jpeg" />
-        <meta property="og:site_name" content="Nearby Biz Finder" />
-        
-        {/* Twitter */}
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://nearbybizfinder.com/businesses/clear-choice-cleaning/" />
-        <meta property="twitter:title" content="Clear Choice Cleaning - Professional Cleaning Services in Las Vegas, NV" />
-        <meta property="twitter:description" content="Professional cleaning services for homes and offices in Las Vegas, NV. Experienced cleaners, eco-friendly products, flexible scheduling. Book your cleaning service today!" />
-        <meta property="twitter:image" content="https://nearbybizfinder.com/clear-choice-cleaning/featured-image.jpeg" />
-        
-        {/* Additional SEO */}
-        <meta name="geo.region" content="US-NV" />
-        <meta name="geo.placename" content="Las Vegas" />
-        <meta name="geo.position" content="36.1699;-115.1398" />
-        <meta name="ICBM" content="36.1699, -115.1398" />
-        
-        {/* Business Schema */}
-        <meta name="business:contact_data:street_address" content="1234 Main Street" />
-        <meta name="business:contact_data:locality" content="Las Vegas" />
-        <meta name="business:contact_data:region" content="NV" />
-        <meta name="business:contact_data:postal_code" content="89101" />
-        <meta name="business:contact_data:country_name" content="United States" />
-        <meta name="business:contact_data:phone_number" content="(702) 820-5479" />
-        <meta name="business:contact_data:email" content="wesleyv@clearchoicelv.com" />
-        <meta name="business:contact_data:website" content="https://clearchoicelv.com/" />
-      </Head>
+      {/* Metadata moved to route-level layout.tsx via Metadata API */}
       
       <div className="min-h-screen bg-white">
       {/* Custom Header */}
@@ -753,7 +721,7 @@ export default function ClearChoiceCleaningPage() {
                 className="bg-yellow-500 hover:bg-yellow-600 text-white"
                 asChild
               >
-                <a href={`tel:${businessData.phone}`}>
+                <a href={`tel:${businessData.phoneE164}`}>
                   <Phone className="h-4 w-4 mr-2" />
                   Book Now
                 </a>
@@ -793,7 +761,7 @@ export default function ClearChoiceCleaningPage() {
                     className="bg-yellow-500 hover:bg-yellow-600 text-white"
                     asChild
                   >
-                    <a href={`tel:${businessData.phone}`}>
+                    <a href={`tel:${businessData.phoneE164}`}>
                       <Phone className="h-4 w-4 mr-2" />
                       Book Now
                     </a>
@@ -812,13 +780,13 @@ export default function ClearChoiceCleaningPage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             '@context': 'https://schema.org',
-            '@type': 'LocalBusiness',
+            '@type': 'CleaningService',
             name: businessData.name,
             description: businessData.description,
             url: 'https://nearbybizfinder.com/businesses/clear-choice-cleaning/',
-            image: businessData.featuredImage,
+            image: 'https://nearbybizfinder.com/clear-choice-cleaning/hero-image.png',
             priceRange: businessData.priceRange,
-            telephone: businessData.phone,
+            telephone: businessData.phoneE164,
             email: businessData.email,
             website: businessData.website,
             address: {
@@ -829,10 +797,19 @@ export default function ClearChoiceCleaningPage() {
               postalCode: businessData.address.zip,
               addressCountry: 'US',
             },
+            geo: {
+              '@type': 'GeoCoordinates',
+              latitude: 36.1699,
+              longitude: -115.1398,
+            },
             areaServed: serviceAreas.map(area => ({
               '@type': 'City',
               name: area
             })),
+            openingHoursSpecification: [
+              { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday'], opens: '08:00', closes: '18:00' },
+              { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Saturday'], opens: '09:00', closes: '16:00' },
+            ],
             hasOfferCatalog: {
               '@type': 'OfferCatalog',
               name: 'Cleaning Services',
@@ -845,12 +822,35 @@ export default function ClearChoiceCleaningPage() {
                 }
               }))
             },
+            hasMap: `https://www.google.com/maps/search/?api=1&query=Clear+Choice+Cleaning+Las+Vegas+NV`,
+            potentialAction: { '@type': 'ContactAction', target: `tel:${businessData.phoneE164}` },
             aggregateRating: {
               '@type': 'AggregateRating',
               ratingValue: businessData.rating,
               reviewCount: businessData.reviewCount,
             },
           }),
+        }}
+      />
+      <Script
+        id="breadcrumb-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbStructuredData),
+        }}
+      />
+      <Script
+        id="faq-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqStructuredData),
+        }}
+      />
+      <Script
+        id="howto-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(howToStructuredData),
         }}
       />
 
@@ -978,10 +978,10 @@ export default function ClearChoiceCleaningPage() {
               <Button className="mt-8 bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-lg">
                 Learn More
               </Button>
-            </div>
+            </div>      
             <div className="why-choose-image relative">
                   <OptimizedImage
-                src="/clear-choice-cleaning/why-choose-us-image.jpeg"
+                src="/clear-choice-cleaning/why-choose-us-image.webp"
                 alt="Clean modern living room"
                 width={600}
                 height={400}
@@ -1108,7 +1108,7 @@ export default function ClearChoiceCleaningPage() {
             <div className="how-it-works-item text-center">
               <div className="relative mb-6">
                 <OptimizedImage
-                  src="/clear-choice-cleaning/how-it-works-booking.jpeg"
+                  src="/clear-choice-cleaning/how-it-works-booking.webp"
                   alt="Booking online"
                   width={300}
                   height={200}
@@ -1123,7 +1123,7 @@ export default function ClearChoiceCleaningPage() {
             <div className="how-it-works-item text-center">
               <div className="relative mb-6">
                 <OptimizedImage
-                  src="/clear-choice-cleaning/how-it-works-cleaning.jpeg"
+                  src="/clear-choice-cleaning/how-it-works-cleaning.webp"
                   alt="Professional cleaning"
                   width={300}
                   height={200}
@@ -1138,7 +1138,7 @@ export default function ClearChoiceCleaningPage() {
             <div className="how-it-works-item text-center">
               <div className="relative mb-6">
                 <OptimizedImage
-                  src="/clear-choice-cleaning/how-it-works-enjoy.jpeg"
+                  src="/clear-choice-cleaning/how-it-works-enjoy.png"
                   alt="Enjoy clean home"
                   width={300}
                   height={200}
@@ -1240,7 +1240,7 @@ export default function ClearChoiceCleaningPage() {
             </div>
             <div className="benefits-image relative">
               <OptimizedImage
-                src="/clear-choice-cleaning/benefits-section-image.jpeg"
+                src="/clear-choice-cleaning/benefits-section-image.png"
                 alt="Professional cleaners at work"
                 width={600}
                 height={400}
@@ -1310,42 +1310,7 @@ export default function ClearChoiceCleaningPage() {
         </div>
       </section>
 
-      {/* Meet The Team Section */}
-      {/* <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-yellow-100 text-yellow-800 border-yellow-200">
-              Team
-            </Badge>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              The Best Team to Clean Your Surrounding Area
-              </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Meet our professional cleaning team who are dedicated to delivering exceptional results for every client.
-              </p>
-                    </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member, index) => (
-              <div key={index} className="text-center">
-                <div className="relative mb-6">
-                  <div className="w-32 h-32 mx-auto rounded-full overflow-hidden shadow-lg">
-                <OptimizedImage
-                      src={member.image}
-                      alt={member.name}
-                      width={128}
-                      height={128}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">{member.name}</h3>
-                <p className="text-gray-600">{member.role}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-      </section> */}
+      {/* Team section removed as requested */}
 
       {/* FAQ Section */}
       <section ref={faqRef} className="py-20 bg-gray-50">

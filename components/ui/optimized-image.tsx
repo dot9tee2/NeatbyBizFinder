@@ -103,7 +103,15 @@ export default function OptimizedImage({
   }
 
   return (
-    <div ref={containerRef} className={cn('relative', className)}>
+    <div
+      ref={containerRef}
+      className={cn(
+        'relative',
+        fill ? 'absolute inset-0' : '',
+        fill ? 'w-full h-full' : '',
+        className
+      )}
+    >
       <Image
         src={currentSrc}
         alt={alt}
@@ -119,6 +127,7 @@ export default function OptimizedImage({
         onError={handleError}
         className={cn(
           'transition-opacity duration-300',
+          fill ? 'object-cover' : '',
           isLoading ? 'opacity-0' : 'opacity-100'
         )}
       />
