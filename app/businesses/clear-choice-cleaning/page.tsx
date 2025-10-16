@@ -773,6 +773,17 @@ export default function ClearChoiceCleaningPage() {
         </div>
       </header>
 
+      {/* Breadcrumb */}
+      <nav aria-label="Breadcrumb" className="bg-gray-50 border-b">
+        <div className="container mx-auto px-4 max-w-7xl py-2 text-sm">
+          <a href="/" className="text-gray-600 hover:text-gray-900">Home</a>
+          <span className="mx-2 text-gray-400">/</span>
+          <a href="/businesses/" className="text-gray-600 hover:text-gray-900">Businesses</a>
+          <span className="mx-2 text-gray-400">/</span>
+          <span className="text-gray-900" aria-current="page">{businessData.name}</span>
+        </div>
+      </nav>
+
       {/* Structured Data */}
       <Script
         id="business-structured-data"
@@ -781,10 +792,15 @@ export default function ClearChoiceCleaningPage() {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'CleaningService',
+            '@id': 'https://nearbybizfinder.com/businesses/clear-choice-cleaning/#cleaningservice',
             name: businessData.name,
             description: businessData.description,
             url: 'https://nearbybizfinder.com/businesses/clear-choice-cleaning/',
-            image: 'https://nearbybizfinder.com/clear-choice-cleaning/hero-image.png',
+            image: [
+              'https://nearbybizfinder.com/clear-choice-cleaning/hero-image.png',
+              'https://nearbybizfinder.com/clear-choice-cleaning/benefits-section-image.png',
+              'https://nearbybizfinder.com/clear-choice-cleaning/gallery-living-room.png'
+            ],
             priceRange: businessData.priceRange,
             telephone: businessData.phoneE164,
             email: businessData.email,
@@ -822,7 +838,7 @@ export default function ClearChoiceCleaningPage() {
                 }
               }))
             },
-            hasMap: `https://www.google.com/maps/search/?api=1&query=Clear+Choice+Cleaning+Las+Vegas+NV`,
+            hasMap: 'https://www.google.com/maps/place/Clear+Choice+Cleaning,+Las+Vegas,+NV',
             potentialAction: { '@type': 'ContactAction', target: `tel:${businessData.phoneE164}` },
             aggregateRating: {
               '@type': 'AggregateRating',
@@ -854,8 +870,17 @@ export default function ClearChoiceCleaningPage() {
         }}
       />
 
-      {/* Hero Section */}
+      {/* Hero Section */
+      }
       <section id="home" ref={heroRef} className="relative h-screen w-full overflow-hidden">
+        {/* Priority hero image for LCP */}
+        <OptimizedImage
+          src="/clear-choice-cleaning/hero-image.png"
+          alt="Clear Choice Cleaning hero image"
+          fill
+          className="object-cover"
+          priority
+        />
         <OptimizedVideo
           src="/videos/clear-choice-cleaning-hero.mp4"
           fallbackImage="/clear-choice-cleaning/hero-image.png"
@@ -865,7 +890,7 @@ export default function ClearChoiceCleaningPage() {
           muted
           loop
           playsInline
-          priority
+          poster="/clear-choice-cleaning/hero-image.png"
         />
         <div className="absolute inset-0 bg-black/50"></div>
 
@@ -874,7 +899,7 @@ export default function ClearChoiceCleaningPage() {
           <div className="container mx-auto px-4 max-w-7xl">
             <div className="hero-content max-w-2xl text-white">
               <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                The Perfect Clean Guaranteed
+                Clear Choice Cleaning — House & Office Cleaning in Las Vegas, NV
               </h1>
               <p className="text-xl mb-8 text-gray-200 leading-relaxed">
                 Professional cleaning services that exceed your expectations. 
@@ -896,15 +921,37 @@ export default function ClearChoiceCleaningPage() {
                   <span className="text-lg">Flexible Scheduling</span>
                 </div>
               </div>
-              
+              {/* Visible rating to support aggregateRating */}
+              <div className="flex items-center text-yellow-300 mb-6">
+                <Star className="h-5 w-5 mr-2 fill-current" />
+                <span className="text-lg font-semibold">{businessData.rating} ({businessData.reviewCount} reviews)</span>
+              </div>
+
               <Button 
                 size="lg" 
                 className="bg-yellow-500 hover:bg-yellow-600 text-white px-8 py-4 text-lg font-semibold rounded-lg transform hover:scale-105 transition-all duration-300"
+                asChild
               >
-                Get Started
+                <a href="#contact">Get Started</a>
               </Button>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Service Areas Section */}
+      <section id="service-areas" className="py-20 bg-white">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="text-center mb-10">
+            <Badge className="mb-4 bg-yellow-100 text-yellow-800 border-yellow-200">Service Areas</Badge>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Cleaning Services Near Las Vegas — Service Areas</h2>
+            <p className="text-xl text-gray-600">We proudly serve homeowners and businesses across the Las Vegas Valley.</p>
+          </div>
+          <ul className="grid grid-cols-2 md:grid-cols-4 gap-4 text-gray-700 max-w-5xl mx-auto">
+            {serviceAreas.map((area, i) => (
+              <li key={i} className="bg-gray-50 border border-gray-200 rounded-md px-4 py-3 text-center">{area}</li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -943,7 +990,7 @@ export default function ClearChoiceCleaningPage() {
                 Why Us
               </Badge>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Why Choose The Best Cleaning Service
+                Why Choose {businessData.name} in Las Vegas
             </h2>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
                 We're committed to delivering exceptional cleaning services that exceed your expectations. 
@@ -1000,7 +1047,7 @@ export default function ClearChoiceCleaningPage() {
               Our Services
                     </Badge>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Services We Provide
+              Cleaning Services We Provide in Las Vegas
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Comprehensive cleaning solutions tailored to meet your specific needs and exceed your expectations.
@@ -1020,8 +1067,8 @@ export default function ClearChoiceCleaningPage() {
                   <p className="text-gray-600 mb-6 leading-relaxed">
                     {service.description}
                   </p>
-                  <a href="#" className="text-yellow-500 hover:text-yellow-600 font-semibold">
-                    Read More
+                  <a href="#contact" className="text-yellow-500 hover:text-yellow-600 font-semibold">
+                    Get a quote for {service.title} in Las Vegas
                   </a>
                 </CardContent>
               </Card>
@@ -1031,14 +1078,14 @@ export default function ClearChoiceCleaningPage() {
       </section>
 
       {/* Testimonials & Statistics Section */}
-      <section ref={testimonialsRef} className="py-20 bg-white">
+      <section id="testimonials" ref={testimonialsRef} className="py-20 bg-white">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="text-center mb-16">
+              <div className="text-center mb-16">
             <Badge className="mb-4 bg-yellow-100 text-yellow-800 border-yellow-200">
               Our Success
             </Badge>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Our Client's Trust and Feedback
+              Reviews from Las Vegas Cleaning Customers
             </h2>
                 </div>
 
@@ -1083,8 +1130,8 @@ export default function ClearChoiceCleaningPage() {
             Experience the difference of professional cleaning services that transform your space into a spotless, 
             comfortable environment you'll love coming home to.
           </p>
-          <Button className="bg-yellow-500 hover:bg-yellow-600 text-white px-8 py-4 text-lg font-semibold rounded-lg">
-            Book Now
+          <Button className="bg-yellow-500 hover:bg-yellow-600 text-white px-8 py-4 text-lg font-semibold rounded-lg" asChild>
+            <a href={`tel:${businessData.phoneE164}`}>Book Now</a>
           </Button>
       </div>
       </section>
@@ -1097,7 +1144,7 @@ export default function ClearChoiceCleaningPage() {
               Process
             </Badge>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              How It Works
+              How Our Las Vegas Cleaning Service Works
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Getting your space professionally cleaned is simple with our streamlined process.
@@ -1390,8 +1437,8 @@ export default function ClearChoiceCleaningPage() {
                     <MapPin className="h-6 w-6 text-white" />
                 </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900">Las Vegas, NV</h3>
-                    <p className="text-gray-600">Serving the greater area</p>
+                    <h3 className="text-lg font-semibold text-gray-900">{`${businessData.address.street}, ${businessData.address.city}, ${businessData.address.state} ${businessData.address.zip}`}</h3>
+                    <p className="text-gray-600">Serving Las Vegas and surrounding areas</p>
               </div>
                 </div>
               </div>
@@ -1442,8 +1489,8 @@ export default function ClearChoiceCleaningPage() {
         {/* Top CTA */}
         <div className="bg-yellow-500 py-8">
           <div className="container mx-auto px-4 max-w-7xl text-center">
-            <Button className="bg-white text-yellow-500 hover:bg-gray-100 px-8 py-4 text-lg font-semibold rounded-lg">
-              Get A Free Estimate Now!
+              <Button className="bg-white text-yellow-500 hover:bg-gray-100 px-8 py-4 text-lg font-semibold rounded-lg" asChild>
+              <a href="#contact">Get A Free Estimate Now!</a>
             </Button>
         </div>
       </div>
@@ -1508,11 +1555,11 @@ export default function ClearChoiceCleaningPage() {
               <div>
                 <h3 className="text-lg font-semibold mb-6">Contact</h3>
                 <ul className="space-y-3">
-                  <li><a href="#" className="text-gray-300 hover:text-yellow-500 transition-colors">Get Quote</a></li>
-                  <li><a href="#" className="text-gray-300 hover:text-yellow-500 transition-colors">Book Service</a></li>
-                  <li><a href="#" className="text-gray-300 hover:text-yellow-500 transition-colors">Support</a></li>
-                  <li><a href="#" className="text-gray-300 hover:text-yellow-500 transition-colors">Privacy Policy</a></li>
-                  <li><a href="#" className="text-gray-300 hover:text-yellow-500 transition-colors">Terms of Service</a></li>
+                  <li><a href="#contact" className="text-gray-300 hover:text-yellow-500 transition-colors">Get Quote</a></li>
+                  <li><a href={`tel:${businessData.phoneE164}`} className="text-gray-300 hover:text-yellow-500 transition-colors">Book Service</a></li>
+                  <li><a href="/contact/" className="text-gray-300 hover:text-yellow-500 transition-colors">Support</a></li>
+                  <li><a href="/privacy/" className="text-gray-300 hover:text-yellow-500 transition-colors">Privacy Policy</a></li>
+                  <li><a href="/terms/" className="text-gray-300 hover:text-yellow-500 transition-colors">Terms of Service</a></li>
                 </ul>
               </div>
             </div>
@@ -1527,9 +1574,9 @@ export default function ClearChoiceCleaningPage() {
                 © 2024 {businessData.name}. All rights reserved.
               </p>
               <div className="flex space-x-6 mt-4 md:mt-0">
-                <a href="#" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">Privacy Policy</a>
-                <a href="#" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">Terms of Service</a>
-                <a href="#" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">Cookie Policy</a>
+                <a href="/privacy/" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">Privacy Policy</a>
+                <a href="/terms/" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">Terms of Service</a>
+                <a href="/privacy/" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">Cookie Policy</a>
           </div>
         </div>
       </div>

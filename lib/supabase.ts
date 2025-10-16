@@ -51,7 +51,6 @@ export const auth = {
       provider: 'google',
       options: {
         redirectTo,
-        flowType: 'pkce',
       },
     });
     return { data, error };
