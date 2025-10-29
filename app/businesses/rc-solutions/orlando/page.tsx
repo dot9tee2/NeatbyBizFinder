@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Metadata } from 'next';
 import OptimizedImage from '@/components/ui/optimized-image';
+import OptimizedVideo from '@/components/ui/optimized-video';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { rcSolutions, cityImage } from '@/lib/rc-solutions';
@@ -93,12 +94,19 @@ function Hero() {
               <Link href="#contact"><Button variant="outline" className="border-indigo-600 text-indigo-700 hover:bg-indigo-600 hover:text-white">Request Estimate</Button></Link>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-4">
-            {['hero-1.jpeg','service-ac-1.jpeg','service-water-heater-1.jpeg','service-drywall-1.jpeg'].map((file) => (
-              <div key={file} className="relative h-32 md:h-40 rounded-lg overflow-hidden ring-1 ring-slate-200">
-                <OptimizedImage src={cityImage(rcSolutions.imagesBase, 'orlando', file)} alt="Service preview Orlando" fill />
-              </div>
-            ))}
+          <div className="relative h-48 md:h-64 rounded-xl overflow-hidden ring-1 ring-slate-200">
+            <OptimizedVideo
+              src="/rc-solutions/orlando/hero.mp4"
+              fallbackImage={cityImage(rcSolutions.imagesBase, 'orlando', 'hero-1.jpeg')}
+              alt="RC Solutions technician working in Orlando"
+              className="h-full w-full"
+              autoPlay
+              muted
+              loop
+              playsInline
+              priority
+              poster={cityImage(rcSolutions.imagesBase, 'orlando', 'hero-1.jpeg')}
+            />
           </div>
         </div>
       </div>

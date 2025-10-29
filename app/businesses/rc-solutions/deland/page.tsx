@@ -82,7 +82,6 @@ function Hero() {
       <div className="absolute inset-0">
         <OptimizedVideo
           src="/rc-solutions/deland/hero.mp4"
-          fallbackImage={cityImage(rcSolutions.imagesBase, 'deland', 'hero-1.jpeg')}
           alt="RC Solutions technician working in Deland"
           className="h-full w-full"
           autoPlay
@@ -90,7 +89,6 @@ function Hero() {
           loop
           playsInline
           priority
-          poster={cityImage(rcSolutions.imagesBase, 'deland', 'hero-1.jpeg')}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/40" />
       </div>
@@ -117,7 +115,7 @@ function Services() {
               <div className="relative h-40 mb-4 rounded-md overflow-hidden">
                 <OptimizedImage
                   src={cityImage(rcSolutions.imagesBase, 'deland',
-                    s.slug === 'ac' ? 'service-ac-2.jpeg' : s.slug === 'drywall' ? 'service-drywall-1.jpeg' : 'service-water-heater-2.jpeg')}
+                    s.slug === 'ac' ? 'service-ac-2.png' : s.slug === 'drywall' ? 'service-drywall-1.png' : 'service-water-heater-2.png')}
                   alt={s.title}
                   fill
                 />
@@ -141,7 +139,7 @@ function About() {
           <p className="mt-4 text-slate-700">{rcSolutions.about}</p>
         </div>
         <div className="grid grid-cols-2 gap-4">
-          {['team-1.jpeg','truck-1.jpeg','service-ac-1.jpeg','service-water-heater-1.jpeg'].map((file) => (
+          {['team-1.png','truck-1.png','service-ac-1.png','service-water-heater-1.png'].map((file) => (
             <div key={file} className="relative h-32 md:h-40 rounded-lg overflow-hidden">
               <OptimizedImage src={cityImage(rcSolutions.imagesBase, 'deland', file)} alt="RC Solutions team and work" fill />
             </div>
