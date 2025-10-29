@@ -20,76 +20,34 @@ export async function GET() {
     const fallbackSitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://nearbybizfinder.com/businesses/clear-choice-cleaning/</loc>
+    <loc>https://nearbybizfinder.com/businesses/rc-solutions/</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://nearbybizfinder.com/businesses/rc-solutions/orlando/</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nearbybizfinder.com/businesses/drywall-painting-pro/</loc>
+    <loc>https://nearbybizfinder.com/businesses/rc-solutions/daytona-beach/</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nearbybizfinder.com/businesses/drywall-painting-pro/cedar-park/</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://nearbybizfinder.com/businesses/drywall-painting-pro/georgetown/</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://nearbybizfinder.com/businesses/superior-electric-service/</loc>
+    <loc>https://nearbybizfinder.com/businesses/rc-solutions/palm-coast/</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nearbybizfinder.com/businesses/superior-electric-service/prospect/</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://nearbybizfinder.com/businesses/superior-electric-service/hill-view/</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://nearbybizfinder.com/businesses/nm-concrete-coating-pros/</loc>
+    <loc>https://nearbybizfinder.com/businesses/rc-solutions/deland/</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nearbybizfinder.com/businesses/nm-concrete-coating-pros/santa-fe/</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://nearbybizfinder.com/businesses/nm-concrete-coating-pros/rio-rancho/</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://nearbybizfinder.com/businesses/nm-concrete-coating-pros/los-lunas/</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://nearbybizfinder.com/businesses/nm-concrete-coating-pros/edgewood/</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
   </url>
 </urlset>`;
 
