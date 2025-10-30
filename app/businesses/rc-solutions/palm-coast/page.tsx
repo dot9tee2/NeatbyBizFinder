@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Metadata } from 'next';
 import OptimizedImage from '@/components/ui/optimized-image';
+import OptimizedVideo from '@/components/ui/optimized-video';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { rcSolutions, cityImage } from '@/lib/rc-solutions';
@@ -79,12 +80,17 @@ function Hero() {
   return (
     <section className="relative isolate overflow-hidden bg-gradient-to-br from-emerald-900 via-blue-900 to-slate-900 text-white">
       <div className="absolute inset-0 opacity-15">
-        <OptimizedImage
-          src={cityImage(rcSolutions.imagesBase, 'palm-coast', 'hero-1.jpeg')}
+        <OptimizedVideo
+          src="/rc-solutions/palm-coast/hero.mp4"
+          fallbackImage={cityImage(rcSolutions.imagesBase, 'palm-coast', 'hero-1.png')}
           alt="RC Solutions tech in Palm Coast"
-          fill
-          className="pointer-events-none select-none"
+          className="h-full w-full"
+          autoPlay
+          muted
+          loop
+          playsInline
           priority
+          poster={cityImage(rcSolutions.imagesBase, 'palm-coast', 'hero-1.png')}
         />
       </div>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28 relative">
@@ -110,7 +116,7 @@ function Services() {
               <div className="relative h-40 mb-4 rounded-md overflow-hidden">
                 <OptimizedImage
                   src={cityImage(rcSolutions.imagesBase, 'palm-coast',
-                    s.slug === 'ac' ? 'service-ac-2.jpeg' : s.slug === 'drywall' ? 'service-drywall-1.jpeg' : 'service-water-heater-2.jpeg')}
+                    s.slug === 'ac' ? 'service-ac-2.png' : s.slug === 'drywall' ? 'service-drywall-1.png' : 'service-water-heater-2.png')}
                   alt={s.title}
                   fill
                 />
@@ -134,7 +140,7 @@ function About() {
           <p className="mt-4 text-slate-700">{rcSolutions.about}</p>
         </div>
         <div className="grid grid-cols-2 gap-4">
-          {['team-1.jpeg','truck-1.jpeg','service-ac-1.jpeg','service-water-heater-1.jpeg'].map((file) => (
+          {['team-1.png','truck-1.png','service-ac-1.png','service-water-heater-1.png'].map((file) => (
             <div key={file} className="relative h-32 md:h-40 rounded-lg overflow-hidden">
               <OptimizedImage src={cityImage(rcSolutions.imagesBase, 'palm-coast', file)} alt="RC Solutions team and work" fill />
             </div>
