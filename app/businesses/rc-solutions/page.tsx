@@ -160,9 +160,9 @@ function FinancingRebates() {
     <section className="bg-gradient-to-r from-cyan-600 via-amber-500 to-emerald-600 text-slate-900">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         <div className="bg-white/80 backdrop-blur rounded-xl p-6 md:p-8">
-          <h2 className="text-xl md:text-2xl font-bold">Financing & Rebates</h2>
+          <h2 className="text-xl md:text-2xl font-bold">Financing</h2>
           <p className="mt-2 text-slate-700">
-            Qualify for up to $8,000 in HVAC rebates. $0 down, no payments, and no interest for 24 months for qualified customers. Our CPAs will guide you with filing for tax credits and rebates.
+            $0 down, no payments, and no interest for 24 months for qualified customers. We also offer No Credit Financing with Housing Payment History. Our CPAs will guide you with filing for tax credits.
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
             <Link href={rcSolutions.phoneHref}><Button>Check Eligibility</Button></Link>

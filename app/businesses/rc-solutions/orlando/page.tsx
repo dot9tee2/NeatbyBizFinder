@@ -97,7 +97,7 @@ function Hero() {
           <div className="relative h-48 md:h-64 rounded-xl overflow-hidden ring-1 ring-slate-200">
             <OptimizedVideo
               src="/rc-solutions/orlando/hero.mp4"
-              fallbackImage={cityImage(rcSolutions.imagesBase, 'orlando', 'hero-1.jpeg')}
+              fallbackImage={cityImage(rcSolutions.imagesBase, 'orlando', 'hero-1.png')}
               alt="RC Solutions technician working in Orlando"
               className="h-full w-full"
               autoPlay
@@ -105,7 +105,7 @@ function Hero() {
               loop
               playsInline
               priority
-              poster={cityImage(rcSolutions.imagesBase, 'orlando', 'hero-1.jpeg')}
+              poster={cityImage(rcSolutions.imagesBase, 'orlando', 'hero-1.png')}
             />
           </div>
         </div>
@@ -126,7 +126,7 @@ function Services() {
               <div className="relative h-40 mb-4 rounded-md overflow-hidden">
                 <OptimizedImage
                   src={cityImage(rcSolutions.imagesBase, 'orlando',
-                    s.slug === 'ac' ? 'service-ac-2.jpeg' : s.slug === 'drywall' ? 'service-drywall-1.jpeg' : 'service-water-heater-2.jpeg')}
+                    s.slug === 'ac' ? 'service-ac-2.png' : s.slug === 'drywall' ? 'service-drywall-1.png' : 'service-water-heater-2.png')}
                   alt={s.title}
                   fill
                 />
@@ -150,7 +150,7 @@ function About() {
           <p className="mt-4 text-slate-700">{rcSolutions.about}</p>
         </div>
         <div className="relative h-56 md:h-72 rounded-xl overflow-hidden ring-1 ring-slate-200">
-          <OptimizedImage src={cityImage(rcSolutions.imagesBase, 'orlando', 'hero-2.jpeg')} alt="Team at work in Orlando" fill />
+          <OptimizedImage src={cityImage(rcSolutions.imagesBase, 'orlando', 'hero-2.png')} alt="Team at work in Orlando" fill />
         </div>
       </div>
     </section>
