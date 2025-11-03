@@ -616,6 +616,13 @@ export default function NMConcreteCoatingProsLosLunasPage() {
         businessRating={businessData.rating}
         businessReviewCount={businessData.reviewCount}
         serviceAreas={serviceAreas}
+        locationPages={[
+          { name: 'Albuquerque Main', href: '/businesses/nm-concrete-coating-pros/' },
+          { name: 'Edgewood', href: '/businesses/nm-concrete-coating-pros/edgewood/' },
+          { name: 'Los Lunas', href: '/businesses/nm-concrete-coating-pros/los-lunas/' },
+          { name: 'Rio Rancho', href: '/businesses/nm-concrete-coating-pros/rio-rancho/' },
+          { name: 'Santa Fe', href: '/businesses/nm-concrete-coating-pros/santa-fe/' }
+        ]}
         theme="green"
         layout="classic"
         logoShape="rounded"

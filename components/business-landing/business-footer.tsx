@@ -14,6 +14,11 @@ const THEMES: Record<ThemeKey, {
   slate:  { logoGradient: 'from-slate-700 to-slate-900',   linkHover: 'hover:text-slate-200' },
 };
 
+interface LocationPage {
+  name: string;
+  href: string;
+}
+
 interface BusinessFooterProps {
   businessName: string;
   businessPhone: string;
@@ -27,6 +32,7 @@ interface BusinessFooterProps {
   businessRating?: number;
   businessReviewCount?: number;
   serviceAreas?: string[];
+  locationPages?: LocationPage[];
   theme?: ThemeKey;
   layout?: 'classic' | 'centered' | 'split';
   topStripe?: boolean;
@@ -51,6 +57,7 @@ export default function BusinessFooter({
   businessRating,
   businessReviewCount,
   serviceAreas = [],
+  locationPages = [],
   theme = 'blue',
   layout = 'classic',
   topStripe = false,
@@ -58,6 +65,35 @@ export default function BusinessFooter({
   ctaBanner
 }: BusinessFooterProps) {
   const t = THEMES[theme];
+  
+  // Function to get URL for a service area
+  const getServiceAreaUrl = (area: string): string | null => {
+    // Create a map from locationPages if provided
+    const areaMap = new Map<string, string>();
+    locationPages.forEach(loc => {
+      // Map variations of area names
+      const areaName = loc.name.toLowerCase();
+      if (areaName.includes('albuquerque')) {
+        areaMap.set('albuquerque', loc.href);
+        areaMap.set('albuquerque, nm', loc.href);
+      } else if (areaName.includes('edgewood')) {
+        areaMap.set('edgewood', loc.href);
+        areaMap.set('edgewood, nm', loc.href);
+      } else if (areaName.includes('los lunas')) {
+        areaMap.set('los lunas', loc.href);
+        areaMap.set('los lunas, nm', loc.href);
+      } else if (areaName.includes('rio rancho')) {
+        areaMap.set('rio rancho', loc.href);
+        areaMap.set('rio rancho, nm', loc.href);
+      } else if (areaName.includes('santa fe')) {
+        areaMap.set('santa fe', loc.href);
+        areaMap.set('santa fe, nm', loc.href);
+      }
+    });
+    
+    const areaKey = area.toLowerCase();
+    return areaMap.get(areaKey) || null;
+  };
   return (
     <footer className="bg-gray-900 text-white">
       {topStripe && (
@@ -148,11 +184,23 @@ export default function BusinessFooter({
             <div className={`${layout === 'centered' ? 'mx-auto' : ''}`}>
               <h3 className="text-lg font-semibold mb-4">Service Areas</h3>
               <ul className="space-y-2 text-sm">
-                {serviceAreas.map((area, index) => (
-                  <li key={index} className="text-gray-400">
-                    {area}
-                  </li>
-                ))}
+                {serviceAreas.map((area, index) => {
+                  const areaUrl = getServiceAreaUrl(area);
+                  return (
+                    <li key={index} className="relative z-10">
+                      {areaUrl ? (
+                        <Link 
+                          href={areaUrl} 
+                          className={`text-gray-400 ${t.linkHover} transition-colors relative z-10`}
+                        >
+                          {area}
+                        </Link>
+                      ) : (
+                        <span className="text-gray-400">{area}</span>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           )}

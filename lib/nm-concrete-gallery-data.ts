@@ -12,7 +12,7 @@ export const nmConcreteGalleryImages: GalleryImage[] = [
   {
     id: '1',
     src: '/images/nm-concrete-coating-pros/project-1.jpg',
-    alt: 'Epoxy garage floor coating with metallic finish',
+    alt: 'Epoxy garage floor coating in Albuquerque home by NM Concrete Coating Pros',
     title: 'Luxury Metallic Garage Floor',
     description: 'Premium metallic epoxy coating with copper and silver accents in a residential garage.',
     category: 'Residential',
@@ -21,7 +21,7 @@ export const nmConcreteGalleryImages: GalleryImage[] = [
   {
     id: '2',
     src: '/images/nm-concrete-coating-pros/project-2.jpg',
-    alt: 'Commercial warehouse floor coating',
+    alt: 'Commercial epoxy flooring Albuquerque warehouse project completed by NM Concrete Coating Pros',
     title: 'Industrial Warehouse Floor',
     description: 'Heavy-duty polyaspartic coating for high-traffic commercial warehouse.',
     category: 'Commercial',
@@ -30,7 +30,7 @@ export const nmConcreteGalleryImages: GalleryImage[] = [
   {
     id: '3',
     src: '/images/nm-concrete-coating-pros/project-3.jpg',
-    alt: 'Concrete polishing with mirror finish',
+    alt: 'Concrete polishing service in Albuquerque home by NM Concrete Coating Pros',
     title: 'Mirror Finish Polishing',
     description: 'Artisan concrete polishing achieving mirror-like finish in luxury home.',
     category: 'Luxury',
@@ -39,7 +39,7 @@ export const nmConcreteGalleryImages: GalleryImage[] = [
   {
     id: '4',
     src: '/images/nm-concrete-coating-pros/project-4.jpg',
-    alt: 'Rustic epoxy coating with earth tones',
+    alt: 'Rustic epoxy floor coating Albuquerque mountain property by NM Concrete Coating Pros',
     title: 'Rustic Mountain Home',
     description: 'Natural earth-tone epoxy coating perfect for mountain and rural properties.',
     category: 'Rustic',
@@ -48,7 +48,7 @@ export const nmConcreteGalleryImages: GalleryImage[] = [
   {
     id: '5',
     src: '/images/nm-concrete-coating-pros/project-5.jpg',
-    alt: 'Family-friendly epoxy playroom floor',
+    alt: 'Epoxy floor coating Albuquerque residential project by NM Concrete Coating Pros',
     title: 'Family Playroom Floor',
     description: 'Safe, non-toxic epoxy coating designed for children and family spaces.',
     category: 'Family',
@@ -57,7 +57,7 @@ export const nmConcreteGalleryImages: GalleryImage[] = [
   {
     id: '6',
     src: '/images/nm-concrete-coating-pros/project-6.jpg',
-    alt: 'Southwestern style epoxy with terracotta colors',
+    alt: 'Concrete resurfacing project completed by NM Concrete Coating Pros in Albuquerque',
     title: 'Santa Fe Style Coating',
     description: 'Authentic Southwestern design with terracotta and adobe-inspired patterns.',
     category: 'Southwestern',
