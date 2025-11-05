@@ -90,7 +90,8 @@ function LocalNavbar() {
               <Button className="text-white hover:opacity-90 transition-opacity" style={{ backgroundColor: '#E91E63' }}>{sheWroteMeALetter.phone}</Button>
             </Link>
             <Link href="#contact">
-              <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 hover:border-[#E91E63]">Get Estimate</Button>
+              <Button  variant="outline"
+              className="border-[#E91E63] text-[#E91E63] hover:bg-[#E91E63] hover:text-white">Request Estimate</Button>
             </Link>
           </div>
         </div>
@@ -125,7 +126,8 @@ function Hero() {
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Link href={sheWroteMeALetter.phoneHref}><Button className="text-white hover:opacity-90 transition-opacity" style={{ backgroundColor: '#E91E63' }}>Call {sheWroteMeALetter.phone}</Button></Link>
-          <Link href="#contact"><Button variant="outline" className="border-white/20 text-white hover:bg-white/10 hover:border-[#E91E63]">Request Estimate</Button></Link>
+          <Link href="#contact"><Button  variant="outline"
+              className="border-[#E91E63] text-[#E91E63] hover:bg-[#E91E63] hover:text-white">Request Estimate</Button></Link>
         </div>
         <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 opacity-90">
           {['powder-coated-metal-mailbox-cape-coral.png','brick-stone-mailbox-installation-cape-coral.png','subdivision-mailboxes-installation-cape-coral.png','mailbox-installation-cape-coral-florida.png'].map((file) => (
@@ -143,10 +145,10 @@ function TrustStrip() {
   return (
     <section className="text-gray-300" style={{ backgroundColor: '#1E1E1E' }}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
-        <div className="flex items-center gap-2"><span className="h-2 w-2 rounded-full" style={{ backgroundColor: '#10B981' }} />Licensed & Insured</div>
-        <div className="flex items-center gap-2"><span className="h-2 w-2 rounded-full" style={{ backgroundColor: '#F59E0B' }} />24/7 Emergency</div>
-        <div className="flex items-center gap-2"><span className="h-2 w-2 rounded-full" style={{ backgroundColor: '#E91E63' }} />Financing Available</div>
-        <div className="flex items-center gap-2"><span className="h-2 w-2 rounded-full" style={{ backgroundColor: '#E91E63' }} />Warranty Backed</div>
+      <div className="flex items-center gap-2"><span className="h-2 w-2 rounded-full" style={{ backgroundColor: '#F59E0B' }} />24/7 Emergency</div>
+        <div className="flex items-center gap-2"><span className="h-2 w-2 rounded-full" style={{ backgroundColor: '#10B981' }} />Licensed & Insured</div>  
+        <div className="flex items-center gap-2"><span className="h-2 w-2 rounded-full" style={{ backgroundColor: '#E91E63' }} />Affordable Pricing </div>
+        <div className="flex items-center gap-2"><span className="h-2 w-2 rounded-full" style={{ backgroundColor: '#E91E63' }} />Quality Service</div>
       </div>
     </section>
   );
@@ -177,7 +179,7 @@ function Services() {
   );
 }
 
-function FinancingRebates() {
+function WhyChooseUs() {
   return (
     <section
     className="text-white"
@@ -192,26 +194,23 @@ function FinancingRebates() {
           className="text-xl md:text-2xl font-bold"
           style={{ color: "#0F0F0F" }}
         >
-          Financing Available
+          Why Choose Us?
         </h2>
         <p className="mt-2" style={{ color: "#374151" }}>
-          Upgrade your curb appeal with a brand-new mailbox!{" "}
-          <strong>She Wrote Me a Letter</strong> makes it easy to get the mailbox
-          you’ve always wanted — professionally installed, repaired, or customized
-          to match your home’s style. We offer{" "}
-          <strong>$0 down, no payments, and no interest for 24 months</strong> for
-          qualified customers. Our team will even help you with{" "}
-          <strong>easy financing options</strong> and guide you through approvals
-          so you can focus on what matters — a beautiful, secure mailbox built to
-          last.
-        </p>
+  From HOA-approved mailbox systems to custom brick installations,{" "}
+  <strong>She Wrote Me a Letter</strong> is Cape Coral’s go-to expert for
+  reliable, USPS-compliant mailbox solutions. Our team takes pride in
+  delivering precision workmanship, durable materials, and a local service
+  experience built on trust and quality that lasts for years.
+</p>
+
         <div className="mt-4 flex flex-wrap gap-3">
           <Link href={sheWroteMeALetter.phoneHref}>
             <Button
               className="text-white hover:opacity-90 transition-opacity"
               style={{ backgroundColor: "#E91E63" }}
             >
-              Check Eligibility
+              Contact Us
             </Button>
           </Link>
           <Link href="#contact">
@@ -219,7 +218,7 @@ function FinancingRebates() {
               variant="outline"
               className="border-[#E91E63] text-[#E91E63] hover:bg-[#E91E63] hover:text-white"
             >
-              Get Pre-Qualified
+              Request Estimate
             </Button>
           </Link>
         </div>
@@ -375,7 +374,7 @@ function Footer() {
             ))}
           </ul>
         </div>
-        <div className="mt-6 text-xs" style={{ color: '#9CA3AF' }}>© {new Date().getFullYear()} {sheWroteMeALetter.name}. All rights reserved.</div>
+        <div className="mt-6 text-xs" style={{ color: '#9CA3AF' }}>© {new Date().getFullYear()} {sheWroteMeALetter.name}. All rights reserved. Powered by <Link className="text-[#E91E63] hover:text-white transition-colors" href="https://interstaterankers.com">InterState Rankers</Link></div>
       </div>
     </footer>
   );
@@ -389,7 +388,7 @@ export default function Page() {
       <Hero />
       <TrustStrip />
       <Services />
-      <FinancingRebates />
+      <WhyChooseUs />
       <About />
       <FAQs />
       <Gallery />
