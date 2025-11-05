@@ -301,7 +301,8 @@ function ContactCTA() {
         </div>
         <div className="flex items-center gap-3">
           <Link href={sheWroteMeALetter.phoneHref}><Button className="text-white hover:opacity-90 transition-opacity" style={{ backgroundColor: '#E91E63' }}>Call {sheWroteMeALetter.phone}</Button></Link>
-          <Link href="#contact"><Button variant="outline" className="border-white/20 text-white hover:bg-white/10 hover:border-[#E91E63]">Request Estimate</Button></Link>
+          <Link href="#contact"><Button  variant="outline"
+              className="border-[#E91E63] text-[#E91E63] hover:bg-[#E91E63] hover:text-white">Request Estimate</Button></Link>
         </div>
       </div>
     </section>
