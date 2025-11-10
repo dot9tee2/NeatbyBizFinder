@@ -6,7 +6,7 @@ import OptimizedImage from '@/components/ui/optimized-image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Sparkles, Briefcase, Building, Layers, Star, Phone, MapPin, Clock, Mail, Globe, Shield, CheckCircle, ArrowRight, Users, Award, Clock3, Leaf, Zap, Heart, Home, DoorOpen, Menu, X, ChevronDown, Play, Download, Plus, Minus } from 'lucide-react';
+import { Sparkles, Briefcase, Building, Layers, Star, Phone, MapPin, Clock, Mail, Globe, Shield, CheckCircle, ArrowRight, Users, Award, Clock3, Leaf, Zap, Heart, Home, DoorOpen, Menu, X, ChevronDown, Play, Download, Plus, Minus, ShieldCheck, Droplets, Wrench } from 'lucide-react';
 // import BusinessHeader from '@/components/business-landing/business-header';
 // import BusinessFooter from '@/components/business-landing/business-footer';
 import { useState, useEffect, useRef } from 'react';
@@ -32,7 +32,7 @@ export default function ClearChoiceCleaningPage() {
   const contactRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setIsVisible(true);
+    setIsVisible(true); // Note: This state is set but not used in the JSX.
     
     // Register ScrollTrigger plugin
     gsap.registerPlugin(ScrollTrigger);
@@ -391,14 +391,14 @@ export default function ClearChoiceCleaningPage() {
     name: 'Clear Choice Cleaning',
     category: 'Professional Cleaning Services',
     rating: 4.9,
-    reviewCount: 234,
+    reviewCount: 20,
     priceRange: '$$',
     phone: '(702) 820-5479',
     phoneE164: '+17028205479',
     email: 'wesleyv@clearchoicelv.com',
     website: 'https://clearchoicelv.com/',
     featuredImage: '/clear-choice-cleaning/hero-image.png',
-    description: 'Professional cleaning services for homes and offices. We provide reliable, eco-friendly cleaning solutions throughout the Las Vegas area.',
+    description: 'Clear Choice Cleaning is Las Vegas\'s premier professional cleaning service, specializing in residential and commercial cleaning throughout the Las Vegas Valley. We provide reliable, eco-friendly cleaning solutions with trained, background-checked staff, flexible scheduling, and 100% satisfaction guarantee. Serving Las Vegas, Henderson, North Las Vegas, and surrounding areas with house cleaning, office cleaning, deep cleaning, move-in/move-out cleaning, and post-construction cleanup services.',
     address: {
       street: '1234 Main Street',
       city: 'Las Vegas',
@@ -410,7 +410,7 @@ export default function ClearChoiceCleaningPage() {
   const services = [
     {
       title: 'Residential Cleaning',
-      description: 'Regular home cleaning service to keep your living space consistently fresh and spotless',
+      description: 'Professional house cleaning services in Las Vegas, NV to keep your home consistently fresh and spotless. Our trained cleaning team provides thorough residential cleaning including dusting, vacuuming, mopping, bathroom deep cleaning, kitchen sanitization, and trash removal. Perfect for busy Las Vegas homeowners who want a clean, healthy living environment without the hassle. We use eco-friendly products safe for your family and pets.',
       icon: Home,
       image: '/clear-choice-cleaning/residential-cleaning.webp',
       features: [
@@ -424,7 +424,7 @@ export default function ClearChoiceCleaningPage() {
     },
     {
       title: 'Move In / Move Out Cleaning',
-      description: 'Comprehensive cleaning service to prepare your space for a new move-in or ensure a spotless move-out',
+      description: 'Comprehensive move-in and move-out cleaning services in Las Vegas to prepare your space for new tenants or ensure you get your security deposit back. Our detailed cleaning includes deep cleaning of all rooms, inside cabinets and closets, appliance interior cleaning, baseboards and fixtures, and complete sanitization. Trusted by Las Vegas property managers and homeowners for thorough, reliable move cleaning services.',
       icon: DoorOpen,
       image: '/clear-choice-cleaning/move-in-out-cleaning.webp',
       features: [
@@ -438,7 +438,7 @@ export default function ClearChoiceCleaningPage() {
     },
     {
       title: 'Office Cleaning',
-      description: 'Professional cleaning service for offices to maintain a clean and productive workspace',
+      description: 'Professional office cleaning services in Las Vegas to maintain a clean, healthy, and productive workspace. Our commercial cleaning team provides comprehensive office cleaning including workstation cleaning, conference room sanitization, restroom deep cleaning, floor care and maintenance, and trash removal. We offer flexible scheduling for daily, weekly, or monthly office cleaning to fit your business needs in Las Vegas.',
       icon: Briefcase,
       image: '/clear-choice-cleaning/office-cleaning.webp',
       features: [
@@ -452,7 +452,7 @@ export default function ClearChoiceCleaningPage() {
     },
     {
       title: 'Commercial Cleaning',
-      description: 'Comprehensive cleaning services for commercial spaces of all sizes',
+      description: 'Comprehensive commercial cleaning services in Las Vegas for retail stores, restaurants, warehouses, and industrial facilities of all sizes. Our experienced team provides specialized cleaning including retail and restaurant cleaning, warehouse and industrial cleaning, carpet and floor maintenance, window and glass cleaning, and restroom and common area sanitization. Customized cleaning plans to meet your business needs.',
       icon: Building,
       image: '/clear-choice-cleaning/commercial-cleaning.webp',
       features: [
@@ -466,7 +466,7 @@ export default function ClearChoiceCleaningPage() {
     },
     {
       title: 'Deep Cleaning',
-      description: 'Intensive cleaning service covering hard-to-reach areas and built-up dirt',
+      description: 'Intensive deep cleaning service in Las Vegas covering hard-to-reach areas and built-up dirt. Our thorough deep cleaning includes detailed bathroom and kitchen cleaning, appliance interior cleaning, grout and tile scrubbing, baseboards and corners, and high-touch surface sanitization. Perfect for spring cleaning, before special events, or when your Las Vegas home needs a comprehensive refresh.',
       icon: Layers,
       image: '/clear-choice-cleaning/deep-cleaning.webp',
       features: [
@@ -480,7 +480,7 @@ export default function ClearChoiceCleaningPage() {
     },
     {
       title: 'Post-Construction Cleaning',
-      description: 'Specialized cleaning service for newly constructed or renovated spaces',
+      description: 'Specialized post-construction cleaning service in Las Vegas for newly constructed or renovated spaces. Our expert team removes construction debris, dust, and paint residue, cleans windows and glass, polishes floors, and performs final touch-up cleaning. Essential for Las Vegas contractors, builders, and homeowners to prepare spaces for occupancy after construction or renovation projects.',
       icon: Sparkles,
       image: '/clear-choice-cleaning/post-construction-cleaning.webp',
       features: [
@@ -497,12 +497,20 @@ export default function ClearChoiceCleaningPage() {
   const serviceAreas = [
     'Las Vegas, NV',
     'North Las Vegas, NV',
-    'Sunrise Manor, NV',
-    'Nellis AFB, NV',
     'Henderson, NV',
     'Paradise, NV',
     'Spring Valley, NV',
-    'Enterprise, NV'
+    'Enterprise, NV',
+    'Sunrise Manor, NV',
+    'Nellis AFB, NV',
+    'Summerlin, NV',
+    'Green Valley, NV',
+    'Anthem, NV',
+    'Centennial Hills, NV',
+    'The Strip, Las Vegas',
+    'Downtown Las Vegas',
+    'Boulder City, NV',
+    'Mountains Edge, NV'
   ];
 
   const whyChooseUs = [
@@ -555,49 +563,55 @@ export default function ClearChoiceCleaningPage() {
     { number: '100%', label: 'Satisfaction', icon: Heart }
   ];
 
-  const teamMembers = [
-    {
-      name: 'Anna Smith',
-      role: 'Cleaner',
-      image: '/clear-choice-cleaning/team-anna-smith.jpeg'
-    },
-    {
-      name: 'John Doe',
-      role: 'Supervisor',
-      image: '/clear-choice-cleaning/team-john-doe.jpeg'
-    },
-    {
-      name: 'Maria Garcia',
-      role: 'Team Lead',
-      image: '/clear-choice-cleaning/team-maria-garcia.jpeg'
-    },
-    {
-      name: 'David Wilson',
-      role: 'Quality Inspector',
-      image: '/clear-choice-cleaning/team-david-wilson.jpeg'
-    }
-  ];
-
+  // Data that was misplaced after the first (incorrect) return
   const faqData = [
     {
-      question: 'What cleaning products do you use?',
-      answer: 'We use eco-friendly, non-toxic cleaning products that are safe for your family and pets while being highly effective at removing dirt and germs.'
+      question: 'What cleaning products do you use in Las Vegas?',
+      answer: 'We use eco-friendly, non-toxic cleaning products that are safe for your family and pets while being highly effective at removing dirt and germs. All our cleaning products are EPA-approved and environmentally responsible, perfect for Las Vegas homes and offices.'
     },
     {
-      question: 'How much do your services cost?',
-      answer: 'Our pricing varies based on the size of your space and the type of cleaning service needed. We offer competitive rates starting from $199 for standard cleaning.'
+      question: 'How much do cleaning services cost in Las Vegas?',
+      answer: 'Our pricing varies based on the size of your space and the type of cleaning service needed. We offer competitive rates starting from $120 for residential cleaning, $200 for move-in/move-out cleaning, and $150 for office cleaning in Las Vegas. Contact us for a free, no-obligation estimate tailored to your specific needs.'
     },
     {
-      question: 'Do you bring your own supplies?',
-      answer: 'Yes, we bring all necessary cleaning supplies and equipment. You don\'t need to provide anything unless you have specific product preferences.'
+      question: 'Do you bring your own cleaning supplies?',
+      answer: 'Yes, we bring all necessary cleaning supplies and equipment including vacuums, mops, microfiber cloths, and eco-friendly cleaning solutions. You don\'t need to provide anything unless you have specific product preferences or allergies we should be aware of.'
     },
     {
-      question: 'Are your cleaners insured and bonded?',
-      answer: 'Absolutely! All our cleaning professionals are fully insured, bonded, and background-checked for your peace of mind.'
+      question: 'Are your cleaners insured and bonded in Las Vegas?',
+      answer: 'Absolutely! All our cleaning professionals are fully insured, bonded, and background-checked for your peace of mind. We carry comprehensive liability insurance and workers\' compensation coverage, so you\'re protected when we clean your Las Vegas home or office.'
     },
     {
-      question: 'Can I schedule recurring cleanings?',
-      answer: 'Yes, we offer flexible scheduling options including weekly, bi-weekly, and monthly recurring cleanings to fit your needs and budget.'
+      question: 'Can I schedule recurring cleanings in Las Vegas?',
+      answer: 'Yes, we offer flexible scheduling options including weekly, bi-weekly, and monthly recurring cleanings to fit your needs and budget. Many Las Vegas homeowners and businesses choose our recurring cleaning services for consistent, hassle-free maintenance of their spaces.'
+    },
+    {
+      question: 'What areas of Las Vegas do you serve?',
+      answer: 'We serve the entire Las Vegas Valley including Las Vegas, Henderson, North Las Vegas, Paradise, Spring Valley, Enterprise, Sunrise Manor, and surrounding areas. We also provide cleaning services to Nellis AFB and nearby communities. Contact us to confirm service availability in your specific Las Vegas neighborhood.'
+    },
+    {
+      question: 'How long does a typical house cleaning take in Las Vegas?',
+      answer: 'The duration depends on the size of your home and the type of cleaning service. A standard residential cleaning for a 2,000 sq ft home typically takes 2-3 hours, while deep cleaning may take 4-6 hours. Move-in/move-out cleaning can take 4-8 hours depending on the property size. We\'ll provide an estimated timeframe during your free consultation.'
+    },
+    {
+      question: 'Do you offer same-day cleaning services in Las Vegas?',
+      answer: 'Yes, we offer same-day cleaning services in Las Vegas when available. While we recommend scheduling in advance to ensure availability, we understand emergencies happen and will do our best to accommodate urgent cleaning needs. Contact us to check same-day availability.'
+    },
+    {
+      question: 'What\'s included in a move-out cleaning in Las Vegas?',
+      answer: 'Our comprehensive move-out cleaning in Las Vegas includes deep cleaning of all rooms, inside cabinets and closets, appliance interior cleaning (oven, refrigerator, dishwasher), baseboards and fixtures, window sills, light fixtures, complete sanitization, and final walkthrough inspection. This thorough cleaning helps ensure you get your full security deposit back.'
+    },
+    {
+      question: 'Do you clean offices after hours in Las Vegas?',
+      answer: 'Yes, we offer flexible scheduling including after-hours and weekend office cleaning in Las Vegas to minimize disruption to your business operations. Many Las Vegas businesses prefer evening or weekend cleaning to avoid interfering with daily operations. We\'ll work with you to find the best schedule.'
+    },
+    {
+      question: 'What makes Clear Choice Cleaning different from other Las Vegas cleaning companies?',
+      answer: 'Clear Choice Cleaning stands out in Las Vegas with our trained, background-checked staff, eco-friendly products, customizable cleaning plans, flexible scheduling, 100% satisfaction guarantee, and fully insured and bonded services. We\'re locally owned and committed to providing exceptional cleaning services throughout the Las Vegas Valley.'
+    },
+    {
+      question: 'Do you provide post-construction cleaning in Las Vegas?',
+      answer: 'Yes, we specialize in post-construction cleaning in Las Vegas for newly constructed or renovated spaces. Our services include construction debris removal, dust and paint residue cleanup, window and glass cleaning, floor polishing, and final touch-up cleaning. Essential for Las Vegas contractors and homeowners preparing spaces for occupancy.'
     }
   ];
 
