@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import OptimizedVideo from '@/components/ui/optimized-video';
 
+
 // --- Lazy Grass Business Data ---
 const lazyGrass = {
   name: 'Lazy Grass',
@@ -117,11 +118,10 @@ function LocalNavbar() {
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 items-center justify-between">
           <Link href="/businesses/lazy-grass" className="flex items-center gap-2 text-white">
-            <div className="relative h-8 w-8">
+            <div className="relative h-10 w-24">
               {/* Logo Path */}
-              <OptimizedImage src="/lazy-grass/logo/logo-on-dark.png" alt={`${lazyGrass.name} logo`} fill className="object-contain" priority />
+              <OptimizedImage src="/lazy-grass/logo/logo-on-dark.webp" alt={`${lazyGrass.name} logo`} fill className="object-contain" priority />
             </div>
-            <span className="font-semibold">{lazyGrass.name}</span>
           </Link>
           <div className="hidden md:flex items-center gap-6 text-slate-200">
             <a href="#gallery" className="hover:text-white">Gallery</a>
@@ -195,7 +195,7 @@ function Gallery() {
         <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
           {Array.from({ length: 8 }).map((_, idx) => (
             <div key={idx} className="relative h-32 md:h-48 rounded-lg overflow-hidden shadow-md border-2 border-white">
-              <OptimizedImage src={cityImage(lazyGrass.imagesBase, '', `gallery-${idx + 1}.png`)} alt={`Gallery image ${idx + 1}`} fill className="object-cover" />
+              <OptimizedImage src={cityImage(lazyGrass.imagesBase, '', `gallery-${idx + 1}.webp`)} alt={`Gallery image ${idx + 1}`} fill className="object-cover" />
             </div>
           ))}
         </div>
@@ -367,10 +367,9 @@ function Footer() {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8 pb-12 border-b border-gray-700">
           <div className="max-w-md">
             <div className="flex items-center gap-3 text-white mb-4">
-              <div className="relative h-12 w-12">
-                <OptimizedImage src="/lazy-grass/logo/logo-on-dark.png" alt={`${lazyGrass.name} logo`} fill className="object-contain" />
+              <div className="relative h-12 w-24">
+                <OptimizedImage src="/lazy-grass/logo/logo-on-dark.webp" alt={`${lazyGrass.name} logo`} fill className="object-contain" />
               </div>
-              <span className="text-2xl font-bold">{lazyGrass.name}</span>
             </div>
             <p className="text-slate-400 leading-relaxed">
               Transforming North Atlanta lawns with premium artificial turf since 2018. Family-owned, licensed, and built on a foundation of construction excellence.
