@@ -32,7 +32,13 @@ export const sheWroteMeALetter = {
         slug: 'PowderCoated Metal Mailboxes',
         title: 'PowderCoated Metal Mailboxes',
         desc: 'Our powder-coated metal mailboxes offer the perfect blend of style, strength, and weather resistance. Designed for homeowners and communities in Cape Coral, these mailboxes are resistant to rust, fading, and corrosion. Available in multiple finishes and colors, they deliver a sleek, modern appearance that requires minimal maintenance and stands the test of time.'
+      },
+      {
+        slug: 'Security Mailboxes',
+        title: 'Security Mailboxes',
+        desc: 'Our security mailboxes are built to protect your mail and packages with superior durability and tamper-resistant design. Ideal for residential and commercial properties in Cape Coral, these mailboxes feature reinforced locks, heavy-duty construction, and weatherproof finishes to ensure your deliveries stay safe and secure. Perfect for those who value both safety and style.'
       }
+      
     ],
     faqs: [
       {

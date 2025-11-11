@@ -164,10 +164,25 @@ function Services() {
             <div key={s.slug} className="rounded-xl border p-6 hover:shadow-lg transition-all hover:border-[#E91E63]/50" style={{ borderColor: '#E5E7EB' }}>
               <div className="relative h-40 mb-4 rounded-md overflow-hidden">
               <OptimizedImage
-                src={cityImage(sheWroteMeALetter.imagesBase, '', s.slug === 'Mailbox Replacement' ? 'mailbox-replacement-cape-coral-florida.png' : s.slug === 'Mailbox Installation' ? 'mailbox-installation-cape-coral-florida.png' : s.slug === 'New Sub-Division Mailboxes' ? 'subdivision-mailboxes-installation-cape-coral.png' : s.slug === 'Brick/Stone Mailboxes' ? 'brick-stone-mailbox-installation-cape-coral.png' : 'powder-coated-metal-mailbox-cape-coral.png')}
-                alt={s.title}
-                fill
-              />
+  src={cityImage(
+    sheWroteMeALetter.imagesBase,
+    '',
+    s.slug === 'Mailbox Replacement'
+      ? 'mailbox-replacement-cape-coral-florida.png'
+      : s.slug === 'Mailbox Installation'
+      ? 'mailbox-installation-cape-coral-florida.png'
+      : s.slug === 'New Sub-Division Mailboxes'
+      ? 'subdivision-mailboxes-installation-cape-coral.png'
+      : s.slug === 'Brick/Stone Mailboxes'
+      ? 'brick-stone-mailbox-installation-cape-coral.png'
+      : s.slug === 'Security Mailboxes'
+      ? 'security-mailboxes-cape-coral.png'
+      : 'powder-coated-metal-mailbox-cape-coral.png'
+  )}
+  alt={s.title}
+  fill
+/>
+
               </div>
               <h3 className="text-lg font-semibold" style={{ color: '#0F0F0F' }}>{s.title}</h3>
               <p className="mt-2 text-sm" style={{ color: '#4B5563' }}>{s.desc}</p>
