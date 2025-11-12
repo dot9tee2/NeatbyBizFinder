@@ -5,14 +5,14 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import OptimizedVideo from '@/components/ui/optimized-video';
 
-// --- Lazy Grass Business Data (Customized for Cumming) ---
+// --- Lazy Grass Business Data (Customized for Cummings) ---
 const lazyGrass = {
   name: 'Lazy Grass',
   phone: '(678) 234-1734',
   phoneHref: 'tel:+16782341734',
   email: 'justinblastick@gmail.com',
-  serviceArea: 'Cumming', // <-- Updated
-  imagesBase: '/lazy-grass/cumming', // <-- Updated
+  serviceArea: 'Cummings', // <-- Updated
+  imagesBase: '/lazy-grass/cummings', // <-- Updated
   about:
     "Founded in 2018 by a construction and hardscaping professional, Lazy Grass grew from a vision to bring superior artificial turf installation to the North Atlanta region. What started as a specialized service has evolved into Cumming's go-to artificial turf company. Operating full-time since 2020, we've built our business through word-of-mouth referrals and the trust of homeowners and businesses who value quality workmanship. Our foundation in construction ensures every installation includes proper grading and drainage systems. From Cumming's beautiful neighborhoods to Sandy Springs' established communities, we understand how North Georgia's clay soil and seasonal weather patterns affect turf installation. This local knowledge helps us deliver installations that look beautiful and perform flawlessly year-round. As a family-owned business, we're proud to serve communities throughout the North Atlanta region, helping property owners enjoy low-maintenance, beautiful lawns. Get to know our experienced team and proven approach today.", // <-- Updated
   services: [
@@ -44,7 +44,7 @@ const lazyGrass = {
     },
     {
       q: 'What areas do you serve?',
-      a: 'We primarily serve the North Atlanta region, including Cumming, Sandy Springs, and surrounding communities. If you are in the area, give us a call!' // <-- Updated
+      a: 'We primarily serve the North Atlanta region, including Cummings, Sandy Springs, and surrounding communities. If you are in the area, give us a call!' // <-- Updated
     },
     {
       q: "What's your experience level?",
@@ -71,29 +71,29 @@ const cityImage = (base: string, city: string, file: string) => {
 };
 // --- End of Business Data ---
 
-// --- New Metadata for Cumming SEO ---
+// --- New Metadata for Cummings SEO ---
 export const metadata: Metadata = {
-  title: `${lazyGrass.name} | Cumming GA Artificial Turf Installation`, // <-- Updated
+  title: `${lazyGrass.name} | Cummings GA Artificial Turf Installation`, // <-- Updated
   description:
-    'Cumming-area artificial turf, pet turf, and putting green installers. Family-owned, licensed, and insured. Get a free estimate today.', // <-- Updated
+    'Cummings-area artificial turf, pet turf, and putting green installers. Family-owned, licensed, and insured. Get a free estimate today.', // <-- Updated
   robots: 'index, follow', // <-- Added SEO Component
-  alternates: { canonical: 'https://nearbybizfinder.com/businesses/lazy-grass/cumming/' }, // <-- Updated
+  alternates: { canonical: 'https://nearbybizfinder.com/businesses/lazy-grass/cummings/' }, // <-- Updated
   openGraph: {
-    title: `${lazyGrass.name} | Cumming GA Artificial Turf Installation`, // <-- Updated
+    title: `${lazyGrass.name} | Cummings GA Artificial Turf Installation`, // <-- Updated
     description:
-      'Expert artificial turf installation in Cumming, GA. We handle grading, drainage, and professional installation for lawns, pets, and putting greens.', // <-- Updated
-    url: 'https://nearbybizfinder.com/businesses/lazy-grass/cumming/', // <-- Updated
+      'Expert artificial turf installation in Cummings, GA. We handle grading, drainage, and professional installation for lawns, pets, and putting greens.', // <-- Updated
+    url: 'https://nearbybizfinder.com/businesses/lazy-grass/cummings/', // <-- Updated
     type: 'website'
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${lazyGrass.name} | Cumming GA Artificial Turf Installation`, // <-- Updated
+    title: `${lazyGrass.name} | Cumminsg GA Artificial Turf Installation`, // <-- Updated
     description:
-      'Expert artificial turf installation in Cumming, GA. We handle grading, drainage, and professional installation.' // <-- Updated
+      'Expert artificial turf installation in Cummings, GA. We handle grading, drainage, and professional installation.' // <-- Updated
   }
 };
 
-// --- Updated JSON-LD for Cumming Local SEO ---
+// --- Updated JSON-LD for Cummings Local SEO ---
 function JsonLd() {
   const json = {
     '@context': 'https://schema.org',
@@ -101,8 +101,8 @@ function JsonLd() {
     name: lazyGrass.name,
     email: lazyGrass.email,
     telephone: '+16782341734',
-    areaServed: ['Cumming', lazyGrass.serviceArea, 'Georgia'], // <-- Updated
-    url: 'https://nearbybizfinder.com/businesses/lazy-grass-cumming/', // <-- Updated
+    areaServed: ['Cummings', lazyGrass.serviceArea, 'Georgia'], // <-- Updated
+    url: 'https://nearbybizfinder.com/businesses/lazy-grass/cummings/', // <-- Updated
     contactPoint: [{ '@type': 'ContactPoint', telephone: '+16782341734', contactType: 'customer service' }]
   } as const;
   return (
@@ -119,7 +119,7 @@ function LocalNavbar() {
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 border-b border-slate-200">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/businesses/lazy-grass-cumming" className="flex items-center gap-2 text-gray-900"> {/* <-- Updated */}
+          <Link href="/businesses/lazy-grass/cummings" className="flex items-center gap-2 text-gray-900"> {/* <-- Updated */}
             <div className="relative h-12 w-28">
               <OptimizedImage src="/lazy-grass/logo/logo-on-dark.webp" alt={`${lazyGrass.name} logo`} fill className="object-contain" priority />
             </div>
@@ -156,7 +156,7 @@ function Hero() {
         {/* Left Column: Text Content */}
         <div className="flex flex-col justify-center">
           <p className="inline-flex items-center rounded-full bg-rose-500/10 px-3 py-1 text-xs font-semibold text-rose-700 ring-1 ring-inset ring-rose-500/30 self-start">
-            Serving Cumming & North Atlanta {/* <-- Updated */}
+            Serving Cummings & North Atlanta {/* <-- Updated */}
           </p>
           <h1 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-indigo-900">
             Cumming's Premier Artificial Turf Installers {/* <-- Updated */}
@@ -186,8 +186,8 @@ function Hero() {
         <div className="flex items-center justify-center">
           <div className="w-full aspect-video rounded-xl overflow-hidden shadow-2xl border-4 border-white ring-1 ring-slate-900/10">
             <OptimizedVideo
-              src="/lazy-grass/cumming/hero.mp4" // <-- Updated
-              alt="Beautiful artificial turf lawn in Cumming" // <-- Updated
+              src="/lazy-grass/cummings/hero.mp4" // <-- Updated
+              alt="Beautiful artificial turf lawn in Cummings" // <-- Updated
               className="w-full h-full object-cover"
               autoPlay
               muted
@@ -262,7 +262,7 @@ function About() {
           <ul className="mt-6 grid grid-cols-2 gap-3 text-md text-rose-700 font-semibold"> {/* <-- New Accent Color */}
             <li>✓ Licensed & Insured</li>
             <li>✓ Family-Owned & Operated</li>
-            <li>✓ Local Cumming Pros</li> {/* <-- Updated */}
+            <li>✓ Local Cummings Pros</li> {/* <-- Updated */}
             <li>✓ Construction & Grading Experts</li>
           </ul>
         </div>
@@ -331,14 +331,14 @@ function OurProcess() {
 
 // --- New ContactForm (Standard Section) ---
 function ContactForm() {
-  const mailtoHref = `mailto:${encodeURIComponent(lazyGrass.email)}?subject=${encodeURIComponent('Estimate Request – Cumming')}`; // <-- Updated
+  const mailtoHref = `mailto:${encodeURIComponent(lazyGrass.email)}?subject=${encodeURIComponent('Estimate Request – Cummings')}`; // <-- Updated
   return (
     // Removed sticky, h-screen, z-index. Added padding.
     <section id="contact" className="bg-slate-50 py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
         <div className="text-center max-w-2xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-indigo-900">Get Your Free Estimate</h2>
-          <p className="mt-2 text-lg text-slate-600">Ready for a low-maintenance, beautiful lawn in Cumming? Call now or send us a message.</p>
+          <p className="mt-2 text-lg text-slate-600">Ready for a low-maintenance, beautiful lawn in Cummings? Call now or send us a message.</p>
         </div>
         
         <form action={mailtoHref} method="post" className="mt-10 grid md:grid-cols-2 gap-6 max-w-2xl mx-auto p-8 bg-white rounded-lg shadow-lg" aria-label="Estimate request form">
@@ -366,7 +366,7 @@ function ContactForm() {
           <div className="md:col-span-2">
             <label htmlFor="message" className="block text-sm font-medium text-slate-700">Details</label>
             <textarea id="message" name="message" rows={4} className="mt-1 w-full rounded-md border border-input bg-white px-3 py-2 text-sm" placeholder="Tell us about your project (location, size, idea)" />
-            <input type="hidden" name="city" value="Cumming" /> {/* <-- Updated */}
+            <input type="hidden" name="city" value="Cummings" /> {/* <-- Updated */}
           </div>
           <div className="md:col-span-2 flex flex-col sm:flex-row items-center gap-4">
             <Button type="submit" size="lg" className="bg-rose-600 text-white hover:bg-rose-700 font-semibold w-full sm:w-auto">Send Request</Button>
@@ -382,7 +382,7 @@ function ContactForm() {
 
 // --- New Footer (Dark, New Colors) ---
 function Footer() {
-  const mailtoHref = `mailto:${encodeURIComponent(lazyGrass.email)}?subject=${encodeURIComponent('General Inquiry – Cumming')}`; // <-- Updated
+  const mailtoHref = `mailto:${encodeURIComponent(lazyGrass.email)}?subject=${encodeURIComponent('General Inquiry – Cummings')}`; // <-- Updated
 
   return (
     // Removed sticky, h-screen, z-index. Added padding.
@@ -441,7 +441,7 @@ function Footer() {
               <li><a href="https://nearbybizfinder.com/businesses/lazy-grass/sandy-springs">Sandy Springs, GA</a></li>
               <li><a href="https://nearbybizfinder.com/businesses/lazy-grass/rosewell">Rosewell, GA</a></li>
               <li><a href="https://nearbybizfinder.com/businesses/lazy-grass/alpharetta">Alpharetta, GA</a></li>
-              <li><a href="https://nearbybizfinder.com/businesses/lazy-grass/cumming">Cumming, GA</a></li>
+              <li><a href="https://nearbybizfinder.com/businesses/lazy-grass/cummings">Cummings, GA</a></li>
             </ul>
           </div>
           <div>

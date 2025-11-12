@@ -474,9 +474,11 @@ export default function LazyGrassRedesign() {
               <div>
                 <h3 className="text-lg font-bold mb-4">Service Areas</h3>
                 <ul className="space-y-2 text-gray-400">
-                  {['Sandy Springs, GA', 'Woodstock, GA', 'Marietta, GA', 'Roswell, GA', 'Alpharetta, GA', 'Canton, GA'].map((area, idx) => (
-                    <li key={idx}>{area}</li>
-                  ))}
+                  < li><a href="https://nearbybizfinder.com/businesses/lazy-grass/">Woodstock, GA</a></li>
+                  <li><a href="https://nearbybizfinder.com/businesses/lazy-grass/sandy-springs">Sandy Springs, GA</a></li>
+                  <li><a href="https://nearbybizfinder.com/businesses/lazy-grass/rosewell">Rosewell, GA</a></li>
+                  <li><a href="https://nearbybizfinder.com/businesses/lazy-grass/alpharetta">Alpharetta, GA</a></li>
+                  <li><a href="https://nearbybizfinder.com/businesses/lazy-grass/cummings">Cummings, GA</a></li>
                 </ul>
               </div>
 
@@ -502,6 +504,17 @@ export default function LazyGrassRedesign() {
 
             <div className="border-t border-gray-700 pt-8 text-center text-gray-400 text-sm">
               <p>© {new Date().getFullYear()} {lazyGrass.name}. All rights reserved. | Licensed & Insured Artificial Turf Installer</p>
+              <p className="mt-2">
+              Powered & Managed By{" "}
+              <a
+                href="https://interstaterankers.com"
+                className="font-medium text-slate-400 hover:text-teal-300 hover:underline transition-colors duration-200"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                InterState Rankers
+              </a>
+            </p>
             </div>
           </div>
         </footer>
