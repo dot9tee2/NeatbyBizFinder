@@ -103,12 +103,12 @@ export const metadata: Metadata = {
   description:
     'Top-rated artificial turf installers in Rosewell, GA. Specializing in pet turf, backyard putting greens, and expert drainage. Licensed & insured. Free estimates.',
   robots: 'index, follow',
-  alternates: { canonical: 'https://nearbybizfinder.com/businesses/lazy-grass-rosewell/' },
+  alternates: { canonical: 'https://nearbybizfinder.com/businesses/lazy-grass/rosewell/' },
   openGraph: {
     title: `${lazyGrass.name} | Rosewell GA Artificial Turf Installation`,
     description:
       'Expert artificial turf installation in Rosewell, GA. We handle grading, drainage, and professional installation for lawns, pets, and putting greens.',
-    url: 'https://nearbybizfinder.com/businesses/lazy-grass-rosewell/',
+    url: 'https://nearbybizfinder.com/businesses/lazy-grass/rosewell/',
     type: 'website'
   }
 };

@@ -77,12 +77,12 @@ export const metadata: Metadata = {
   description:
     'Cumming-area artificial turf, pet turf, and putting green installers. Family-owned, licensed, and insured. Get a free estimate today.', // <-- Updated
   robots: 'index, follow', // <-- Added SEO Component
-  alternates: { canonical: 'https://nearbybizfinder.com/businesses/lazy-grass-cumming/' }, // <-- Updated
+  alternates: { canonical: 'https://nearbybizfinder.com/businesses/lazy-grass/cumming/' }, // <-- Updated
   openGraph: {
     title: `${lazyGrass.name} | Cumming GA Artificial Turf Installation`, // <-- Updated
     description:
       'Expert artificial turf installation in Cumming, GA. We handle grading, drainage, and professional installation for lawns, pets, and putting greens.', // <-- Updated
-    url: 'https://nearbybizfinder.com/businesses/lazy-grass-cumming/', // <-- Updated
+    url: 'https://nearbybizfinder.com/businesses/lazy-grass/cumming/', // <-- Updated
     type: 'website'
   },
   twitter: {

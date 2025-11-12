@@ -77,12 +77,12 @@ export const metadata: Metadata = {
   description:
     'Alpharetta-area artificial turf, pet turf, and putting green installers. Family-owned, licensed, and insured. Get a free estimate today.',
   robots: 'index, follow',
-  alternates: { canonical: 'https://nearbybizfinder.com/businesses/lazy-grass-alpharetta/' },
+  alternates: { canonical: 'https://nearbybizfinder.com/businesses/lazy-grass/alpharetta/' },
   openGraph: {
     title: `${lazyGrass.name} | Alpharetta Artificial Turf Installation`,
     description:
       'Expert artificial turf installation in Alpharetta, GA. We handle grading, drainage, and professional installation for lawns, pets, and putting greens.',
-    url: 'https://nearbybizfinder.com/businesses/lazy-grass-alpharetta/',
+    url: 'https://nearbybizfinder.com/businesses/lazy-grass/alpharetta/',
     type: 'website'
   },
   twitter: {
