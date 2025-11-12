@@ -418,12 +418,11 @@ function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Service Areas</h3>
             <ul className="space-y-3 text-sm text-slate-400">
-              <li>Woodstock, GA</li>
-              <li>Sandy Springs, GA</li>
-              <li>Marietta, GA</li>
-              <li>Roswell, GA</li>
-              <li>Alpharetta, GA</li>
-              <li>Canton, GA</li>
+              <li><a href="https://nearbybizfinder.com/businesses/lazy-grass/">Woodstock, GA</a></li>
+              <li><a href="https://nearbybizfinder.com/businesses/lazy-grass/sandy-springs">Sandy Springs, GA</a></li>
+              <li><a href="https://nearbybizfinder.com/businesses/lazy-grass/rosewell">Rosewell, GA</a></li>
+              <li><a href="https://nearbybizfinder.com/businesses/lazy-grass/alpharetta">Alpharetta, GA</a></li>
+              <li><a href="https://nearbybizfinder.com/businesses/lazy-grass/cumming">Cumming, GA</a></li>
             </ul>
           </div>
 
