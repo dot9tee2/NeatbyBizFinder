@@ -437,10 +437,10 @@ function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Service Areas</h3>
             <ul className="space-y-3 text-sm text-slate-400">
-              <li><a className="font-medium text-slate-400 hover:text-teal-300 hover:underline transition-colors duration-200" href="https://nearbybizfinder.com/businesses/lazy-grass/">Woodstock, GA</a></li>
+              <li><a className="font-medium text-slate-400 hover:text-teal-300 hover:underline transition-colors duration-200" href="https://nearbybizfinder.com/businesses/lazy-grass/woodstock">Woodstock, GA</a></li>
               <li><a className="font-medium text-slate-400 hover:text-teal-300 hover:underline transition-colors duration-200" href="https://nearbybizfinder.com/businesses/lazy-grass/sandy-springs">Sandy Springs, GA</a></li>
               <li><a className="font-medium text-slate-400 hover:text-teal-300 hover:underline transition-colors duration-200" href="https://nearbybizfinder.com/businesses/lazy-grass/rosewell">Rosewell, GA</a></li>
-              <li><a className="font-medium text-slate-400 hover:text-teal-300 hover:underline transition-colors duration-200" href="https://nearbybizfinder.com/businesses/lazy-grass/alpharetta">Alpharetta, GA</a></li>
+              <li><a className="font-medium text-slate-400 hover:text-teal-300 hover:underline transition-colors duration-200" href="https://nearbybizfinder.com/businesses/lazy-grass">Alpharetta, GA</a></li>
               <li><a className="font-medium text-slate-400 hover:text-teal-300 hover:underline transition-colors duration-200" href="https://nearbybizfinder.com/businesses/lazy-grass/cummings">Cummings, GA</a></li>
             </ul>
           </div>
