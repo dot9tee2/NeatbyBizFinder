@@ -1,5 +1,7 @@
 // Sitemap management utilities
 
+import { BUSINESS_MANIFEST } from './businesses-manifest';
+
 export interface SitemapUrl {
   url: string;
   lastModified: string;
@@ -42,6 +44,13 @@ export function generateSitemapIndexXml(sitemaps: Array<{loc: string; lastmod: s
     <lastmod>${sitemap.lastmod}</lastmod>
   </sitemap>`).join('')}
 </sitemapindex>`;
+}
+
+/**
+ * Return the authoritative business/location manifest
+ */
+export function getBusinessManifest(): Record<string, string[]> {
+  return BUSINESS_MANIFEST;
 }
 
 /**

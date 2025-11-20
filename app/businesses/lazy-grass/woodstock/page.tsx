@@ -76,12 +76,12 @@ export const metadata: Metadata = {
   title: `${lazyGrass.name} | Woodstock Artificial Turf Installation`,
   description:
     'Woodstock-area artificial turf, pet turf, and putting green installers. Family-owned, licensed, and insured. Get a free estimate today.',
-  alternates: { canonical: 'https://nearbybizfinder.com/businesses/lazy-grass/woodstock' }, // Example URL
+  alternates: { canonical: 'https://nearbybizfinder.com/businesses/lazy-grass/woodstock/' }, // Example URL
   openGraph: {
     title: `${lazyGrass.name} | Woodstock Artificial Turf Installation`,
     description:
       'Expert artificial turf installation in Woodstock, GA. We handle grading, drainage, and professional installation for lawns, pets, and putting greens.',
-    url: 'https://nearbybizfinder.com/businesses/lazy-grass/woodstock',
+    url: 'https://nearbybizfinder.com/businesses/lazy-grass/woodstock/',
     type: 'website'
   },
   twitter: {

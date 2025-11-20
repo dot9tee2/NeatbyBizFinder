@@ -5,7 +5,6 @@ import SearchPageContent from './search-content';
 export const metadata: Metadata = {
   title: 'Search Local Businesses | NearbyBizFinder',
   description: 'Search and filter local businesses by category, rating, price, and distance. Discover top-rated places near you.',
-  robots: 'index, follow',
   alternates: { canonical: '/search/' },
   openGraph: { title: 'Search Local Businesses', description: 'Filter local businesses and find the best options near you.' },
   twitter: { card: 'summary', title: 'Search Local Businesses', description: 'Filter local businesses and find the best options near you.' },

@@ -101,10 +101,10 @@ export default function LazyGrassRedesign() {
       <Head>
         <title>Lazy Grass | Sandy Springs Artificial Turf Installation</title>
         <meta name="description" content="Sandy Springs-area artificial turf, pet turf, and putting green installers. Family-owned, licensed, and insured. Get a free estimate today." />
-        <link rel="canonical" href="https://nearbybizfinder.com/businesses/lazy-grass/sandy-springs" />
+        <link rel="canonical" href="https://nearbybizfinder.com/businesses/lazy-grass/sandy-springs/" />
         <meta property="og:title" content="Lazy Grass | Sandy Springs Artificial Turf Installation" />
         <meta property="og:description" content="Expert artificial turf installation in Sandy Springs, GA. We handle grading, drainage, and professional installation for lawns, pets, and putting greens." />
-        <meta property="og:url" content="https://nearbybizfinder.com/businesses/lazy-grass/sandy-springs" />
+        <meta property="og:url" content="https://nearbybizfinder.com/businesses/lazy-grass/sandy-springs/" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Lazy Grass | Sandy Springs Artificial Turf Installation" />
