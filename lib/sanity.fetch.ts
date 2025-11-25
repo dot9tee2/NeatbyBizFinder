@@ -1,5 +1,5 @@
 import { sanityClient } from './sanity.client';
-import { allCategoriesQuery, featuredBusinessesQuery, businessesByCategoryQuery } from './sanity.queries';
+import { allCategoriesQuery, featuredBusinessesQuery, businessesByCategoryQuery, businessBySlugQuery } from './sanity.queries';
 
 export async function fetchCategoriesFromSanity() {
 	try {
@@ -23,6 +23,14 @@ export async function fetchBusinessesByCategorySlug(slug: string) {
 		return res?.items || [];
 	} catch {
 		return [];
+	}
+}
+
+export async function fetchBusinessBySlug(slug: string) {
+	try {
+		return await sanityClient.fetch(businessBySlugQuery, { slug }, { cache: 'no-store' });
+	} catch {
+		return null;
 	}
 }
 

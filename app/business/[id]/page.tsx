@@ -24,6 +24,8 @@ import {
 import { Metadata } from 'next';
 import Script from 'next/script';
 import { businesses as db } from '@/lib/supabase';
+import { fetchBusinessBySlug } from '@/lib/sanity.fetch';
+import type { Business } from '@/types/business';
 
 // Keep static for Next.js export, but page reads dynamic data when available
 export const dynamic = 'force-dynamic';
@@ -31,7 +33,36 @@ export const dynamic = 'force-dynamic';
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;
   const { data } = await db.getById(id);
-  const business = data ?? mockBusinesses.find(b => b.id === id);
+  let business = data ?? mockBusinesses.find(b => b.id === id);
+  if (!business) {
+    const sanity = await fetchBusinessBySlug(id);
+    if (sanity) {
+      business = {
+        id: sanity.slug || sanity._id,
+        name: sanity.name || '',
+        description: sanity.description || '',
+        category: '', // category name not fetched here; omit from title fallback
+        address: sanity.address || '',
+        city: sanity.city || '',
+        state: sanity.state || '',
+        zip_code: sanity.zip_code || '',
+        latitude: 0,
+        longitude: 0,
+        phone: sanity.phone || '',
+        website: sanity.website || '',
+        email: sanity.email || '',
+        rating: Number(sanity.rating || 0),
+        review_count: Number(sanity.reviewCount || 0),
+        price_range: (sanity.priceRange as Business['price_range']) || '$$',
+        hours: { monday: '', tuesday: '', wednesday: '', thursday: '', friday: '', saturday: '', sunday: '' },
+        images: Array.isArray(sanity.images) ? sanity.images : [],
+        featured_image: sanity.featured_image || '',
+        amenities: [],
+        created_at: '',
+        updated_at: '',
+      } as Business;
+    }
+  }
   
   if (!business) {
     return {
@@ -54,7 +85,36 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 export default async function BusinessPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const { data } = await db.getById(id);
-  const business = data ?? mockBusinesses.find(b => b.id === id);
+  let business = data ?? mockBusinesses.find(b => b.id === id);
+  if (!business) {
+    const sanity = await fetchBusinessBySlug(id);
+    if (sanity) {
+      business = {
+        id: sanity.slug || sanity._id,
+        name: sanity.name || '',
+        description: sanity.description || '',
+        category: '', // Sanity single fetch omits category name here
+        address: sanity.address || '',
+        city: sanity.city || '',
+        state: sanity.state || '',
+        zip_code: sanity.zip_code || '',
+        latitude: 0,
+        longitude: 0,
+        phone: sanity.phone || '',
+        website: sanity.website || '',
+        email: sanity.email || '',
+        rating: Number(sanity.rating || 0),
+        review_count: Number(sanity.reviewCount || 0),
+        price_range: (sanity.priceRange as Business['price_range']) || '$$',
+        hours: { monday: '', tuesday: '', wednesday: '', thursday: '', friday: '', saturday: '', sunday: '' },
+        images: Array.isArray(sanity.images) ? sanity.images : [],
+        featured_image: sanity.featured_image || '',
+        amenities: [],
+        created_at: '',
+        updated_at: '',
+      } as Business;
+    }
+  }
 
   if (!business) {
     notFound();

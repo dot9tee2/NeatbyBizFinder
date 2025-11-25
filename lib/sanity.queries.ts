@@ -47,5 +47,23 @@ query($slug){
 }
 `;
 
+export const businessBySlugQuery = `
+*[_type == "business" && slug.current == $slug][0]{
+  _id,
+  name,
+  "slug": slug.current,
+  description,
+  phone,
+  website,
+  email,
+  rating,
+  reviewCount,
+  priceRange,
+  "featured_image": featuredImage.asset->url,
+  "images": images[].asset->url,
+  address, city, state, zip_code
+}
+`;
+
 
 
