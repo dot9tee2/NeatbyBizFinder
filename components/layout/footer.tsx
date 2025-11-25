@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { MapPin, Mail, Phone, Facebook, Twitter, Instagram } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -23,17 +23,6 @@ export default function Footer() {
             <p className="text-gray-400 text-sm">
               Discover and connect with local businesses in your area. Find the best restaurants, services, and shops near you.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Instagram className="h-5 w-5" />
-              </a>
-            </div>
           </div>
 
           {/* Quick Links */}
@@ -96,13 +85,6 @@ export default function Footer() {
               <li className="flex items-center space-x-2">
                 <Phone className="h-4 w-4 text-gray-400" />
                 <span className="text-gray-400">(555) 123-4567</span>
-              </li>
-              <li className="flex items-start space-x-2">
-                <MapPin className="h-4 w-4 text-gray-400 mt-1" />
-                <span className="text-gray-400">
-                  123 Business Ave<br />
-                  San Francisco, CA 94105
-                </span>
               </li>
             </ul>
           </div>

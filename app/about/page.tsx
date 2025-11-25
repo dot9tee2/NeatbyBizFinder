@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import Script from 'next/script';
 
 export const metadata: Metadata = {
@@ -91,6 +92,27 @@ export default function AboutPage() {
           <p>
             Have feedback or a partnership idea? Reach us at <a href="mailto:info@nearbybizfinder.com">info@nearbybizfinder.com</a>.
           </p>
+        </div>
+
+        <div className="mt-12 border-t pt-8">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Explore Popular Categories</h2>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/categories/restaurants/" className="px-4 py-2 rounded-full border text-sm hover:bg-gray-50">
+              Restaurants
+            </Link>
+            <Link href="/categories/home-services/" className="px-4 py-2 rounded-full border text-sm hover:bg-gray-50">
+              Home Services
+            </Link>
+            <Link href="/categories/beauty-spas/" className="px-4 py-2 rounded-full border text-sm hover:bg-gray-50">
+              Beauty & Spas
+            </Link>
+            <Link href="/categories/professional-services/" className="px-4 py-2 rounded-full border text-sm hover:bg-gray-50">
+              Professional Services
+            </Link>
+            <Link href="/categories/" className="px-4 py-2 rounded-full border text-sm hover:bg-gray-50">
+              Browse all categories
+            </Link>
+          </div>
         </div>
       </div>
     </div>

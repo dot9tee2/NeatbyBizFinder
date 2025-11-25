@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import Script from 'next/script';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -105,10 +106,26 @@ export default function ContactPage() {
                 (555) 123-4567
               </a>
             </div>
-            <div className="p-6 rounded-lg border bg-white">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Address</h3>
-              <p className="text-gray-600 text-sm">123 Business Ave<br />San Francisco, CA 94105</p>
-            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-gray-50 border-t">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Keep Exploring</h2>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/categories/restaurants/" className="px-4 py-2 rounded-full border text-sm bg-white hover:bg-gray-50">
+              Restaurants near you
+            </Link>
+            <Link href="/categories/home-services/" className="px-4 py-2 rounded-full border text-sm bg-white hover:bg-gray-50">
+              Home services near you
+            </Link>
+            <Link href="/categories/automotive/" className="px-4 py-2 rounded-full border text-sm bg-white hover:bg-gray-50">
+              Automotive services
+            </Link>
+            <Link href="/categories/" className="px-4 py-2 rounded-full border text-sm bg-white hover:bg-gray-50">
+              Browse all categories
+            </Link>
           </div>
         </div>
       </div>

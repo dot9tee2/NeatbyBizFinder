@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
 	title: 'Terms of Service | NearbyBizFinder',
@@ -36,6 +37,23 @@ export default function TermsPage() {
 
 					<h2>Changes to Terms</h2>
 					<p>We may update these Terms from time to time. Continued use constitutes acceptance of the updated Terms.</p>
+				</div>
+			</div>
+
+			<div className="bg-gray-50 border-t">
+				<div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+					<h2 className="text-xl font-semibold text-gray-900 mb-4">Helpful Links</h2>
+					<div className="flex flex-wrap gap-3">
+						<Link href="/categories/" className="px-4 py-2 rounded-full border text-sm bg-white hover:bg-gray-50">
+							Browse all categories
+						</Link>
+						<Link href="/about/" className="px-4 py-2 rounded-full border text-sm bg-white hover:bg-gray-50">
+							About NearbyBizFinder
+						</Link>
+						<Link href="/contact/" className="px-4 py-2 rounded-full border text-sm bg-white hover:bg-gray-50">
+							Contact us
+						</Link>
+					</div>
 				</div>
 			</div>
 		</div>

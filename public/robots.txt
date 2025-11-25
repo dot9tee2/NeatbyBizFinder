@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-
-# Let bots crawl search but we'll noindex via meta robots
-
-Sitemap: https://nearbybizfinder.com/sitemap.xml

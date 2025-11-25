@@ -14,8 +14,10 @@ export default function ConditionalLayout({ children }: ConditionalLayoutProps) 
   
   // Check if we're on a business page
   const isBusinessPage = pathname.startsWith('/businesses/');
+  // Exclude Sanity Studio from site chrome
+  const isStudioPage = pathname.startsWith('/studio');
   
-  if (isBusinessPage) {
+  if (isBusinessPage || isStudioPage) {
     // For business pages, only render the children without main header/footer
     return <>{children}</>;
   }
@@ -23,8 +25,9 @@ export default function ConditionalLayout({ children }: ConditionalLayoutProps) 
   // For all other pages, render with main header and footer
   return (
     <div className="flex flex-col min-h-screen">
+      <a href="#content" className="sr-only focus:not-sr-only">Skip to content</a>
       <Header />
-      <main className="flex-1">
+      <main id="content" className="flex-1">
         {children}
       </main>
       <Footer />

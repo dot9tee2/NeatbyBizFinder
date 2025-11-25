@@ -37,6 +37,10 @@ export async function middleware(req: NextRequest) {
   if (!isAdminRoute) return res;
 
   if (!session) {
+    // For API routes, return JSON instead of HTML redirect so clients can handle errors cleanly
+    if (req.nextUrl.pathname.startsWith('/api/')) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
     const url = req.nextUrl.clone();
     url.pathname = '/auth/signin';
     url.searchParams.set('redirect', req.nextUrl.pathname + req.nextUrl.search);
@@ -50,6 +54,9 @@ export async function middleware(req: NextRequest) {
     .single();
 
   if (!profile || profile.role !== 'admin') {
+    if (req.nextUrl.pathname.startsWith('/api/')) {
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    }
     return NextResponse.redirect(new URL('/forbidden', req.url));
   }
 

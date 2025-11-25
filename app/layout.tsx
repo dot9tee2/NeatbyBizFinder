@@ -48,7 +48,6 @@ export const metadata: Metadata = {
     description: 'Find and connect with the best local businesses in your area.',
     images: ['/logo.png'],
   },
-  themeColor: '#2563eb',
   icons: {
     icon: [
       { url: '/favicon.ico' },

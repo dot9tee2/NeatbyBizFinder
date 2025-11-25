@@ -8,6 +8,8 @@ import BusinessList from '@/components/business/business-list';
 import { mockBusinesses, businessCategories } from '@/lib/mock-data';
 import { businesses as db } from '@/lib/supabase';
 import { MapPin, Star, Users, Search, Shield, Clock } from 'lucide-react';
+import { fetchFeaturedBusinessesFromSanity } from '@/lib/sanity.fetch';
+import type { Business } from '@/types/business';
 
 export const metadata: Metadata = {
   title: 'NearbyBizFinder | Find Local Businesses Near You',
@@ -33,10 +35,45 @@ export default async function HomePage() {
   const { data, error } = await db.getAll();
   const list = (data && data.length && !error) ? data : mockBusinesses;
 
-  // Get featured businesses (top-rated ones)
-  const featuredBusinesses = [...list]
-    .sort((a, b) => b.rating - a.rating)
-    .slice(0, 3);
+  // Prefer Sanity for featured businesses, fallback to Supabase/mock
+  const sanityFeatured = await fetchFeaturedBusinessesFromSanity();
+  const featuredBusinesses: Business[] =
+    Array.isArray(sanityFeatured) && sanityFeatured.length
+      ? sanityFeatured.map((b: any): Business => ({
+          id: b.slug || b._id,
+          name: b.name || '',
+          description: b.description || '',
+          category: b.category?.name || '',
+          address: b.address || '',
+          city: b.city || '',
+          state: b.state || '',
+          zip_code: b.zip_code || '',
+          latitude: 0,
+          longitude: 0,
+          phone: b.phone || '',
+          website: b.website || '',
+          email: '',
+          rating: Number(b.rating || 0),
+          review_count: Number(b.reviewCount || 0),
+          price_range: (b.priceRange as Business['price_range']) || '$$',
+          hours: {
+            monday: '',
+            tuesday: '',
+            wednesday: '',
+            thursday: '',
+            friday: '',
+            saturday: '',
+            sunday: '',
+          },
+          images: Array.isArray(b.images) ? b.images : [],
+          featured_image: b.featured_image || '',
+          amenities: [],
+          created_at: '',
+          updated_at: '',
+        }))
+      : [...list]
+          .sort((a, b) => b.rating - a.rating)
+          .slice(0, 3);
 
   return (
     <div className="min-h-screen">
@@ -170,6 +207,27 @@ export default async function HomePage() {
                 </Link>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* Popular Searches */}
+      <section className="py-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Popular Searches</h2>
+            <p className="text-gray-600 mt-2">Quick links to common searches</p>
+          </div>
+          <div className="flex flex-wrap gap-3 justify-center">
+            {businessCategories.map((category) => (
+              <Link
+                key={`popular-${category.id}`}
+                href={`/search/?category=${category.slug}`}
+                className="px-4 py-2 rounded-full border text-sm bg-white hover:bg-gray-50 hover:border-blue-200 hover:text-blue-700 transition-colors"
+              >
+                {category.name}
+              </Link>
+            ))}
           </div>
         </div>
       </section>
