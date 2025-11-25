@@ -120,6 +120,8 @@ export default async function BusinessPage({ params }: { params: Promise<{ id: s
     notFound();
   }
 
+  const telHref = business.phone ? `tel:${String(business.phone).replace(/[^+\d]/g, '')}` : '';
+
   // Prepare typed opening hours for JSON-LD
   const openingHoursSpec = Object.entries(business.hours as Record<string, string>).map(([dayKey, hoursValue]) => {
     const parts = (hoursValue || '').split('-');
@@ -280,10 +282,14 @@ export default async function BusinessPage({ params }: { params: Promise<{ id: s
                 <Badge variant="secondary">{business.category}</Badge>
               </div>
               <div className="mt-4 md:mt-0 flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-                  <Phone className="h-4 w-4 mr-2" />
-                  Call Now
-                </Button>
+                {business.phone && (
+                  <Button size="lg" className="bg-blue-600 hover:bg-blue-700" asChild aria-label={`Call ${business.name}`}>
+                    <a href={telHref}>
+                      <Phone className="h-4 w-4 mr-2" />
+                      Call Now
+                    </a>
+                  </Button>
+                )}
                 {business.website && (
                   <Button variant="outline" size="lg">
                     <ExternalLink className="h-4 w-4 mr-2" />
@@ -433,9 +439,13 @@ export default async function BusinessPage({ params }: { params: Promise<{ id: s
                   <Phone className="h-5 w-5 text-gray-400" />
                   <div>
                     <p className="text-sm text-gray-600">Phone</p>
-                    <p className="font-medium text-gray-900">
-                      {business.phone}
-                    </p>
+                    {business.phone ? (
+                      <a href={telHref} className="font-medium text-blue-600 hover:underline">
+                        {business.phone}
+                      </a>
+                    ) : (
+                      <p className="font-medium text-gray-900">N/A</p>
+                    )}
                   </div>
                 </div>
 

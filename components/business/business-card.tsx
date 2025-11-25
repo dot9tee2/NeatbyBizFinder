@@ -46,6 +46,8 @@ export default function BusinessCard({ business, className, searchTerm }: Busine
     }
   };
 
+  const telHref = business.phone ? `tel:${String(business.phone).replace(/[^+\d]/g, '')}` : '';
+
   return (
     <Card className={cn('group hover:shadow-lg transition-all duration-300', className)}>
       <CardContent className="p-0">
@@ -133,8 +135,10 @@ export default function BusinessCard({ business, className, searchTerm }: Busine
               </Button>
             </Link>
             {business.phone && (
-              <Button variant="outline" size="sm">
-                <Phone className="h-4 w-4" />
+              <Button variant="outline" size="sm" asChild aria-label={`Call ${business.name}`}>
+                <a href={telHref}>
+                  <Phone className="h-4 w-4" />
+                </a>
               </Button>
             )}
           </div>
