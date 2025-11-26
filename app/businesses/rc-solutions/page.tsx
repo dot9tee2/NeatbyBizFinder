@@ -7,22 +7,22 @@ import { rcSolutions, cityImage } from '@/lib/rc-solutions';
 import OptimizedVideo from '@/components/ui/optimized-video';
 
 export const metadata: Metadata = {
-  title: `${rcSolutions.name} | Sanford HVAC, Drywall & Water Heaters`,
+  title: 'HVAC Services in Sanford | Expert Emergency Service',
   description:
-    'Sanford-area HVAC installation & repair, drywall & painting, and water heater services. Financing available: $0 down, no payments, no interest for 24 months. Call today.',
+    'Reliable HVAC and drywall services in Sanford. We offer quick repairs, installations, and emergency HVAC services to keep your house relaxing all year.',
   alternates: { canonical: 'https://nearbybizfinder.com/businesses/rc-solutions/' },
   openGraph: {
-    title: `${rcSolutions.name} | Sanford HVAC, Drywall & Water Heaters`,
+    title: 'HVAC Services in Sanford | Expert Emergency Service',
     description:
-      'Reliable AC, drywall/painting, and water heater services in the Sanford area. Honest pricing, strong guarantees, and financing with $0 down for qualified customers.',
+      'Reliable HVAC and drywall services in Sanford. We offer quick repairs, installations, and emergency HVAC services to keep your house relaxing all year.',
     url: 'https://nearbybizfinder.com/businesses/rc-solutions/',
     type: 'website'
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${rcSolutions.name} | Sanford HVAC, Drywall & Water Heaters`,
+    title: 'HVAC Services in Sanford | Expert Emergency Service',
     description:
-      'Reliable AC, drywall/painting, and water heater services in the Sanford area.'
+      'Reliable HVAC and drywall services in Sanford. We offer quick repairs, installations, and emergency HVAC services to keep your house relaxing all year.'
   }
 };
 
