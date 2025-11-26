@@ -46,6 +46,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
+        // Ensure stable SSR/CSR behavior and non-submit default
+        // When rendering a real button, default to type="button" unless provided
+        {...(!asChild ? { type: (props as any)?.type ?? 'button' } : {})}
+        suppressHydrationWarning
         {...props}
       />
     );

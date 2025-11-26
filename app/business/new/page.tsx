@@ -18,7 +18,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
-import { auth, businesses as bizApi, supabase } from '@/lib/supabase';
+import { auth, supabase } from '@/lib/supabase';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 
@@ -58,7 +58,7 @@ async function compressImageToJpeg(file: File, opts?: { maxWidth?: number; maxHe
     URL.revokeObjectURL(objectUrl);
   }
 }
-import { businessCategories } from '@/lib/mock-data';
+import { fetchCategoriesFromSanity } from '@/lib/sanity.fetch';
 import type { Business } from '@/types/business';
 
 const hoursDays = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'] as const;
@@ -368,22 +368,37 @@ export default function NewBusinessPage() {
       amenities,
     };
 
-    const { data, error } = await bizApi.create(payload);
-    if (error) {
-      // Attach error to any field; show generic if unknown
-      form.setError('name', { message: error.message || 'Failed to create business' });
-      toast({ title: 'Could not create business', description: error.message || 'Please try again', variant: 'destructive' as any });
-      return;
-    }
-    if (data?.id) {
-      toast({ title: 'Business created', description: 'Your business has been added successfully.' });
-      router.push(`/business/${data.id}`);
-    } else {
-      router.push('/search');
+    // Submit to Sanity via API (requires user to be logged in)
+    try {
+      const resp = await fetch('/api/business/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const json = await resp.json();
+      if (!resp.ok) {
+        form.setError('name', { message: json?.error || 'Submission failed' });
+        toast({ title: 'Submission failed', description: json?.error || 'Please sign in and try again', variant: 'destructive' as any });
+        return;
+      }
+      toast({ title: 'Submission received', description: 'We will review and publish shortly.' });
+      router.push('/business/thanks');
+    } catch (e: any) {
+      form.setError('name', { message: e?.message || 'Submission failed' });
+      toast({ title: 'Submission failed', description: e?.message || 'Please try again', variant: 'destructive' as any });
     }
   };
 
-  const categoryOptions = useMemo(() => businessCategories.map(c => c.name), []);
+  const [categories, setCategories] = useState<Array<{ id: string; name: string; slug: string; icon?: string }>>([]);
+  useEffect(() => {
+    (async () => {
+      try {
+        const sanityCategories = await fetchCategoriesFromSanity();
+        const mapped = (sanityCategories || []).map((c: any) => ({ id: c._id, name: c.name, slug: c.slug, icon: c.icon || '📍' }));
+        setCategories(mapped);
+      } catch {}
+    })();
+  }, []);
 
   if (checkingAuth) {
     return (
@@ -434,8 +449,13 @@ export default function NewBusinessPage() {
                               <SelectValue placeholder="Select a category" />
                             </SelectTrigger>
                             <SelectContent>
-                              {categoryOptions.map((name) => (
-                                <SelectItem key={name} value={name}>{name}</SelectItem>
+                              {categories.map((c) => (
+                                <SelectItem key={c.id} value={c.slug}>
+                                  <div className="flex items-center space-x-2">
+                                    <span>{c.icon}</span>
+                                    <span>{c.name}</span>
+                                  </div>
+                                </SelectItem>
                               ))}
                             </SelectContent>
                           </Select>

@@ -31,6 +31,12 @@ const nextConfig = {
   },
   redirects: async () => {
     return [
+      // Redirect /business/[slug] to /b/[slug]
+      {
+        source: '/business/:slug',
+        destination: '/b/:slug',
+        permanent: true,
+      },
       // Enforce non-www
       {
         source: '/:path*',

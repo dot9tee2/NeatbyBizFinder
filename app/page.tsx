@@ -5,10 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import SearchForm from '@/components/search/search-form';
 import BusinessList from '@/components/business/business-list';
-import { mockBusinesses, businessCategories } from '@/lib/mock-data';
-import { businesses as db } from '@/lib/supabase';
+import { fetchFeaturedBusinessesFromSanity, fetchCategoriesFromSanity, fetchSearchBusinesses } from '@/lib/sanity.fetch';
 import { MapPin, Star, Users, Search, Shield, Clock } from 'lucide-react';
-import { fetchFeaturedBusinessesFromSanity } from '@/lib/sanity.fetch';
 import type { Business } from '@/types/business';
 
 export const metadata: Metadata = {
@@ -32,11 +30,21 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const { data, error } = await db.getAll();
-  const list = (data && data.length && !error) ? data : mockBusinesses;
-
-  // Prefer Sanity for featured businesses, fallback to Supabase/mock
   const sanityFeatured = await fetchFeaturedBusinessesFromSanity();
+  const sanityCategories = await fetchCategoriesFromSanity();
+  const fallbackCategories = [
+    { _id: 'restaurants', name: 'Restaurants', slug: 'restaurants', icon: '🍽️' },
+    { _id: 'shopping', name: 'Shopping', slug: 'shopping', icon: '🛍️' },
+    { _id: 'health-medical', name: 'Health & Medical', slug: 'health-medical', icon: '🩺' },
+    { _id: 'automotive', name: 'Automotive', slug: 'automotive', icon: '🚗' },
+    { _id: 'beauty-spas', name: 'Beauty & Spas', slug: 'beauty-spas', icon: '💆' },
+    { _id: 'home-services', name: 'Home Services', slug: 'home-services', icon: '🏠' },
+    { _id: 'entertainment', name: 'Entertainment', slug: 'entertainment', icon: '🎭' },
+    { _id: 'professional-services', name: 'Professional Services', slug: 'professional-services', icon: '👔' },
+  ];
+  const categoriesToDisplay = Array.isArray(sanityCategories) && sanityCategories.length
+    ? sanityCategories
+    : fallbackCategories;
   const featuredBusinesses: Business[] =
     Array.isArray(sanityFeatured) && sanityFeatured.length
       ? sanityFeatured.map((b: any): Business => ({
@@ -71,9 +79,41 @@ export default async function HomePage() {
           created_at: '',
           updated_at: '',
         }))
-      : [...list]
-          .sort((a, b) => b.rating - a.rating)
-          .slice(0, 3);
+      : [];
+
+  // If no featured businesses, try a broader fetch (first N general businesses)
+  let businessesToShow = featuredBusinesses;
+  if (businessesToShow.length === 0) {
+    try {
+      const all = await fetchSearchBusinesses({});
+      businessesToShow = (Array.isArray(all) ? all : []).slice(0, 6).map((b: any): Business => ({
+        id: b.slug || b._id,
+        name: b.name || '',
+        description: b.description || '',
+        category: b.category?.name || '',
+        address: b.address || '',
+        city: b.city || '',
+        state: b.state || '',
+        zip_code: b.zip_code || '',
+        latitude: 0,
+        longitude: 0,
+        phone: b.phone || '',
+        website: b.website || '',
+        email: b.email || '',
+        rating: Number(b.rating || 0),
+        review_count: Number(b.reviewCount || 0),
+        price_range: (b.priceRange as Business['price_range']) || '$$',
+        hours: { monday: '', tuesday: '', wednesday: '', thursday: '', friday: '', saturday: '', sunday: '' },
+        images: Array.isArray(b.images) ? b.images : [],
+        featured_image: b.featured_image || '',
+        amenities: [],
+        created_at: '',
+        updated_at: '',
+      }));
+    } catch {
+      // keep empty
+    }
+  }
 
   return (
     <div className="min-h-screen">
@@ -99,12 +139,12 @@ export default async function HomePage() {
           itemListElement: featuredBusinesses.map((b, i) => ({
             '@type': 'ListItem',
             position: i + 1,
-            url: `https://nearbybizfinder.com/business/${b.id}/`,
+            url: `https://nearbybizfinder.com/b/${b.id}/`,
             item: {
               '@type': 'LocalBusiness',
               name: b.name,
               image: b.featured_image || b.images?.[0],
-              url: `https://nearbybizfinder.com/business/${b.id}/`,
+              url: `https://nearbybizfinder.com/b/${b.id}/`,
               address: {
                 '@type': 'PostalAddress',
                 streetAddress: b.address,
@@ -153,7 +193,7 @@ export default async function HomePage() {
             {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-400">{list.length}+</div>
+                <div className="text-3xl font-bold text-yellow-400">{businessesToShow.length}+</div>
                 <div className="text-sm text-blue-200">Local Businesses</div>
               </div>
               <div className="text-center">
@@ -186,27 +226,23 @@ export default async function HomePage() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
-            {businessCategories.map((category) => {
-              const categoryCount = list.filter(b => b.category === category.name).length;
-              
-              return (
-                <Link key={category.id} href={`/categories/${category.slug}/`}>
-                  <Card className="group hover:shadow-lg transition-all duration-300 cursor-pointer h-full">
-                    <CardContent className="p-6 text-center">
-                      <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">
-                        {category.icon}
-                      </div>
-                      <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
-                        {category.name}
-                      </h3>
-                      <p className="text-sm text-gray-500">
-                        {categoryCount} businesses
-                      </p>
-                    </CardContent>
-                  </Card>
-                </Link>
-              );
-            })}
+            {(Array.isArray(categoriesToDisplay) ? categoriesToDisplay : []).map((category: any) => (
+              <Link key={category._id || category.slug} href={`/categories/${category.slug}/`}>
+                <Card className="group hover:shadow-lg transition-all duration-300 cursor-pointer h-full">
+                  <CardContent className="p-6 text-center">
+                    <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">
+                      {category.icon || '📍'}
+                    </div>
+                    <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                      {category.name}
+                    </h3>
+                    <p className="text-sm text-gray-500">
+                      Explore
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -219,9 +255,9 @@ export default async function HomePage() {
             <p className="text-gray-600 mt-2">Quick links to common searches</p>
           </div>
           <div className="flex flex-wrap gap-3 justify-center">
-            {businessCategories.map((category) => (
+            {(Array.isArray(categoriesToDisplay) ? categoriesToDisplay : []).map((category: any) => (
               <Link
-                key={`popular-${category.id}`}
+                key={`popular-${category._id || category.slug}`}
                 href={`/search/?category=${category.slug}`}
                 className="px-4 py-2 rounded-full border text-sm bg-white hover:bg-gray-50 hover:border-blue-200 hover:text-blue-700 transition-colors"
               >
@@ -251,7 +287,7 @@ export default async function HomePage() {
             </Link>
           </div>
 
-          <BusinessList businesses={featuredBusinesses} showPagination={false} />
+          <BusinessList businesses={businessesToShow} showPagination={false} />
         </div>
       </section>
 

@@ -84,6 +84,12 @@ export default defineType({
 			title: 'Featured Image',
 		}),
 		defineField({
+			name: 'featured',
+			type: 'boolean',
+			title: 'Show on Homepage (Featured)',
+			initialValue: false,
+		}),
+		defineField({
 			name: 'rating',
 			type: 'number',
 			title: 'Rating',

@@ -3,6 +3,8 @@ export async function GET() {
 Disallow: /admin/
 Disallow: /businesses/admin/
 Disallow: /business/
+Disallow: /b/
+Disallow: /categories/
 
 Sitemap: https://nearbybizfinder.com/sitemap-index.xml
 `;

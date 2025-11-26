@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { mockBusinesses } from '@/lib/mock-data';
 import { 
   Star, 
   MapPin, 
@@ -21,9 +20,8 @@ import {
   ExternalLink,
   ChevronLeft
 } from 'lucide-react';
-import { Metadata } from 'next';
 import Script from 'next/script';
-import { businesses as db } from '@/lib/supabase';
+import { Metadata } from 'next';
 import { fetchBusinessBySlug } from '@/lib/sanity.fetch';
 import type { Business } from '@/types/business';
 
@@ -32,16 +30,13 @@ export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;
-  const { data } = await db.getById(id);
-  let business = data ?? mockBusinesses.find(b => b.id === id);
-  if (!business) {
-    const sanity = await fetchBusinessBySlug(id);
-    if (sanity) {
-      business = {
+  const sanity = await fetchBusinessBySlug(id);
+  const business = sanity
+    ? ({
         id: sanity.slug || sanity._id,
         name: sanity.name || '',
         description: sanity.description || '',
-        category: '', // category name not fetched here; omit from title fallback
+        category: '',
         address: sanity.address || '',
         city: sanity.city || '',
         state: sanity.state || '',
@@ -60,9 +55,8 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
         amenities: [],
         created_at: '',
         updated_at: '',
-      } as Business;
-    }
-  }
+      } as Business)
+    : null;
   
   if (!business) {
     return {
@@ -73,7 +67,8 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   return {
     title: `${business.name} - ${business.category} | NearbyBizFinder`,
     description: business.description,
-    alternates: { canonical: `/business/${id}/` },
+    alternates: { canonical: `/b/${id}/` },
+    robots: 'noindex, nofollow',
     openGraph: {
       title: business.name,
       description: business.description,
@@ -84,16 +79,13 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
 export default async function BusinessPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const { data } = await db.getById(id);
-  let business = data ?? mockBusinesses.find(b => b.id === id);
-  if (!business) {
-    const sanity = await fetchBusinessBySlug(id);
-    if (sanity) {
-      business = {
+  const sanity = await fetchBusinessBySlug(id);
+  const business = sanity
+    ? ({
         id: sanity.slug || sanity._id,
         name: sanity.name || '',
         description: sanity.description || '',
-        category: '', // Sanity single fetch omits category name here
+        category: '',
         address: sanity.address || '',
         city: sanity.city || '',
         state: sanity.state || '',
@@ -112,9 +104,8 @@ export default async function BusinessPage({ params }: { params: Promise<{ id: s
         amenities: [],
         created_at: '',
         updated_at: '',
-      } as Business;
-    }
-  }
+      } as Business)
+    : null;
 
   if (!business) {
     notFound();
@@ -123,7 +114,7 @@ export default async function BusinessPage({ params }: { params: Promise<{ id: s
   const telHref = business.phone ? `tel:${String(business.phone).replace(/[^+\d]/g, '')}` : '';
 
   // Prepare typed opening hours for JSON-LD
-  const openingHoursSpec = Object.entries(business.hours as Record<string, string>).map(([dayKey, hoursValue]) => {
+  const openingHoursSpec = Object.entries(business.hours as unknown as Record<string, string>).map(([dayKey, hoursValue]) => {
     const parts = (hoursValue || '').split('-');
     const opens = parts[0]?.trim();
     const closes = parts[1]?.trim();
@@ -176,7 +167,7 @@ export default async function BusinessPage({ params }: { params: Promise<{ id: s
     return `https://www.google.com/maps/search/?api=1&query=${address}`;
   };
 
-  const claimHref = `/business/claim/?listing=${encodeURIComponent(`https://nearbybizfinder.com/business/${business.id}/`)}`;
+  const claimHref = `/business/claim/?listing=${encodeURIComponent(`https://nearbybizfinder.com/b/${business.id}/`)}`;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -188,7 +179,7 @@ export default async function BusinessPage({ params }: { params: Promise<{ id: s
           itemListElement: [
             { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://nearbybizfinder.com/' },
             { '@type': 'ListItem', position: 2, name: business.category, item: `https://nearbybizfinder.com/search/?category=${encodeURIComponent(business.category.toLowerCase().replace(/\s+/g, '-'))}` },
-            { '@type': 'ListItem', position: 3, name: business.name, item: `https://nearbybizfinder.com/business/${business.id}/` },
+            { '@type': 'ListItem', position: 3, name: business.name, item: `https://nearbybizfinder.com/b/${business.id}/` },
           ],
         })}
       </Script>
@@ -196,10 +187,10 @@ export default async function BusinessPage({ params }: { params: Promise<{ id: s
         {JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'LocalBusiness',
-          '@id': `https://nearbybizfinder.com/business/${business.id}/#localbusiness`,
+          '@id': `https://nearbybizfinder.com/b/${business.id}/#localbusiness`,
           name: business.name,
           image: business.featured_image || business.images?.[0],
-          url: `https://nearbybizfinder.com/business/${business.id}/`,
+          url: `https://nearbybizfinder.com/b/${business.id}/`,
           telephone: business.phone,
           priceRange: business.price_range,
           address: {
@@ -347,7 +338,7 @@ export default async function BusinessPage({ params }: { params: Promise<{ id: s
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
-                  {Object.entries(business.hours as Record<string, string>).map(([day, hoursValue]) => (
+                  {Object.entries(business.hours as unknown as Record<string, string>).map(([day, hoursValue]) => (
                     <div key={day} className="flex justify-between py-2 border-b border-gray-100 last:border-0">
                       <span className="font-medium capitalize text-gray-900">
                         {day}

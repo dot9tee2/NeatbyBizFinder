@@ -8,7 +8,7 @@ export const allCategoriesQuery = `
 `;
 
 export const featuredBusinessesQuery = `
-*[_type == "business"]|order(rating desc)[0...6]{
+*[_type == "business" && featured == true]|order(_updatedAt desc, rating desc)[0...6]{
   _id,
   name,
   "slug": slug.current,
@@ -29,7 +29,7 @@ export const featuredBusinessesQuery = `
 `;
 
 export const businessesByCategoryQuery = `
-query($slug){
+{
   "items": *[_type == "business" && category->slug.current == $slug]|order(rating desc){
     _id,
     name,
@@ -62,6 +62,40 @@ export const businessBySlugQuery = `
   "featured_image": featuredImage.asset->url,
   "images": images[].asset->url,
   address, city, state, zip_code
+}
+`;
+
+export const searchBusinessesQuery = `
+{
+  "items": *[_type == "business"
+    && (!defined($q) 
+        || name match $q 
+        || description match $q
+        || category->name match $q
+        || address match $q
+        || city match $q
+        || state match $q)
+    && (!defined($location)
+        || address match $location
+        || city match $location
+        || state match $location)
+    && (!defined($category) || category->slug.current == $category)
+  ]|order(rating desc){
+    _id,
+    name,
+    "slug": slug.current,
+    description,
+    "category": category->{name, "slug": slug.current},
+    phone,
+    website,
+    email,
+    rating,
+    reviewCount,
+    priceRange,
+    "featured_image": featuredImage.asset->url,
+    "images": images[].asset->url,
+    address, city, state, zip_code
+  }
 }
 `;
 

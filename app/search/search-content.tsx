@@ -8,9 +8,9 @@ import SearchFilters from '@/components/search/search-filters';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
-import { mockBusinesses } from '@/lib/mock-data';
 import { Business, SearchFilters as SearchFiltersType } from '@/types/business';
-import { businesses as db } from '@/lib/supabase';
+import { fetchSearchBusinesses } from '@/lib/sanity.fetch';
+import { mapSanityBusiness } from '@/lib/sanity.map';
 
 function SearchPageContent() {
   const searchParams = useSearchParams();
@@ -40,51 +40,34 @@ function SearchPageContent() {
       await new Promise(resolve => setTimeout(resolve, 200));
 
       let records: Business[] = [];
-      let isUsingMockData = false;
-      
+
       try {
-        if (query || filters.location) {
-          const { data, error } = await db.search(query, filters.location);
-          if (error) throw error;
-          records = data || [];
-        } else {
-          const { data, error } = await db.getAll();
-          if (error) throw error;
-          records = data || [];
-        }
+        const docs = await fetchSearchBusinesses({
+          q: query || undefined,
+          location: filters.location || undefined,
+          category: filters.category || undefined,
+        });
+        records = (docs || []).map(mapSanityBusiness);
       } catch {
-        records = [...mockBusinesses];
-        isUsingMockData = true;
+        records = [];
       }
 
       // Apply client-side search and filters
       let filteredBusinesses = [...records];
 
-      // Enhanced client-side search for mock data
-      if (query && isUsingMockData) {
-        const searchTerm = query.toLowerCase();
-        filteredBusinesses = filteredBusinesses.filter(business => {
-          const searchableFields = [
-            business.name,
-            business.description,
-            business.category,
-            business.address,
-            business.city,
-            business.state,
-            business.phone,
-            business.email || '',
-            business.amenities.join(' ')
-          ].join(' ').toLowerCase();
-          
-          return searchableFields.includes(searchTerm);
-        });
-      }
+      const slugify = (s: string) =>
+        (s || '')
+          .toLowerCase()
+          .trim()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '');
+
+      // Do not apply additional client-side text filtering.
+      // GROQ already filtered results when `query` is present.
 
       if (filters.category) {
-        const normalizedCategory = filters.category?.toLowerCase() ?? '';
-        filteredBusinesses = filteredBusinesses.filter(business =>
-          business.category.toLowerCase().replace(/\s+/g, '-').includes(normalizedCategory)
-        );
+        const catSlug = slugify(filters.category);
+        filteredBusinesses = filteredBusinesses.filter(business => slugify(business.category) === catSlug);
       }
 
       if (filters.rating) {

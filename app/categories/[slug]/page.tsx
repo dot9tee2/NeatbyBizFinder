@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import { notFound } from 'next/navigation';
 import BusinessList from '@/components/business/business-list';
-import { businessCategories, mockBusinesses } from '@/lib/mock-data';
 import { fetchBusinessesByCategorySlug, fetchCategoriesFromSanity } from '@/lib/sanity.fetch';
 import type { Business } from '@/types/business';
 
@@ -15,16 +14,35 @@ export async function generateStaticParams() {
 	if (Array.isArray(sanityCategories) && sanityCategories.length > 0) {
 		return sanityCategories.map((c: any) => ({ slug: c.slug }));
 	}
-	return businessCategories.map((c) => ({ slug: c.slug }));
+	// Fallback to known category slugs so pages still build if Sanity is unavailable
+	const fallbackSlugs = [
+		'restaurants',
+		'shopping',
+		'health-medical',
+		'automotive',
+		'beauty-spas',
+		'home-services',
+		'entertainment',
+		'professional-services',
+	];
+	return fallbackSlugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
 	const { slug } = await params;
 	const sanityCategories = await fetchCategoriesFromSanity();
-	const category = (Array.isArray(sanityCategories) && sanityCategories.length
-		? sanityCategories.map((c: any) => ({ name: c.name, slug: c.slug }))
-		: businessCategories
-	).find((c: any) => c.slug === slug);
+	const categoryFromSanity = (Array.isArray(sanityCategories) ? sanityCategories.map((c: any) => ({ name: c.name, slug: c.slug })) : []).find((c: any) => c.slug === slug);
+	const fallbackNameMap: Record<string, string> = {
+		'restaurants': 'Restaurants',
+		'shopping': 'Shopping',
+		'health-medical': 'Health & Medical',
+		'automotive': 'Automotive',
+		'beauty-spas': 'Beauty & Spas',
+		'home-services': 'Home Services',
+		'entertainment': 'Entertainment',
+		'professional-services': 'Professional Services',
+	};
+	const category = categoryFromSanity ?? (fallbackNameMap[slug] ? { name: fallbackNameMap[slug], slug } : undefined);
 	if (!category) return {};
 	const title = `${category.name} Near You | NearbyBizFinder`;
 	const description = `Discover top-rated ${category.name.toLowerCase()} across the United States. Browse reviews, hours, and contact info.`;
@@ -32,7 +50,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 		title,
 		description,
 		alternates: { canonical: `/categories/${slug}/` },
-		robots: 'index, follow',
+		robots: 'noindex, nofollow',
 		openGraph: { title, description },
 	};
 }
@@ -40,10 +58,18 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 export default async function CategoryPage({ params }: { params: Params }) {
 	const { slug } = await params;
 	const sanityCategories = await fetchCategoriesFromSanity();
-	const category = (Array.isArray(sanityCategories) && sanityCategories.length
-		? sanityCategories.map((c: any) => ({ name: c.name, slug: c.slug }))
-		: businessCategories
-	).find((c: any) => c.slug === slug);
+	const categoryFromSanity = (Array.isArray(sanityCategories) ? sanityCategories.map((c: any) => ({ name: c.name, slug: c.slug })) : []).find((c: any) => c.slug === slug);
+	const fallbackNameMap: Record<string, string> = {
+		'restaurants': 'Restaurants',
+		'shopping': 'Shopping',
+		'health-medical': 'Health & Medical',
+		'automotive': 'Automotive',
+		'beauty-spas': 'Beauty & Spas',
+		'home-services': 'Home Services',
+		'entertainment': 'Entertainment',
+		'professional-services': 'Professional Services',
+	};
+	const category = categoryFromSanity ?? (fallbackNameMap[slug] ? { name: fallbackNameMap[slug], slug } : undefined);
 	if (!category) return notFound();
 
 	const sanityItems = await fetchBusinessesByCategorySlug(slug);
@@ -81,7 +107,7 @@ export default async function CategoryPage({ params }: { params: Params }) {
 					created_at: '',
 					updated_at: '',
 			  }))
-			: mockBusinesses.filter(b => b.category === category.name);
+			: [];
 
 	return (
 		<div className="min-h-screen bg-gray-50">

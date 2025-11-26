@@ -28,12 +28,6 @@ export async function GET() {
       priority: 0.9,
     },
     {
-      url: 'https://nearbybizfinder.com/categories/',
-      lastModified: currentDate,
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    },
-    {
       url: 'https://nearbybizfinder.com/privacy/',
       lastModified: currentDate,
       changeFrequency: 'yearly' as const,
@@ -77,26 +71,7 @@ export async function GET() {
     },
   ];
 
-  // Category pages
-  const categories = [
-    'restaurants',
-    'shopping', 
-    'health-medical',
-    'automotive',
-    'beauty-spas',
-    'home-services',
-    'entertainment',
-    'professional-services'
-  ];
-
-  const categoryPages = categories.map(category => ({
-    url: `https://nearbybizfinder.com/categories/${category}/`,
-    lastModified: currentDate,
-    changeFrequency: 'weekly' as const,
-    priority: 0.7,
-  }));
-
-  const allUrls = [...corePages, ...categoryPages];
+  const allUrls = [...corePages];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Search, MapPin } from 'lucide-react';
-import { businessCategories } from '@/lib/mock-data';
+import { fetchCategoriesFromSanity } from '@/lib/sanity.fetch';
 import SearchSuggestions from './search-suggestions';
 
 interface SearchFormProps {
@@ -95,6 +95,17 @@ export default function SearchForm({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  const [categories, setCategories] = useState<Array<{ id: string; name: string; slug: string; icon?: string }>>([]);
+  useEffect(() => {
+    (async () => {
+      try {
+        const sanityCategories = await fetchCategoriesFromSanity();
+        const mapped = (sanityCategories || []).map((c: any) => ({ id: c._id, name: c.name, slug: c.slug, icon: c.icon || '📍' }));
+        setCategories(mapped);
+      } catch {}
+    })();
+  }, []);
+
   return (
     <form onSubmit={handleSearch} className={className}>
       <div className="flex flex-col md:flex-row gap-4 p-6 bg-white rounded-2xl shadow-xl border border-gray-100 relative">
@@ -136,7 +147,7 @@ export default function SearchForm({
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="__ALL__">All Categories</SelectItem>
-              {businessCategories.map((cat) => (
+              {categories.map((cat) => (
                 <SelectItem key={cat.id} value={cat.slug}>
                   <div className="flex items-center space-x-2">
                     <span>{cat.icon}</span>

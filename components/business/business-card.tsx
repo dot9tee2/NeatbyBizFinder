@@ -75,7 +75,7 @@ export default function BusinessCard({ business, className, searchTerm }: Busine
         <div className="p-6">
           <div className="flex items-start justify-between mb-2">
             <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-1">
-              <Link href={`/business/${business.id}`}>
+              <Link href={`/b/${business.id}`}>
                 <SearchHighlight text={business.name} searchTerm={searchTerm || ''} />
               </Link>
             </h3>
@@ -129,7 +129,7 @@ export default function BusinessCard({ business, className, searchTerm }: Busine
 
           {/* Actions */}
           <div className="flex space-x-2">
-            <Link href={`/business/${business.id}`} className="flex-1">
+            <Link href={`/b/${business.id}`} className="flex-1">
               <Button className="w-full" size="sm">
                 View Details
               </Button>

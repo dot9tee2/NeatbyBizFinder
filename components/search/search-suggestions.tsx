@@ -4,8 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Search, MapPin, Tag } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { mockBusinesses, businessCategories } from '@/lib/mock-data';
-import { Business } from '@/types/business';
+import { fetchFeaturedBusinessesFromSanity, fetchCategoriesFromSanity } from '@/lib/sanity.fetch';
 
 interface SearchSuggestionsProps {
   query: string;
@@ -15,6 +14,22 @@ interface SearchSuggestionsProps {
   onClose: () => void;
 }
 
+type BusinessSuggestion = {
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  city: string;
+  rating: number;
+  icon?: string;
+};
+
+type CategorySuggestion = {
+  id: string;
+  name: string;
+  icon?: string;
+};
+
 export default function SearchSuggestions({ 
   query, 
   location, 
@@ -23,8 +38,8 @@ export default function SearchSuggestions({
   onClose 
 }: SearchSuggestionsProps) {
   const [suggestions, setSuggestions] = useState<{
-    businesses: Business[];
-    categories: typeof businessCategories;
+    businesses: BusinessSuggestion[];
+    categories: CategorySuggestion[];
     locations: string[];
   }>({
     businesses: [],
@@ -41,30 +56,36 @@ export default function SearchSuggestions({
     }
 
     // Add a small delay to avoid too many suggestions while typing
-    const timeoutId = setTimeout(() => {
+    const timeoutId = setTimeout(async () => {
       const searchTerm = query.toLowerCase();
     
-    // Business suggestions
-    const businessSuggestions = mockBusinesses
-      .filter(business => 
-        business.name.toLowerCase().includes(searchTerm) ||
-        business.description.toLowerCase().includes(searchTerm) ||
-        business.category.toLowerCase().includes(searchTerm)
-      )
-      .slice(0, 3);
+    // Business suggestions (simple featured-based, client filtered)
+    const sanityFeatured = await fetchFeaturedBusinessesFromSanity();
+    const mapped: BusinessSuggestion[] = (sanityFeatured || []).map((b: any): BusinessSuggestion => ({
+      id: b.slug || b._id,
+      name: b.name || '',
+      description: b.description || '',
+      category: b.category?.name || '',
+      city: b.city || '',
+      rating: b.rating || 0,
+      icon: b.icon || '📍',
+    }));
+    const businessSuggestions = mapped
+      .filter((b: BusinessSuggestion) => 
+        b.name.toLowerCase().includes(searchTerm) ||
+        b.description.toLowerCase().includes(searchTerm) ||
+        b.category.toLowerCase().includes(searchTerm)
+      ).slice(0, 3);
 
     // Category suggestions
-    const categorySuggestions = businessCategories
-      .filter(category => 
-        category.name.toLowerCase().includes(searchTerm)
-      )
-      .slice(0, 2);
+    const sanityCategories = await fetchCategoriesFromSanity();
+    const categorySuggestions: CategorySuggestion[] = (sanityCategories || [])
+      .map((c: any): CategorySuggestion => ({ id: c._id, name: c.name, icon: c.icon || '📍' }))
+      .filter((c: CategorySuggestion) => c.name.toLowerCase().includes(searchTerm)).slice(0, 2);
 
     // Location suggestions (unique cities from businesses)
-    const uniqueCities = Array.from(new Set(mockBusinesses.map(b => b.city)));
-    const locationSuggestions = uniqueCities
-      .filter(city => city.toLowerCase().includes(searchTerm))
-      .slice(0, 2);
+    const uniqueCities = Array.from(new Set(mapped.map(b => b.city).filter(Boolean)));
+    const locationSuggestions = uniqueCities.filter(city => city.toLowerCase().includes(searchTerm)).slice(0, 2);
 
       setSuggestions({
         businesses: businessSuggestions,
