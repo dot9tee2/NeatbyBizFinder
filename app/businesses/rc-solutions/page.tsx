@@ -95,10 +95,10 @@ function Hero() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28 relative">
         <p className="inline-flex items-center rounded-full bg-cyan-500/10 px-3 py-1 text-xs font-semibold text-cyan-300 ring-1 ring-inset ring-cyan-500/30">Sanford Main Service Area</p>
         <h1 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight">
-          HVAC, Drywall & Water Heater Pros — Honest. Reliable. Fast.
+          Reliable HVAC Services and Drywall Services You Can Trust
         </h1>
         <p className="mt-4 max-w-2xl text-slate-200">
-          AC installs and repairs, drywall/painting, and water heater services across the Sanford area. $0 down, no payments, no interest for 24 months for qualified customers.
+          Reliable HVAC and drywall services in Sanford. We offer quick repairs, installations, and emergency HVAC services to keep your house relaxing all year.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Link href={rcSolutions.phoneHref}><Button className="bg-amber-500 text-slate-900 hover:bg-amber-400">Call {rcSolutions.phone}</Button></Link>
@@ -140,7 +140,11 @@ function Services() {
               <div className="relative h-40 mb-4 rounded-md overflow-hidden">
                 <OptimizedImage
                   src={cityImage(rcSolutions.imagesBase, '',
-                    s.slug === 'ac' ? 'service-ac-2.png' : s.slug === 'drywall' ? 'service-drywall-1.png' : 'service-water-heater-2.png')}
+                    s.slug === 'ac' ? 'service-ac-2.png' : 
+                    s.slug === 'drywall' ? 'service-drywall-1.png' : 
+                    s.slug === 'furnace' ? 'service-furnace-1.png' :
+                    s.slug === 'heat-pump' ? 'service-heat-pump-1.png' :
+                    'service-water-heater-2.png')}
                   alt={s.title}
                   fill
                 />
@@ -162,7 +166,7 @@ function FinancingRebates() {
         <div className="bg-white/80 backdrop-blur rounded-xl p-6 md:p-8">
           <h2 className="text-xl md:text-2xl font-bold">Financing</h2>
           <p className="mt-2 text-slate-700">
-            $0 down, no payments, and no interest for 24 months for qualified customers. We also offer No Credit Financing with Housing Payment History. Our CPAs will guide you with filing for tax credits.
+          We make the best changes to your HVAC system, which will be inexpensive for Sanford homeowners by providing numerous HVAC financing alternatives. Whether you require a new air conditioner, furnace, or total system replacement, we provide bugdet friendly prices, which are not effective for your monthly expenses. Getting the perfect system has never been easier, thanks to affordable payments, quick approvals, and programs available even to clients with poor credit history. Enjoy year-round comfort without the initial investment. Our Sanford HVAC financing programs allow you to obtain what you need when you need it.
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
             <Link href={rcSolutions.phoneHref}><Button>Check Eligibility</Button></Link>
@@ -182,10 +186,10 @@ function About() {
           <h2 className="text-2xl md:text-3xl font-bold text-slate-900">About {rcSolutions.name}</h2>
           <p className="mt-4 text-slate-700">{rcSolutions.about}</p>
           <ul className="mt-6 grid grid-cols-2 gap-3 text-sm text-slate-700">
+            <li>24/7 Emergency Service</li>
             <li>Licensed & Insured</li>
-            <li>Upfront Pricing</li>
-            <li>Local Sanford Pros</li>
-            <li>5-Star Service</li>
+            <li>Financing Available</li>
+            <li>Warranty Backed</li>
           </ul>
         </div>
         <div className="grid grid-cols-2 gap-4">

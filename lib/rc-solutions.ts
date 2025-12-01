@@ -5,22 +5,32 @@ export const rcSolutions = {
   email: 'jonathan@rcsolutionsusa.org',
   serviceArea: 'Sanford Area',
   about:
-    'At RC Solutions LLC our motto is Honesty, Integrity and Reliability. We help homeowners save money by educating on rebates and incentives. Many homeowners can qualify for up to $8,000 for a new HVAC system. We offer no payments and no interest for 24 months for qualified customers. Our CPAs will guide you at the end of the year to file the proper forms for rebates and tax credits.',
+    'We are a recognized HVAC company that proudly serves Sanford residents with dependable heating, cooling, and drywall repair and installation services. With great experience, we are able to provide the best HVAC services in Sanford; we deliver fast, high-quality services you can rely on. Our skilled technicians are always available to provide emergency HVAC services for you. From quick HVAC repairs to new system installations and top-notch drywall work, we keep Sanford homes comfortable, efficient, and looking fantastic all year. Because providing your home comfort is our first job.',
   services: [
     {
       slug: 'ac',
       title: 'AC Installation & Repair',
-      desc: 'Residential & Commercial HVAC installs, repairs, seasonal tune-ups, and maintenance plans.'
+      desc: 'Experts guarantee the precise, secure, and quick installation of your new air conditioning system. We offer dependable, high-quality service in Sanford whether you are installing a new unit or replacing an old one. We provide an expert installation to your home, which gives your home a comfortable view and relaxing moments, because your comfort is our priority.'
     },
     {
       slug: 'drywall',
       title: 'Drywall, Painting & Repair',
-      desc: 'Seamless drywall fixes, texture/finishing, interior and exterior painting, and general repairs.'
+      desc: 'We provide the best drywall services in Sanford. We offer cheaper and quicker services than any other company. Whether it is a small job or weather it is a full room repair, our team with years of experience makes your home beautiful and charming.'
     },
     {
       slug: 'water-heaters',
       title: 'Water Heaters — Install & Repair',
-      desc: 'Tank & tankless, gas/electric, rapid replacements, diagnostics, and annual service.'
+      desc: 'We provide the best water heater services to the owners of homes in Sanford, which includes quick repairs, maintenance, and installations. If you are looking for a reliable water heater service near me, our crew is prepared to provide prompt and skilled assistance. We ensure that your home has consistent hot water by correcting leaks and installing efficient new systems.'
+    },
+    {
+      slug: 'furnace',
+      title: 'Furnace Installation & Repair',
+      desc: 'If you are looking for furnace repair near me. Our team is available 24 hours to provide remarkable services in Sanford with quick and reliable heating solutions. We solve all furnace difficulties, from minor repairs to serious breakdowns, so your home stays comfortable and safe. With quick responses to our customers, we show curiosity to make your homes cozy and warm in winter.'
+    },
+    {
+      slug: 'heat-pump',
+      title: 'Heat Pump Installation and Repair',
+      desc: 'We offer expert and the best heatpump repair and installation services to keep your house comfortable and warm. Our skilled experts handle everything from diagnosing system problems to installing dependable new systems. Whether your heat pump need a short repair or a complete replacement. We provide Cheaper trustworthy service to ensure pleasant heating and cooling in your home.'
     }
   ],
   faqs: [
