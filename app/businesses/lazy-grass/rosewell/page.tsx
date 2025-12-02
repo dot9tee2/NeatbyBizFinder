@@ -122,7 +122,7 @@ function JsonLd() {
     email: lazyGrass.email,
     telephone: '+16782341734',
     areaServed: ['Rosewell', lazyGrass.serviceArea, 'Georgia'],
-    url: 'https://nearbybizfinder.com/businesses/lazy-grass-rosewell/',
+    url: 'https://nearbybizfinder.com/businesses/lazy-grass/rosewell/',
     contactPoint: [{ '@type': 'ContactPoint', telephone: '+16782341734', contactType: 'customer service' }]
   } as const;
   return (
@@ -139,7 +139,7 @@ function LocalNavbar() {
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 border-b border-slate-200">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/businesses/lazy-grass/rosewell" className="flex items-center gap-2 text-gray-900">
+          <Link href="/businesses/lazy-grass/rosewell/" className="flex items-center gap-2 text-gray-900">
             <div className="relative h-12 w-28">
               {/* --- FIX: Using logo-on-light for the white navbar --- */}
               <OptimizedImage src="/lazy-grass/logo/logo-on-dark.webp" alt={`${lazyGrass.name} logo`} fill className="object-contain" priority />

@@ -119,7 +119,7 @@ function LocalNavbar() {
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 border-b border-slate-200">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/businesses/lazy-grass-alpharetta" className="flex items-center gap-2 text-gray-900">
+          <Link href="/businesses/lazy-grass/" className="flex items-center gap-2 text-gray-900">
             <div className="relative h-12 w-28">
               <OptimizedImage src="/lazy-grass/logo/logo-on-dark.webp" alt={`${lazyGrass.name} logo`} fill className="object-contain" priority />
             </div>
@@ -443,11 +443,11 @@ function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Service Areas</h3>
             <ul className="space-y-3 text-sm text-slate-400">
-              <li><a className="font-medium text-slate-400 hover:text-teal-300 hover:underline transition-colors duration-200" href="https://nearbybizfinder.com/businesses/lazy-grass/woodstock">Woodstock, GA</a></li>
-              <li><a className="font-medium text-slate-400 hover:text-teal-300 hover:underline transition-colors duration-200" href="https://nearbybizfinder.com/businesses/lazy-grass/sandy-springs">Sandy Springs, GA</a></li>
-              <li><a className="font-medium text-slate-400 hover:text-teal-300 hover:underline transition-colors duration-200" href="https://nearbybizfinder.com/businesses/lazy-grass/rosewell">Rosewell, GA</a></li>
-              <li><a className="font-medium text-slate-400 hover:text-teal-300 hover:underline transition-colors duration-200" href="https://nearbybizfinder.com/businesses/lazy-grass">Alpharetta, GA</a></li>
-              <li><a className="font-medium text-slate-400 hover:text-teal-300 hover:underline transition-colors duration-200" href="https://nearbybizfinder.com/businesses/lazy-grass/cummings">Cummings, GA</a></li>
+              <li><a className="font-medium text-slate-400 hover:text-teal-300 hover:underline transition-colors duration-200" href="https://nearbybizfinder.com/businesses/lazy-grass/woodstock/">Woodstock, GA</a></li>
+              <li><a className="font-medium text-slate-400 hover:text-teal-300 hover:underline transition-colors duration-200" href="https://nearbybizfinder.com/businesses/lazy-grass/sandy-springs/">Sandy Springs, GA</a></li>
+              <li><a className="font-medium text-slate-400 hover:text-teal-300 hover:underline transition-colors duration-200" href="https://nearbybizfinder.com/businesses/lazy-grass/rosewell/">Rosewell, GA</a></li>
+              <li><a className="font-medium text-slate-400 hover:text-teal-300 hover:underline transition-colors duration-200" href="https://nearbybizfinder.com/businesses/lazy-grass/">Alpharetta, GA</a></li>
+              <li><a className="font-medium text-slate-400 hover:text-teal-300 hover:underline transition-colors duration-200" href="https://nearbybizfinder.com/businesses/lazy-grass/cummings/">Cummings, GA</a></li>
             </ul>
           </div>
           <div>
