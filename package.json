@@ -91,5 +91,10 @@
     "eslint-config-next": "^16.0.9",
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.6.2"
+  },
+  "overrides": {
+    "next": "$next",
+    "react": "$react",
+    "react-dom": "$react-dom"
   }
 }
