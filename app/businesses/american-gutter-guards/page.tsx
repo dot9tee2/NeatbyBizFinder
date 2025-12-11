@@ -517,9 +517,39 @@ export default function AmericanGutterGuardsPage() {
       category: 'Gutter Guards'
     },
     {
-      src: '/american-gutter-guards/gallery-6.png',
+      src: '/american-gutter-guards/gallery-6.jpeg',
       alt: 'Technician performing final water flow check',
       category: 'Final Check'
+    },
+    {
+      src: '/american-gutter-guards/gallery-7.jpeg',
+      alt: 'Newly installed gutter protection system',
+      category: 'Gutter Guards'
+    },
+    {
+      src: '/american-gutter-guards/gallery-8.jpeg',
+      alt: 'Seamless aluminum gutter installation',
+      category: 'Seamless Gutters'
+    },
+    {
+      src: '/american-gutter-guards/gallery-9.jpeg',
+      alt: 'Professional gutter cleaning and maintenance',
+      category: 'Cleaning'
+    },
+    {
+      src: '/american-gutter-guards/gallery-10.jpeg',
+      alt: 'Premium gutter guard mesh close-up',
+      category: 'Gutter Guards'
+    },
+    {
+      src: '/american-gutter-guards/gallery-11.jpeg',
+      alt: 'Complete home gutter system upgrade',
+      category: 'Installation'
+    },
+    {
+      src: '/american-gutter-guards/gallery-12.jpeg',
+      alt: 'Leaf protection system for gutters',
+      category: 'Protection'
     }
   ];
 
@@ -971,10 +1001,13 @@ export default function AmericanGutterGuardsPage() {
       {serviceAreas.map((area, i) => {
         const isPrimary = i === 0;
         return (
-          <a
+          <div
             key={area}
-            href="#contact"
-            className={`group relative overflow-hidden rounded-xl border bg-white/80 backdrop-blur-sm px-5 py-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${isPrimary ? 'border-emerald-500' : 'border-emerald-200 hover:border-emerald-400'}`}
+            onClick={() => { window.location.hash = 'contact'; }}
+            className={`cursor-pointer group relative overflow-hidden rounded-xl border bg-white/80 backdrop-blur-sm px-5 py-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${isPrimary ? 'border-emerald-500' : 'border-emerald-200 hover:border-emerald-400'}`}
+            role="link"
+            tabIndex={0}
+            onKeyDown={(e) => { if (e.key === 'Enter') window.location.hash = 'contact'; }}
             aria-label={`Request service in ${area.replace(/\s*\(.*?\)\s*/g, '')}`}
           >
             <div className="flex items-start justify-between gap-3">
@@ -1006,7 +1039,7 @@ export default function AmericanGutterGuardsPage() {
               <span className="text-slate-500">Fast scheduling</span>
             </div>
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-50/0 to-emerald-100/0 group-hover:to-emerald-100/40 transition-colors" />
-          </a>
+          </div>
         );
       })}
     </div>
