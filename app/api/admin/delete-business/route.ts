@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
       } else {
         revalidatePath(`/businesses/${slug}/`);
       }
-      try { revalidateTag('sitemap'); } catch {}
+      try { revalidatePath('/', 'layout'); } catch {}
     } catch {}
 
     return NextResponse.json({ ok: true });

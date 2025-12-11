@@ -8,7 +8,7 @@ export async function POST() {
     revalidatePath('/sitemap-index.xml');
     revalidatePath('/businesses/sitemap.xml');
     // Optional: tag-based if you tag your fetches
-    try { revalidateTag('sitemap'); } catch {}
+    try { revalidatePath('/', 'layout'); } catch {}
 
     return NextResponse.json({ ok: true, message: 'Sitemaps revalidated' });
   } catch (error: any) {

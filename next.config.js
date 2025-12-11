@@ -2,9 +2,6 @@
 const nextConfig = {
   // Removed output: 'export' to allow dynamic routes
   trailingSlash: true,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   images: {
     unoptimized: false,
     formats: ['image/webp', 'image/avif'],
