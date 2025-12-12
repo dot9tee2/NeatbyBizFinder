@@ -674,12 +674,16 @@ export default function AmericanGutterGuardsPage() {
       {/* Custom Header */}
       <header className="bg-slate-900 text-slate-100 shadow-sm sticky top-0 z-50" role="banner">
         <div className="container mx-auto px-4 max-w-7xl" role="navigation" aria-label="Primary navigation">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <div className="flex items-center">
-              <div className="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center mr-3">
-                <Sparkles className="h-6 w-6 text-white" aria-hidden="true" />
-              </div>
+              <OptimizedImage
+                src="/american-gutter-guards/americanGutterGuardsLogo.png"
+                alt={`${businessData.name} logo`}
+                width={80}
+                height={80}
+                className="mr-3"
+              />
               <span className="text-xl font-bold">{businessData.name}</span>
             </div>
 
@@ -1659,9 +1663,13 @@ export default function AmericanGutterGuardsPage() {
               {/* Company Info */}
               <div className="md:col-span-1">
                 <div className="flex items-center mb-6">
-                  <div className="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center mr-3">
-                    <Sparkles className="h-6 w-6 text-white" aria-hidden="true" />
-                  </div>
+                  <OptimizedImage
+                    src="/american-gutter-guards/americanGutterGuardsLogo.png"
+                    alt={`${businessData.name} logo`}
+                    width={80}
+                    height={80}
+                    className="mr-3"
+                  />
                   <span className="text-xl font-bold">{businessData.name}</span>
                 </div>
                 <p className="text-slate-300 mb-6 leading-relaxed">
