@@ -153,7 +153,7 @@ function Hero() {
     <section className="bg-white py-16 md:py-24">
       {/* New Grid Layout Container */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
-        
+
         {/* Left Column: Text Content */}
         <div className="flex flex-col justify-center">
           {/* Badge (Light Theme) */}
@@ -167,7 +167,7 @@ function Hero() {
           <p className="mt-4 max-w-2xl text-slate-700 leading-relaxed">
             Perfect lawns, pet turf, and putting greens. Family-owned with a background in construction for expert grading and drainage.
           </p>
-          
+
           {/* Buttons (Light Theme) */}
           <div className="mt-6 flex flex-wrap gap-3">
             <Link href={lazyGrass.phoneHref}>
@@ -178,7 +178,7 @@ function Hero() {
               <Button size="lg" variant="outline" className="border-indigo-700 text-indigo-700 hover:bg-indigo-700 hover:text-white">Request Free Estimate</Button>
             </Link>
           </div>
-          
+
           {/* TrustStrip (Light Theme) */}
           <div className="mt-8 grid grid-cols-2 gap-4 text-sm text-slate-600">
             <div className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-teal-400" />Licensed & Insured</div>
@@ -228,7 +228,7 @@ function Gallery() {
           ))}
         </div>
       </div>
-    </section>  
+    </section>
   );
 }
 
@@ -243,7 +243,7 @@ function Services() {
             <div key={s.slug} className="rounded-xl border border-slate-200 bg-white p-6 shadow-md hover:shadow-xl transition-shadow">
               <div className="relative h-40 mb-4 rounded-md overflow-hidden">
                 <OptimizedImage
-                  src={cityImage(lazyGrass.imagesBase, '', `service-${s.slug}.png`)}
+                  src={cityImage(lazyGrass.imagesBase, '', `service-${s.slug}.webp`)}
                   alt={s.title}
                   fill
                   className="object-cover"
@@ -275,7 +275,7 @@ function About() {
           </ul>
         </div>
         <div className="grid grid-cols-2 gap-4">
-          {['team-1.png','grading-1.png','turf-rolls-1.png','putting-green-1.png'].map((file) => (
+          {['team-1.png', 'grading-1.png', 'turf-rolls-1.png', 'putting-green-1.png'].map((file) => (
             <div key={file} className="relative h-40 md:h-56 rounded-lg overflow-hidden ring-4 ring-white shadow-lg">
               <OptimizedImage src={cityImage(lazyGrass.imagesBase, '', file)} alt="Lazy Grass team and work" fill className="object-cover" />
             </div>
@@ -347,7 +347,7 @@ function ContactForm() {
           <h2 className="text-3xl md:text-4xl font-bold text-indigo-900">Get Your Free Estimate</h2>
           <p className="mt-2 text-lg text-slate-600">Ready for a low-maintenance, beautiful lawn in Alpharetta? Call now or send us a message.</p>
         </div>
-        
+
         <form action={mailtoHref} method="post" className="mt-10 grid md:grid-cols-2 gap-6 max-w-2xl mx-auto p-8 bg-slate-50 rounded-lg shadow-lg" aria-label="Estimate request form">
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-slate-700">Name</label>
@@ -394,7 +394,7 @@ function Footer() {
   return (
     <footer className="bg-slate-900 text-slate-300">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 w-full">
-        
+
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8 pb-12 border-b border-slate-700">
           <div className="max-w-md">
             <div className="flex items-center gap-3 text-white mb-4">
@@ -492,7 +492,7 @@ function Footer() {
           {/* Copyright & Management */}
           <div className="text-xs text-slate-500 text-center pt-6 border-t border-slate-800">
             <p>© {new Date().getFullYear()} {lazyGrass.name}. All rights reserved. | Licensed & Insured Artificial Turf Installer</p>
-            
+
             {/* --- NEWLY ADDED AND STYLED LINE --- */}
             <p className="mt-2">
               Powered & Managed By{" "}
@@ -509,7 +509,7 @@ function Footer() {
 
           </div>
         </div>
-        
+
       </div>
     </footer>
   );
@@ -521,7 +521,7 @@ export default function Page() {
     <main id="content" className="bg-slate-50">
       <a href="#contact" className="sr-only focus:not-sr-only">Skip to contact</a>
       <LocalNavbar />
-      
+
       <Hero />
       <Gallery />
       <Services />
