@@ -1,9 +1,7 @@
-import business from './business';
-import category from './category';
-import businessSubmission from './business-submission';
+import author from './author'
+import post from './post'
 
-const schemas = [business, category, businessSubmission];
-export default schemas;
+const schemas = [author, post]
 
-
+export default schemas
 

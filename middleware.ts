@@ -16,7 +16,6 @@ export async function middleware(req: NextRequest) {
         set(name: string, value: string, options: any) {
           const newRes = NextResponse.next({ request: { headers: req.headers } });
           newRes.cookies.set(name, value, options);
-          // propagate cookies to main response
           res.cookies.set(name, value, options);
         },
         remove(name: string, options: any) {
@@ -30,17 +29,11 @@ export async function middleware(req: NextRequest) {
 
   const { data: { session } } = await supabase.auth.getSession();
 
-  const isAdminRoute =
-    req.nextUrl.pathname.startsWith('/businesses/admin') ||
-    req.nextUrl.pathname.startsWith('/api/admin');
+  const isAdminRoute = req.nextUrl.pathname.startsWith('/businesses/admin');
 
   if (!isAdminRoute) return res;
 
   if (!session) {
-    // For API routes, return JSON instead of HTML redirect so clients can handle errors cleanly
-    if (req.nextUrl.pathname.startsWith('/api/')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
     const url = req.nextUrl.clone();
     url.pathname = '/auth/signin';
     url.searchParams.set('redirect', req.nextUrl.pathname + req.nextUrl.search);
@@ -54,17 +47,12 @@ export async function middleware(req: NextRequest) {
     .single();
 
   if (!profile || profile.role !== 'admin') {
-    if (req.nextUrl.pathname.startsWith('/api/')) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
-    }
-    return NextResponse.redirect(new URL('/forbidden', req.url));
+    return NextResponse.redirect(new URL('/', req.url));
   }
 
   return res;
 }
 
 export const config = {
-  matcher: ['/businesses/admin/:path*', '/api/admin/:path*'],
+  matcher: ['/businesses/admin/:path*'],
 };
-
-

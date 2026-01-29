@@ -12,6 +12,7 @@ import {
 
 import MobileNav from './components/mobile-nav';
 import FAQAccordion from './components/faq-accordion';
+import { ReviewsSection } from '@/components/reviews';
 
 // ===== BUSINESS DATA =====
 const businessData = {
@@ -155,8 +156,8 @@ const galleryImages = [
 ];
 
 const stats = [
-  { number: '2k+', label: 'Clients', icon: Users },
-  { number: '10k+', label: 'Happy Customers', icon: Award },
+  { number: '500+', label: 'Clients', icon: Users },
+  { number: '1k+', label: 'Happy Customers', icon: Award },
   { number: '100%', label: 'Satisfaction', icon: Heart }
 ];
 
@@ -474,7 +475,7 @@ export default function AmericanGutterGuardsPage() {
               >
                 <a href={`tel:${businessData.phoneE164}`}>
                   <Phone className="h-4 w-4 mr-2" aria-hidden="true" />
-                  Book Now
+                  Call Daniel
                 </a>
               </Button>
             </div>
@@ -558,7 +559,7 @@ export default function AmericanGutterGuardsPage() {
                 <a href="#contact" aria-label="Get your free inspection">Get Your Free Inspection</a>
               </Button>
               <div className="mt-4 text-slate-200">
-                Or call <a href={`tel:${businessData.phoneE164}`} className="font-semibold underline decoration-emerald-400 hover:decoration-emerald-300">{businessData.phone}</a> or email <a href={`mailto:${businessData.email}`} className="font-semibold underline decoration-emerald-400 hover:decoration-emerald-300">{businessData.email}</a>
+                Or call Daniel at <a href={`tel:${businessData.phoneE164}`} className="font-semibold underline decoration-emerald-400 hover:decoration-emerald-300">{businessData.phone}</a> or email <a href={`mailto:${businessData.email}`} className="font-semibold underline decoration-emerald-400 hover:decoration-emerald-300">{businessData.email}</a>
               </div>
             </div>
           </div>
@@ -684,7 +685,7 @@ export default function AmericanGutterGuardsPage() {
             <Button className="bg-emerald-600 hover:bg-emerald-700 text-white" asChild>
               <a href={`tel:${businessData.phoneE164}`} aria-label="Call to request service">
                 <Phone className="h-4 w-4 mr-2" aria-hidden="true" />
-                Call {businessData.phone}
+                Call Daniel at {businessData.phone}
               </a>
             </Button>
             <a href="#contact" className="text-emerald-700 hover:text-emerald-800 font-semibold">
@@ -957,6 +958,9 @@ export default function AmericanGutterGuardsPage() {
       {/* FAQ Section - Using Client Component */}
       <FAQAccordion faqs={faqData} />
 
+      {/* Reviews Section */}
+      <ReviewsSection businessSlug="american-gutter-guards" businessName={businessData.name} />
+
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-white">
         <div className="container mx-auto px-4 max-w-7xl">
@@ -975,8 +979,8 @@ export default function AmericanGutterGuardsPage() {
                     <Phone className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-slate-900">{businessData.phone}</h3>
-                    <p className="text-slate-600">Call us anytime</p>
+                    <a href={`tel:${businessData.phoneE164}`} className="text-lg font-semibold text-slate-900 hover:text-emerald-600 transition-colors">{businessData.phone}</a>
+                    <p className="text-slate-600">Call Daniel anytime</p>
                   </div>
                 </div>
                 <div className="flex items-center">
@@ -984,7 +988,7 @@ export default function AmericanGutterGuardsPage() {
                     <Mail className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-slate-900">{businessData.email}</h3>
+                    <a href={`mailto:${businessData.email}`} className="text-lg font-semibold text-slate-900 hover:text-emerald-600 transition-colors">{businessData.email}</a>
                     <p className="text-slate-600">Send us an email</p>
                   </div>
                 </div>
