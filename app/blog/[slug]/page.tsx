@@ -23,11 +23,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         };
     }
 
+    const { title, excerpt, mainImage, seo } = post;
+
+    const metaTitle = seo?.metaTitle || `${title} | NearbyBizFinder`;
+    const metaDescription = seo?.metaDescription || excerpt || title;
+    const ogImage = seo?.ogImage ? urlForImage(seo.ogImage).url() : (mainImage ? urlForImage(mainImage).url() : undefined);
+
     return {
-        title: `${post.title} | NearbyBizFinder`,
-        description: post.excerpt || post.title,
+        title: metaTitle,
+        description: metaDescription,
         openGraph: {
-            images: post.mainImage ? [urlForImage(post.mainImage).url()] : [],
+            title: seo?.ogTitle || metaTitle,
+            description: seo?.ogDescription || metaDescription,
+            images: ogImage ? [ogImage] : [],
         },
     };
 }

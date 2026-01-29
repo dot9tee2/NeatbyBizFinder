@@ -18,22 +18,30 @@ export const postBySlugQuery = groq`*[_type == "post" && slug.current == $slug][
   excerpt,
   publishedAt,
   body,
+  seo,
   "author": author->{name, image, bio}
 }`;
 
 export interface Author {
-    name: string;
-    image?: any;
-    bio?: any[];
+  name: string;
+  image?: any;
+  bio?: any[];
 }
 
 export interface Post {
-    _id: string;
-    title: string;
-    slug: { current: string };
-    mainImage?: any;
-    excerpt?: string;
-    publishedAt: string;
-    author?: Author;
-    body?: any[];
+  _id: string;
+  title: string;
+  slug: { current: string };
+  mainImage?: any;
+  excerpt?: string;
+  publishedAt: string;
+  author?: Author;
+  body?: any[];
+  seo?: {
+    metaTitle?: string;
+    metaDescription?: string;
+    ogTitle?: string;
+    ogDescription?: string;
+    ogImage?: any;
+  };
 }

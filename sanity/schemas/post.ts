@@ -55,10 +55,10 @@ export default defineType({
 
             description: 'A short description of the post for the blog feed.',
         }),
-        defineField({
+        {
             name: 'body',
             title: 'Body',
-            type: 'array',
+            type: 'array' as const,
             of: [
                 defineArrayMember({
                     type: 'block',
@@ -68,11 +68,11 @@ export default defineType({
                     options: { hotspot: true },
                 }),
             ],
-        }),
-        defineField({
+        },
+        {
             name: 'seo',
             title: 'SEO & Social',
-            type: 'object',
+            type: 'object' as const,
             fields: [
                 defineField({
                     name: 'metaTitle',
@@ -83,7 +83,7 @@ export default defineType({
                 defineField({
                     name: 'metaDescription',
                     title: 'Meta Description',
-                    type: 'text',
+                    type: 'text' as const,
                     rows: 3,
                     validation: Rule => Rule.max(160).warning('Long descriptions may be truncated by search engines')
                 }),
@@ -96,7 +96,7 @@ export default defineType({
                 defineField({
                     name: 'ogDescription',
                     title: 'Social Share Description',
-                    type: 'text',
+                    type: 'text' as const,
                     rows: 3,
                     description: 'Optional. If empty, uses Meta Description.'
                 }),
@@ -109,7 +109,7 @@ export default defineType({
                     }
                 }),
             ]
-        }),
+        },
     ],
 
     preview: {
