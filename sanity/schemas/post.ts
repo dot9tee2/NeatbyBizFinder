@@ -55,20 +55,61 @@ export default defineType({
 
             description: 'A short description of the post for the blog feed.',
         }),
-        // defineField({
-        //     name: 'body',
-        //     title: 'Body',
-        //     type: 'array',
-        //     of: [
-        //         defineArrayMember({
-        //             type: 'block',
-        //         }),
-        //         defineArrayMember({
-        //             type: 'image',
-        //             options: { hotspot: true },
-        //         }),
-        //     ],
-        // }),
+        defineField({
+            name: 'body',
+            title: 'Body',
+            type: 'array',
+            of: [
+                defineArrayMember({
+                    type: 'block',
+                }),
+                defineArrayMember({
+                    type: 'image',
+                    options: { hotspot: true },
+                }),
+            ],
+        }),
+        defineField({
+            name: 'seo',
+            title: 'SEO & Social',
+            type: 'object',
+            fields: [
+                defineField({
+                    name: 'metaTitle',
+                    title: 'Meta Title',
+                    type: 'string',
+                    validation: Rule => Rule.max(60).warning('Long titles may be truncated by search engines')
+                }),
+                defineField({
+                    name: 'metaDescription',
+                    title: 'Meta Description',
+                    type: 'text',
+                    rows: 3,
+                    validation: Rule => Rule.max(160).warning('Long descriptions may be truncated by search engines')
+                }),
+                defineField({
+                    name: 'ogTitle',
+                    title: 'Social Share Title',
+                    type: 'string',
+                    description: 'Optional. If empty, uses Meta Title.'
+                }),
+                defineField({
+                    name: 'ogDescription',
+                    title: 'Social Share Description',
+                    type: 'text',
+                    rows: 3,
+                    description: 'Optional. If empty, uses Meta Description.'
+                }),
+                defineField({
+                    name: 'ogImage',
+                    title: 'Social Share Image',
+                    type: 'image',
+                    options: {
+                        hotspot: true
+                    }
+                }),
+            ]
+        }),
     ],
 
     preview: {
