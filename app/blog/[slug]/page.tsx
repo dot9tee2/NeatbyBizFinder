@@ -48,8 +48,33 @@ export default async function BlogPostPage({ params }: Props) {
         notFound();
     }
 
+    const { title, excerpt, mainImage, seo } = post;
+
+    const metaTitle = seo?.metaTitle || `${title} | NearbyBizFinder`;
+    const metaDescription = seo?.metaDescription || excerpt || title;
+    const ogImage = seo?.ogImage ? urlForImage(seo.ogImage).url() : (mainImage ? urlForImage(mainImage).url() : undefined);
+
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: metaTitle,
+        description: metaDescription,
+        image: ogImage ? [ogImage] : [],
+        datePublished: post.publishedAt,
+        author: post.author
+            ? {
+                '@type': 'Person',
+                name: post.author.name,
+            }
+            : undefined,
+    };
+
     return (
         <article className="min-h-screen bg-gray-50/50 pb-20">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             {/* Header/Hero */}
             <div className="bg-white border-b">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
