@@ -8,6 +8,7 @@ import { postBySlugQuery, Post } from '@/lib/sanity.queries';
 import { urlForImage } from '@/lib/sanity.image';
 import { Calendar, User, ArrowLeft, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import SocialShare from '@/components/blog/social-share';
 
 interface Props {
     params: Promise<{ slug: string }>;
@@ -53,6 +54,7 @@ export default async function BlogPostPage({ params }: Props) {
     const metaTitle = seo?.metaTitle || `${title} | NearbyBizFinder`;
     const metaDescription = seo?.metaDescription || excerpt || title;
     const ogImage = seo?.ogImage ? urlForImage(seo.ogImage).url() : (mainImage ? urlForImage(mainImage).url() : undefined);
+    const postUrl = `https://nearbybizfinder.com/blog/${slug}`;
 
     const jsonLd = {
         '@context': 'https://schema.org',
@@ -164,6 +166,15 @@ export default async function BlogPostPage({ params }: Props) {
                         ) : (
                             <p className="text-gray-500 italic">No content available for this post.</p>
                         )}
+                    </div>
+
+                    {/* Social Share */}
+                    <div className="mt-12 pt-8 border-t">
+                        <SocialShare
+                            url={postUrl}
+                            title={post.title}
+                            description={excerpt}
+                        />
                     </div>
                 </div>
             </div>

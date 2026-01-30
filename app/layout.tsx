@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     description: 'Find and connect with the best local businesses in your area. Search restaurants, shops, services, and more.',
     images: [
       {
-        url: '/logo.png',
+        url: '/og-homepage.png', // Replace with generated image
         width: 1200,
         height: 630,
         alt: 'NearbyBizFinder - Local Business Discovery Platform',

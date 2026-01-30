@@ -3,13 +3,13 @@ import Image from 'next/image';
 import { sanityFetch } from '@/lib/sanity.fetch';
 import { postsQuery, Post } from '@/lib/sanity.queries';
 import { urlForImage } from '@/lib/sanity.image';
-import { Calendar, User, ArrowRight } from 'lucide-react';
+import { Calendar, User, ArrowRight, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Blog | NearbyBizFinder',
-    description: 'Latest news, tips, and insights from NearbyBizFinder.',
+    title: 'Blog | NearbyBizFinder - Local Business Insights',
+    description: 'Latest news, tips, and insights for finding and supporting local businesses.',
 };
 
 export default async function BlogIndexPage() {
@@ -18,16 +18,23 @@ export default async function BlogIndexPage() {
     return (
         <main className="min-h-screen bg-gray-50/50 pb-20">
             {/* Hero Section */}
-            <div className="bg-white border-b">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 text-center">
-                    <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-display">
-                        Our Blog
+            <section className="relative py-20 lg:py-24 overflow-hidden bg-slate-900 border-b border-white/10">
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900 via-slate-900 to-black opacity-80"></div>
+                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>
+
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium mb-6">
+                        <BookOpen className="w-4 h-4" />
+                        <span>Insights & Tips</span>
+                    </div>
+                    <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 font-display tracking-tight">
+                        Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Blog</span>
                     </h1>
-                    <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
                         Discover the latest insights, tips, and news about local businesses and home services.
                     </p>
                 </div>
-            </div>
+            </section>
 
             {/* Posts Grid */}
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">

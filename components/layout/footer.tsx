@@ -30,13 +30,13 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/search/" className="text-gray-400 hover:text-white transition-colors">
-                  Browse Businesses
+                <Link href="/" className="text-gray-400 hover:text-white transition-colors">
+                  Home
                 </Link>
               </li>
               <li>
-                <Link href="/categories/" className="text-gray-400 hover:text-white transition-colors">
-                  Categories
+                <Link href="/blog" className="text-gray-400 hover:text-white transition-colors">
+                  Blog
                 </Link>
               </li>
               <li>
@@ -52,23 +52,23 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* For Business Owners */}
+          {/* Featured Services */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">For Businesses</h3>
+            <h3 className="text-lg font-semibold mb-4">Featured Services</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/business/new/" className="text-gray-400 hover:text-white transition-colors">
-                  Add Your Business
+                <Link href="/businesses/american-gutter-guards" className="text-gray-400 hover:text-white transition-colors">
+                  Gutter Services
                 </Link>
               </li>
               <li>
-                <Link href="/business/claim/" className="text-gray-400 hover:text-white transition-colors">
-                  Claim Your Business
+                <Link href="/businesses/nm-concrete-coating-pros" className="text-gray-400 hover:text-white transition-colors">
+                  Concrete Coatings
                 </Link>
               </li>
               <li>
-                <Link href="/business/support/" className="text-gray-400 hover:text-white transition-colors">
-                  Business Support
+                <Link href="/businesses/rc-solutions" className="text-gray-400 hover:text-white transition-colors">
+                  Roofing & Exteriors
                 </Link>
               </li>
             </ul>

@@ -156,8 +156,7 @@ const galleryImages = [
 ];
 
 const stats = [
-  { number: '500+', label: 'Clients', icon: Users },
-  { number: '1k+', label: 'Happy Customers', icon: Award },
+  { number: '50+', label: 'Clients', icon: Users },
   { number: '100%', label: 'Satisfaction', icon: Heart }
 ];
 

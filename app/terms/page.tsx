@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { FileText, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
 	title: 'Terms of Service | NearbyBizFinder',
@@ -13,51 +15,65 @@ export const metadata: Metadata = {
 export default function TermsPage() {
 	return (
 		<div className="min-h-screen bg-white">
-			<div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-				<h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Terms of Service</h1>
-				<p className="text-gray-600 mb-4">Last updated: {new Date().getFullYear()}</p>
-				<div className="prose max-w-none">
-					<h2>Acceptance of Terms</h2>
-					<p>By accessing or using NearbyBizFinder (the "Service"), you agree to these Terms. If you do not agree, do not use the Service.</p>
+			{/* Hero Section */}
+			<section className="relative py-16 lg:py-20 overflow-hidden bg-slate-900 border-b border-white/10">
+				<div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900 via-slate-900 to-black opacity-80"></div>
+				<div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>
 
-					<h2>Use of the Service</h2>
-					<p>You may use the Service only in the United States and in compliance with applicable laws. You will not misuse, reverse engineer, or interfere with the Service.</p>
-
-					<h2>Accounts</h2>
-					<p>You are responsible for maintaining the confidentiality of your account and for all activities under your account.</p>
-
-					<h2>Content</h2>
-					<p>Content you submit must be accurate and lawful. We may remove content that violates these Terms.</p>
-
-					<h2>Disclaimers</h2>
-					<p>The Service is provided "as is" without warranties. We do not guarantee the accuracy or availability of business information.</p>
-
-					<h2>Limitation of Liability</h2>
-					<p>To the maximum extent permitted by law, NearbyBizFinder is not liable for indirect or consequential damages.</p>
-
-					<h2>Changes to Terms</h2>
-					<p>We may update these Terms from time to time. Continued use constitutes acceptance of the updated Terms.</p>
+				<div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+					<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium mb-6">
+						<FileText className="w-4 h-4" />
+						<span>Legal</span>
+					</div>
+					<h1 className="text-4xl md:text-5xl font-bold text-white mb-4 font-display tracking-tight">
+						Terms of Service
+					</h1>
+					<p className="text-lg text-gray-400">
+						Last updated: {new Date().getFullYear()}
+					</p>
 				</div>
-			</div>
+			</section>
 
-			<div className="bg-gray-50 border-t">
-				<div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
-					<h2 className="text-xl font-semibold text-gray-900 mb-4">Helpful Links</h2>
-					<div className="flex flex-wrap gap-3">
-						<Link href="/categories/" className="px-4 py-2 rounded-full border text-sm bg-white hover:bg-gray-50">
-							Browse all categories
-						</Link>
-						<Link href="/about/" className="px-4 py-2 rounded-full border text-sm bg-white hover:bg-gray-50">
-							About NearbyBizFinder
-						</Link>
-						<Link href="/contact/" className="px-4 py-2 rounded-full border text-sm bg-white hover:bg-gray-50">
-							Contact us
-						</Link>
+			{/* Content Section */}
+			<section className="py-16 bg-white">
+				<div className="container mx-auto px-4 sm:px-6 lg:px-8">
+					<div className="max-w-3xl mx-auto prose prose-lg prose-gray">
+						<h2>Acceptance of Terms</h2>
+						<p>By accessing or using NearbyBizFinder (the "Service"), you agree to these Terms. If you do not agree, do not use the Service.</p>
+
+						<h2>Use of the Service</h2>
+						<p>You may use the Service only in the United States and in compliance with applicable laws. You will not misuse, reverse engineer, or interfere with the Service.</p>
+
+						<h2>Accounts</h2>
+						<p>You are responsible for maintaining the confidentiality of your account and for all activities under your account.</p>
+
+						<h2>Content</h2>
+						<p>Content you submit must be accurate and lawful. We may remove content that violates these Terms.</p>
+
+						<h2>Disclaimers</h2>
+						<p>The Service is provided "as is" without warranties. We do not guarantee the accuracy or availability of business information.</p>
+
+						<h2>Limitation of Liability</h2>
+						<p>To the maximum extent permitted by law, NearbyBizFinder is not liable for indirect or consequential damages.</p>
+
+						<h2>Changes to Terms</h2>
+						<p>We may update these Terms from time to time. Continued use constitutes acceptance of the updated Terms.</p>
 					</div>
 				</div>
-			</div>
+			</section>
+
+			{/* CTA Section */}
+			<section className="py-12 bg-gray-50 border-t">
+				<div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+					<p className="text-gray-600 mb-4">Have questions about our terms?</p>
+					<Link href="/contact">
+						<Button variant="outline" className="rounded-full px-6">
+							Contact Us
+							<ArrowRight className="ml-2 h-4 w-4" />
+						</Button>
+					</Link>
+				</div>
+			</section>
 		</div>
 	);
 }
-
-
