@@ -1,10 +1,16 @@
 import './globals.css';
 import type { Metadata, Viewport } from 'next';
-import { Inter } from 'next/font/google';
+// import { Inter } from 'next/font/google';
 import ConditionalLayout from '@/components/layout/conditional-layout';
 import Script from 'next/script';
 
-const inter = Inter({ subsets: ['latin'] });
+/*
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  adjustFontFallback: false,
+});
+*/
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://nearbybizfinder.com/'),
@@ -74,7 +80,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en-US">
-      <body className={inter.className}>
+      <body className="font-sans antialiased">
         <Script id="ld-json-organization" type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',

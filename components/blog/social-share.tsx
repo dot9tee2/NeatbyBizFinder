@@ -1,6 +1,6 @@
 'use client';
 
-import { Twitter, Facebook, Linkedin, Link2, Check } from 'lucide-react';
+import { Twitter, Facebook, Linkedin, Link2, Check, Mail, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 
@@ -22,19 +22,31 @@ export default function SocialShare({ url, title, description }: SocialShareProp
             name: 'Twitter',
             icon: Twitter,
             href: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
-            color: 'hover:bg-sky-500 hover:text-white',
+            color: 'hover:bg-sky-500 hover:text-white hover:border-sky-500',
         },
         {
             name: 'Facebook',
             icon: Facebook,
             href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
-            color: 'hover:bg-blue-600 hover:text-white',
+            color: 'hover:bg-blue-600 hover:text-white hover:border-blue-600',
         },
         {
             name: 'LinkedIn',
             icon: Linkedin,
             href: `https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}&summary=${encodedDescription}`,
-            color: 'hover:bg-blue-700 hover:text-white',
+            color: 'hover:bg-blue-700 hover:text-white hover:border-blue-700',
+        },
+        {
+            name: 'WhatsApp',
+            icon: MessageCircle,
+            href: `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`,
+            color: 'hover:bg-green-500 hover:text-white hover:border-green-500',
+        },
+        {
+            name: 'Email',
+            icon: Mail,
+            href: `mailto:?subject=${encodedTitle}&body=${encodedDescription}%0A%0A${encodedUrl}`,
+            color: 'hover:bg-gray-700 hover:text-white hover:border-gray-700',
         },
     ];
 
@@ -49,13 +61,13 @@ export default function SocialShare({ url, title, description }: SocialShareProp
     };
 
     return (
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
             <span className="text-sm text-gray-500 mr-2">Share:</span>
             {shareLinks.map((link) => (
                 <a
                     key={link.name}
                     href={link.href}
-                    target="_blank"
+                    target={link.name === 'Email' ? '_self' : '_blank'}
                     rel="noopener noreferrer"
                     aria-label={`Share on ${link.name}`}
                 >
