@@ -47,13 +47,13 @@ export default function Hero() {
             id="hero-section"
             className="h-screen flex flex-col items-start justify-center text-left px-6 md:px-24 relative z-10 pointer-events-none"
         >
-            <div className="max-w-2xl pointer-events-auto">
+            <div className="max-w-2xl pointer-events-auto mt-32 md:mt-40">
                 <h1
                     ref={titleRef}
-                    className="text-6xl md:text-8xl font-bold tracking-tighter text-white mb-6 uppercase"
+                    className="text-6xl md:text-8xl font-bold tracking-tighter text-[#fff9e6] mb-6 uppercase"
                 >
                     Locked Out? <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f7be32] to-[#660000]">
                         We're on the way.
                     </span>
                 </h1>
@@ -70,13 +70,13 @@ export default function Hero() {
                 >
                     <a
                         href="tel:3168693892"
-                        className="px-8 py-4 bg-cyan-500 hover:bg-cyan-600 text-black font-bold rounded-full transition-transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(6,182,212,0.4)]"
+                        className="px-8 py-4 bg-[#f7be32] hover:bg-[#d9a528] text-black font-bold rounded-full transition-transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(247,190,50,0.4)]"
                     >
                         CALL (316) 869-3892
                     </a>
                     <button
                         onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-                        className="px-8 py-4 bg-cyan-500 hover:bg-cyan-600 text-black font-bold rounded-full transition-transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(6,182,212,0.4)]"
+                        className="px-8 py-4 bg-[#f7be32] hover:bg-[#d9a528] text-black font-bold rounded-full transition-transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(247,190,50,0.4)]"
                     >
                         OUR SERVICES
                     </button>

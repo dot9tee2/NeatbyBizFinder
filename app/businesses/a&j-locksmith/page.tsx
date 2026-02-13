@@ -8,6 +8,7 @@ import ServicesShowcase from './components/ServicesShowcase'
 import RoadsideServices from './components/RoadsideServices'
 import WhyChooseUs from './components/WhyChooseUs'
 import ContactForm from './components/ContactForm'
+import Testimonials from './components/Testimonials'
 import Footer from './components/Footer'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -29,9 +30,10 @@ export default function Home() {
 
       const group = keyModel.group
 
+      const isMobile = window.innerWidth < 768
       // Create proxy objects for GSAP to tween (we'll apply them to the group)
-      const posProxy = { x: 2.5, y: -1.0, z: 0 }
-      const scaleProxy = { v: 1.6 }
+      const posProxy = { x: isMobile ? 0 : 2.5, y: isMobile ? 0 : -1.0, z: 0 }
+      const scaleProxy = { v: isMobile ? 1.2 : 1.6 }
       const rotProxy = { x: 0.3, y: 0.5, z: 0.1 }
 
       const tl = gsap.timeline({
@@ -90,105 +92,64 @@ export default function Home() {
   }, [])
 
   const handleServiceChange = useCallback((index: number, color: string) => {
-    const keyModel = sceneRef.current?.keyModel
     const scene = sceneRef.current
+    if (!scene) return
 
     // Toggle between House and Car key based on service index
-    // Index 2 is "Automotive Help" (0=Residential, 1=Commercial, 2=Automotive, 3=Roadside, 4=Smart Lock)
-    // Roadside (3) should probably also use the car key?
-    // Let's say 2 and 3 use Car Key, others use House Key
-    if (scene) {
-      if (index === 2 || index === 3) {
-        scene.switchModel('car')
-      } else {
-        scene.switchModel('house')
-      }
+    // 0=Residential, 1=Commercial, 2=Automotive, 3=Roadside, 4=Smart Lock
+    const useCarKey = index === 2 || index === 3
+    if (useCarKey) {
+      scene.switchModel('car')
+    } else {
+      scene.switchModel('house')
     }
-
-    if (!keyModel?.group) return
 
     // Only animate if the service index actually changed
     if (index === lastServiceIndex.current) return
     const isFirstEntry = lastServiceIndex.current === -1
     lastServiceIndex.current = index
 
-    // Change material color
-    // We need to apply color to whichever model is active, or both?
-    // The current KeyModel handle has setMaterialColor. 
-    // The CarKeyModel also has it.
-    // Let's try to set it on both for simplicity/consistency or just the active one.
-    keyModel.setMaterialColor(color)
-    sceneRef.current?.carKeyModel?.setMaterialColor(color)
+    // Change material color on both models
+    scene.keyModel?.setMaterialColor(color)
+    scene.carKeyModel?.setMaterialColor(color)
 
-    const group = keyModel.group
+    // Determine the active model's group
+    const activeGroup = useCarKey
+      ? scene.carKeyModel?.group
+      : scene.keyModel?.group
 
-    // POSITIONAL ANIMATIONS
-    // Note: The current logic animates 'keyModel.group' (the house key).
-    // If we switched to car key, we might need to animate IT instead.
-    // However, CarKeyModel logic in Scene handle hides/shows it.
-    // If we want the swiping animation to apply to the CAR key too, we need to target it.
-
-    // Simplification: 
-    // We will apply the animation to the *active* model's group.
-
-    let activeGroup = group
-    if ((index === 2 || index === 3) && sceneRef.current?.carKeyModel?.group) {
-      activeGroup = sceneRef.current.carKeyModel.group
-    }
-
-    // If we just switched models, the new model might need to "enter" from the side 
-    // instead of just popping in.
-    // The 'setVisible' in CarKeyModel handles a scale in.
-    // Let's let that handle the "switch" appearance and just do the swipe for subsequent changes *within* the same model type.
-
-    // Actually, for consistency, let's just run the swipe on the active group.
     if (!activeGroup) return
 
-    // First entry: key is already centered from the hero scroll transition, skip position animation
+    // First entry: key is already centered from hero scroll transition
     if (isFirstEntry) return
 
-    // Subsequent services: swipe animation
-    const tl = gsap.timeline()
+    // Smooth, scroll-synced transition — gentle rotation + slight vertical shift
+    const targetY = useCarKey ? -0.5 : -1.2
+    const rotationY = Math.PI * 0.25 * (index + 1)
 
-    // Exit: swipe right and shrink
-    tl.to(activeGroup.position, {
-      x: 4,
-      duration: 0.25,
-      ease: 'power2.in',
-    })
-    tl.to(activeGroup.scale, {
-      x: 0.8, y: 0.8, z: 0.8,
-      duration: 0.25,
-      ease: 'power2.in',
-    }, '<')
-
-    // Reposition to left (instant)
-    tl.set(activeGroup.position, { x: -4 })
-
-    // Enter: swipe to center and scale up
-    const targetY = (index === 2 || index === 3) ? -0.5 : -1.2
-
-    tl.to(activeGroup.position, {
-      x: 0,
+    gsap.to(activeGroup.position, {
       y: targetY,
       z: 0.5,
-      duration: 0.35,
+      duration: 0.6,
       ease: 'power2.out',
+      overwrite: true,
     })
-    tl.to(activeGroup.scale, {
-      x: 1.3, y: 1.3, z: 1.3,
-      duration: 0.35,
-      ease: 'power2.out',
-    }, '<')
 
-    // Rotation
-    tl.to(activeGroup.rotation, {
-      x: 0.2,
-      y: Math.PI * 0.25 * (index + 1),
-      z: 0,
-      duration: 0.35,
+    gsap.to(activeGroup.scale, {
+      x: 1.3, y: 1.3, z: 1.3,
+      duration: 0.5,
       ease: 'power2.out',
-    }, '<')
+      overwrite: true,
+    })
+
+    gsap.to(activeGroup.rotation, {
+      x: 0.2,
+      y: rotationY,
+      z: 0,
+      duration: 0.6,
+      ease: 'power2.out',
+      overwrite: true,
+    })
   }, [])
 
   const handleExitToWhyChooseUs = useCallback(() => {
@@ -231,6 +192,7 @@ export default function Home() {
       <RoadsideServices />
 
       <WhyChooseUs />
+      <Testimonials />
       <ContactForm />
 
       <footer className="py-12 border-t border-white/10 text-center relative z-10 hidden">

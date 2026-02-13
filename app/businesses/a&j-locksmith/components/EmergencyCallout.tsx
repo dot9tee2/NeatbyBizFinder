@@ -35,7 +35,7 @@ export default function EmergencyCallout() {
         >
             <div
                 ref={contentRef}
-                className="max-w-5xl mx-auto bg-gradient-to-br from-cyan-600 to-blue-800 rounded-[3rem] p-12 text-center shadow-[0_20px_50px_rgba(6,182,212,0.3)] border border-cyan-400/30 overflow-hidden relative"
+                className="max-w-5xl mx-auto bg-gradient-to-br from-[#660000] to-black rounded-[3rem] p-12 text-center shadow-[0_20px_50px_rgba(247,190,50,0.3)] border border-[#f7be32]/30 overflow-hidden relative"
             >
                 {/* Decorative background element */}
                 <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-64 h-64 bg-white/10 rounded-full blur-3xl pointer-events-none" />
@@ -46,14 +46,14 @@ export default function EmergencyCallout() {
                 <h3 className="text-4xl md:text-6xl font-bold text-white mb-8">
                     24/7 Emergency <br className="hidden md:block" /> Lockout Services
                 </h3>
-                <p className="text-cyan-100 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-light">
+                <p className="text-yellow-100/80 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-light">
                     Our technicians are stationed across the city to ensure the fastest response times.
                     Average arrival is just <span className="font-bold underline">15-20 minutes</span>.
                 </p>
                 <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
                     <a
                         href="tel:5550123"
-                        className="text-3xl md:text-4xl font-black text-white hover:text-cyan-200 transition-colors"
+                        className="text-3xl md:text-4xl font-black text-white hover:text-[#f7be32] transition-colors"
                     >
                         (555) 012-3456
                     </a>

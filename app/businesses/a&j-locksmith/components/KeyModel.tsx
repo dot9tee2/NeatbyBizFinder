@@ -64,14 +64,21 @@ const KeyModel = forwardRef<KeyModelHandle, KeyModelProps>(function KeyModel({ h
         })
     }, [scene])
 
-    // Hero entrance animation
+    // Hero entrance animation — responsive positioning
     useEffect(() => {
         if (!groupRef.current) return
 
         const group = groupRef.current
+        const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+
+        // On mobile: center the key; on desktop: position right
+        const startX = isMobile ? 0 : 2.5
+        const endX = isMobile ? 0 : 2.5
+        const endY = isMobile ? 0 : -1.0
+        const endScale = isMobile ? 1.2 : 1.6
 
         // Start invisible, above viewport
-        group.position.set(2.5, 4, 0)
+        group.position.set(startX, 4, 0)
         group.rotation.set(-0.5, 2.0, 0.8)
         group.scale.set(0, 0, 0)
 
@@ -82,14 +89,15 @@ const KeyModel = forwardRef<KeyModelHandle, KeyModelProps>(function KeyModel({ h
         })
 
         entranceTl.to(group.scale, {
-            x: 1.6, y: 1.6, z: 1.6,
+            x: endScale, y: endScale, z: endScale,
             duration: 1.2,
             ease: 'elastic.out(1, 0.5)',
             delay: 0.3,
         })
 
         entranceTl.to(group.position, {
-            y: -1.0,
+            x: endX,
+            y: endY,
             duration: 1.4,
             ease: 'elastic.out(1, 0.6)',
         }, '<')

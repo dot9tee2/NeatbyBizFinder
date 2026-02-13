@@ -35,7 +35,7 @@ export default function ContactForm() {
             <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                        Request a <span className="text-cyan-400">Quote</span>
+                        Request a <span className="text-[#f7be32]">Quote</span>
                     </h2>
                     <p className="text-gray-400">
                         Non-emergency? Send us a message. We cover a 60-mile radius around the city.
@@ -52,7 +52,7 @@ export default function ContactForm() {
                         <input
                             type="text"
                             placeholder="John Doe"
-                            className="w-full p-4 bg-white/5 border border-white/10 rounded-xl text-white outline-none focus:border-cyan-500 transition-colors"
+                            className="w-full p-4 bg-white/5 border border-white/10 rounded-xl text-white outline-none focus:border-[#f7be32] transition-colors"
                         />
                     </div>
                     <div className="flex flex-col gap-2">
@@ -60,12 +60,12 @@ export default function ContactForm() {
                         <input
                             type="tel"
                             placeholder="(555) 000-0000"
-                            className="w-full p-4 bg-white/5 border border-white/10 rounded-xl text-white outline-none focus:border-cyan-500 transition-colors"
+                            className="w-full p-4 bg-white/5 border border-white/10 rounded-xl text-white outline-none focus:border-[#f7be32] transition-colors"
                         />
                     </div>
                     <div className="flex flex-col gap-2 md:col-span-2">
                         <label className="text-sm font-medium text-gray-400 ml-1">Service Needed</label>
-                        <select className="w-full p-4 bg-white/5 border border-white/10 rounded-xl text-white outline-none focus:border-cyan-500 transition-colors appearance-none">
+                        <select className="w-full p-4 bg-white/5 border border-white/10 rounded-xl text-white outline-none focus:border-[#f7be32] transition-colors appearance-none">
                             <option className="bg-slate-900">Residential Lockout</option>
                             <option className="bg-slate-900">Commercial Service</option>
                             <option className="bg-slate-900">Auto Key Replacement</option>
@@ -78,11 +78,11 @@ export default function ContactForm() {
                         <textarea
                             rows={4}
                             placeholder="Tell us about your locksmith needs..."
-                            className="w-full p-4 bg-white/5 border border-white/10 rounded-xl text-white outline-none focus:border-cyan-500 transition-colors resize-none"
+                            className="w-full p-4 bg-white/5 border border-white/10 rounded-xl text-white outline-none focus:border-[#f7be32] transition-colors resize-none"
                         />
                     </div>
                     <div className="md:col-span-2 mt-4">
-                        <button className="w-full py-5 bg-cyan-500 hover:bg-cyan-600 text-black font-bold rounded-xl transition-all hover:scale-[1.02] active:scale-[0.98] shadow-[0_10px_30px_rgba(6,182,212,0.3)]">
+                        <button className="w-full py-5 bg-[#f7be32] hover:bg-[#d9a528] text-black font-bold rounded-xl transition-all hover:scale-[1.02] active:scale-[0.98] shadow-[0_10px_30px_rgba(247,190,50,0.3)]">
                             SEND REQUEST
                         </button>
                     </div>

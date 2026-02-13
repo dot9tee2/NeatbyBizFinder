@@ -99,12 +99,12 @@ const Scene = forwardRef<SceneHandle, SceneProps>(function Scene({ heroMode = tr
                     <directionalLight
                         position={[-8, 4, 3]}
                         intensity={1}
-                        color="#c8e0ff"
+                        color="#ffecd1"
                     />
                     <pointLight
                         position={[0, 2, -6]}
                         intensity={2}
-                        color="#66d9ff"
+                        color="#ffaa00"
                     />
                 </Suspense>
 

@@ -83,10 +83,10 @@ export default function ServicesShowcase({ onServiceChange, onExitToWhyChooseUs,
                         progressDotsRef.current.forEach((dot, i) => {
                             if (!dot) return
                             if (i === activeIndex) {
-                                dot.classList.add('bg-cyan-400', 'scale-125')
+                                dot.classList.add('bg-[#f7be32]', 'scale-125')
                                 dot.classList.remove('bg-white/30')
                             } else {
-                                dot.classList.remove('bg-cyan-400', 'scale-125')
+                                dot.classList.remove('bg-[#f7be32]', 'scale-125')
                                 dot.classList.add('bg-white/30')
                             }
                         })
@@ -143,9 +143,9 @@ export default function ServicesShowcase({ onServiceChange, onExitToWhyChooseUs,
         >
             {/* Section Title */}
             <div className="absolute top-36 left-1/2 -translate-x-1/2 text-center z-20 pointer-events-none">
-                <p className="text-cyan-400 text-sm font-bold tracking-[0.3em] uppercase mb-2">Our Expertise</p>
+                <p className="text-[#f7be32] text-sm font-bold tracking-[0.3em] uppercase mb-2">Our Expertise</p>
                 <h2 className="text-3xl md:text-4xl font-bold text-white">
-                    Comprehensive <span className="text-cyan-400">Solutions</span>
+                    Comprehensive <span className="text-[#f7be32]">Solutions</span>
                 </h2>
             </div>
 
@@ -155,7 +155,7 @@ export default function ServicesShowcase({ onServiceChange, onExitToWhyChooseUs,
                     <div
                         key={i}
                         ref={(el) => { progressDotsRef.current[i] = el }}
-                        className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${i === 0 ? 'bg-cyan-400 scale-125' : 'bg-white/30'}`}
+                        className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${i === 0 ? 'bg-[#f7be32] scale-125' : 'bg-white/30'}`}
                     />
                 ))}
             </div>
@@ -174,7 +174,7 @@ export default function ServicesShowcase({ onServiceChange, onExitToWhyChooseUs,
                             <h3 className="text-3xl md:text-4xl font-bold text-white leading-tight">
                                 {service.title}
                             </h3>
-                            <p className="text-cyan-400 font-medium text-lg tracking-wide">
+                            <p className="text-[#f7be32] font-medium text-lg tracking-wide">
                                 {service.subtitle}
                             </p>
                         </div>
@@ -190,7 +190,7 @@ export default function ServicesShowcase({ onServiceChange, onExitToWhyChooseUs,
                             <ul className="space-y-3">
                                 {service.features.map((feature, fi) => (
                                     <li key={fi} className="flex items-center gap-3 text-gray-200">
-                                        <span className="w-2 h-2 bg-cyan-400 rounded-full flex-shrink-0" />
+                                        <span className="w-2 h-2 bg-[#f7be32] rounded-full flex-shrink-0" />
                                         {feature}
                                     </li>
                                 ))}

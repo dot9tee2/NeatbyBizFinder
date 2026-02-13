@@ -79,7 +79,7 @@ export default function ServicesGrid() {
             <div className="max-w-7xl mx-auto">
                 <div className="mb-16">
                     <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                        Comprehensive <span className="text-cyan-400">Security Solutions</span>
+                        Comprehensive <span className="text-[#f7be32]">Security Solutions</span>
                     </h2>
                     <p className="text-gray-400 text-lg max-w-2xl">
                         From emergency lockouts to complex master key systems, our expert team
@@ -92,15 +92,15 @@ export default function ServicesGrid() {
                         <div
                             key={index}
                             ref={el => { cardsRef.current[index] = el }}
-                            className="group p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 hover:border-cyan-500/50 transition-all duration-500"
+                            className="group p-8 rounded-3xl bg-[#f7be32]/5 border border-[#f7be32]/20 backdrop-blur-sm hover:bg-[#f7be32]/10 hover:border-[#f7be32] hover:shadow-[0_0_30px_rgba(247,190,50,0.15)] transition-all duration-500"
                         >
-                            <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-500 origin-left">
+                            <div className="text-4xl mb-6 text-[#f7be32] group-hover:scale-110 group-hover:text-[#ffda7c] transition-all duration-500 origin-left drop-shadow-[0_0_10px_rgba(247,190,50,0.3)]">
                                 {service.icon}
                             </div>
-                            <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-cyan-400 transition-colors">
+                            <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-[#f7be32] transition-colors">
                                 {service.title}
                             </h3>
-                            <p className="text-gray-400 leading-relaxed">
+                            <p className="text-gray-400 leading-relaxed group-hover:text-gray-300">
                                 {service.description}
                             </p>
                         </div>
