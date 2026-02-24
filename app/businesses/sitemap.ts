@@ -43,7 +43,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const businessSlugs = getRoutes(businessesDir);
 
     return businessSlugs.map((slug) => ({
-        url: `${baseUrl}/businesses/${slug}`,
+        url: `${baseUrl}/businesses/${slug.split('/').map(segment => encodeURIComponent(segment)).join('/')}`,
         lastModified: new Date().toISOString(),
         changeFrequency: 'monthly',
         priority: slug.split('/').length > 1 ? 0.7 : 0.8, // Slightly lower priority for nested pages
