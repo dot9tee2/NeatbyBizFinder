@@ -125,15 +125,8 @@ function useReveal() {
    PAGE COMPONENT
 ───────────────────────────────────────────── */
 export default function ZivaApplianceRepairPage() {
-    const [scrolled, setScrolled] = useState(false)
     const [formSent, setFormSent] = useState(false)
     useReveal()
-
-    useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 60)
-        window.addEventListener('scroll', onScroll, { passive: true })
-        return () => window.removeEventListener('scroll', onScroll)
-    }, [])
 
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault()
@@ -146,65 +139,78 @@ export default function ZivaApplianceRepairPage() {
         <>
             {/* ─── GLOBAL STYLES ─── */}
             <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap');
 
         :root {
-          --zr-black:   #090909;
-          --zr-dark:    #111111;
-          --zr-card:    #161616;
-          --zr-border:  rgba(255,255,255,0.08);
-          --zr-red:     #C8233A;
-          --zr-red-l:   #E8324A;
-          --zr-red-dim: rgba(200,35,58,0.14);
-          --zr-white:   #F5F1EC;
-          --zr-muted:   rgba(245,241,236,0.48);
-          --ff-disp:   'Playfair Display', Georgia, serif;
-          --ff-body:   'DM Sans', sans-serif;
-          --ff-lbl:    'Bebas Neue', sans-serif;
+          /* ── Palette ── */
+          --zr-bg:        #FDFAF6;
+          --zr-surface:   #FFFFFF;
+          --zr-surface2:  #F5F0E8;
+          --zr-surface3:  #EDE8DF;
+          --zr-border:    rgba(60,40,20,0.10);
+          --zr-border2:   rgba(60,40,20,0.18);
+          --zr-red:       #B8273D;
+          --zr-red-l:     #D43350;
+          --zr-red-dim:   rgba(184,39,61,0.09);
+          --zr-red-dim2:  rgba(184,39,61,0.16);
+          --zr-ink:       #1C1410;
+          --zr-ink2:      #5A4A3A;
+          --zr-muted:     rgba(28,20,16,0.48);
+          --zr-warm:      #C8A97A;
+
+          /* ── Typography ── */
+          --ff-disp:  'Cormorant Garamond', Georgia, serif;
+          --ff-body:  'Plus Jakarta Sans', sans-serif;
+          --ff-mono:  'DM Mono', monospace;
         }
 
+        /* ── Base ── */
         .zr-root {
           font-family: var(--ff-body);
-          background: var(--zr-black);
-          color: var(--zr-white);
+          background: var(--zr-bg);
+          color: var(--zr-ink);
           overflow-x: hidden;
         }
 
-        /* Reveal animation */
+        /* ── Reveal animation ── */
         .zr-reveal {
           opacity: 0;
-          transform: translateY(28px);
-          transition: opacity .7s ease, transform .7s ease;
+          transform: translateY(24px);
+          transition: opacity .65s ease, transform .65s ease;
         }
         .zr-visible { opacity: 1; transform: translateY(0); }
 
-        /* Typography helpers */
+        /* ── Label ── */
         .zr-lbl {
-          font-family: var(--ff-lbl);
-          font-size: .78rem;
-          letter-spacing: .28em;
+          font-family: var(--ff-body);
+          font-size: .72rem;
+          font-weight: 600;
+          letter-spacing: .22em;
+          text-transform: uppercase;
           color: var(--zr-red);
           display: flex;
           align-items: center;
-          gap: .7rem;
+          gap: .65rem;
         }
         .zr-lbl::before {
           content: '';
-          width: 1.4rem;
-          height: 1px;
+          width: 1.2rem; height: 1px;
           background: var(--zr-red);
           display: block;
         }
+
+        /* ── Headlines ── */
         .zr-h2 {
           font-family: var(--ff-disp);
-          font-weight: 900;
-          font-size: clamp(2.1rem, 3.8vw, 3.3rem);
-          line-height: 1.05;
-          letter-spacing: -.015em;
+          font-weight: 700;
+          font-size: clamp(2.1rem, 3.8vw, 3.2rem);
+          line-height: 1.06;
+          letter-spacing: -.01em;
+          color: var(--zr-ink);
         }
         .zr-h2 em { font-style: italic; color: var(--zr-red); }
 
-        /* Marquee */
+        /* ── Marquee ── */
         @keyframes zr-marquee {
           from { transform: translateX(0); }
           to   { transform: translateX(-50%); }
@@ -212,183 +218,154 @@ export default function ZivaApplianceRepairPage() {
         .zr-marquee-track {
           display: flex;
           width: max-content;
-          animation: zr-marquee 28s linear infinite;
+          animation: zr-marquee 30s linear infinite;
           white-space: nowrap;
         }
 
-        /* Clipped button shape */
-        .zr-clip {
-          clip-path: polygon(0 0, calc(100% - 11px) 0, 100% 11px, 100% 100%, 11px 100%, 0 calc(100% - 11px));
-        }
-
-        /* Sticky nav */
+        /* ── Nav ── */
         .zr-nav {
           position: fixed; top: 0; left: 0; right: 0; z-index: 90;
-          padding: 1.1rem 3rem;
+          padding: 1rem 3rem;
           display: flex; align-items: center; justify-content: space-between;
-          transition: background .35s;
+          background: rgba(253,250,246,.0);
+          transition: background .35s, border-color .35s, box-shadow .35s;
+          border-bottom: 1px solid transparent;
         }
         .zr-nav.scrolled {
-          background: rgba(9,9,9,.97);
-          backdrop-filter: blur(8px);
+          background: rgba(253,250,246,.97);
+          backdrop-filter: blur(10px);
           border-bottom: 1px solid var(--zr-border);
+          box-shadow: 0 1px 16px rgba(28,20,16,.06);
         }
 
-        /* Hero */
+        /* ── Hero ── */
         .zr-hero-bg {
           background:
-            radial-gradient(ellipse 55% 70% at 28% 50%, rgba(180,20,40,.11) 0%, transparent 65%),
-            radial-gradient(ellipse 40% 40% at 10% 85%, rgba(180,20,40,.06) 0%, transparent 55%),
-            var(--zr-black);
+            radial-gradient(ellipse 55% 70% at 22% 55%, rgba(200,169,122,.14) 0%, transparent 65%),
+            radial-gradient(ellipse 40% 50% at 8% 85%, rgba(184,39,61,.05) 0%, transparent 60%),
+            var(--zr-bg);
         }
         .zr-hero-grid {
           position: absolute; inset: 0;
           background-image:
-            linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px);
-          background-size: 80px 80px;
-          mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 30%, transparent 100%);
+            linear-gradient(var(--zr-border) 1px, transparent 1px),
+            linear-gradient(90deg, var(--zr-border) 1px, transparent 1px);
+          background-size: 76px 76px;
+          mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 20%, transparent 100%);
+          pointer-events: none;
         }
 
-        /* Service card effects */
-        .zr-scard { position: relative; overflow: hidden; transition: background .25s; }
+        /* ── Service cards ── */
+        .zr-scard {
+          position: relative; overflow: hidden;
+          background: var(--zr-surface);
+          transition: background .25s, box-shadow .25s;
+          cursor: default;
+        }
         .zr-scard::after {
           content: ''; position: absolute; bottom: 0; left: 0;
-          width: 0; height: 2px; background: var(--zr-red);
+          height: 2px; width: 0; background: var(--zr-red);
           transition: width .45s ease;
         }
-        .zr-scard:hover::after  { width: 100%; }
-        .zr-scard:hover         { background: #1a1a1a !important; }
-        .zr-img-wrap img        { transition: transform .5s ease; }
-        .zr-scard:hover .zr-img-wrap img { transform: scale(1.05); }
+        .zr-scard:hover::after { width: 100%; }
+        .zr-scard:hover {
+          background: #FEFCF8 !important;
+          box-shadow: 0 4px 24px rgba(28,20,16,.07);
+        }
+        .zr-img-wrap img { transition: transform .5s ease; }
+        .zr-scard:hover .zr-img-wrap img { transform: scale(1.04); }
 
-        /* Hover states */
-        .zr-reason    { transition: background .2s; }
-        .zr-reason:hover { background: #1c1c1c !important; }
-        .zr-tcard     { transition: background .2s, border-color .2s; }
-        .zr-tcard:hover { background: #1c1c1c !important; border-color: rgba(200,35,58,.35) !important; }
+        /* ── Reason rows ── */
+        .zr-reason { transition: background .2s, border-color .2s; }
+        .zr-reason:hover {
+          background: var(--zr-surface) !important;
+          border-left-color: var(--zr-red) !important;
+        }
 
-        /* Mobile */
+        /* ── Testimonial cards ── */
+        .zr-tcard { transition: border-color .2s, box-shadow .2s; }
+        .zr-tcard:hover {
+          border-color: rgba(200,169,122,.5) !important;
+          box-shadow: 0 4px 20px rgba(200,169,122,.12);
+        }
+
+        /* ── Form inputs ── */
+        .zr-input {
+          background: var(--zr-surface);
+          border: 1px solid var(--zr-border2);
+          color: var(--zr-ink);
+          padding: .85rem 1rem;
+          font-family: var(--ff-body);
+          font-size: .87rem;
+          outline: none;
+          width: 100%;
+          border-radius: 4px;
+          transition: border-color .2s;
+        }
+        .zr-input::placeholder { color: var(--zr-muted); opacity: .7; }
+        .zr-input:focus { border-color: var(--zr-red); }
+
+        /* ── Mobile ── */
         @media (max-width: 768px) {
-          .zr-nav       { padding: 1rem 1.25rem; }
-          .zr-nav-links { display: none !important; }
-          .zr-hero-img  { display: none !important; }
+          .zr-nav         { padding: 1rem 1.25rem; }
+          .zr-nav-links   { display: none !important; }
+          .zr-hero-img    { display: none !important; }
         }
       `}</style>
 
             <div className="zr-root">
 
                 {/* ══════════════════ NAV ══════════════════ */}
-                <nav className={`zr-nav ${scrolled ? 'scrolled' : ''}`}>
-
-                    {/* Logo mark */}
-                    <div className="flex items-center gap-3">
-                        <div
-                            className="relative w-9 h-9 flex items-center justify-center flex-shrink-0"
-                            style={{ border: '2px solid var(--zr-red)' }}
-                        >
-                            <span style={{ fontFamily: 'var(--ff-disp)', fontWeight: 900, fontSize: '1.25rem', color: 'var(--zr-red)' }}>
-                                Z
-                            </span>
-                        </div>
-                        <div>
-                            <span style={{ fontFamily: 'var(--ff-lbl)', fontSize: '1.05rem', letterSpacing: '.12em' }}>ZIVA</span>
-                            <span
-                                className="block"
-                                style={{ fontFamily: 'var(--ff-body)', fontSize: '.6rem', letterSpacing: '.17em', color: 'var(--zr-muted)', marginTop: '-2px' }}
-                            >
-                                APPLIANCE REPAIR
-                            </span>
-                        </div>
-                    </div>
-
-                    {/* Desktop nav links */}
-                    <div className="zr-nav-links flex items-center gap-8">
-                        {['Services', 'About', 'Coverage', 'Contact'].map((l) => (
-                            <a
-                                key={l}
-                                href={`#${l.toLowerCase()}`}
-                                style={{ color: 'var(--zr-muted)', fontSize: '.82rem', letterSpacing: '.09em', textDecoration: 'none' }}
-                                className="hover:text-white transition-colors"
-                            >
-                                {l}
-                            </a>
-                        ))}
-                    </div>
-
-                    {/* Call CTA */}
-                    <a
-                        href={biz.phoneHref}
-                        className="zr-clip flex items-center gap-2 transition-all hover:-translate-y-px"
-                        style={{
-                            background: 'var(--zr-red)',
-                            color: 'var(--zr-white)',
-                            padding: '.65rem 1.4rem',
-                            fontSize: '.78rem',
-                            fontWeight: 500,
-                            letterSpacing: '.1em',
-                            textDecoration: 'none',
-                        }}
-                    >
-                        <Phone size={14} /> CALL NOW
-                    </a>
-                </nav>
+                <NavBar />
 
                 {/* ══════════════════ HERO ══════════════════ */}
                 <section className="zr-hero-bg relative flex items-center min-h-screen overflow-hidden" id="home">
 
-                    {/* Grid overlay */}
                     <div className="zr-hero-grid absolute inset-0 pointer-events-none" />
 
-                    {/* ── RIGHT: Hero technician image ── */}
+                    {/* Right — hero image */}
                     <div
                         className="zr-hero-img absolute right-0 top-0 bottom-0 pointer-events-none"
                         style={{ width: '52%' }}
                     >
-                        {/* Left-edge fade: blends image into the text side smoothly */}
-                        <div
-                            className="absolute inset-y-0 left-0 z-10"
-                            style={{ width: '200px', background: 'linear-gradient(to right, #090909 0%, transparent 100%)' }}
-                        />
-                        {/* Top fade */}
-                        <div
-                            className="absolute inset-x-0 top-0 z-10"
-                            style={{ height: '140px', background: 'linear-gradient(to bottom, #090909 0%, transparent 100%)' }}
-                        />
-                        {/* Bottom fade */}
-                        <div
-                            className="absolute inset-x-0 bottom-0 z-10"
-                            style={{ height: '160px', background: 'linear-gradient(to top, #090909 0%, transparent 100%)' }}
-                        />
-                        {/* Subtle red tint */}
-                        <div className="absolute inset-0 z-10" style={{ background: 'rgba(200,35,58,0.07)' }} />
+                        {/* Edge fades */}
+                        <div className="absolute inset-y-0 left-0 z-10"
+                            style={{ width: '220px', background: 'linear-gradient(to right, #FDFAF6 0%, transparent 100%)' }} />
+                        <div className="absolute inset-x-0 top-0 z-10"
+                            style={{ height: '140px', background: 'linear-gradient(to bottom, #FDFAF6 0%, transparent 100%)' }} />
+                        <div className="absolute inset-x-0 bottom-0 z-10"
+                            style={{ height: '160px', background: 'linear-gradient(to top, #FDFAF6 0%, transparent 100%)' }} />
+                        {/* Warm tint overlay */}
+                        <div className="absolute inset-0 z-10"
+                            style={{ background: 'rgba(200,169,122,0.06)' }} />
 
                         <Image
                             src="/ziva-appliances/hero-technician.png"
                             alt="Appliance repair technician at work"
                             fill
                             className="object-cover object-center"
-                            style={{ opacity: 0.6 }}
+                            style={{ opacity: 0.75 }}
                             priority
                             sizes="52vw"
                         />
                     </div>
 
-                    {/* ── LEFT: Text content ── */}
+                    {/* Left — text */}
                     <div className="relative z-10 w-full max-w-screen-xl mx-auto px-6 md:px-12 pt-28 pb-16">
 
                         <div className="zr-reveal zr-lbl mb-7">
-                            RESIDENTIAL APPLIANCE SPECIALISTS — McKINNEY, TX
+                            Residential Appliance Specialists — McKinney, TX
                         </div>
 
                         <h1
                             className="zr-reveal"
                             style={{
                                 fontFamily: 'var(--ff-disp)',
-                                fontWeight: 900,
-                                fontSize: 'clamp(3rem, 7vw, 6.5rem)',
-                                lineHeight: 1.0,
-                                letterSpacing: '-.02em',
+                                fontWeight: 700,
+                                fontSize: 'clamp(3rem, 7vw, 6.2rem)',
+                                lineHeight: 1.02,
+                                letterSpacing: '-.015em',
+                                color: 'var(--zr-ink)',
                                 maxWidth: '640px',
                             }}
                         >
@@ -399,7 +376,7 @@ export default function ZivaApplianceRepairPage() {
 
                         <p
                             className="zr-reveal mt-6 max-w-md"
-                            style={{ fontSize: '1.02rem', color: 'var(--zr-muted)', lineHeight: 1.85 }}
+                            style={{ fontSize: '1rem', color: 'var(--zr-ink2)', lineHeight: 1.85 }}
                         >
                             Expert residential appliance repair in McKinney and a {biz.radius}-mile radius.
                             Garbage disposals, dishwashers, refrigerators, ovens, washers, dryers — all major brands.
@@ -408,29 +385,33 @@ export default function ZivaApplianceRepairPage() {
                         <div className="zr-reveal flex flex-wrap items-center gap-4 mt-9">
                             <a
                                 href={biz.phoneHref}
-                                className="zr-clip flex items-center gap-2 transition-all hover:-translate-y-0.5"
+                                className="flex items-center gap-2 transition-all hover:-translate-y-0.5"
                                 style={{
                                     background: 'var(--zr-red)',
-                                    color: 'var(--zr-white)',
+                                    color: '#fff',
                                     padding: '1rem 1.9rem',
                                     fontSize: '.9rem',
-                                    fontWeight: 500,
-                                    letterSpacing: '.07em',
+                                    fontWeight: 600,
+                                    borderRadius: '4px',
                                     textDecoration: 'none',
+                                    letterSpacing: '.04em',
                                 }}
                             >
                                 <Phone size={17} /> {biz.phone}
                             </a>
                             <a
                                 href="#contact"
+                                className="transition-all hover:-translate-y-0.5"
                                 style={{
-                                    border: '1px solid var(--zr-border)',
-                                    color: 'var(--zr-white)',
+                                    border: '1px solid var(--zr-border2)',
+                                    color: 'var(--zr-ink)',
                                     padding: '1rem 1.9rem',
                                     fontSize: '.9rem',
+                                    fontWeight: 500,
+                                    borderRadius: '4px',
                                     textDecoration: 'none',
+                                    background: 'var(--zr-surface)',
                                 }}
-                                className="hover:border-white/30 transition-colors"
                             >
                                 Book a Repair
                             </a>
@@ -443,8 +424,9 @@ export default function ZivaApplianceRepairPage() {
                         >
                             {['Residential Only', '35-Mile Radius', 'McKinney TX 75071', 'Same-Day Availability'].map((b) => (
                                 <div key={b} className="flex items-center gap-2">
-                                    <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: 'var(--zr-red)' }} />
-                                    <span style={{ fontSize: '.78rem', color: 'var(--zr-muted)', letterSpacing: '.06em' }}>{b}</span>
+                                    <span className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                                        style={{ background: 'var(--zr-red)' }} />
+                                    <span style={{ fontSize: '.78rem', color: 'var(--zr-ink2)', letterSpacing: '.05em' }}>{b}</span>
                                 </div>
                             ))}
                         </div>
@@ -452,15 +434,13 @@ export default function ZivaApplianceRepairPage() {
                 </section>
 
                 {/* ══════════════════ MARQUEE ══════════════════ */}
-                <div
-                    style={{
-                        background: 'var(--zr-red)',
-                        padding: '.9rem 0',
-                        overflow: 'hidden',
-                        borderTop: '1px solid rgba(255,255,255,.12)',
-                        borderBottom: '1px solid rgba(255,255,255,.12)',
-                    }}
-                >
+                <div style={{
+                    background: 'var(--zr-surface2)',
+                    borderTop: '1px solid var(--zr-border)',
+                    borderBottom: '1px solid var(--zr-border)',
+                    padding: '.85rem 0',
+                    overflow: 'hidden',
+                }}>
                     <div className="zr-marquee-track">
                         {[0, 1].map((j) => (
                             <span key={j} className="flex items-center">
@@ -473,15 +453,17 @@ export default function ZivaApplianceRepairPage() {
                                         key={`${j}-${item}`}
                                         className="flex items-center gap-8 px-8"
                                         style={{
-                                            fontFamily: 'var(--ff-lbl)',
-                                            fontSize: '.85rem',
-                                            letterSpacing: '.15em',
-                                            color: 'rgba(255,255,255,.88)',
+                                            fontFamily: 'var(--ff-body)',
+                                            fontWeight: 600,
+                                            fontSize: '.75rem',
+                                            letterSpacing: '.16em',
+                                            textTransform: 'uppercase',
+                                            color: 'var(--zr-ink2)',
                                             whiteSpace: 'nowrap',
                                         }}
                                     >
                                         {item}
-                                        <span style={{ fontSize: '.45rem', color: 'rgba(255,255,255,.45)' }}>✦</span>
+                                        <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'var(--zr-warm)', display: 'inline-block' }} />
                                     </span>
                                 ))}
                             </span>
@@ -492,19 +474,22 @@ export default function ZivaApplianceRepairPage() {
                 {/* ══════════════════ SERVICES ══════════════════ */}
                 <section id="services" className="py-24 px-6 md:px-12">
                     <div className="max-w-screen-xl mx-auto">
-                        <div className="zr-reveal zr-lbl mb-4">OUR SERVICES</div>
+                        <div className="zr-reveal zr-lbl mb-4">Our Services</div>
                         <h2 className="zr-reveal zr-h2 mb-14">What We <em>Repair</em></h2>
 
                         <div
-                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px"
-                            style={{ background: 'var(--zr-border)' }}
+                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+                            style={{
+                                gap: '1.5px',
+                                background: 'var(--zr-border)',
+                                border: '1px solid var(--zr-border)',
+                                borderRadius: '12px',
+                                overflow: 'hidden',
+                            }}
                         >
                             {services.map((s) => (
-                                <div
-                                    key={s.id}
-                                    className="zr-scard zr-reveal"
-                                    style={{ background: 'var(--zr-card)' }}
-                                >
+                                <div key={s.id} className="zr-scard zr-reveal">
+
                                     {/* Card image */}
                                     <div className="zr-img-wrap relative" style={{ height: '210px' }}>
                                         <Image
@@ -514,18 +499,20 @@ export default function ZivaApplianceRepairPage() {
                                             className="object-cover"
                                             sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
                                         />
-                                        {/* Bottom-to-top gradient so text is always readable */}
-                                        <div
-                                            className="absolute inset-0"
-                                            style={{
-                                                background:
-                                                    'linear-gradient(to top, rgba(22,22,22,1) 0%, rgba(22,22,22,0.15) 55%, transparent 100%)',
-                                            }}
-                                        />
+                                        {/* Subtle bottom fade */}
+                                        <div className="absolute inset-0"
+                                            style={{ background: 'linear-gradient(to top, rgba(253,250,246,.7) 0%, transparent 55%)' }} />
                                         {/* Number */}
                                         <span
                                             className="absolute top-4 right-4"
-                                            style={{ fontFamily: 'var(--ff-lbl)', fontSize: '2rem', color: 'rgba(200,35,58,0.65)' }}
+                                            style={{
+                                                fontFamily: 'var(--ff-disp)',
+                                                fontStyle: 'italic',
+                                                fontSize: '2.4rem',
+                                                fontWeight: 600,
+                                                color: 'rgba(184,39,61,0.25)',
+                                                lineHeight: 1,
+                                            }}
                                         >
                                             {s.id}
                                         </span>
@@ -533,13 +520,11 @@ export default function ZivaApplianceRepairPage() {
 
                                     {/* Card body */}
                                     <div style={{ padding: '1.8rem 2rem 2.2rem' }}>
-                                        <h3
-                                            className="mb-3"
-                                            style={{ fontFamily: 'var(--ff-disp)', fontWeight: 700, fontSize: '1.35rem' }}
-                                        >
+                                        <h3 className="mb-3"
+                                            style={{ fontFamily: 'var(--ff-disp)', fontWeight: 700, fontSize: '1.35rem', color: 'var(--zr-ink)' }}>
                                             {s.name}
                                         </h3>
-                                        <p style={{ fontSize: '.86rem', color: 'var(--zr-muted)', lineHeight: 1.8 }}>{s.desc}</p>
+                                        <p style={{ fontSize: '.86rem', color: 'var(--zr-ink2)', lineHeight: 1.8 }}>{s.desc}</p>
 
                                         <div className="flex flex-wrap gap-2 mt-4">
                                             {s.tags.map((t) => (
@@ -547,10 +532,12 @@ export default function ZivaApplianceRepairPage() {
                                                     key={t}
                                                     style={{
                                                         fontSize: '.7rem',
-                                                        letterSpacing: '.07em',
-                                                        border: '1px solid var(--zr-border)',
-                                                        padding: '.25rem .6rem',
-                                                        color: 'var(--zr-muted)',
+                                                        letterSpacing: '.06em',
+                                                        border: '1px solid var(--zr-border2)',
+                                                        borderRadius: '20px',
+                                                        padding: '.25rem .65rem',
+                                                        color: 'var(--zr-ink2)',
+                                                        background: 'var(--zr-surface2)',
                                                     }}
                                                 >
                                                     {t}
@@ -568,7 +555,7 @@ export default function ZivaApplianceRepairPage() {
                 <section
                     id="about"
                     style={{
-                        background: 'var(--zr-dark)',
+                        background: 'var(--zr-surface2)',
                         borderTop: '1px solid var(--zr-border)',
                         borderBottom: '1px solid var(--zr-border)',
                         padding: '6rem 1.5rem',
@@ -578,52 +565,68 @@ export default function ZivaApplianceRepairPage() {
 
                         {/* Copy */}
                         <div className="zr-reveal">
-                            <div className="zr-lbl mb-4">WHY ZIVA</div>
+                            <div className="zr-lbl mb-4">Why Ziva</div>
                             <h2 className="zr-h2 mb-6">Your Home<br /><em>Deserves Better</em></h2>
                             <p
                                 style={{
                                     fontFamily: 'var(--ff-disp)',
                                     fontStyle: 'italic',
-                                    fontSize: '1.25rem',
-                                    lineHeight: 1.5,
-                                    color: 'var(--zr-muted)',
+                                    fontSize: '1.2rem',
+                                    lineHeight: 1.6,
+                                    color: 'var(--zr-ink2)',
                                     maxWidth: '420px',
                                 }}
                             >
-                                <strong style={{ color: 'var(--zr-white)', fontStyle: 'normal' }}>
+                                <strong style={{ color: 'var(--zr-ink)', fontStyle: 'normal' }}>
                                     "No parts, no fix" excuses stop here.
                                 </strong>
                                 <br />
                                 We arrive prepared and get the job done right, the first time.
                             </p>
 
-                            <div className="flex gap-8 mt-10">
+                            <div className="flex gap-10 mt-10">
                                 {[['100%', 'Residential Focus'], ['35mi', 'Service Radius'], ['5★', 'Avg. Rating']].map(([n, l]) => (
                                     <div key={l}>
-                                        <div style={{ fontFamily: 'var(--ff-lbl)', fontSize: '2.2rem', color: 'var(--zr-red)' }}>{n}</div>
-                                        <div style={{ fontSize: '.72rem', color: 'var(--zr-muted)', letterSpacing: '.09em', marginTop: '.2rem' }}>{l}</div>
+                                        <div style={{
+                                            fontFamily: 'var(--ff-disp)',
+                                            fontWeight: 700,
+                                            fontSize: '2.4rem',
+                                            color: 'var(--zr-red)',
+                                            lineHeight: 1,
+                                        }}>{n}</div>
+                                        <div style={{ fontSize: '.72rem', color: 'var(--zr-muted)', letterSpacing: '.08em', marginTop: '.3rem' }}>{l}</div>
                                     </div>
                                 ))}
                             </div>
                         </div>
 
-                        {/* Reason cards */}
-                        <div className="flex flex-col gap-px zr-reveal" style={{ background: 'var(--zr-border)' }}>
+                        {/* Reason rows */}
+                        <div className="zr-reveal flex flex-col gap-2">
                             {reasons.map(({ icon: Icon, title, desc }) => (
                                 <div
                                     key={title}
                                     className="zr-reason flex items-start gap-4"
-                                    style={{ background: 'var(--zr-card)', padding: '1.6rem 1.8rem' }}
+                                    style={{
+                                        background: 'var(--zr-surface)',
+                                        border: '1px solid var(--zr-border)',
+                                        borderLeft: '3px solid var(--zr-border2)',
+                                        borderRadius: '6px',
+                                        padding: '1.3rem 1.5rem',
+                                    }}
                                 >
                                     <div
-                                        className="flex-shrink-0 w-10 h-10 flex items-center justify-center"
-                                        style={{ border: '1px solid var(--zr-red)', color: 'var(--zr-red)' }}
+                                        className="flex-shrink-0 w-9 h-9 flex items-center justify-center"
+                                        style={{
+                                            background: 'var(--zr-red-dim)',
+                                            borderRadius: '8px',
+                                            color: 'var(--zr-red)',
+                                        }}
                                     >
-                                        <Icon size={18} />
+                                        <Icon size={17} />
                                     </div>
                                     <div>
-                                        <h4 style={{ fontWeight: 500, fontSize: '.92rem', marginBottom: '.25rem' }}>{title}</h4>
-                                        <p style={{ fontSize: '.82rem', color: 'var(--zr-muted)', lineHeight: 1.7 }}>{desc}</p>
+                                        <h4 style={{ fontWeight: 600, fontSize: '.9rem', color: 'var(--zr-ink)', marginBottom: '.2rem' }}>{title}</h4>
+                                        <p style={{ fontSize: '.82rem', color: 'var(--zr-ink2)', lineHeight: 1.65 }}>{desc}</p>
                                     </div>
                                 </div>
                             ))}
@@ -634,27 +637,31 @@ export default function ZivaApplianceRepairPage() {
                 {/* ══════════════════ COVERAGE ══════════════════ */}
                 <section id="coverage" className="py-24 px-6 md:px-12">
                     <div className="max-w-screen-xl mx-auto">
-                        <div className="zr-reveal zr-lbl mb-4">SERVICE AREA</div>
+                        <div className="zr-reveal zr-lbl mb-4">Service Area</div>
                         <h2 className="zr-reveal zr-h2 mb-3">Where We <em>Operate</em></h2>
-                        <p className="zr-reveal mb-10" style={{ color: 'var(--zr-muted)', fontSize: '.9rem' }}>
+                        <p className="zr-reveal mb-10" style={{ color: 'var(--zr-ink2)', fontSize: '.9rem' }}>
                             Based in McKinney, TX {biz.zip} — we travel up to {biz.radius} miles to your door.
                         </p>
 
                         <div
                             className="zr-reveal relative flex flex-col items-center justify-center text-center py-16 overflow-hidden"
-                            style={{ background: 'var(--zr-card)', border: '1px solid var(--zr-border)' }}
+                            style={{
+                                background: 'var(--zr-surface)',
+                                border: '1px solid var(--zr-border)',
+                                borderRadius: '14px',
+                            }}
                         >
-                            <div
-                                className="absolute inset-0 pointer-events-none"
-                                style={{ background: 'radial-gradient(circle at 50% 40%, rgba(200,35,58,.13) 0%, transparent 65%)' }}
-                            />
+                            {/* Radial glow */}
+                            <div className="absolute inset-0 pointer-events-none"
+                                style={{ background: 'radial-gradient(circle at 50% 38%, rgba(200,169,122,.13) 0%, transparent 65%)' }} />
 
                             <div
                                 style={{
-                                    fontFamily: 'var(--ff-lbl)',
+                                    fontFamily: 'var(--ff-disp)',
+                                    fontWeight: 700,
                                     fontSize: 'clamp(5rem, 12vw, 10rem)',
                                     color: 'transparent',
-                                    WebkitTextStroke: '1px rgba(200,35,58,.35)',
+                                    WebkitTextStroke: '1.5px rgba(184,39,61,.25)',
                                     lineHeight: 1,
                                     position: 'relative',
                                 }}
@@ -663,25 +670,19 @@ export default function ZivaApplianceRepairPage() {
                             </div>
                             <div
                                 style={{
-                                    fontFamily: 'var(--ff-lbl)',
-                                    fontSize: '1.1rem',
-                                    letterSpacing: '.22em',
+                                    fontFamily: 'var(--ff-body)',
+                                    fontWeight: 600,
+                                    fontSize: '.8rem',
+                                    letterSpacing: '.2em',
+                                    textTransform: 'uppercase',
                                     color: 'var(--zr-red)',
                                     marginTop: '.4rem',
                                     position: 'relative',
                                 }}
                             >
-                                MILE SERVICE RADIUS
+                                Mile Service Radius
                             </div>
-                            <p
-                                style={{
-                                    fontSize: '.86rem',
-                                    color: 'var(--zr-muted)',
-                                    marginTop: '.6rem',
-                                    maxWidth: '360px',
-                                    position: 'relative',
-                                }}
-                            >
+                            <p style={{ fontSize: '.86rem', color: 'var(--zr-ink2)', marginTop: '.6rem', maxWidth: '360px', position: 'relative' }}>
                                 Centered in McKinney, TX — covering the entire DFW North corridor.
                             </p>
 
@@ -690,15 +691,17 @@ export default function ZivaApplianceRepairPage() {
                                     <span
                                         key={c}
                                         style={{
-                                            border: '1px solid var(--zr-border)',
-                                            padding: '.35rem .85rem',
+                                            border: '1px solid var(--zr-border2)',
+                                            borderRadius: '20px',
+                                            padding: '.3rem .85rem',
                                             fontSize: '.74rem',
-                                            color: 'var(--zr-muted)',
-                                            letterSpacing: '.06em',
+                                            color: 'var(--zr-ink2)',
+                                            background: 'var(--zr-surface2)',
+                                            letterSpacing: '.04em',
                                             transition: 'all .2s',
                                             cursor: 'default',
                                         }}
-                                        className="hover:border-red-600 hover:text-red-500"
+                                        className="hover:border-red-400 hover:text-red-600"
                                     >
                                         {c}, TX
                                     </span>
@@ -711,26 +714,28 @@ export default function ZivaApplianceRepairPage() {
                 {/* ══════════════════ TESTIMONIALS ══════════════════ */}
                 <section
                     style={{
-                        background: 'var(--zr-dark)',
+                        background: 'var(--zr-surface2)',
                         borderTop: '1px solid var(--zr-border)',
                         padding: '6rem 1.5rem',
                     }}
                 >
                     <div className="max-w-screen-xl mx-auto">
-                        <div className="zr-reveal zr-lbl mb-4">TESTIMONIALS</div>
+                        <div className="zr-reveal zr-lbl mb-4">Testimonials</div>
                         <h2 className="zr-reveal zr-h2 mb-12">What Clients <em>Say</em></h2>
 
-                        <div
-                            className="grid grid-cols-1 md:grid-cols-3 gap-px zr-reveal"
-                            style={{ background: 'var(--zr-border)' }}
-                        >
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 zr-reveal">
                             {testimonials.map((t) => (
                                 <div
                                     key={t.name}
                                     className="zr-tcard"
-                                    style={{ background: 'var(--zr-card)', border: '1px solid transparent', padding: '2.4rem 2rem' }}
+                                    style={{
+                                        background: 'var(--zr-surface)',
+                                        border: '1px solid var(--zr-border)',
+                                        borderRadius: '12px',
+                                        padding: '2.2rem 2rem',
+                                    }}
                                 >
-                                    <div style={{ color: 'var(--zr-red)', fontSize: '.85rem', letterSpacing: '.15em', marginBottom: '1.1rem' }}>
+                                    <div style={{ color: 'var(--zr-warm)', fontSize: '.9rem', letterSpacing: '.1em', marginBottom: '1rem' }}>
                                         ★★★★★
                                     </div>
                                     <p
@@ -738,15 +743,16 @@ export default function ZivaApplianceRepairPage() {
                                             fontFamily: 'var(--ff-disp)',
                                             fontStyle: 'italic',
                                             fontSize: '1rem',
-                                            lineHeight: 1.75,
-                                            marginBottom: '1.5rem',
+                                            lineHeight: 1.78,
+                                            color: 'var(--zr-ink2)',
+                                            marginBottom: '1.6rem',
                                         }}
                                     >
                                         {t.text}
                                     </p>
-                                    <div>
-                                        <strong style={{ display: 'block', fontSize: '.85rem', fontWeight: 500 }}>{t.name}</strong>
-                                        <span style={{ fontSize: '.74rem', color: 'var(--zr-muted)', letterSpacing: '.07em' }}>
+                                    <div style={{ borderTop: '1px solid var(--zr-border)', paddingTop: '1rem' }}>
+                                        <strong style={{ display: 'block', fontSize: '.85rem', fontWeight: 600, color: 'var(--zr-ink)' }}>{t.name}</strong>
+                                        <span style={{ fontSize: '.74rem', color: 'var(--zr-muted)', letterSpacing: '.06em' }}>
                                             {t.location}
                                         </span>
                                     </div>
@@ -762,25 +768,26 @@ export default function ZivaApplianceRepairPage() {
 
                         {/* Left — contact info */}
                         <div className="zr-reveal">
-                            <div className="zr-lbl mb-4">GET IN TOUCH</div>
+                            <div className="zr-lbl mb-4">Get In Touch</div>
                             <h2 className="zr-h2 mb-4">Ready to <em>Book?</em></h2>
-                            <p style={{ color: 'var(--zr-muted)', fontSize: '.9rem', maxWidth: '380px', lineHeight: 1.8 }}>
+                            <p style={{ color: 'var(--zr-ink2)', fontSize: '.9rem', maxWidth: '380px', lineHeight: 1.8 }}>
                                 Call for the fastest response, or fill the form and we'll confirm your appointment promptly.
                             </p>
 
                             <a
                                 href={biz.phoneHref}
                                 style={{
-                                    fontFamily: 'var(--ff-lbl)',
+                                    fontFamily: 'var(--ff-disp)',
+                                    fontWeight: 700,
                                     fontSize: 'clamp(1.8rem, 3.5vw, 3rem)',
-                                    letterSpacing: '.05em',
+                                    letterSpacing: '.02em',
                                     textDecoration: 'none',
                                     display: 'block',
                                     margin: '1.8rem 0 2rem',
+                                    color: 'var(--zr-ink)',
                                     transition: 'color .2s',
-                                    color: 'var(--zr-white)',
                                 }}
-                                className="hover:text-red-500"
+                                className="hover:text-red-600"
                             >
                                 {biz.phone}
                             </a>
@@ -795,19 +802,30 @@ export default function ZivaApplianceRepairPage() {
                                     <div
                                         key={label}
                                         className="flex items-center gap-3"
-                                        style={{ background: 'var(--zr-card)', border: '1px solid var(--zr-border)', padding: '1rem 1.3rem' }}
+                                        style={{
+                                            background: 'var(--zr-surface)',
+                                            border: '1px solid var(--zr-border)',
+                                            borderRadius: '8px',
+                                            padding: '1rem 1.3rem',
+                                        }}
                                     >
-                                        <Icon size={17} style={{ color: 'var(--zr-red)', flexShrink: 0 }} />
+                                        <div style={{
+                                            width: '34px', height: '34px', borderRadius: '8px',
+                                            background: 'var(--zr-red-dim)', display: 'flex',
+                                            alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                                        }}>
+                                            <Icon size={16} style={{ color: 'var(--zr-red)' }} />
+                                        </div>
                                         {href ? (
                                             <a
                                                 href={href}
-                                                style={{ fontSize: '.87rem', textDecoration: 'none', color: 'var(--zr-white)', transition: 'color .2s' }}
-                                                className="hover:text-red-500"
+                                                style={{ fontSize: '.87rem', textDecoration: 'none', color: 'var(--zr-ink)', transition: 'color .2s' }}
+                                                className="hover:text-red-600"
                                             >
                                                 {label}
                                             </a>
                                         ) : (
-                                            <span style={{ fontSize: '.87rem', color: 'var(--zr-muted)' }}>{label}</span>
+                                            <span style={{ fontSize: '.87rem', color: 'var(--zr-ink2)' }}>{label}</span>
                                         )}
                                     </div>
                                 ))}
@@ -820,11 +838,11 @@ export default function ZivaApplianceRepairPage() {
 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     {[
-                                        { label: 'FULL NAME', type: 'text', placeholder: 'Jane Smith', name: 'name' },
-                                        { label: 'PHONE NUMBER', type: 'tel', placeholder: '(972) 000-0000', name: 'phone' },
+                                        { label: 'Full Name', type: 'text', placeholder: 'Jane Smith', name: 'name' },
+                                        { label: 'Phone Number', type: 'tel', placeholder: '(972) 000-0000', name: 'phone' },
                                     ].map((f) => (
                                         <div key={f.label} className="flex flex-col gap-1.5">
-                                            <label style={{ fontFamily: 'var(--ff-lbl)', fontSize: '.7rem', letterSpacing: '.15em', color: 'var(--zr-muted)' }}>
+                                            <label style={{ fontFamily: 'var(--ff-body)', fontWeight: 600, fontSize: '.7rem', letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--zr-ink2)' }}>
                                                 {f.label}
                                             </label>
                                             <input
@@ -832,44 +850,30 @@ export default function ZivaApplianceRepairPage() {
                                                 name={f.name}
                                                 placeholder={f.placeholder}
                                                 required
-                                                style={{
-                                                    background: 'var(--zr-card)', border: '1px solid var(--zr-border)',
-                                                    color: 'var(--zr-white)', padding: '.85rem 1rem',
-                                                    fontFamily: 'var(--ff-body)', fontSize: '.87rem', outline: 'none', width: '100%',
-                                                }}
-                                                className="focus:border-red-600 transition-colors placeholder:opacity-30"
+                                                className="zr-input"
                                             />
                                         </div>
                                     ))}
                                 </div>
 
                                 <div className="flex flex-col gap-1.5">
-                                    <label style={{ fontFamily: 'var(--ff-lbl)', fontSize: '.7rem', letterSpacing: '.15em', color: 'var(--zr-muted)' }}>
-                                        EMAIL ADDRESS
+                                    <label style={{ fontFamily: 'var(--ff-body)', fontWeight: 600, fontSize: '.7rem', letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--zr-ink2)' }}>
+                                        Email Address
                                     </label>
                                     <input
                                         type="email" name="email" placeholder="you@email.com"
-                                        style={{
-                                            background: 'var(--zr-card)', border: '1px solid var(--zr-border)',
-                                            color: 'var(--zr-white)', padding: '.85rem 1rem',
-                                            fontFamily: 'var(--ff-body)', fontSize: '.87rem', outline: 'none', width: '100%',
-                                        }}
-                                        className="focus:border-red-600 transition-colors placeholder:opacity-30"
+                                        className="zr-input"
                                     />
                                 </div>
 
                                 <div className="flex flex-col gap-1.5">
-                                    <label style={{ fontFamily: 'var(--ff-lbl)', fontSize: '.7rem', letterSpacing: '.15em', color: 'var(--zr-muted)' }}>
-                                        APPLIANCE TYPE
+                                    <label style={{ fontFamily: 'var(--ff-body)', fontWeight: 600, fontSize: '.7rem', letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--zr-ink2)' }}>
+                                        Appliance Type
                                     </label>
                                     <select
                                         name="appliance"
-                                        style={{
-                                            background: 'var(--zr-card)', border: '1px solid var(--zr-border)',
-                                            color: 'var(--zr-white)', padding: '.85rem 1rem',
-                                            fontFamily: 'var(--ff-body)', fontSize: '.87rem', outline: 'none', width: '100%',
-                                        }}
-                                        className="focus:border-red-600 transition-colors"
+                                        className="zr-input"
+                                        defaultValue=""
                                     >
                                         <option value="" disabled>Select appliance…</option>
                                         {[
@@ -877,40 +881,41 @@ export default function ZivaApplianceRepairPage() {
                                             'Oven / Range / Stove', 'Washing Machine', 'Dryer',
                                             'Microwave', 'Other Kitchen Appliance',
                                         ].map((o) => (
-                                            <option key={o} value={o} style={{ background: '#161616' }}>{o}</option>
+                                            <option key={o} value={o}>{o}</option>
                                         ))}
                                     </select>
                                 </div>
 
                                 <div className="flex flex-col gap-1.5">
-                                    <label style={{ fontFamily: 'var(--ff-lbl)', fontSize: '.7rem', letterSpacing: '.15em', color: 'var(--zr-muted)' }}>
-                                        DESCRIBE THE ISSUE
+                                    <label style={{ fontFamily: 'var(--ff-body)', fontWeight: 600, fontSize: '.7rem', letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--zr-ink2)' }}>
+                                        Describe the Issue
                                     </label>
                                     <textarea
                                         name="message" rows={4}
                                         placeholder="Tell us what's happening with your appliance…"
-                                        style={{
-                                            background: 'var(--zr-card)', border: '1px solid var(--zr-border)',
-                                            color: 'var(--zr-white)', padding: '.85rem 1rem',
-                                            fontFamily: 'var(--ff-body)', fontSize: '.87rem',
-                                            outline: 'none', width: '100%', resize: 'none',
-                                        }}
-                                        className="focus:border-red-600 transition-colors placeholder:opacity-30"
+                                        className="zr-input"
+                                        style={{ resize: 'none' }}
                                     />
                                 </div>
 
                                 <button
                                     type="submit"
-                                    className="zr-clip w-full transition-all hover:-translate-y-0.5 active:translate-y-0"
+                                    className="w-full transition-all hover:-translate-y-0.5 active:translate-y-0"
                                     style={{
                                         background: formSent ? '#166534' : 'var(--zr-red)',
-                                        color: 'var(--zr-white)', border: 'none',
-                                        padding: '1.1rem 2rem', fontFamily: 'var(--ff-body)',
-                                        fontSize: '.9rem', fontWeight: 500, letterSpacing: '.09em',
-                                        cursor: 'pointer', transition: 'background .3s, transform .2s',
+                                        color: '#fff',
+                                        border: 'none',
+                                        borderRadius: '4px',
+                                        padding: '1.1rem 2rem',
+                                        fontFamily: 'var(--ff-body)',
+                                        fontSize: '.9rem',
+                                        fontWeight: 600,
+                                        letterSpacing: '.06em',
+                                        cursor: 'pointer',
+                                        transition: 'background .3s, transform .2s',
                                     }}
                                 >
-                                    {formSent ? '✓ REQUEST SENT' : 'SEND REQUEST →'}
+                                    {formSent ? '✓ Request Sent' : 'Send Request →'}
                                 </button>
                             </form>
                         </div>
@@ -920,17 +925,22 @@ export default function ZivaApplianceRepairPage() {
                 {/* ══════════════════ FOOTER ══════════════════ */}
                 <footer
                     style={{
-                        background: 'var(--zr-black)',
-                        borderTop: '1px solid var(--zr-border)',
+                        background: 'var(--zr-ink)',
                         padding: '3rem 1.5rem',
                         textAlign: 'center',
                     }}
                 >
-                    <div style={{ fontFamily: 'var(--ff-lbl)', fontSize: '1.4rem', letterSpacing: '.14em' }}>
-                        ZIVA <span style={{ color: 'var(--zr-red)' }}>APPLIANCE</span> REPAIR
+                    <div style={{
+                        fontFamily: 'var(--ff-disp)',
+                        fontWeight: 700,
+                        fontSize: '1.5rem',
+                        letterSpacing: '.08em',
+                        color: '#FDFAF6',
+                    }}>
+                        Ziva <span style={{ color: 'var(--zr-red)' }}>Appliance</span> Repair
                     </div>
 
-                    <p style={{ fontSize: '.76rem', color: 'var(--zr-muted)', marginTop: '.8rem' }}>
+                    <p style={{ fontSize: '.76rem', color: 'rgba(253,250,246,0.5)', marginTop: '.8rem', lineHeight: 1.8 }}>
                         © {new Date().getFullYear()} Ziva Appliance Repair · McKinney, TX 75071 · Residential Service Only
                         <br />
                         Serving a {biz.radius}-mile radius across the DFW North area.
@@ -939,28 +949,27 @@ export default function ZivaApplianceRepairPage() {
                     <div className="flex justify-center gap-6 mt-4 flex-wrap">
                         <a
                             href={biz.phoneHref}
-                            style={{ fontSize: '.76rem', color: 'var(--zr-muted)', textDecoration: 'none' }}
-                            className="hover:text-red-500 transition-colors"
+                            style={{ fontSize: '.76rem', color: 'rgba(253,250,246,0.45)', textDecoration: 'none', transition: 'color .2s' }}
+                            className="hover:text-red-400"
                         >
                             {biz.phone}
                         </a>
                         <a
                             href={`mailto:${biz.email}`}
-                            style={{ fontSize: '.76rem', color: 'var(--zr-muted)', textDecoration: 'none' }}
-                            className="hover:text-red-500 transition-colors"
+                            style={{ fontSize: '.76rem', color: 'rgba(253,250,246,0.45)', textDecoration: 'none', transition: 'color .2s' }}
+                            className="hover:text-red-400"
                         >
                             {biz.email}
                         </a>
                     </div>
 
-                    {/* InterState Rankers attribution */}
                     <div
                         style={{
                             marginTop: '1.8rem',
                             paddingTop: '1.5rem',
-                            borderTop: '1px solid var(--zr-border)',
+                            borderTop: '1px solid rgba(255,255,255,.08)',
                             fontSize: '.72rem',
-                            color: 'var(--zr-muted)',
+                            color: 'rgba(253,250,246,0.35)',
                         }}
                     >
                         Powered by{' '}
@@ -978,5 +987,77 @@ export default function ZivaApplianceRepairPage() {
 
             </div>
         </>
+    )
+}
+
+/* ─────────────────────────────────────────────
+   NAV — split out to use its own scroll state
+───────────────────────────────────────────── */
+function NavBar() {
+    const [scrolled, setScrolled] = useState(false)
+    useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 60)
+        window.addEventListener('scroll', onScroll, { passive: true })
+        return () => window.removeEventListener('scroll', onScroll)
+    }, [])
+
+    return (
+        <nav className={`zr-nav ${scrolled ? 'scrolled' : ''}`}>
+
+            {/* Logo */}
+            <div className="flex items-center gap-3">
+                <div
+                    className="relative w-9 h-9 flex items-center justify-center flex-shrink-0"
+                    style={{ border: '2px solid var(--zr-red)', borderRadius: '4px' }}
+                >
+                    <span style={{ fontFamily: 'var(--ff-disp)', fontWeight: 700, fontStyle: 'italic', fontSize: '1.3rem', color: 'var(--zr-red)', lineHeight: 1 }}>
+                        Z
+                    </span>
+                </div>
+                <div>
+                    <span style={{ fontFamily: 'var(--ff-disp)', fontWeight: 700, fontSize: '1.1rem', color: 'var(--zr-ink)', letterSpacing: '.04em' }}>
+                        Ziva
+                    </span>
+                    <span
+                        className="block"
+                        style={{ fontFamily: 'var(--ff-body)', fontSize: '.58rem', fontWeight: 600, letterSpacing: '.16em', textTransform: 'uppercase', color: 'var(--zr-muted)', marginTop: '-2px' }}
+                    >
+                        Appliance Repair
+                    </span>
+                </div>
+            </div>
+
+            {/* Desktop links */}
+            <div className="zr-nav-links flex items-center gap-8">
+                {['Services', 'About', 'Coverage', 'Contact'].map((l) => (
+                    <a
+                        key={l}
+                        href={`#${l.toLowerCase()}`}
+                        style={{ color: 'var(--zr-ink2)', fontSize: '.83rem', fontWeight: 500, textDecoration: 'none', transition: 'color .2s' }}
+                        className="hover:text-red-600"
+                    >
+                        {l}
+                    </a>
+                ))}
+            </div>
+
+            {/* Call CTA */}
+            <a
+                href="tel:9729045655"
+                className="flex items-center gap-2 transition-all hover:-translate-y-px"
+                style={{
+                    background: 'var(--zr-red)',
+                    color: '#fff',
+                    padding: '.62rem 1.3rem',
+                    fontSize: '.8rem',
+                    fontWeight: 600,
+                    letterSpacing: '.06em',
+                    textDecoration: 'none',
+                    borderRadius: '4px',
+                }}
+            >
+                <Phone size={14} /> Call Now
+            </a>
+        </nav>
     )
 }
