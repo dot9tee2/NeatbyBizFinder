@@ -9,17 +9,17 @@ gsap.registerPlugin(ScrollTrigger)
 const features = [
     {
         title: 'Master Technicians',
-        description: 'Serving you since 2018 with expertise in high-security systems and emergency lockouts.',
+        description: 'Serving Wichita since 2018. Our certified technicians handle everything from emergency lockouts to high-security commercial systems — background-checked and fully trained.',
         icon: '👨‍🔧'
     },
     {
-        title: 'Transparent Pricing',
-        description: 'No hidden fees. We provide clear, upfront estimates before any work begins.',
+        title: 'Upfront Pricing',
+        description: 'No bait-and-switch. No surprise bills. We give you a clear quote before any work starts. What we say is what you pay — guaranteed.',
         icon: '💰'
     },
     {
-        title: 'Fully Licensed',
-        description: 'Peace of mind guaranteed. We are a fully licensed, bonded, and insured local business covering a 60-mile radius.',
+        title: 'Licensed & Insured',
+        description: 'Fully licensed, bonded, and insured to operate in Kansas. Covering Wichita and a 60-mile radius — including Derby, Andover, Maize, and Goddard.',
         icon: '📜'
     }
 ]
@@ -32,32 +32,19 @@ export default function WhyChooseUs() {
     useEffect(() => {
         const ctx = gsap.context(() => {
             gsap.from(titleRef.current, {
-                scrollTrigger: {
-                    trigger: titleRef.current,
-                    start: 'top 90%'
-                },
-                y: 30,
-                opacity: 0,
-                duration: 1,
-                ease: 'power3.out'
+                scrollTrigger: { trigger: titleRef.current, start: 'top 90%' },
+                y: 30, opacity: 0, duration: 1, ease: 'power3.out'
             })
 
             itemsRef.current.forEach((item, index) => {
                 if (!item) return
                 gsap.from(item, {
-                    scrollTrigger: {
-                        trigger: item,
-                        start: 'top 90%'
-                    },
+                    scrollTrigger: { trigger: item, start: 'top 90%' },
                     x: index % 2 === 0 ? -50 : 50,
-                    opacity: 0,
-                    duration: 1,
-                    delay: 0.2,
-                    ease: 'power3.out'
+                    opacity: 0, duration: 1, delay: 0.2, ease: 'power3.out'
                 })
             })
 
-            // Animate Stats
             const stats = sectionRef.current?.querySelectorAll('.stat-value')
             stats?.forEach((stat) => {
                 const value = parseInt(stat.getAttribute('data-value') || '0')
@@ -73,7 +60,6 @@ export default function WhyChooseUs() {
                     ease: 'power1.out'
                 })
             })
-
         }, sectionRef)
 
         return () => ctx.revert()
@@ -82,12 +68,15 @@ export default function WhyChooseUs() {
     return (
         <section
             ref={sectionRef}
+            id="about"
             className="py-24 px-6 md:px-20 relative z-10"
+            aria-label="Why choose A&J Locksmith in Wichita KS"
         >
             <div className="max-w-6xl mx-auto">
                 <div ref={titleRef} className="text-center mb-20">
+                    <p className="text-[#f7be32] text-sm font-bold tracking-[0.3em] uppercase mb-3">Why Wichita Chooses Us</p>
                     <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                        Why Residents <span className="text-[#f7be32]">Trust Us</span>
+                        Wichita's Most <span className="text-[#f7be32]">Trusted Locksmith</span>
                     </h2>
                     <div className="w-24 h-1 bg-[#f7be32] mx-auto" />
                 </div>
@@ -102,27 +91,24 @@ export default function WhyChooseUs() {
                             <div className="w-20 h-20 bg-[#f7be32]/10 border border-[#f7be32]/20 rounded-2xl flex items-center justify-center text-4xl mx-auto mb-6 shadow-[0_0_20px_rgba(247,190,50,0.15)] backdrop-blur-sm">
                                 <span className="drop-shadow-[0_0_8px_rgba(247,190,50,0.5)]">{feature.icon}</span>
                             </div>
-                            <h3 className="text-2xl font-bold text-white mb-4">
-                                {feature.title}
-                            </h3>
-                            <p className="text-gray-400 leading-relaxed max-w-sm mx-auto">
-                                {feature.description}
-                            </p>
+                            <h3 className="text-2xl font-bold text-white mb-4">{feature.title}</h3>
+                            <p className="text-gray-400 leading-relaxed max-w-sm mx-auto">{feature.description}</p>
                         </div>
                     ))}
                 </div>
 
-                {/* Animated Stats */}
+                {/* Stats — animated counters */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-white/10 pt-16">
                     {[
                         { value: 500, suffix: '+', label: 'Unlocks This Year' },
-                        { value: 15, suffix: 'm', label: 'Avg Arrival Time' },
+                        { value: 14, suffix: 'm', label: 'Avg Arrival Time' },
                         { value: 24, suffix: '/7', label: 'Availability' },
                         { value: 100, suffix: '%', label: 'Satisfaction' }
                     ].map((stat, i) => (
                         <div key={i} className="text-center">
-                            <div className="text-4xl md:text-5xl font-black text-[#f7be32] mb-2 flex justify-center items-center">
-                                <span className="stat-value" data-value={stat.value}>0</span>{stat.suffix}
+                            <div className="text-4xl md:text-5xl font-black text-[#f7be32] mb-2 flex justify-center items-baseline">
+                                <span className="stat-value" data-value={stat.value}>0</span>
+                                <span>{stat.suffix}</span>
                             </div>
                             <p className="text-gray-400 font-medium uppercase tracking-wider text-sm">{stat.label}</p>
                         </div>

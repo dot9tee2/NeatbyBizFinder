@@ -8,7 +8,6 @@ export default function Footer() {
 
     return (
         <footer className="relative bg-[#f7be32] pt-20 pb-10 overflow-hidden border-t border-black/5">
-            {/* Background Gradient - slightly darker yellow at bottom for depth */}
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#eeb018]/30 pointer-events-none" />
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -18,14 +17,14 @@ export default function Footer() {
                     <div className="space-y-6">
                         <div className="flex items-center gap-2">
                             <div className="w-10 h-10 relative rounded-lg overflow-hidden shadow-sm">
-                                <img src="/aj-locksmith/logo.png" alt="A&J Locksmith" className="object-contain w-full h-full" />
+                                <img src="/aj-locksmith/logo.png" alt="A&J Locksmith Wichita KS" className="object-contain w-full h-full" />
                             </div>
                             <h2 className="text-2xl font-bold text-black flex items-center gap-2">
                                 <span className="text-[#660000]">A&J</span> LOCKSMITH
                             </h2>
                         </div>
                         <p className="text-neutral-800 leading-relaxed font-medium">
-                            Your trusted partner for residential, commercial, and automotive security. Available 24/7 for all your emergency needs.
+                            Wichita's trusted 24/7 locksmith for residential, commercial, and automotive security. Serving Wichita, Derby, Andover, Maize, Goddard & Haysville since 2018.
                         </p>
                         <div className="flex gap-4">
                             {[Facebook, Instagram, Twitter, Linkedin].map((Icon, i) => (
@@ -33,6 +32,7 @@ export default function Footer() {
                                     key={i}
                                     href="#"
                                     className="w-10 h-10 rounded-full bg-black/5 flex items-center justify-center text-black/70 hover:bg-black hover:text-[#f7be32] transition-all duration-300"
+                                    aria-label="Social media"
                                 >
                                     <Icon size={18} />
                                 </a>
@@ -91,9 +91,9 @@ export default function Footer() {
                                     <Phone size={18} />
                                 </div>
                                 <div>
-                                    <p className="text-neutral-800 text-sm mb-1 font-semibold">Phone Number</p>
-                                    <a href="tel:+1234567890" className="text-black hover:text-[#660000] transition-colors font-bold">
-                                        (555) 123-4567
+                                    <p className="text-neutral-800 text-sm mb-1 font-semibold">24/7 Emergency Line</p>
+                                    <a href="tel:3168693892" className="text-black hover:text-[#660000] transition-colors font-bold">
+                                        (316) 869-3892
                                     </a>
                                 </div>
                             </li>
@@ -115,8 +115,9 @@ export default function Footer() {
                                 <div>
                                     <p className="text-neutral-800 text-sm mb-1 font-semibold">Service Area</p>
                                     <p className="text-black font-bold">
-                                        Greater Metro Area (60-mile radius)
+                                        Wichita, KS &amp; 60-Mile Radius
                                     </p>
+                                    <p className="text-neutral-700 text-sm mt-1">Derby · Andover · Maize · Goddard · Haysville · Valley Center</p>
                                 </div>
                             </li>
                             <li className="flex items-start gap-4">
@@ -137,14 +138,14 @@ export default function Footer() {
                 {/* Bottom Bar */}
                 <div className="border-t border-black/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
                     <p className="text-neutral-800 text-sm text-center md:text-left font-medium">
-                        © {currentYear} A & J Mobile Locksmith. Licensed & Insured. All rights reserved.
+                        © {currentYear} A &amp; J Mobile Locksmith — Wichita, KS. Licensed &amp; Insured. All rights reserved.
                     </p>
                     <div className="flex items-center gap-6">
                         <a href="#" className="text-neutral-800 hover:text-black text-sm transition-colors font-medium">Privacy Policy</a>
                         <a href="#" className="text-neutral-800 hover:text-black text-sm transition-colors font-medium">Terms of Service</a>
                         <div className="flex items-center gap-2 text-[#660000] bg-black/5 px-3 py-1 rounded-full border border-black/5">
                             <ShieldCheck size={14} />
-                            <span className="text-xs font-bold">Verified Business</span>
+                            <span className="text-xs font-bold">Licensed &amp; Verified</span>
                         </div>
                     </div>
                 </div>
