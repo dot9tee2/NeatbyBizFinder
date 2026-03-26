@@ -88,7 +88,7 @@ export default function AJLocksmithLayout({ children }: { children: React.ReactN
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify({
                         "@context": "https://schema.org",
-                        "@type": "LocksmithBusiness",
+                        "@type": "Locksmith",
                         "name": "A&J Mobile Locksmith",
                         "alternateName": "A&J Locksmith Wichita",
                         "url": "https://nearbybizfinder.com/businesses/a&j-locksmith/",
@@ -121,8 +121,8 @@ export default function AJLocksmithLayout({ children }: { children: React.ReactN
                         },
                         "aggregateRating": {
                             "@type": "AggregateRating",
-                            "ratingValue": "5.0",
-                            "reviewCount": "500",
+                            "ratingValue": 5.0,
+                            "reviewCount": 500,
                             "bestRating": "5",
                             "worstRating": "1"
                         },
