@@ -34,6 +34,12 @@ const nextConfig = {
         destination: '/b/:slug',
         permanent: true,
       },
+      // Redirect /businesses/ziva-appliances/ to /businesses/ziva-appliance-repair/
+      {
+        source: '/businesses/ziva-appliances/',
+        destination: '/businesses/ziva-appliance-repair/',
+        permanent: true,
+      },
       // Enforce non-www
       {
         source: '/:path*',

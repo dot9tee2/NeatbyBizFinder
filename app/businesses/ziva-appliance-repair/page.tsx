@@ -26,42 +26,42 @@ const services = [
         id: '01',
         name: 'Garbage Disposal',
         desc: 'Jammed, leaking, or completely dead — we diagnose and fix all major disposal brands. Fast, clean, and guaranteed.',
-        img: '/ziva-appliances/garbage-disposal.png',
+        img: '/ziva-appliance-repair/garbage-disposal.png',
         tags: ['InSinkErator', 'Moen', 'Waste King', 'Badger'],
     },
     {
         id: '02',
         name: 'Dishwasher Repair',
         desc: "Not draining, leaving spots, or won't start? We restore full cycle function quickly so your kitchen routine is back on track.",
-        img: '/ziva-appliances/dishwasher.png',
+        img: '/ziva-appliance-repair/dishwasher.png',
         tags: ['Bosch', 'Samsung', 'LG', 'KitchenAid', 'Whirlpool'],
     },
     {
         id: '03',
         name: 'Refrigerator & Freezer',
         desc: 'Temperature issues, strange noises, ice maker failures — we handle every fridge problem before your food spoils.',
-        img: '/ziva-appliances/refrigerator.png',
+        img: '/ziva-appliance-repair/refrigerator.png',
         tags: ['Samsung', 'LG', 'GE', 'Frigidaire', 'Maytag'],
     },
     {
         id: '04',
         name: 'Oven, Range & Stove',
         desc: 'Burners not igniting, oven not heating evenly, digital controls failing — gas or electric, we get you cooking again.',
-        img: '/ziva-appliances/oven.png',
+        img: '/ziva-appliance-repair/oven.png',
         tags: ['GE', 'Whirlpool', 'KitchenAid', 'Bosch', 'Viking'],
     },
     {
         id: '05',
         name: 'Washer & Dryer',
         desc: 'Not spinning, not heating, leaking or shaking the whole room — front-load, top-load, gas and electric dryers covered.',
-        img: '/ziva-appliances/washer-dryer.png',
+        img: '/ziva-appliance-repair/washer-dryer.png',
         tags: ['Samsung', 'LG', 'Maytag', 'Whirlpool', 'Speed Queen'],
     },
     {
         id: '06',
         name: 'Other Kitchen Appliances',
         desc: 'Microwaves, wine coolers, ice makers, and more. If it plugs in and lives in your kitchen, we can likely fix it.',
-        img: '/ziva-appliances/kitchen-appliances.png',
+        img: '/ziva-appliance-repair/kitchen-appliances.png',
         tags: ['Microwaves', 'Wine Coolers', 'Ice Makers', 'Compactors'],
     },
 ]
@@ -340,7 +340,7 @@ export default function ZivaApplianceRepairPage() {
                             style={{ background: 'rgba(200,169,122,0.06)' }} />
 
                         <Image
-                            src="/ziva-appliances/hero-technician.png"
+                            src="/ziva-appliance-repair/hero-technician.png"
                             alt="Appliance repair technician at work"
                             fill
                             className="object-cover object-center"
