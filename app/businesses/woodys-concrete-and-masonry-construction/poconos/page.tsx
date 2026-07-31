@@ -334,10 +334,39 @@ export default function WoodysConcretePoconosPage() {
           <p className="text-2xl sm:text-3xl font-semibold text-[#f5f0e6] leading-snug mb-5">
             "We don't just get in to get the job done. We work closely with homeowners to know exactly what they want, and we pay attention to the minor details."
           </p>
-          <p className="text-[#8ba088] font-medium mb-6">— Woody B., Owner</p>
-          <a href={YELP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[#c98f4a] font-semibold hover:text-[#e0aa66] transition-colors">
-            Read homeowner reviews on Yelp <ExternalLink className="h-4 w-4" />
-          </a>
+          <p className="text-[#8ba088] font-medium">— Woody B., Owner</p>
+        </div>
+      </div>
+
+      {/* Customer testimonials — staggered offset layout */}
+      <div className="bg-[#16281c] py-16 sm:py-24 border-y border-[#2a4030]">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#f5f0e6] mb-3 text-center">What Homeowners Are Saying</h2>
+          <p className="text-[#8ba088] text-center mb-14">Real reviews from Woody's customers.</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            {[
+              { name: 'RJ Sayes', when: 'a month ago', text: 'Always helps complete our projects, great work, pride in what they do!', offset: false },
+              { name: 'Cheryl Slingland', when: 'a month ago', text: 'Great price. He is very conscientious, does an excellent job, and is detail oriented. Extremely reasonable and does a fantastic job.', offset: true },
+              { name: 'Gary Strausser', when: 'a month ago', text: 'Woody does a great job! He is very thorough, and professional. Definitely recommend him.', offset: false },
+              { name: 'Jayleen Solt', when: 'a month ago', text: "We couldn't be happier with having Woody as a subcontractor for concrete and stone work. From start to finish, the workmanship is always exceptional on every project.", offset: true },
+            ].map((r, i) => (
+              <div key={i} className={`bg-[#0e1a13] border border-[#2a4030] rounded-2xl p-6 ${r.offset ? 'sm:mt-8' : ''}`}>
+                <div className="flex items-center gap-1 mb-3">
+                  {Array.from({ length: 5 }, (_, si) => (
+                    <Star key={si} className="h-4 w-4 text-[#c98f4a] fill-current" />
+                  ))}
+                </div>
+                <p className="text-sm text-[#c4d1c1] leading-relaxed mb-4">"{r.text}"</p>
+                <p className="text-sm font-semibold text-[#f5f0e6]">{r.name}</p>
+                <p className="text-xs text-[#8ba088]">{r.when}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <a href={MAP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[#c98f4a] font-semibold hover:text-[#e0aa66] transition-colors">
+              See more reviews on Google Maps <ExternalLink className="h-4 w-4" />
+            </a>
+          </div>
         </div>
       </div>
 

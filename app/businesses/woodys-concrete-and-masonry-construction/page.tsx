@@ -475,16 +475,47 @@ export default function WoodysConcreteMasonryPage() {
           </div>
         </div>
 
-        {/* Owner quote / trust instead of fabricated testimonials */}
-        <div className="mb-16 sm:mb-20">
+        {/* Owner quote */}
+        <div className="mb-14 sm:mb-16">
           <div className="max-w-3xl mx-auto text-center">
             <Quote className="h-10 w-10 text-amber-500 mx-auto mb-6" />
             <p className="font-serif text-2xl sm:text-3xl text-[#2b1c10] leading-snug mb-6">
               "We don't just get in to get the job done. We work closely with homeowners to know exactly what they want, and we pay attention to the minor details."
             </p>
-            <p className="text-stone-500 font-medium mb-8">— Woody B., Owner</p>
-            <a href={YELP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-amber-700 font-semibold hover:text-amber-800 transition-colors">
-              Read what Lehigh Valley homeowners are saying on Yelp <ExternalLink className="h-4 w-4" />
+            <p className="text-stone-500 font-medium">— Woody B., Owner</p>
+          </div>
+        </div>
+
+        {/* Customer testimonials */}
+        <div className="mb-16 sm:mb-20">
+          <div className="text-center mb-10">
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#2b1c10] mb-3">What Homeowners Are Saying</h2>
+            <p className="text-stone-600">Real reviews from Lehigh Valley customers.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { name: 'RJ Sayes', when: 'a month ago', text: 'Always helps complete our projects, great work, pride in what they do!' },
+              { name: 'Cheryl Slingland', when: 'a month ago', text: 'Great price. He is very conscientious, does an excellent job, and is detail oriented. Extremely reasonable and does a fantastic job.' },
+              { name: 'Gary Strausser', when: 'a month ago', text: 'Woody does a great job! He is very thorough, and professional. Definitely recommend him.' },
+              { name: 'Jayleen Solt', when: 'a month ago', text: "We couldn't be happier with having Woody as a subcontractor for concrete and stone work. From start to finish, the workmanship is always exceptional on every project." },
+            ].map((r, i) => (
+              <Card key={i} className="border-0 shadow-md bg-white">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-1 mb-3">
+                    {Array.from({ length: 5 }, (_, si) => (
+                      <Star key={si} className="h-4 w-4 text-amber-500 fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-sm text-stone-600 leading-relaxed mb-4">"{r.text}"</p>
+                  <p className="text-sm font-semibold text-[#2b1c10]">{r.name}</p>
+                  <p className="text-xs text-stone-400">{r.when}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <a href={MAP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-amber-700 font-semibold hover:text-amber-800 transition-colors">
+              See more reviews on Google Maps <ExternalLink className="h-4 w-4" />
             </a>
           </div>
         </div>
