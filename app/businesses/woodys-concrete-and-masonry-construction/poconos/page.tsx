@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Concrete Contractor Poconos, PA | Woody's Concrete & Masonry",
     description: 'Retaining walls, foundations, footings, patios and excavation built for mountain and lakefront properties across the Poconos.',
-    images: ['https://images.pexels.com/photos/7161537/pexels-photo-7161537.jpeg'],
+    images: ['/woodys-concrete-and-masonry-construction/poconos/hero.jpg'],
     url: SITE_URL,
     type: 'website',
     siteName: 'NearbyBizFinder',
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "Concrete Contractor Poconos, PA | Woody's Concrete & Masonry",
     description: 'Retaining walls, foundations, footings, patios and excavation for the Pocono Mountains.',
-    images: ['https://images.pexels.com/photos/7161537/pexels-photo-7161537.jpeg'],
+    images: ['/woodys-concrete-and-masonry-construction/poconos/hero.jpg'],
   },
   robots: { index: true, follow: true },
 };
@@ -117,7 +117,7 @@ const structuredData = {
   name: "Woody's Concrete and Masonry Construction",
   description: 'Concrete and masonry contractor serving the Pocono Mountains — retaining walls, foundations, footings, patios, excavation and porches for cabins, lake homes and sloped lots.',
   url: SITE_URL,
-  image: 'https://images.pexels.com/photos/7161537/pexels-photo-7161537.jpeg',
+  image: '/woodys-concrete-and-masonry-construction/poconos/hero.jpg',
   telephone: PHONE,
   email: EMAIL,
   sameAs: [YELP_URL, WEBSITE],
@@ -203,7 +203,7 @@ export default function WoodysConcretePoconosPage() {
             </div>
           </div>
           <div className="relative h-80 sm:h-[420px] lg:h-[520px] rounded-2xl overflow-hidden border-2 border-[#2a4030]">
-            <Image src="https://images.pexels.com/photos/7161537/pexels-photo-7161537.jpeg" alt="Log cabin home in a snowy Pocono-style forest" fill priority quality={85} className="object-cover" />
+            <Image src="/woodys-concrete-and-masonry-construction/poconos/hero.jpg" alt="Log cabin home in a snowy Pocono-style forest" fill priority quality={85} className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0e1a13]/70 via-transparent to-transparent" />
           </div>
         </div>
@@ -243,7 +243,7 @@ export default function WoodysConcretePoconosPage() {
               Mountain terrain punishes shortcuts. Everything from how deep we dig to when we schedule a pour is built around the way this region actually behaves.
             </p>
             <div className="relative h-56 sm:h-72 rounded-2xl overflow-hidden border border-[#2a4030]">
-              <Image src="https://images.pexels.com/photos/5708937/pexels-photo-5708937.jpeg" alt="Wooden home nestled in the mountains" fill quality={85} className="object-cover" />
+              <Image src="/woodys-concrete-and-masonry-construction/poconos/why-choose-us.jpg" alt="Wooden home nestled in the mountains" fill quality={85} className="object-cover" />
             </div>
           </div>
           <div className="space-y-8">
@@ -288,7 +288,7 @@ export default function WoodysConcretePoconosPage() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <div className="relative h-72 sm:h-96 rounded-2xl overflow-hidden border border-[#2a4030] order-2 lg:order-1">
-            <Image src="https://images.pexels.com/photos/9899881/pexels-photo-9899881.jpeg" alt="Stone steps and wall beside a mountain home" fill quality={85} className="object-cover" />
+            <Image src="/woodys-concrete-and-masonry-construction/poconos/retaining-wall.jpg" alt="Segmental concrete retaining wall on a wooded hillside" fill quality={85} className="object-cover" />
           </div>
           <div className="order-1 lg:order-2">
             <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#c98f4a] mb-4">
@@ -376,12 +376,12 @@ export default function WoodysConcretePoconosPage() {
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#f5f0e6] mb-10 text-center">The Terrain We Build On</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {[
-              { src: 'https://images.pexels.com/photos/7161537/pexels-photo-7161537.jpeg', alt: 'Cabin in a snowy forest' },
-              { src: 'https://images.pexels.com/photos/28677184/pexels-photo-28677184.jpeg', alt: 'Alpine landscape with mountain cabin' },
-              { src: 'https://images.pexels.com/photos/9899881/pexels-photo-9899881.jpeg', alt: 'Stone stairs beside a wooden mountain home' },
-              { src: 'https://images.pexels.com/photos/27789438/pexels-photo-27789438.jpeg', alt: 'Stone houses in a mountain setting' },
-              { src: 'https://images.pexels.com/photos/6915593/pexels-photo-6915593.jpeg', alt: 'Aerial view of a construction site' },
-              { src: 'https://images.pexels.com/photos/1724896/pexels-photo-1724896.jpeg', alt: 'Road through a pine forest' },
+              { src: '/woodys-concrete-and-masonry-construction/poconos/excavation.jpg', alt: 'Excavation on a wooded, sloped Pocono building site' },
+              { src: '/woodys-concrete-and-masonry-construction/poconos/footing.jpg', alt: 'Concrete footing formed on a sloped mountain lot' },
+              { src: '/woodys-concrete-and-masonry-construction/poconos/porch.jpg', alt: 'Stone and timber porch with concrete steps' },
+              { src: '/woodys-concrete-and-masonry-construction/poconos/patio.jpg', alt: 'Concrete patio behind a mountain cabin' },
+              { src: '/woodys-concrete-and-masonry-construction/poconos/driveway.jpg', alt: 'Driveway and foundation work at a mountain home' },
+              { src: '/woodys-concrete-and-masonry-construction/poconos/hillside-wall.jpg', alt: 'Terraced hillside retaining wall system' },
             ].map((img, i) => (
               <div key={i} className="relative h-40 sm:h-52 rounded-xl overflow-hidden border border-[#2a4030]">
                 <Image src={img.src} alt={img.alt} fill quality={75} className="object-cover" />

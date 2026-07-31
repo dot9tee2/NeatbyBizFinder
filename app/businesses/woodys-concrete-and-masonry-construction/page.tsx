@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     title: "Woody's Concrete & Masonry | Lehigh Valley, PA Concrete Contractor",
     description:
       'Patios, sidewalks, retaining walls, foundations, footings & porches for Lehigh Valley homeowners. Free estimates, honest pricing.',
-    images: ['https://images.pexels.com/photos/2469/pexels-photo-2469.jpeg'],
+    images: ['/woodys-concrete-and-masonry-construction/lehigh-valley/hero.jpg'],
     url: SITE_URL,
     type: 'website',
     siteName: 'NearbyBizFinder',
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "Woody's Concrete & Masonry | Lehigh Valley, PA Concrete Contractor",
     description: 'Patios, retaining walls, foundations, footings & porches for Lehigh Valley homeowners.',
-    images: ['https://images.pexels.com/photos/2469/pexels-photo-2469.jpeg'],
+    images: ['/woodys-concrete-and-masonry-construction/lehigh-valley/hero.jpg'],
   },
   robots: { index: true, follow: true },
 };
@@ -79,7 +79,7 @@ export default function WoodysConcreteMasonryPage() {
     phoneHref: 'tel:+16107512928',
     email: 'woodysconcrete321@gmail.com',
     website: 'https://www.woodysconcrete321.com/',
-    featuredImage: 'https://images.pexels.com/photos/2469/pexels-photo-2469.jpeg',
+    featuredImage: '/woodys-concrete-and-masonry-construction/lehigh-valley/hero.jpg',
     description:
       "Family-owned concrete and masonry contractor based in Danielsville, PA, serving the Lehigh Valley with patios, sidewalks, retaining walls, foundations, footings, excavation and porches.",
     city: 'Danielsville',
@@ -280,8 +280,8 @@ export default function WoodysConcreteMasonryPage() {
       {/* Hero */}
       <div className="relative h-[520px] sm:h-[600px] lg:h-[680px] w-full overflow-hidden">
         <Image
-          src="https://images.pexels.com/photos/2469/pexels-photo-2469.jpeg"
-          alt="Concrete being poured at a Lehigh Valley job site"
+          src="/woodys-concrete-and-masonry-construction/lehigh-valley/hero.jpg"
+          alt="Aerial view of a finished concrete walkway and steps at a Lehigh Valley home"
           fill
           priority
           quality={85}
@@ -375,7 +375,7 @@ export default function WoodysConcreteMasonryPage() {
         <div className="mb-16 sm:mb-20 space-y-10 sm:space-y-14">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center bg-white rounded-2xl shadow-md overflow-hidden">
             <div className="relative h-64 lg:h-full min-h-[280px]">
-              <Image src="https://images.pexels.com/photos/16001335/pexels-photo-16001335.jpeg" alt="Poured concrete wall with exposed rebar reinforcement" fill quality={85} className="object-cover" />
+              <Image src="/woodys-concrete-and-masonry-construction/lehigh-valley/foundation-footings.jpg" alt="Concrete block foundation wall poured for a Lehigh Valley home addition" fill quality={85} className="object-cover" />
             </div>
             <div className="p-8 sm:p-10">
               <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#2b1c10] mb-4">Foundations &amp; Footings Done to Code</h3>
@@ -399,21 +399,21 @@ export default function WoodysConcreteMasonryPage() {
               </p>
             </div>
             <div className="relative h-64 lg:h-full min-h-[280px] order-1 lg:order-2">
-              <Image src="https://images.pexels.com/photos/34257452/pexels-photo-34257452.jpeg" alt="Rustic stone retaining wall in a residential yard" fill quality={85} className="object-cover" />
+              <Image src="/woodys-concrete-and-masonry-construction/lehigh-valley/retaining-wall.jpg" alt="Segmental concrete retaining wall in a Lehigh Valley backyard" fill quality={85} className="object-cover" />
             </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center bg-white rounded-2xl shadow-md overflow-hidden">
             <div className="relative h-64 lg:h-full min-h-[280px]">
-              <Image src="https://images.pexels.com/photos/2058738/pexels-photo-2058738.jpeg" alt="Excavation equipment preparing a job site before a concrete pour" fill quality={85} className="object-cover" />
+              <Image src="/woodys-concrete-and-masonry-construction/lehigh-valley/patio.jpg" alt="Freshly poured concrete patio behind a Lehigh Valley home" fill quality={85} className="object-cover" />
             </div>
             <div className="p-8 sm:p-10">
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#2b1c10] mb-4">Excavation First, Concrete Second</h3>
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#2b1c10] mb-4">Patios Built for How You Actually Use Them</h3>
               <p className="text-stone-600 leading-relaxed mb-3">
-                A patio or sidewalk is only as good as the ground underneath it. Before we form anything, we grade the site, plan for water runoff, and remove the debris and old material that would otherwise crack or settle your new concrete within a few seasons.
+                Whether it's a simple broom-finished slab off the back door or a stamped patio built around an existing pool or deck, we grade for drainage before we ever form the pour so water moves away from your foundation, not toward it.
               </p>
               <p className="text-stone-600 leading-relaxed">
-                It's the step homeowners rarely see in the finished photos — and the one that determines whether your investment lasts 5 years or 50.
+                Every patio gets a proper gravel base and control joints cut to spec, so it holds up through Lehigh Valley freeze-thaw seasons without cracking.
               </p>
             </div>
           </div>
@@ -525,12 +525,12 @@ export default function WoodysConcreteMasonryPage() {
           <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#2b1c10] mb-8 text-center">A Look at the Work</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {[
-              { src: 'https://images.pexels.com/photos/2469/pexels-photo-2469.jpeg', alt: 'Concrete pour in progress' },
-              { src: 'https://images.pexels.com/photos/14283372/pexels-photo-14283372.jpeg', alt: 'Concrete walkway lined with greenery' },
-              { src: 'https://images.pexels.com/photos/16001335/pexels-photo-16001335.jpeg', alt: 'Reinforced concrete wall texture' },
-              { src: 'https://images.pexels.com/photos/34257452/pexels-photo-34257452.jpeg', alt: 'Stone retaining wall detail' },
-              { src: 'https://images.pexels.com/photos/5008394/pexels-photo-5008394.jpeg', alt: 'Residential home with front porch' },
-              { src: 'https://images.pexels.com/photos/2058738/pexels-photo-2058738.jpeg', alt: 'Excavation equipment on site' },
+              { src: '/woodys-concrete-and-masonry-construction/lehigh-valley/hero.jpg', alt: 'Aerial view of finished concrete walkway and steps' },
+              { src: '/woodys-concrete-and-masonry-construction/lehigh-valley/foundation-footings.jpg', alt: 'Concrete block foundation wall' },
+              { src: '/woodys-concrete-and-masonry-construction/lehigh-valley/patio.jpg', alt: 'Freshly poured concrete patio' },
+              { src: '/woodys-concrete-and-masonry-construction/lehigh-valley/patio-2.jpg', alt: 'Finished concrete patio with step' },
+              { src: '/woodys-concrete-and-masonry-construction/lehigh-valley/sidewalk.jpg', alt: 'Concrete sidewalk poured along a curb' },
+              { src: '/woodys-concrete-and-masonry-construction/lehigh-valley/retaining-wall.jpg', alt: 'Segmental concrete retaining wall' },
             ].map((img, i) => (
               <div key={i} className="relative h-40 sm:h-52 rounded-xl overflow-hidden shadow-md">
                 <Image src={img.src} alt={img.alt} fill quality={75} className="object-cover hover:scale-105 transition-transform duration-500" />
