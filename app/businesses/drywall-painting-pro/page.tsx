@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import Script from 'next/script';
 import OptimizedVideo from '@/components/ui/optimized-video';
 import OptimizedImage from '@/components/ui/optimized-image';
@@ -75,9 +76,15 @@ export default function DrywallPaintingProPage() {
     }
   ];
 
+  // Areas with their own landing page — rendered as links in "Areas We Serve".
+  const areaPages: Record<string, string> = {
+    'Cedar Park, TX': '/businesses/drywall-painting-pro/cedar-park/',
+    'Georgetown, TX': '/businesses/drywall-painting-pro/georgetown/',
+  };
+
   const serviceAreas = [
     'Cedar Park, TX',
-    'Georgetown, TX', 
+    'Georgetown, TX',
     'Leander, TX',
     'Liberty Hill, TX',
     'Lago Vista, TX',
@@ -312,14 +319,37 @@ export default function DrywallPaintingProPage() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {serviceAreas.map((area, index) => (
-              <div key={index} className="bg-white rounded-lg p-6 text-center shadow-md hover:shadow-lg transition-shadow duration-300">
-                <MapPin className="h-8 w-8 text-blue-600 mx-auto mb-3" />
-                <h3 className="font-semibold text-gray-900">
-                  {area}
-                </h3>
-              </div>
-            ))}
+            {serviceAreas.map((area, index) => {
+              const areaHref = areaPages[area];
+              const card = (
+                <>
+                  <MapPin className="h-8 w-8 text-blue-600 mx-auto mb-3" />
+                  <h3 className="font-semibold text-gray-900">
+                    {area}
+                  </h3>
+                  {areaHref && (
+                    <span className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-blue-600">
+                      View page
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </span>
+                  )}
+                </>
+              );
+
+              return areaHref ? (
+                <Link
+                  key={index}
+                  href={areaHref}
+                  className="bg-white rounded-lg p-6 text-center shadow-md hover:shadow-lg transition-shadow duration-300 block border border-transparent hover:border-blue-200"
+                >
+                  {card}
+                </Link>
+              ) : (
+                <div key={index} className="bg-white rounded-lg p-6 text-center shadow-md hover:shadow-lg transition-shadow duration-300">
+                  {card}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

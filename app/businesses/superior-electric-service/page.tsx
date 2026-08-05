@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import Script from 'next/script';
 import OptimizedVideo from '@/components/ui/optimized-video';
 import Image from 'next/image';
@@ -80,9 +81,15 @@ export default function SuperiorElectricServicePage() {
     }
   ];
 
+  // Areas with their own landing page — rendered as links in "Areas We Serve".
+  const areaPages: Record<string, string> = {
+    'Prospect, KY': '/businesses/superior-electric-service/prospect/',
+    'Hill View, KY': '/businesses/superior-electric-service/hill-view/',
+  };
+
   const serviceAreas = [
     'Louisville, KY',
-    'Prospect, KY', 
+    'Prospect, KY',
     'Hill View, KY'
   ];
 
@@ -380,16 +387,36 @@ export default function SuperiorElectricServicePage() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {serviceAreas.map((area, index) => (
-              <div key={index} className="bg-white rounded-lg p-6 text-center shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 border border-gray-200">
-                <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <MapPin className="h-6 w-6 text-gray-900" />
+            {serviceAreas.map((area, index) => {
+              const areaHref = areaPages[area];
+              const cardClass = 'bg-white rounded-lg p-6 text-center shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 border border-gray-200';
+              const card = (
+                <>
+                  <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <MapPin className="h-6 w-6 text-gray-900" />
+                  </div>
+                  <h3 className="font-semibold text-gray-900">
+                    {area}
+                  </h3>
+                  {areaHref && (
+                    <span className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-blue-600">
+                      View page
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </span>
+                  )}
+                </>
+              );
+
+              return areaHref ? (
+                <Link key={index} href={areaHref} className={`${cardClass} block`}>
+                  {card}
+                </Link>
+              ) : (
+                <div key={index} className={cardClass}>
+                  {card}
                 </div>
-                <h3 className="font-semibold text-gray-900">
-                  {area}
-                </h3>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
