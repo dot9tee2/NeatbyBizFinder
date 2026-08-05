@@ -29,14 +29,20 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             <Link
+              href="/businesses/"
+              className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors dark:text-gray-300 dark:hover:text-blue-400"
+            >
+              Businesses
+            </Link>
+            <Link
               href="/about/"
-              className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors"
+              className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors dark:text-gray-300 dark:hover:text-blue-400"
             >
               About
             </Link>
             <Link
               href="/contact/"
-              className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors"
+              className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors dark:text-gray-300 dark:hover:text-blue-400"
             >
               Contact
             </Link>
@@ -73,22 +79,29 @@ export default function Header() {
               {/* Mobile Navigation Links */}
               <div className="flex flex-col space-y-2 pt-2">
                 <Link
+                  href="/businesses/"
+                  className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors py-2 dark:text-gray-300 dark:hover:text-blue-400"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Businesses
+                </Link>
+                <Link
                   href="/about/"
-                  className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors py-2"
+                  className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors py-2 dark:text-gray-300 dark:hover:text-blue-400"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   About
                 </Link>
                 <Link
                   href="/contact/"
-                  className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors py-2"
+                  className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors py-2 dark:text-gray-300 dark:hover:text-blue-400"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Contact
                 </Link>
                 <Link
                   href="/blog"
-                  className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors py-2"
+                  className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors py-2 dark:text-gray-300 dark:hover:text-blue-400"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Blog

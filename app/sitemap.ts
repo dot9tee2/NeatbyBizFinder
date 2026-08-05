@@ -19,6 +19,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const routes = [
         '',
         '/about',
+        '/businesses',
         '/contact',
         '/terms',
         '/privacy',

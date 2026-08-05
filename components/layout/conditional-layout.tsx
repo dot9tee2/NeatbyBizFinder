@@ -12,8 +12,10 @@ interface ConditionalLayoutProps {
 export default function ConditionalLayout({ children }: ConditionalLayoutProps) {
   const pathname = usePathname();
   
-  // Check if we're on a business page
-  const isBusinessPage = pathname.startsWith('/businesses/');
+  // Check if we're on an individual business landing page.
+  // The /businesses directory index itself keeps the main header and footer.
+  const isBusinessIndex = pathname === '/businesses' || pathname === '/businesses/';
+  const isBusinessPage = pathname.startsWith('/businesses/') && !isBusinessIndex;
   // Exclude Sanity Studio from site chrome
   const isStudioPage = pathname.startsWith('/studio');
   
