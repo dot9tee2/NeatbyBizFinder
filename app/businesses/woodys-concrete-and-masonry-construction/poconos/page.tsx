@@ -31,6 +31,7 @@ const PHONE = '(610) 751-2928';
 const PHONE_HREF = 'tel:+16107512928';
 const EMAIL = 'woodysconcrete321@gmail.com';
 const WEBSITE = 'https://www.woodysconcrete321.com/';
+const HIC_NUMBER = '131444';
 
 export const metadata: Metadata = {
   title: "Concrete Contractor Poconos, PA | Woody's Concrete & Masonry",
@@ -120,7 +121,16 @@ const structuredData = {
   image: '/woodys-concrete-and-masonry-construction/poconos/hero.webp',
   telephone: PHONE,
   email: EMAIL,
-  sameAs: [YELP_URL, WEBSITE],
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '3053 Mountain View Dr',
+    addressLocality: 'Bath',
+    addressRegion: 'PA',
+    postalCode: '18014',
+    addressCountry: 'US',
+  },
+  identifier: { '@type': 'PropertyValue', name: 'PA HIC', value: HIC_NUMBER },
+  sameAs: [WEBSITE, MAP_URL, YELP_URL],
   hasMap: MAP_URL,
   areaServed: serviceAreas.map((a) => ({ '@type': 'City', name: a })),
   hasOfferCatalog: {
@@ -474,7 +484,7 @@ export default function WoodysConcretePoconosPage() {
                 </div>
                 <span className="font-semibold text-[#f5f0e6]">Woody's Concrete &amp; Masonry</span>
               </div>
-              <p className="text-sm text-[#8ba088] leading-relaxed">Licensed concrete &amp; masonry contractor based in Danielsville, PA, serving the Pocono Mountains and the Lehigh Valley.</p>
+              <p className="text-sm text-[#8ba088] leading-relaxed">Licensed concrete &amp; masonry contractor (PA HIC #{HIC_NUMBER}) based in Bath, PA, serving the Pocono Mountains and the Lehigh Valley.</p>
             </div>
             <div>
               <h4 className="text-sm font-bold uppercase tracking-widest text-[#c98f4a] mb-4">Contact</h4>

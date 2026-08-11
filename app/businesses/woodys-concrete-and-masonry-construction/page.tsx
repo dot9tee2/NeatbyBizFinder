@@ -12,6 +12,7 @@ import {
   CheckCircle,
   Award,
   Shield,
+  ShieldCheck,
   Clock3,
   Quote,
   Sun,
@@ -21,6 +22,7 @@ import {
   Building2,
   Blocks,
   Armchair,
+  Car,
   Star,
   ExternalLink,
 } from 'lucide-react';
@@ -31,15 +33,18 @@ import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbS
 const SITE_URL = 'https://nearbybizfinder.com/businesses/woodys-concrete-and-masonry-construction/';
 const YELP_URL = 'https://www.yelp.com/biz/woodys-concrete-and-masonry-construction-danielsville';
 const MAP_URL = 'https://share.google/LBZYC9Gu6L94fqEoe';
+const HIC_SEARCH_URL = 'https://hicsearch.attorneygeneral.gov/';
+const HIC_NUMBER = '131444';
 
 export const metadata: Metadata = {
-  title: "Woody's Concrete & Masonry | Lehigh Valley, PA Concrete Contractor",
+  title: 'Concrete & Masonry Contractor | Bath, PA & Lehigh Valley',
   description:
-    "Family-owned concrete & masonry contractor serving Danielsville, Bethlehem, Allentown & Easton. Patios, retaining walls, foundations, footings, sidewalks & porches. Free estimates.",
+    'Family-owned concrete & masonry contractor in Bath, PA serving Danielsville, the Lehigh Valley & Poconos. Patios, walls, foundations & footings. Free estimates.',
   alternates: {
     canonical: '/businesses/woodys-concrete-and-masonry-construction/',
   },
   keywords: [
+    'concrete contractor Bath PA',
     'concrete contractor Lehigh Valley PA',
     'concrete patio Lehigh Valley',
     'retaining wall contractor Lehigh Valley PA',
@@ -53,9 +58,9 @@ export const metadata: Metadata = {
     "Woody's Concrete and Masonry Construction",
   ],
   openGraph: {
-    title: "Woody's Concrete & Masonry | Lehigh Valley, PA Concrete Contractor",
+    title: 'Concrete & Masonry Contractor | Bath, PA & Lehigh Valley',
     description:
-      'Patios, sidewalks, retaining walls, foundations, footings & porches for Lehigh Valley homeowners. Free estimates, honest pricing.',
+      'Patios, sidewalks, retaining walls, foundations, footings & porches for Lehigh Valley and Poconos homeowners. Free estimates, honest pricing.',
     images: ['/woodys-concrete-and-masonry-construction/lehigh-valley/hero.webp'],
     url: SITE_URL,
     type: 'website',
@@ -63,7 +68,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Woody's Concrete & Masonry | Lehigh Valley, PA Concrete Contractor",
+    title: 'Concrete & Masonry Contractor | Bath, PA & Lehigh Valley',
     description: 'Patios, retaining walls, foundations, footings & porches for Lehigh Valley homeowners.',
     images: ['/woodys-concrete-and-masonry-construction/lehigh-valley/hero.webp'],
   },
@@ -81,20 +86,27 @@ export default function WoodysConcreteMasonryPage() {
     website: 'https://www.woodysconcrete321.com/',
     featuredImage: '/woodys-concrete-and-masonry-construction/lehigh-valley/hero.webp',
     description:
-      "Family-owned concrete and masonry contractor based in Danielsville, PA, serving the Lehigh Valley with patios, sidewalks, retaining walls, foundations, footings, excavation and porches.",
-    city: 'Danielsville',
+      "Family-owned concrete and masonry contractor based in Bath, PA (PA HIC #131444), serving Danielsville, the Lehigh Valley and the Poconos with patios, sidewalks, retaining walls, foundations, footings, excavation and porches.",
+    streetAddress: '3053 Mountain View Dr',
+    city: 'Bath',
     state: 'PA',
-    zipCode: '18038',
+    zipCode: '18014',
   };
 
   const serviceAreas = [
     'Danielsville, PA',
-    'Bethlehem, PA',
+    'Bath, PA',
     'Allentown, PA',
-    'Easton, PA',
-    'Nazareth, PA',
-    'Northampton, PA',
+    'Bethlehem, PA',
     'Whitehall, PA',
+    'Coplay, PA',
+    'Catasauqua, PA',
+    'Northampton, PA',
+    'Kutztown, PA',
+    'Lehighton, PA',
+    'Palmerton, PA',
+    'Effort, PA',
+    'Brodheadsville, PA',
   ];
 
   const services = [
@@ -103,6 +115,12 @@ export default function WoodysConcreteMasonryPage() {
       description: 'Broom-finished or stamped concrete patios built for Lehigh Valley backyards, from cookout-ready slabs to decorative outdoor living spaces.',
       icon: Sun,
       features: ['Stamped & Broom Finishes', 'Proper Drainage Slope', '4000 PSI Mix', 'Custom Sizing'],
+    },
+    {
+      title: 'Driveway Installation',
+      description: 'Concrete driveways poured to hold up against daily vehicle weight and Lehigh Valley freeze-thaw cycles.',
+      icon: Car,
+      features: ['Reinforced for Vehicle Loads', 'Proper Base Compaction', 'Control Joint Placement', 'Broom or Exposed Aggregate Finish'],
     },
     {
       title: 'Sidewalks & Walkways',
@@ -130,7 +148,7 @@ export default function WoodysConcreteMasonryPage() {
     },
     {
       title: 'Retaining Walls',
-      description: 'Segmental and poured retaining walls that hold back sloped Lehigh Valley yards while adding usable, level space.',
+      description: 'Segmental and poured retaining walls that hold back sloped Lehigh Valley yards and steeper Poconos terrain while adding usable, level space.',
       icon: Blocks,
       features: ['Erosion Control', 'Drainage Backfill', 'Block or Poured Options', 'Engineered for Grade'],
     },
@@ -149,13 +167,13 @@ export default function WoodysConcreteMasonryPage() {
       icon: Award,
     },
     {
-      title: 'Locally Owned in Danielsville',
-      description: "Rooted in Northampton County, we know the soil, the frost line, and the neighborhoods across the Lehigh Valley.",
+      title: 'Based in Bath, Rooted in Northampton County',
+      description: "We know the soil, the frost line, and the neighborhoods across the Lehigh Valley, Danielsville, and out to Monroe County — because we've been pouring in them, not just marketing to them.",
       icon: MapPin,
     },
     {
-      title: 'Licensed Contractor',
-      description: 'Concrete and masonry work performed by a licensed Pennsylvania contractor, with every project pulled to code.',
+      title: 'PA-Registered Home Improvement Contractor',
+      description: `HIC #${HIC_NUMBER}, fully insured, with every project pulled to code and permitted correctly for its township.`,
       icon: Shield,
     },
     {
@@ -165,7 +183,7 @@ export default function WoodysConcreteMasonryPage() {
     },
   ];
 
-  const faqs = [
+  const faqs: { q: string; a: string; link?: { text: string; href: string } }[] = [
     {
       q: 'How much does a concrete patio cost in the Lehigh Valley?',
       a: 'Lehigh Valley homeowners typically budget somewhere in the $14–$25 per square foot range for a poured concrete patio, depending on size, site access, drainage needs, and whether you choose a plain broom finish or a decorative stamped pattern. We provide a firm, itemized quote after seeing the site in person.',
@@ -176,7 +194,8 @@ export default function WoodysConcreteMasonryPage() {
     },
     {
       q: 'Are you licensed and insured?',
-      a: "Yes, Woody's Concrete and Masonry Construction operates as a licensed Pennsylvania contractor. We're happy to provide documentation as part of your estimate.",
+      a: `Yes — Woody's Concrete and Masonry Construction is a PA-registered Home Improvement Contractor (HIC #${HIC_NUMBER}) carrying general liability insurance. You can verify our registration directly through the PA Attorney General's HIC search tool.`,
+      link: { text: "PA Attorney General's HIC search tool", href: HIC_SEARCH_URL },
     },
     {
       q: "What's the difference between stamped and standard concrete?",
@@ -184,19 +203,23 @@ export default function WoodysConcreteMasonryPage() {
     },
     {
       q: 'How deep do footings need to be poured in Northampton County?',
-      a: 'Footings need to be poured below the local frost line so freeze-thaw cycles don\'t heave the concrete — in our region that typically means a minimum depth in the 30–36 inch range, though the exact requirement depends on your township\'s building code. We pull permits and pour to spec so your footings pass inspection the first time.',
+      a: "Footings need to be poured below the local frost line so freeze-thaw cycles don't heave the concrete — in our region that typically means a minimum depth in the 30–36 inch range, deeper in higher-elevation Poconos townships. We confirm the exact spec and pull permits before pouring so your footings pass inspection the first time.",
     },
     {
       q: 'How long does a typical patio or driveway project take?',
-      a: 'Most residential patios and walkways are excavated, formed, and poured within 1–3 days, with an additional 3–7 days of cure time before heavy use. Larger foundation or retaining wall projects take longer depending on scope — we\'ll walk you through a realistic timeline during your estimate.',
+      a: "Most residential patios, driveways and walkways are excavated, formed, and poured within 1–3 days, with an additional 3–7 days of cure time before heavy use. Larger foundation or retaining wall projects take longer depending on scope — we'll walk you through a realistic timeline during your estimate.",
     },
     {
       q: 'Do you handle the excavation, or just the concrete pour?',
       a: 'We handle both. Grading and excavation are part of nearly every job we take on, since a patio, footing, or retaining wall is only as good as the ground it sits on.',
     },
     {
-      q: 'What areas of the Lehigh Valley do you serve?',
-      a: "We're based in Danielsville and regularly work throughout Bethlehem, Allentown, Easton, Nazareth, Northampton, and Whitehall. If you're nearby and not sure we cover your address, just give us a call.",
+      q: 'Do you take on Poconos or lakefront foundation and grading work?',
+      a: "Yes — mountain and lakefront properties often need more grading and drainage planning than a typical valley lot, and we plan for it from the first site visit.",
+    },
+    {
+      q: 'What areas do you serve?',
+      a: "We're based in Bath, PA and most active in Danielsville, and we regularly work throughout Allentown, Bethlehem, Whitehall, Coplay, Catasauqua, Northampton, Kutztown, Lehighton, Palmerton, Effort, Brodheadsville, and the wider Lehigh, Northampton, Carbon and Monroe County region. If you're nearby and not sure we cover your address, just give us a call.",
     },
   ];
 
@@ -210,6 +233,7 @@ export default function WoodysConcreteMasonryPage() {
     priceRange: businessData.priceRange,
     address: {
       '@type': 'PostalAddress',
+      streetAddress: businessData.streetAddress,
       addressLocality: businessData.city,
       addressRegion: businessData.state,
       postalCode: businessData.zipCode,
@@ -217,8 +241,9 @@ export default function WoodysConcreteMasonryPage() {
     },
     telephone: businessData.phone,
     email: businessData.email,
-    sameAs: [YELP_URL, businessData.website],
+    sameAs: [businessData.website, MAP_URL, YELP_URL],
     hasMap: MAP_URL,
+    identifier: { '@type': 'PropertyValue', name: 'PA HIC', value: HIC_NUMBER },
     areaServed: serviceAreas.map((area) => ({ '@type': 'City', name: area })),
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
@@ -292,14 +317,18 @@ export default function WoodysConcreteMasonryPage() {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-10 sm:pb-0">
             <div className="max-w-3xl text-white">
               <Badge className="mb-5 bg-amber-500/90 text-[#2b1c10] border-0 font-semibold px-4 py-1.5">
-                Lehigh Valley's Concrete &amp; Masonry Contractor
+                Lehigh Valley &amp; Poconos Concrete &amp; Masonry Contractor
               </Badge>
               <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] mb-6">
-                Concrete &amp; Masonry Built for the Lehigh Valley
+                Concrete &amp; Masonry Built for the Lehigh Valley and Beyond
               </h1>
-              <p className="text-lg sm:text-xl text-amber-50/90 leading-relaxed mb-8 max-w-2xl">
-                Based in Danielsville, <strong>Woody's Concrete and Masonry Construction</strong> pours patios, sidewalks, retaining walls, foundations, footings and porches for homeowners across Bethlehem, Allentown, Easton and Northampton County.
+              <p className="text-lg sm:text-xl text-amber-50/90 leading-relaxed mb-5 max-w-2xl">
+                Based in Bath, PA, <strong>Woody's Concrete and Masonry Construction</strong> (PA HIC #{HIC_NUMBER}) pours patios, sidewalks, retaining walls, foundations, footings and porches for homeowners across Danielsville, the Lehigh Valley, Northampton and Carbon Counties, and Monroe County/the Poconos.
               </p>
+              <div className="inline-flex items-center gap-2 mb-8 rounded-full bg-white/10 border border-white/25 px-4 py-1.5 text-sm font-medium text-amber-50">
+                <ShieldCheck className="h-4 w-4 text-amber-400" />
+                PA HIC #{HIC_NUMBER} &middot; Fully Insured
+              </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-[#2b1c10] font-semibold px-8" asChild>
                   <a href={businessData.phoneHref}><Phone className="h-5 w-5 mr-2" />Get a Free Estimate</a>
@@ -345,7 +374,7 @@ export default function WoodysConcreteMasonryPage() {
           <div className="text-center mb-10 sm:mb-12">
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2b1c10] mb-5">Our Services</h2>
             <p className="text-lg text-stone-600 max-w-3xl mx-auto leading-relaxed">
-              From a new sidewalk to a full foundation, here's what we pour across the Lehigh Valley.
+              Woody's is a full-service concrete and masonry contractor — we handle poured concrete alongside brick and stone masonry, so you're not hiring two different crews for one backyard project.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -375,7 +404,7 @@ export default function WoodysConcreteMasonryPage() {
         <div className="mb-16 sm:mb-20 space-y-10 sm:space-y-14">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center bg-white rounded-2xl shadow-md overflow-hidden">
             <div className="relative h-64 lg:h-full min-h-[280px]">
-              <Image src="/woodys-concrete-and-masonry-construction/lehigh-valley/sidewalk.webp" alt="Aerial view of a finished concrete walkway and steps at a Lehigh Valley home" fill quality={85} className="object-cover" />
+              <Image src="/woodys-concrete-and-masonry-construction/lehigh-valley/sidewalk.webp" alt="Concrete sidewalk poured along a curb — Danielsville, PA" fill quality={85} className="object-cover" />
             </div>
             <div className="p-8 sm:p-10">
               <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#2b1c10] mb-4">Sidewalks &amp; Walkways Built to Last</h3>
@@ -383,34 +412,34 @@ export default function WoodysConcreteMasonryPage() {
                 A walkway gets more freeze-thaw abuse than almost anything else on your property. We pour to municipal spec with proper control joints and a slip-resistant finish, so it holds its edges and doesn't heave through a Lehigh Valley winter.
               </p>
               <p className="text-stone-600 leading-relaxed">
-                From a simple front walk to a full stepped path connecting a patio to the house, we grade and form it to drain correctly the first time.
+                From a simple front walk to a stepped path connecting a patio to the house, we grade and form it to drain correctly the first time.
               </p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center bg-white rounded-2xl shadow-md overflow-hidden">
             <div className="p-8 sm:p-10 order-2 lg:order-1">
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#2b1c10] mb-4">Retaining Walls for Sloped Lehigh Valley Lots</h3>
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#2b1c10] mb-4">Retaining Walls for Sloped Lehigh Valley &amp; Poconos Lots</h3>
               <p className="text-stone-600 leading-relaxed mb-3">
-                Plenty of Northampton County backyards drop off fast. A properly built retaining wall — with drainage backfill behind it, not just stacked block — stops erosion and turns a hillside into usable, level space for a patio, garden bed, or play area.
+                Plenty of Northampton County backyards drop off fast, and Monroe County properties near the mountains often need it even more. A properly built retaining wall — with drainage backfill behind it rather than just stacked block — stops erosion and turns a hillside into usable, level space.
               </p>
               <p className="text-stone-600 leading-relaxed">
-                We build both segmental block and poured concrete walls, sized to the grade and soil on your property.
+                We build both segmental block and poured concrete walls, sized to the slope and load of your lot.
               </p>
             </div>
             <div className="relative h-64 lg:h-full min-h-[280px] order-1 lg:order-2">
-              <Image src="/woodys-concrete-and-masonry-construction/lehigh-valley/retaining-wall.webp" alt="Segmental concrete retaining wall in a Lehigh Valley backyard" fill quality={85} className="object-cover" />
+              <Image src="/woodys-concrete-and-masonry-construction/lehigh-valley/retaining-wall.webp" alt="Segmental concrete retaining wall — Lehigh Valley backyard" fill quality={85} className="object-cover" />
             </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center bg-white rounded-2xl shadow-md overflow-hidden">
             <div className="relative h-64 lg:h-full min-h-[280px]">
-              <Image src="/woodys-concrete-and-masonry-construction/lehigh-valley/patio-2.webp" alt="Freshly poured concrete patio behind a Lehigh Valley home" fill quality={85} className="object-cover" />
+              <Image src="/woodys-concrete-and-masonry-construction/lehigh-valley/patio-2.webp" alt="Freshly poured concrete patio beside French doors — Lehigh Valley" fill quality={85} className="object-cover" />
             </div>
             <div className="p-8 sm:p-10">
               <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#2b1c10] mb-4">Patios Built for How You Actually Use Them</h3>
               <p className="text-stone-600 leading-relaxed mb-3">
-                Whether it's a simple broom-finished slab off the back door or a stamped patio built around an existing pool or deck, we grade for drainage before we ever form the pour so water moves away from your foundation, not toward it.
+                Whether it's a simple broom-finished slab off the back door or a stamped patio around an existing pool or deck, we grade for drainage before we ever form the pour, so water moves away from your foundation, not toward it.
               </p>
               <p className="text-stone-600 leading-relaxed">
                 Every patio gets a proper gravel base and control joints cut to spec, so it holds up through Lehigh Valley freeze-thaw seasons without cracking.
@@ -424,10 +453,21 @@ export default function WoodysConcreteMasonryPage() {
           <div className="bg-gradient-to-r from-[#2b1c10] to-[#3d2a18] rounded-2xl p-8 sm:p-12 text-white">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
               <div className="lg:col-span-2">
-                <h2 className="font-serif text-2xl sm:text-3xl font-bold mb-4">Proudly Based in Danielsville, Serving the Whole Lehigh Valley</h2>
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold mb-4">Proudly Based in Bath, PA — Serving Danielsville and the Whole Region</h2>
                 <p className="text-amber-50/80 leading-relaxed mb-4">
-                  Northampton County is home. We know how the clay-heavy soil here settles, how deep to dig before the frost line, and which neighborhoods across Bethlehem, Allentown, and Easton need extra drainage planning before a pour.
+                  Northampton County is home. We know how the clay-heavy soil settles, how deep to dig before the frost line, and which neighborhoods need extra drainage planning before a pour.
                 </p>
+                <ul className="text-amber-50/80 leading-relaxed mb-4 space-y-2 text-sm">
+                  <li><strong className="text-amber-50">Danielsville</strong> — one of our most-served areas; a large share of our project volume, from patios to full foundation pours.</li>
+                  <li><strong className="text-amber-50">Core Lehigh Valley</strong> — Bath, Allentown, Bethlehem, Whitehall, Coplay, Catasauqua, Northampton.</li>
+                  <li><strong className="text-amber-50">Northampton &amp; Carbon County</strong> — Danielsville, Kutztown, Lehighton, Palmerton; larger lots mean more retaining wall and excavation work.</li>
+                  <li>
+                    <strong className="text-amber-50">Monroe County / The Poconos</strong> — Effort, Brodheadsville, and wider Monroe County; mountain and lakefront terrain calls for more foundation, drainage, and grading work.{' '}
+                    <Link href="/businesses/woodys-concrete-and-masonry-construction/poconos/" className="text-amber-300 underline hover:text-amber-200">
+                      See our dedicated Poconos service page.
+                    </Link>
+                  </li>
+                </ul>
                 <div className="flex flex-wrap gap-2">
                   {serviceAreas.map((area) => (
                     <span key={area} className="text-xs font-medium bg-white/10 rounded-full px-3 py-1.5 text-amber-50/90">{area}</span>
@@ -439,8 +479,8 @@ export default function WoodysConcreteMasonryPage() {
                   <span className="flex items-center gap-3 text-sm font-medium"><MapPin className="h-5 w-5 text-amber-400" />View on Google Maps</span>
                   <ExternalLink className="h-4 w-4 text-amber-200" />
                 </a>
-                <a href={YELP_URL} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between bg-white/10 hover:bg-white/20 transition-colors rounded-lg px-5 py-4">
-                  <span className="flex items-center gap-3 text-sm font-medium"><Star className="h-5 w-5 text-amber-400" />Read Reviews on Yelp</span>
+                <a href={MAP_URL} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between bg-white/10 hover:bg-white/20 transition-colors rounded-lg px-5 py-4">
+                  <span className="flex items-center gap-3 text-sm font-medium"><Star className="h-5 w-5 text-amber-400" />Read Reviews on Google</span>
                   <ExternalLink className="h-4 w-4 text-amber-200" />
                 </a>
                 <a href={businessData.website} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between bg-white/10 hover:bg-white/20 transition-colors rounded-lg px-5 py-4">
@@ -457,12 +497,13 @@ export default function WoodysConcreteMasonryPage() {
           <div className="text-center mb-12">
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2b1c10] mb-5">How a Project Comes Together</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
             {[
-              { n: '1', t: 'Free Estimate', d: "Woody visits your property, talks through the project, and gives you a straight, written quote." },
-              { n: '2', t: 'Excavation & Grading', d: 'We prep the site, plan for drainage, and remove anything that would undermine the pour.' },
-              { n: '3', t: 'Forming & Pouring', d: '4000 PSI mix, rebar where it counts, and the finish you asked for — stamped or broomed.' },
-              { n: '4', t: 'Cure & Walkthrough', d: "We walk the finished work with you and go over cure-time care so it lasts." },
+              { n: '1', t: 'Free Estimate', d: 'Woody visits, talks through the project, and gives a straight, written quote.' },
+              { n: '2', t: 'Permitting & Planning', d: 'Requirements vary by township; we handle it across Lehigh, Northampton, Carbon, and Monroe Counties.' },
+              { n: '3', t: 'Excavation & Grading', d: 'We prep the site, plan for drainage, and remove anything that would undermine the pour.' },
+              { n: '4', t: 'Forming & Pouring', d: '4000 PSI mix, rebar where it counts, and the finish you asked for — stamped or broomed.' },
+              { n: '5', t: 'Cure & Walkthrough', d: 'We walk the finished work with you and go over cure-time care.' },
             ].map((step) => (
               <div key={step.n} className="text-center">
                 <div className="w-16 h-16 rounded-full bg-amber-500 text-[#2b1c10] font-serif text-2xl font-bold flex items-center justify-center mx-auto mb-5">
@@ -525,12 +566,12 @@ export default function WoodysConcreteMasonryPage() {
           <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#2b1c10] mb-8 text-center">A Look at the Work</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {[
-              { src: '/woodys-concrete-and-masonry-construction/lehigh-valley/hero.webp', alt: 'Freshly poured concrete patio and walkway beside a Lehigh Valley home' },
-              { src: '/woodys-concrete-and-masonry-construction/lehigh-valley/foundation-footings.webp', alt: 'Finished concrete patio with a step' },
-              { src: '/woodys-concrete-and-masonry-construction/lehigh-valley/patio.webp', alt: 'Concrete sidewalk poured along a curb' },
-              { src: '/woodys-concrete-and-masonry-construction/lehigh-valley/patio-2.webp', alt: 'Freshly poured concrete patio beside French doors' },
-              { src: '/woodys-concrete-and-masonry-construction/lehigh-valley/sidewalk.webp', alt: 'Aerial view of a finished concrete walkway and steps' },
-              { src: '/woodys-concrete-and-masonry-construction/lehigh-valley/retaining-wall.webp', alt: 'Segmental concrete retaining wall' },
+              { src: '/woodys-concrete-and-masonry-construction/lehigh-valley/hero.webp', alt: 'Freshly poured concrete patio and walkway — Bath, PA' },
+              { src: '/woodys-concrete-and-masonry-construction/lehigh-valley/foundation-footings.webp', alt: 'Finished concrete patio with a step — Lehigh Valley' },
+              { src: '/woodys-concrete-and-masonry-construction/lehigh-valley/patio.webp', alt: 'Concrete sidewalk poured along a curb — Danielsville, PA' },
+              { src: '/woodys-concrete-and-masonry-construction/lehigh-valley/patio-2.webp', alt: 'Freshly poured concrete patio beside French doors — Lehigh Valley' },
+              { src: '/woodys-concrete-and-masonry-construction/lehigh-valley/sidewalk.webp', alt: 'Aerial view of finished concrete walkway and steps — Northampton County' },
+              { src: '/woodys-concrete-and-masonry-construction/lehigh-valley/retaining-wall.webp', alt: 'Segmental concrete retaining wall — Lehigh Valley backyard' },
             ].map((img, i) => (
               <div key={i} className="relative h-40 sm:h-52 rounded-xl overflow-hidden shadow-md">
                 <Image src={img.src} alt={img.alt} fill quality={75} className="object-cover hover:scale-105 transition-transform duration-500" />
@@ -548,7 +589,17 @@ export default function WoodysConcreteMasonryPage() {
             {faqs.map((f, i) => (
               <div key={i} className="bg-white rounded-xl p-6 shadow-sm border border-amber-100">
                 <h3 className="font-serif text-lg font-bold text-[#2b1c10] mb-2">{f.q}</h3>
-                <p className="text-stone-600 leading-relaxed text-sm">{f.a}</p>
+                <p className="text-stone-600 leading-relaxed text-sm">
+                  {f.a}
+                  {f.link && (
+                    <>
+                      {' '}
+                      <a href={f.link.href} target="_blank" rel="noopener noreferrer" className="text-amber-700 font-semibold underline hover:text-amber-800">
+                        {f.link.text}
+                      </a>
+                    </>
+                  )}
+                </p>
               </div>
             ))}
           </div>
@@ -581,6 +632,7 @@ export default function WoodysConcreteMasonryPage() {
               <a href={`mailto:${businessData.email}`}><Mail className="h-5 w-5 mr-2" />Email Us</a>
             </Button>
           </div>
+          <p className="mt-6 text-sm text-amber-50/80">PA HIC #{HIC_NUMBER} &middot; Fully Insured</p>
         </div>
       </div>
 
@@ -589,6 +641,7 @@ export default function WoodysConcreteMasonryPage() {
         businessPhone={businessData.phone}
         businessEmail={businessData.email}
         businessWebsite={businessData.website}
+        businessAddress={businessData.streetAddress}
         businessCity={businessData.city}
         businessState={businessData.state}
         businessZipCode={businessData.zipCode}
