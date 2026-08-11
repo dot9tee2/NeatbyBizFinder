@@ -41,6 +41,15 @@ export const BUSINESS_LISTINGS: BusinessListing[] = [
       'Custom-fit metal mesh gutter guards, gutter cleaning, and seamless gutter installation, backed by a free inspection.',
   },
   {
+    slug: 'ark-appliance-services',
+    name: 'Ark Appliance Services LLC',
+    category: 'Appliance & HVAC',
+    location: 'Mandarin, Jacksonville, FL',
+    tagline:
+      'Refrigerator, washer/dryer, oven, dishwasher & microwave repair for Mandarin homeowners within a 25-mile radius.',
+    locations: [{ slug: 'st-johns-fruit-cove', label: 'St. Johns & Fruit Cove, FL' }],
+  },
+  {
     slug: 'clear-choice-cleaning',
     name: 'Clear Choice Cleaning',
     category: 'Cleaning',
