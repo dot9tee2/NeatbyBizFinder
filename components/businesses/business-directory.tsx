@@ -7,6 +7,7 @@ import {
   Building2,
   DoorOpen,
   Droplets,
+  Hammer,
   KeyRound,
   Layers,
   Mailbox,
@@ -59,6 +60,11 @@ const CATEGORY_STYLES: Record<string, CategoryStyle> = {
     icon: Zap,
     iconClass: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-500/15 dark:text-yellow-300',
     ringClass: 'group-hover:border-yellow-300 dark:group-hover:border-yellow-500/40',
+  },
+  'Foundation & Renovation': {
+    icon: Hammer,
+    iconClass: 'bg-stone-200 text-stone-700 dark:bg-stone-500/20 dark:text-stone-200',
+    ringClass: 'group-hover:border-stone-400 dark:group-hover:border-stone-500/50',
   },
   'Garage Doors': {
     icon: DoorOpen,

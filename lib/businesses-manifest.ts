@@ -148,6 +148,18 @@ export const BUSINESS_LISTINGS: BusinessListing[] = [
     ],
   },
   {
+    slug: 'sv-renovations',
+    name: 'S&V Renovations, LLC',
+    category: 'Foundation & Renovation',
+    location: 'North Little Rock, AR',
+    tagline:
+      'Foundation repair, drainage, and full home renovation — licensed, insured, and backed by a 30-day warranty.',
+    locations: [
+      { slug: 'hot-springs', label: 'Hot Springs, AR' },
+      { slug: 'conway', label: 'Conway, AR' },
+    ],
+  },
+  {
     slug: 'woodys-concrete-and-masonry-construction',
     name: "Woody's Concrete & Masonry",
     category: 'Concrete & Masonry',
