@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import {
-  ArrowRight,
+  ArrowUpRight,
   Building2,
   DoorOpen,
   Droplets,
@@ -18,6 +18,7 @@ import {
   Trees,
   Wind,
   Wrench,
+  X,
   Zap,
   type LucideIcon,
 } from 'lucide-react';
@@ -25,84 +26,105 @@ import type { BusinessListing } from '@/lib/businesses-manifest';
 
 interface CategoryStyle {
   icon: LucideIcon;
-  /** Static Tailwind classes — do not build these strings dynamically. */
   iconClass: string;
-  ringClass: string;
+  barClass: string;
+  badgeClass: string;
 }
 
 const CATEGORY_STYLES: Record<string, CategoryStyle> = {
   'Appliance & HVAC': {
     icon: Wind,
-    iconClass: 'bg-sky-100 text-sky-700 dark:bg-sky-500/15 dark:text-sky-300',
-    ringClass: 'group-hover:border-sky-300 dark:group-hover:border-sky-500/40',
+    iconClass: 'bg-sky-100 text-sky-800',
+    barClass: 'bg-sky-500',
+    badgeClass: 'bg-sky-50 text-sky-800 ring-sky-200',
   },
   Cleaning: {
     icon: Sparkles,
-    iconClass: 'bg-teal-100 text-teal-700 dark:bg-teal-500/15 dark:text-teal-300',
-    ringClass: 'group-hover:border-teal-300 dark:group-hover:border-teal-500/40',
+    iconClass: 'bg-teal-100 text-teal-800',
+    barClass: 'bg-teal-500',
+    badgeClass: 'bg-teal-50 text-teal-800 ring-teal-200',
   },
   'Concrete & Flooring': {
     icon: Layers,
-    iconClass: 'bg-violet-100 text-violet-700 dark:bg-violet-500/15 dark:text-violet-300',
-    ringClass: 'group-hover:border-violet-300 dark:group-hover:border-violet-500/40',
+    iconClass: 'bg-violet-100 text-violet-800',
+    barClass: 'bg-violet-500',
+    badgeClass: 'bg-violet-50 text-violet-800 ring-violet-200',
   },
   'Concrete & Masonry': {
     icon: Wrench,
-    iconClass: 'bg-amber-100 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300',
-    ringClass: 'group-hover:border-amber-300 dark:group-hover:border-amber-500/40',
+    iconClass: 'bg-amber-100 text-amber-800',
+    barClass: 'bg-amber-500',
+    badgeClass: 'bg-amber-50 text-amber-800 ring-amber-200',
   },
   'Curb Appeal': {
     icon: Mailbox,
-    iconClass: 'bg-rose-100 text-rose-700 dark:bg-rose-500/15 dark:text-rose-300',
-    ringClass: 'group-hover:border-rose-300 dark:group-hover:border-rose-500/40',
+    iconClass: 'bg-rose-100 text-rose-800',
+    barClass: 'bg-rose-500',
+    badgeClass: 'bg-rose-50 text-rose-800 ring-rose-200',
   },
   Electrical: {
     icon: Zap,
-    iconClass: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-500/15 dark:text-yellow-300',
-    ringClass: 'group-hover:border-yellow-300 dark:group-hover:border-yellow-500/40',
+    iconClass: 'bg-yellow-100 text-yellow-800',
+    barClass: 'bg-yellow-500',
+    badgeClass: 'bg-yellow-50 text-yellow-800 ring-yellow-200',
   },
   'Foundation & Renovation': {
     icon: Hammer,
-    iconClass: 'bg-stone-200 text-stone-700 dark:bg-stone-500/20 dark:text-stone-200',
-    ringClass: 'group-hover:border-stone-400 dark:group-hover:border-stone-500/50',
+    iconClass: 'bg-stone-200 text-stone-800',
+    barClass: 'bg-stone-500',
+    badgeClass: 'bg-stone-100 text-stone-800 ring-stone-300',
   },
   'Garage Doors': {
     icon: DoorOpen,
-    iconClass: 'bg-orange-100 text-orange-700 dark:bg-orange-500/15 dark:text-orange-300',
-    ringClass: 'group-hover:border-orange-300 dark:group-hover:border-orange-500/40',
+    iconClass: 'bg-orange-100 text-orange-800',
+    barClass: 'bg-orange-500',
+    badgeClass: 'bg-orange-50 text-orange-800 ring-orange-200',
   },
   'Landscaping & Turf': {
     icon: Trees,
-    iconClass: 'bg-green-100 text-green-700 dark:bg-green-500/15 dark:text-green-300',
-    ringClass: 'group-hover:border-green-300 dark:group-hover:border-green-500/40',
+    iconClass: 'bg-green-100 text-green-800',
+    barClass: 'bg-green-500',
+    badgeClass: 'bg-green-50 text-green-800 ring-green-200',
   },
   'Locksmith & Security': {
     icon: KeyRound,
-    iconClass: 'bg-slate-200 text-slate-700 dark:bg-slate-500/20 dark:text-slate-200',
-    ringClass: 'group-hover:border-slate-400 dark:group-hover:border-slate-500/50',
+    iconClass: 'bg-slate-200 text-slate-800',
+    barClass: 'bg-slate-500',
+    badgeClass: 'bg-slate-100 text-slate-800 ring-slate-300',
   },
   'Painting & Drywall': {
     icon: Paintbrush,
-    iconClass: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-500/15 dark:text-indigo-300',
-    ringClass: 'group-hover:border-indigo-300 dark:group-hover:border-indigo-500/40',
+    iconClass: 'bg-indigo-100 text-indigo-800',
+    barClass: 'bg-indigo-500',
+    badgeClass: 'bg-indigo-50 text-indigo-800 ring-indigo-200',
   },
   'Roofing & Gutters': {
     icon: Droplets,
-    iconClass: 'bg-blue-100 text-blue-700 dark:bg-blue-500/15 dark:text-blue-300',
-    ringClass: 'group-hover:border-blue-300 dark:group-hover:border-blue-500/40',
+    iconClass: 'bg-blue-100 text-blue-800',
+    barClass: 'bg-blue-500',
+    badgeClass: 'bg-blue-50 text-blue-800 ring-blue-200',
+  },
+  'Window & Gutter Cleaning': {
+    icon: Sparkles,
+    iconClass: 'bg-cyan-100 text-cyan-900',
+    barClass: 'bg-cyan-500',
+    badgeClass: 'bg-cyan-50 text-cyan-900 ring-cyan-200',
   },
 };
 
 const FALLBACK_STYLE: CategoryStyle = {
   icon: Building2,
-  iconClass: 'bg-gray-100 text-gray-700 dark:bg-gray-500/15 dark:text-gray-300',
-  ringClass: 'group-hover:border-gray-300 dark:group-hover:border-gray-500/40',
+  iconClass: 'bg-gray-100 text-gray-800',
+  barClass: 'bg-gray-500',
+  badgeClass: 'bg-gray-50 text-gray-800 ring-gray-200',
 };
 
-function businessHref(slug: string, locationSlug?: string) {
-  return locationSlug
-    ? `/businesses/${slug}/${locationSlug}/`
-    : `/businesses/${slug}/`;
+function primaryBusinessHref(business: BusinessListing) {
+  return `/businesses/${business.route ?? business.slug}/`;
+}
+
+function locationHref(business: BusinessListing, locationSlug: string) {
+  return `/businesses/${business.slug}/${locationSlug}/`;
 }
 
 interface BusinessDirectoryProps {
@@ -113,29 +135,37 @@ interface BusinessDirectoryProps {
 export default function BusinessDirectory({ businesses, categories }: BusinessDirectoryProps) {
   const [query, setQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState<string>('All');
-  const resultsRef = useRef<HTMLElement>(null);
+  const resultsRef = useRef<HTMLDivElement>(null);
   const isFirstRender = useRef(true);
 
-  // Filtering can shrink the list to less than a screenful, which would otherwise
-  // leave the reader stranded down by the footer. Pull the results back into view.
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false;
       return;
     }
+
     const results = resultsRef.current;
     if (results && results.getBoundingClientRect().top < 0) {
-      results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      results.scrollIntoView({ behavior: 'auto', block: 'start' });
     }
   }, [query, activeCategory]);
+
+  const categoryCounts = useMemo(
+    () =>
+      Object.fromEntries(
+        categories.map((category) => [
+          category,
+          businesses.filter((business) => business.category === category).length,
+        ])
+      ),
+    [businesses, categories]
+  );
 
   const visible = useMemo(() => {
     const needle = query.trim().toLowerCase();
 
     return businesses.filter((business) => {
-      if (activeCategory !== 'All' && business.category !== activeCategory) {
-        return false;
-      }
+      if (activeCategory !== 'All' && business.category !== activeCategory) return false;
       if (!needle) return true;
 
       const haystack = [
@@ -152,146 +182,178 @@ export default function BusinessDirectory({ businesses, categories }: BusinessDi
     });
   }, [businesses, query, activeCategory]);
 
-  return (
-    <>
-      {/* Search + category filter */}
-      <div className="sticky top-16 z-30 border-b bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:bg-gray-900/90 dark:supports-[backdrop-filter]:bg-gray-900/70 dark:border-gray-800">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 space-y-4">
-          <div className="relative max-w-xl mx-auto">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" aria-hidden="true" />
-            <label htmlFor="business-search" className="sr-only">
-              Search businesses
-            </label>
-            <input
-              id="business-search"
-              type="search"
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="Search by name, service, or city…"
-              className="w-full rounded-full border border-gray-200 bg-white py-2.5 pl-10 pr-4 text-sm text-gray-900 placeholder:text-gray-400 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
-            />
-          </div>
+  const resetFilters = () => {
+    setQuery('');
+    setActiveCategory('All');
+  };
 
-          {/* Scrolls sideways on phones so the sticky bar never eats the screen. */}
-          <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:justify-center sm:overflow-x-visible sm:px-0 sm:pb-0">
-            {['All', ...categories].map((category) => {
-              const isActive = category === activeCategory;
-              return (
+  return (
+    <section id="directory" className="scroll-mt-24 bg-[#f4f7fb] py-16 sm:py-20">
+      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+        <div className="mb-10 flex flex-col justify-between gap-5 border-b border-slate-300 pb-8 lg:flex-row lg:items-end">
+          <div className="max-w-3xl">
+            <p className="text-xs font-black uppercase tracking-[0.24em] text-blue-700">Local business index</p>
+            <h2 className="mt-3 text-4xl font-black tracking-[-0.04em] text-slate-950 sm:text-5xl">
+              Browse by name, service, or city.
+            </h2>
+          </div>
+          <p className="max-w-md text-base leading-7 text-slate-600">
+            Open a business profile for service details, local coverage and direct contact options.
+          </p>
+        </div>
+
+        <div className="grid gap-8 lg:grid-cols-[18rem_1fr] lg:items-start">
+          <aside className="border border-slate-300 bg-white p-5 lg:sticky lg:top-24" aria-label="Directory filters">
+            <div>
+              <label htmlFor="business-search" className="text-sm font-extrabold text-slate-900">
+                Search the directory
+              </label>
+              <div className="relative mt-3">
+                <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" aria-hidden="true" />
+                <input
+                  id="business-search"
+                  type="search"
+                  value={query}
+                  onChange={(event) => setQuery(event.target.value)}
+                  placeholder="Name, city, or service"
+                  className="min-h-12 w-full border border-slate-300 bg-slate-50 py-3 pl-10 pr-4 text-sm text-slate-950 outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/15"
+                />
+              </div>
+            </div>
+
+            <div className="mt-7 border-t border-slate-200 pt-6">
+              <p className="text-sm font-extrabold text-slate-900">Service category</p>
+              <div className="mt-3 grid grid-cols-2 gap-2 lg:grid-cols-1">
+                {['All', ...categories].map((category) => {
+                  const isActive = category === activeCategory;
+                  const count = category === 'All' ? businesses.length : categoryCounts[category];
+
+                  return (
+                    <button
+                      key={category}
+                      type="button"
+                      onClick={() => setActiveCategory(category)}
+                      aria-pressed={isActive}
+                      className={`flex min-h-10 items-center justify-between gap-3 border px-3 py-2 text-left text-xs font-bold sm:text-sm ${
+                        isActive
+                          ? 'border-blue-700 bg-blue-700 text-white'
+                          : 'border-slate-200 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-50'
+                      }`}
+                    >
+                      <span>{category}</span>
+                      <span className={isActive ? 'text-blue-100' : 'text-slate-400'}>{count}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {(query || activeCategory !== 'All') && (
+              <button
+                type="button"
+                onClick={resetFilters}
+                className="mt-5 inline-flex items-center gap-2 text-sm font-extrabold text-blue-700 hover:text-blue-900"
+              >
+                <X className="h-4 w-4" aria-hidden="true" />
+                Reset all filters
+              </button>
+            )}
+          </aside>
+
+          <div ref={resultsRef} className="scroll-mt-28">
+            <div className="mb-5 flex items-center justify-between gap-4">
+              <p className="text-sm font-bold text-slate-600" aria-live="polite">
+                Showing <span className="text-slate-950">{visible.length}</span> of {businesses.length} businesses
+              </p>
+              <span className="hidden text-xs font-bold uppercase tracking-[0.18em] text-slate-400 sm:block">
+                Direct local profiles
+              </span>
+            </div>
+
+            {visible.length === 0 ? (
+              <div className="border border-dashed border-slate-400 bg-white p-12 text-center">
+                <Building2 className="mx-auto h-10 w-10 text-slate-300" aria-hidden="true" />
+                <h3 className="mt-4 text-xl font-black text-slate-950">No matching businesses</h3>
+                <p className="mx-auto mt-2 max-w-sm text-sm leading-6 text-slate-600">
+                  Try another name, service, or city—or reset the filters to view the full directory.
+                </p>
                 <button
-                  key={category}
                   type="button"
-                  onClick={() => setActiveCategory(category)}
-                  aria-pressed={isActive}
-                  className={`shrink-0 whitespace-nowrap rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors ${
-                    isActive
-                      ? 'border-blue-600 bg-blue-600 text-white'
-                      : 'border-gray-200 bg-white text-gray-600 hover:border-blue-300 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:text-blue-400'
-                  }`}
+                  onClick={resetFilters}
+                  className="mt-6 bg-blue-700 px-5 py-3 text-sm font-extrabold text-white"
                 >
-                  {category}
+                  View all businesses
                 </button>
-              );
-            })}
+              </div>
+            ) : (
+              <div className="grid gap-5 xl:grid-cols-2">
+                {visible.map((business, index) => {
+                  const style = CATEGORY_STYLES[business.category] ?? FALLBACK_STYLE;
+                  const Icon = style.icon;
+                  const primaryHref = primaryBusinessHref(business);
+
+                  return (
+                    <article key={business.slug} className="group relative flex min-h-[22rem] flex-col overflow-hidden border border-slate-300 bg-white shadow-[0_12px_35px_rgba(15,23,42,0.06)] hover:border-slate-500">
+                      <div className={`h-1.5 w-full ${style.barClass}`} />
+                      <div className="flex flex-1 flex-col p-6 sm:p-7">
+                        <div className="flex items-start justify-between gap-5">
+                          <div className={`grid h-12 w-12 shrink-0 place-items-center ${style.iconClass}`}>
+                            <Icon className="h-6 w-6" aria-hidden="true" />
+                          </div>
+                          <span className="font-mono text-xs font-bold text-slate-400">
+                            {String(index + 1).padStart(2, '0')}
+                          </span>
+                        </div>
+
+                        <div className="mt-6">
+                          <span className={`inline-flex px-2.5 py-1 text-[0.68rem] font-black uppercase tracking-[0.12em] ring-1 ring-inset ${style.badgeClass}`}>
+                            {business.category}
+                          </span>
+                          <h3 className="mt-4 text-2xl font-black leading-tight tracking-[-0.025em] text-slate-950">
+                            <Link href={primaryHref} className="hover:text-blue-700">
+                              {business.name}
+                            </Link>
+                          </h3>
+                          <p className="mt-2 flex items-center gap-2 text-sm font-bold text-slate-500">
+                            <MapPin className="h-4 w-4 shrink-0 text-blue-700" aria-hidden="true" />
+                            {business.location}
+                          </p>
+                          <p className="mt-4 leading-7 text-slate-600">{business.tagline}</p>
+                        </div>
+
+                        {business.locations && business.locations.length > 0 && (
+                          <div className="mt-6 border-t border-slate-200 pt-5">
+                            <p className="text-[0.68rem] font-black uppercase tracking-[0.16em] text-slate-400">Additional local pages</p>
+                            <div className="mt-3 flex flex-wrap gap-2">
+                              {business.locations.map((location) => (
+                                <Link
+                                  key={location.slug}
+                                  href={locationHref(business, location.slug)}
+                                  className="border border-slate-300 bg-slate-50 px-3 py-2 text-xs font-bold leading-5 text-slate-700 hover:border-blue-500 hover:bg-blue-50 hover:text-blue-800"
+                                >
+                                  {location.label}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        <Link
+                          href={primaryHref}
+                          className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-black text-blue-700 hover:text-blue-900"
+                        >
+                          View business profile
+                          <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                        </Link>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
       </div>
-
-      {/* Results */}
-      <section ref={resultsRef} className="scroll-mt-48 py-12 lg:py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="mb-8 text-sm text-gray-500 dark:text-gray-400" aria-live="polite">
-            Showing {visible.length} of {businesses.length} businesses
-          </p>
-
-          {visible.length === 0 ? (
-            <div className="mx-auto max-w-md rounded-2xl border border-dashed border-gray-300 p-12 text-center dark:border-gray-700">
-              <Building2 className="mx-auto mb-4 h-10 w-10 text-gray-300 dark:text-gray-600" aria-hidden="true" />
-              <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">No businesses found</h2>
-              <p className="mb-6 text-sm text-gray-500 dark:text-gray-400">
-                Try a different search term or clear the filters to see everything.
-              </p>
-              <button
-                type="button"
-                onClick={() => {
-                  setQuery('');
-                  setActiveCategory('All');
-                }}
-                className="text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400"
-              >
-                Clear filters
-              </button>
-            </div>
-          ) : (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {visible.map((business) => {
-                const style = CATEGORY_STYLES[business.category] ?? FALLBACK_STYLE;
-                const Icon = style.icon;
-
-                return (
-                  <article
-                    key={business.slug}
-                    className={`group flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl dark:border-gray-800 dark:bg-gray-900 ${style.ringClass}`}
-                  >
-                    <div className="mb-4 flex items-start justify-between gap-3">
-                      <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${style.iconClass}`}>
-                        <Icon className="h-5 w-5" aria-hidden="true" />
-                      </div>
-                      <span className="rounded-full bg-gray-100 px-2.5 py-1 text-[11px] font-medium text-gray-600 dark:bg-gray-800 dark:text-gray-300">
-                        {business.category}
-                      </span>
-                    </div>
-
-                    <h2 className="text-lg font-bold leading-snug text-gray-900 dark:text-white">
-                      <Link
-                        href={businessHref(business.slug)}
-                        className="transition-colors hover:text-blue-600 dark:hover:text-blue-400"
-                      >
-                        {business.name}
-                      </Link>
-                    </h2>
-
-                    <p className="mt-1.5 flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400">
-                      <MapPin className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                      {business.location}
-                    </p>
-
-                    <p className="mt-3 flex-1 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
-                      {business.tagline}
-                    </p>
-
-                    {business.locations && business.locations.length > 0 && (
-                      <div className="mt-5 border-t border-gray-100 pt-4 dark:border-gray-800">
-                        <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-gray-400">
-                          Also serving
-                        </p>
-                        <div className="flex flex-wrap gap-1.5">
-                          {business.locations.map((location) => (
-                            <Link
-                              key={location.slug}
-                              href={businessHref(business.slug, location.slug)}
-                              className="relative z-10 rounded-full border border-gray-200 px-2.5 py-1 text-xs text-gray-600 transition-colors hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-blue-500/10 dark:hover:text-blue-400"
-                            >
-                              {location.label}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    <Link
-                      href={businessHref(business.slug)}
-                      className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400"
-                    >
-                      Visit page
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-                    </Link>
-                  </article>
-                );
-              })}
-            </div>
-          )}
-        </div>
-      </section>
-    </>
+    </section>
   );
 }

@@ -10,6 +10,8 @@ export interface BusinessLocation {
 export interface BusinessListing {
   /** Directory name under `app/businesses/`. */
   slug: string;
+  /** Optional primary route below /businesses when no page exists at the bare slug. */
+  route?: string;
   name: string;
   /** Category label — also drives the directory filter chips. */
   category: string;
@@ -75,6 +77,18 @@ export const BUSINESS_LISTINGS: BusinessListing[] = [
     locations: [
       { slug: 'cedar-park', label: 'Cedar Park, TX' },
       { slug: 'georgetown', label: 'Georgetown, TX' },
+    ],
+  },
+  {
+    slug: 'heavenly-window-cleaning',
+    route: 'heavenly-window-cleaning/window-cleaning-belmont-ca',
+    name: 'Heavenly Window Cleaning',
+    category: 'Window & Gutter Cleaning',
+    location: 'Belmont, CA',
+    tagline:
+      'Family-owned window and gutter cleaning for Peninsula homes, with dedicated service pages for Belmont and Emerald Hills.',
+    locations: [
+      { slug: 'gutter-cleaning-emerald-hills-ca', label: 'Gutter Cleaning — Emerald Hills, CA' },
     ],
   },
   {
