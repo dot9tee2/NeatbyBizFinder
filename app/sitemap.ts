@@ -9,7 +9,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const posts = await sanityFetch<Post[]>({ query: postsQuery });
 
     const blogUrls = posts.map((post) => ({
-        url: `${baseUrl}/blog/${post.slug.current}`,
+        url: `${baseUrl}/blog/${post.slug.current}/`,
         lastModified: post.publishedAt || new Date().toISOString(),
         changeFrequency: 'weekly' as const,
         priority: 0.7,
@@ -25,7 +25,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         '/privacy',
         '/blog',
     ].map((route) => ({
-        url: `${baseUrl}${route}`,
+        url: `${baseUrl}${route}/`,
         lastModified: new Date().toISOString(),
         changeFrequency: 'monthly' as const,
         priority: route === '' ? 1 : 0.8,
