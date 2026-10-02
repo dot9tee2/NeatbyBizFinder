@@ -142,6 +142,19 @@ export const BUSINESS_LISTINGS: BusinessListing[] = [
     ],
   },
   {
+    slug: 'san-jose-real-estate-photos',
+    route: 'san-jose-real-estate-photos/real-estate-media-san-jose-ca',
+    name: 'San Jose Real Estate Photos',
+    category: 'Real Estate Media',
+    location: 'San Jose, CA',
+    tagline:
+      'Property photography, cinematic video, drone, 3D tours, floor plans, and listing marketing for San Jose, Santa Clara, and Milpitas.',
+    locations: [
+      { slug: 'real-estate-media-santa-clara-ca', label: 'Santa Clara, CA' },
+      { slug: 'real-estate-media-milpitas-ca', label: 'Milpitas, CA' },
+    ],
+  },
+  {
     slug: 'she-wrote-me-a-letter',
     name: 'She Wrote Me a Letter',
     category: 'Curb Appeal',
@@ -194,13 +207,13 @@ export const BUSINESS_LISTINGS: BusinessListing[] = [
 
 /** Distinct category labels, alphabetised — used for the directory filter. */
 export const BUSINESS_CATEGORIES: string[] = Array.from(
-  new Set(BUSINESS_LISTINGS.map((business) => business.category))
+  new Set(BUSINESS_LISTINGS.map((business) => business.category)),
 ).sort();
 
 /** Every landing page route under /businesses, including per-location pages. */
 export const TOTAL_LANDING_PAGES: number = BUSINESS_LISTINGS.reduce(
   (total, business) => total + 1 + (business.locations?.length ?? 0),
-  0
+  0,
 );
 
 /** Legacy shape: business slug -> location slugs. */
@@ -208,5 +221,5 @@ export const BUSINESS_MANIFEST: BusinessManifest = Object.fromEntries(
   BUSINESS_LISTINGS.map((business) => [
     business.slug,
     (business.locations ?? []).map((location) => location.slug),
-  ])
+  ]),
 );

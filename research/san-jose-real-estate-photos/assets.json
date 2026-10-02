@@ -1,0 +1,131 @@
+{
+  "checkedOn": "2026-10-02",
+  "status": "Source inventory only; assets have not been downloaded or optimized.",
+  "homepage": "https://sanjoserealestatephotos.com/",
+  "portfolio": "https://sanjoserealestatephotos.com/portfolio",
+  "branding": [
+    {
+      "label": "Official logo",
+      "url": "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/69c6e78d34bd3251fcecfe22.png"
+    }
+  ],
+  "homepageMedia": {
+    "heroPoster": "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/6a44b01f21b1234da3ef6043.jpg",
+    "videoSources": [
+      "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/6a021bf5d11dcc8705271ac6.mp4",
+      "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/6a4607268b4444aad413f94d.mp4",
+      "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/6a021c70bc1f77cc35a3337c.mp4",
+      "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/6a021c1160a7a52fdc01aa54.mp4",
+      "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/6a4607c0b653a0ddc2532582.mp4"
+    ],
+    "note": "Distinct video source URLs observed in homepage DOM. Inspect each before assigning a service or property label."
+  },
+  "featuredProjects": [
+    {
+      "label": "1941 Deodara Drive, Los Altos",
+      "image": "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/69c5692c3d15e4784f7774e1.jpg",
+      "project": "https://listings.sanjoserealestatephotos.com/1941deodaradrive"
+    },
+    {
+      "label": "6 Woodridge Court",
+      "image": "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/69c569c47794bfaf51400819.jpg",
+      "project": "https://listings.sanjoserealestatephotos.com/6woodridgect"
+    },
+    {
+      "label": "731 Lakemead Way, Emerald Hills",
+      "image": "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/69c2e7968e145458eafc1917.jpg",
+      "project": "https://listings.sanjoserealestatephotos.com/731lakemeadwayemeraldhillscausa"
+    },
+    {
+      "label": "416 Upton St, Redwood City",
+      "image": "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/69c5c81a81e6bcde1e733c44.jpg",
+      "project": "https://www.416uptonst.com/"
+    }
+  ],
+  "photoGalleries": [
+    {
+      "label": "786 San Miguel Ave, Sunnyvale",
+      "images": [
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/69d99cce61984c734e11dd0e.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/69c2e83b5e5fdd7e5a7c813a.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/69c2e83b39e30977fd6fce73.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/69c2e83bbbd719c06807fdb9.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/69c2e83beaed063f47a40c7d.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/69c2e83b92448639178353a8.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/69c2e83bd17eb5eb476e7910.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/69c2e83b510803701dd4ac3b.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/69c2e83b812e284bf1604d92.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/69c2e83b1a6ada57c9686083.jpg"
+      ]
+    },
+    {
+      "label": "73 Montecito Vista Dr",
+      "note": "Street address as labeled on portfolio; independently confirm city before applying a city-specific caption.",
+      "images": [
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/69d99760049c883cac292059.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/69d99760982fd67a353db4ee.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/69d99760019dc508d31fba19.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/69d997609a68c417bd0cf5c2.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/69d99760a4e6aa34cba623f5.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/69d99760982fd67a353db4ef.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/69d9976061984c734e112d30.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/69d99760982fd67a353db4fa.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/69d9976e15a505b6793d17f8.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/69d9976001157e64b3dd3789.jpg"
+      ]
+    },
+    {
+      "label": "Palo Alto Luxury",
+      "images": [
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/691cfe490eb06db83855fe41.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/691cfe496a5d3bf2b9a6cfb6.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/691cfe494b7535dd1530dc7f.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/691cfe490eb06d38b255fe44.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/691cfe493257ad7637870bda.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/691cfe493257adc8b7870bdb.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/691cfe496a5d3b8d8aa6cfb9.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/691cfe496d309e66061a20a0.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/691cfe49b55a59f26d45dd85.jpg",
+        "https://assets.cdn.filesafe.space/7frrFoLsWjslA2I63J0W/media/691cfe49b55a5989cf45dd84.jpg"
+      ]
+    }
+  ],
+  "portfolioFilms": [
+    {
+      "label": "Cinematic tour: 1941 Deodara Drive, Los Altos",
+      "url": "https://vimeo.com/1178113867"
+    },
+    {
+      "label": "Story tour: 6 Woodridge Court",
+      "url": "https://vimeo.com/1170025772"
+    },
+    {
+      "label": "Reel: Deodara Drive",
+      "url": "https://vimeo.com/1178114171"
+    },
+    {
+      "label": "Reel: 6 Woodridge Court",
+      "url": "https://vimeo.com/1178114313"
+    }
+  ],
+  "additionalPublishedSamples": [
+    {
+      "label": "6035 Whitehaven Court, San Jose; linked from Google owner posts",
+      "url": "https://www.youtube.com/watch?v=qBWkYwN12n0"
+    },
+    {
+      "label": "1472 Lavender Loop; linked from official Linktree",
+      "url": "https://youtu.be/_epwEakur7M"
+    },
+    {
+      "label": "Matterport example; linked from official Linktree",
+      "url": "https://matterport.com/discover/space/dqCe8zomRtt"
+    }
+  ],
+  "reuseNotes": [
+    "Use genuine business portfolio material and preserve accurate property/location captions.",
+    "Do not imply an example in Los Altos, Sunnyvale, Emerald Hills, Redwood City, or Palo Alto is a Santa Clara or Milpitas shoot.",
+    "Verify video playback, dimensions, file size, responsive crop, and required attribution before implementation.",
+    "No owner portrait or specifically labeled Santa Clara/Milpitas project was located in the inspected pages."
+  ]
+}

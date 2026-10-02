@@ -5,6 +5,7 @@ import Link from 'next/link';
 import {
   ArrowUpRight,
   Building2,
+  Camera,
   DoorOpen,
   Droplets,
   Hammer,
@@ -97,6 +98,12 @@ const CATEGORY_STYLES: Record<string, CategoryStyle> = {
     iconClass: 'bg-indigo-100 text-indigo-800',
     barClass: 'bg-indigo-500',
     badgeClass: 'bg-indigo-50 text-indigo-800 ring-indigo-200',
+  },
+  'Real Estate Media': {
+    icon: Camera,
+    iconClass: 'bg-teal-100 text-teal-900',
+    barClass: 'bg-teal-600',
+    badgeClass: 'bg-teal-50 text-teal-900 ring-teal-200',
   },
   'Roofing & Gutters': {
     icon: Droplets,
