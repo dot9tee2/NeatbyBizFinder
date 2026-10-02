@@ -40,6 +40,22 @@ const nextConfig = {
         destination: '/businesses/ziva-appliance-repair/',
         permanent: true,
       },
+      // Preserve existing links when shortening the real estate media URLs.
+      {
+        source: '/businesses/san-jose-real-estate-photos/real-estate-media-san-jose-ca/',
+        destination: '/businesses/san-jose-real-estate-photos/san-jose/',
+        permanent: true,
+      },
+      {
+        source: '/businesses/san-jose-real-estate-photos/real-estate-media-santa-clara-ca/',
+        destination: '/businesses/san-jose-real-estate-photos/santa-clara/',
+        permanent: true,
+      },
+      {
+        source: '/businesses/san-jose-real-estate-photos/real-estate-media-milpitas-ca/',
+        destination: '/businesses/san-jose-real-estate-photos/milpitas/',
+        permanent: true,
+      },
       // Enforce non-www
       {
         source: '/:path*',

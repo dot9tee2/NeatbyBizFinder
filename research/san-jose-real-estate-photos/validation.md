@@ -32,3 +32,24 @@ Word counts include each page's FAQ answers and exclude the header and footer. A
 The default `npm run lint` command expects a legacy ESLint configuration while the installed ESLint 9 requires a flat configuration. The focused command above uses the installed Next.js presets. The directory component already failed the current Prettier check at HEAD before these changes; its unrelated formatting was preserved.
 
 The build reports existing middleware-convention and Sanity image-helper deprecations. The existing sitemap generator omits trailing slashes; canonical URLs follow the application's configured trailing-slash format.
+
+## URL cleanup verification
+
+The city page paths were shortened without changing their content or designs:
+
+| Previous final segment | Current final segment |
+| --- | --- |
+| `real-estate-media-san-jose-ca/` | `san-jose/` |
+| `real-estate-media-santa-clara-ca/` | `santa-clara/` |
+| `real-estate-media-milpitas-ca/` | `milpitas/` |
+
+All routes retain the `/businesses/san-jose-real-estate-photos/` prefix. Production build, focused ESLint, Prettier, and 23 production HTTP checks passed after the migration:
+
+- Each previous slash URL returns one permanent 308 redirect to its corresponding new slash URL, preserving query parameters.
+- Previous URLs without the trailing slash use the application's existing slash-normalization redirect followed by the migration redirect. Both variants reach HTTP 200 without loops and preserve query parameters.
+- All three new routes return HTTP 200. Canonical, language alternate, Open Graph URL, and JSON-LD page/service/breadcrumb/FAQ URLs and IDs match the new production URLs.
+- Sibling links and business-directory links use the shortened routes.
+- The business sitemap contains exactly the three new routes for this business and no previous routes. Its existing formatting for trailing slashes is retained.
+- Each renamed page differs from its previous version only in the slug constant.
+
+Stale ignored `.next/dev/types` output from the earlier development server was cleared before the successful production build because its generated validator still imported the previous page paths.

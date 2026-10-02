@@ -23,9 +23,9 @@ const routeBase = '/businesses/san-jose-real-estate-photos';
 const publisherUrl = 'https://nearbybizfinder.com';
 
 export const SJREP_ROUTES = {
-  sanJose: `${routeBase}/real-estate-media-san-jose-ca/`,
-  santaClara: `${routeBase}/real-estate-media-santa-clara-ca/`,
-  milpitas: `${routeBase}/real-estate-media-milpitas-ca/`,
+  sanJose: `${routeBase}/san-jose/`,
+  santaClara: `${routeBase}/santa-clara/`,
+  milpitas: `${routeBase}/milpitas/`,
 } as const;
 
 export interface SjrepFaq {

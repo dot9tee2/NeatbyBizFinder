@@ -9,7 +9,7 @@ import {
   sjrepStructuredData,
 } from '@/lib/san-jose-real-estate-photos';
 
-const slug = 'real-estate-media-santa-clara-ca';
+const slug = 'santa-clara';
 const description =
   'Real estate photography, films, drone, 3D tours, floor plans and listing marketing in Santa Clara, CA. Plan residential or commercial media with Thomas.';
 

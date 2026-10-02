@@ -24,7 +24,7 @@ import {
   type SjrepFaq,
 } from '@/lib/san-jose-real-estate-photos';
 
-const slug = 'real-estate-media-san-jose-ca';
+const slug = 'san-jose';
 const description =
   'San Jose real estate photography, cinematic video, drone, 3D tours, floor plans and listing marketing. Plan a residential or commercial shoot with Thomas.';
 

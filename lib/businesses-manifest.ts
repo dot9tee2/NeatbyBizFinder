@@ -143,15 +143,15 @@ export const BUSINESS_LISTINGS: BusinessListing[] = [
   },
   {
     slug: 'san-jose-real-estate-photos',
-    route: 'san-jose-real-estate-photos/real-estate-media-san-jose-ca',
+    route: 'san-jose-real-estate-photos/san-jose',
     name: 'San Jose Real Estate Photos',
     category: 'Real Estate Media',
     location: 'San Jose, CA',
     tagline:
       'Property photography, cinematic video, drone, 3D tours, floor plans, and listing marketing for San Jose, Santa Clara, and Milpitas.',
     locations: [
-      { slug: 'real-estate-media-santa-clara-ca', label: 'Santa Clara, CA' },
-      { slug: 'real-estate-media-milpitas-ca', label: 'Milpitas, CA' },
+      { slug: 'santa-clara', label: 'Santa Clara, CA' },
+      { slug: 'milpitas', label: 'Milpitas, CA' },
     ],
   },
   {

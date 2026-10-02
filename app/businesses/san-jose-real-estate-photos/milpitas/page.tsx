@@ -23,7 +23,7 @@ import {
   type SjrepFaq,
 } from '@/lib/san-jose-real-estate-photos';
 
-const slug = 'real-estate-media-milpitas-ca';
+const slug = 'milpitas';
 const description =
   'Plan your Milpitas listing with HDR photos, video, drone, 3D tours, floor plans and marketing from San Jose Real Estate Photos. Book residential or commercial media.';
 

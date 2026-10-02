@@ -121,15 +121,15 @@ Integration files:
 - `app/businesses/page.tsx` contains a separate hardcoded featured-business section; changing that is optional.
 - `next.config.js` uses normal Next rendering, optimized images, and trailing slashes. README's static-export instructions are stale. No hosting provider configuration was identified.
 
-## Proposed implementation scope
+## Implemented scope
 
-Three comprehensive city pages fit the confirmed equal-service emphasis. These route names are a proposal, not an approved page count or existing routes:
+Three comprehensive city pages implement the approved equal-service emphasis. Following the requested URL cleanup, these are the current routes:
 
-| City | Proposed route under `/businesses/san-jose-real-estate-photos/` |
+| City | Route under `/businesses/san-jose-real-estate-photos/` |
 | --- | --- |
-| San Jose | `real-estate-media-san-jose-ca/` |
-| Santa Clara | `real-estate-media-santa-clara-ca/` |
-| Milpitas | `real-estate-media-milpitas-ca/` |
+| San Jose | `san-jose/` |
+| Santa Clara | `santa-clara/` |
+| Milpitas | `milpitas/` |
 
 Each page should provide equally visible service choices, actual portfolio media, residential/commercial options, package overview, booking/preparation guidance, coverage, FAQs, and strong shoot/call CTAs. Social/agent marketing should be represented with a clear distinction between listing assets and recurring content.
 
