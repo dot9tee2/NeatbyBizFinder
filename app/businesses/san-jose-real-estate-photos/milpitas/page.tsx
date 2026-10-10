@@ -82,11 +82,11 @@ const services = [
 const faqs: SjrepFaq[] = [
   {
     q: 'Can I book a property shoot in Milpitas?',
-    a: 'Yes. Milpitas is part of the confirmed service area. San Jose Real Estate Photos works around San Jose with an approximately 10-mile service area and flexibility. Share the exact property address, access arrangements and preferred date so Thomas can confirm the visit and the services you need.',
+    a: 'Yes. Serving the South Bay and Silicon Valley, including San Jose, Santa Clara and Milpitas. Send the property address to confirm scheduling and any travel requirements. Include access arrangements and your preferred date so Thomas can confirm the visit and the services you need.',
   },
   {
     q: 'What does a MiniDoc add to a Milpitas listing launch?',
-    a: 'A MiniDoc turns the listing into a short documentary, with the home, its surroundings and the people behind it on camera. It gives your launch a story to share on the property website, YouTube and social channels. Send an inquiry with the address and launch date so Thomas can plan the interviews, filming time and delivery with you.',
+    a: 'A MiniDoc turns the listing into a short documentary, with the home, its surroundings and the people behind it on camera. It gives your launch a story to share on the property website, YouTube and social channels. Send an inquiry with the address and launch date so Thomas can plan the interviews and filming time, with delivery timing agreed at booking.',
   },
   {
     q: 'Should I book individual services or a launch package?',
@@ -669,10 +669,9 @@ export default function MilpitasRealEstateMediaPage() {
               </p>
               <h2 className="mt-3 font-serif text-3xl">Share the address. Confirm the plan.</h2>
               <p className="mt-4 leading-7 text-[#526459]">
-                Plan your Milpitas shoot with Thomas. Service also covers San Jose and Santa Clara,
-                with a flexible area of approximately 10 miles around San Jose. Send the property’s
-                exact address to discuss scheduling, travel and any site-specific requirements,
-                especially when aerial work or multiple visits are part of the brief.
+                Serving the South Bay and Silicon Valley, including San Jose, Santa Clara and
+                Milpitas. Send the property address to confirm scheduling and any travel
+                requirements, especially when aerial work or multiple visits are part of the brief.
               </p>
             </div>
             <a

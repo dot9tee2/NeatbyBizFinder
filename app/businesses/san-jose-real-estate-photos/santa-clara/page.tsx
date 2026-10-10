@@ -77,11 +77,11 @@ const faqs: SjrepFaq[] = [
   },
   {
     q: 'Can I add a MiniDoc to a Santa Clara listing?',
-    a: 'Yes. A MiniDoc is a short listing documentary that tells the story of the home, its setting and the people behind the sale, alongside the usual property coverage. Ask about a MiniDoc before booking so the interviews, locations and filming time can be planned with Thomas, then confirm the final scope and delivery schedule for your launch.',
+    a: 'Yes. A MiniDoc is a short listing documentary that tells the story of the home, its setting and the people behind the sale, alongside the usual property coverage. Ask about a MiniDoc before booking so the interviews, locations and filming time can be planned with Thomas, with delivery timing agreed at booking.',
   },
   {
     q: 'Is Santa Clara inside the service area?',
-    a: 'Santa Clara is part of the business’s stated coverage, alongside San Jose and Milpitas. The approximately 10-mile radius around San Jose is a flexible planning estimate. Share the exact shoot address so Thomas can confirm scheduling, access and any travel considerations for that property.',
+    a: 'Yes. Serving the South Bay and Silicon Valley, including San Jose, Santa Clara and Milpitas. Send the property address to confirm scheduling and any travel requirements.',
   },
   {
     q: 'How should I arrange a shoot in an occupied home or shared building?',
@@ -606,8 +606,8 @@ export default function SantaClaraRealEstateMediaPage() {
               <p className="mt-6 max-w-xl text-base leading-7 text-[#d0dcd9]">
                 Share the address, size, access plan and target release date. Choose Residential or
                 Commercial in the booking portal, then confirm your media scope and current terms.
-                Coverage includes Santa Clara, San Jose and Milpitas, with an approximate, flexible
-                10-mile area around San Jose.
+                Serving the South Bay and Silicon Valley, including San Jose, Santa Clara and
+                Milpitas.
               </p>
               <a
                 href={SJREP.booking}

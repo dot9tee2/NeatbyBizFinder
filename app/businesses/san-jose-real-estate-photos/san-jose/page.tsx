@@ -106,7 +106,7 @@ const services = [
 const faqs: SjrepFaq[] = [
   {
     q: 'What is a MiniDoc, and how is it different from a listing film?',
-    a: 'A listing film shows the property in motion. A MiniDoc, or listing mini-documentary, adds the story: the seller, the agent, the neighborhood and the reasons the home matters, edited into a short documentary. The published Whitehaven and Glenview examples run about six and eleven minutes. Plan the story, the people on camera and the filming time with Thomas before booking.',
+    a: 'A listing film shows the property in motion. A MiniDoc, or listing mini-documentary, adds the story: the seller, the agent, the neighborhood and the reasons the home matters, edited into a short documentary. The published Whitehaven and Glenview examples run about six and eleven minutes. MiniDocs are inquiry-only: plan the story, the people on camera and the filming time with Thomas first, with delivery timing agreed at booking.',
   },
   {
     q: 'What should I book for a San Jose listing?',
@@ -138,7 +138,7 @@ const faqs: SjrepFaq[] = [
   },
   {
     q: 'How far from San Jose can I book, and what if plans change?',
-    a: 'The intended service area is roughly ten miles around San Jose, with flexibility, including requests in Santa Clara and Milpitas. Send the exact address to confirm availability and travel details. If your property or schedule changes, contact Thomas promptly and review the official terms for cancellation, rescheduling, access and return-visit policies before relying on a new appointment.',
+    a: 'Serving the South Bay and Silicon Valley, including San Jose, Santa Clara and Milpitas. Send the property address to confirm scheduling and any travel requirements. If your property or schedule changes, contact Thomas promptly and review the official terms for cancellation, rescheduling, access and return-visit policies before relying on a new appointment.',
   },
 ];
 
@@ -522,8 +522,8 @@ export default function SanJoseRealEstateMediaPage() {
                   the camera arrives.
                 </h2>
                 <p className="mt-6 leading-7 text-[#45505f]">
-                  Service is centered on San Jose, with an approximate ten-mile area and flexibility
-                  for nearby projects. Send the exact address to confirm scheduling and travel
+                  Serving the South Bay and Silicon Valley, including San Jose, Santa Clara and
+                  Milpitas. Send the property address to confirm scheduling and any travel
                   requirements.
                 </p>
                 <div className="mt-7 flex flex-wrap gap-x-5 gap-y-3 text-sm font-semibold text-[#765723]">
