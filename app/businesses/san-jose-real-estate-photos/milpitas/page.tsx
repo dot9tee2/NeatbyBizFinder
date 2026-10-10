@@ -15,8 +15,10 @@ import {
   Smartphone,
   Sparkles,
 } from 'lucide-react';
+import { SjrepMinidocPlayer } from '@/components/businesses/sjrep-minidoc-player';
 import {
   SJREP,
+  SJREP_MINIDOCS,
   SJREP_ROUTES,
   sjrepMetadata,
   sjrepStructuredData,
@@ -81,6 +83,10 @@ const faqs: SjrepFaq[] = [
   {
     q: 'Can I book a property shoot in Milpitas?',
     a: 'Yes. Milpitas is part of the confirmed service area. San Jose Real Estate Photos works around San Jose with an approximately 10-mile service area and flexibility. Share the exact property address, access arrangements and preferred date so Thomas can confirm the visit and the services you need.',
+  },
+  {
+    q: 'What does a MiniDoc add to a Milpitas listing launch?',
+    a: 'A MiniDoc turns the listing into a short documentary, with the home, its surroundings and the people behind it on camera. It gives your launch a story to share on the property website, YouTube and social channels. Send an inquiry with the address and launch date so Thomas can plan the interviews, filming time and delivery with you.',
   },
   {
     q: 'Should I book individual services or a launch package?',
@@ -182,6 +188,7 @@ export default function MilpitasRealEstateMediaPage() {
           aria-label="Milpitas page navigation"
           className="mx-auto flex max-w-7xl flex-wrap gap-x-6 gap-y-2 px-5 pb-4 text-sm font-semibold lg:px-8"
         >
+          <a href="#minidocs">MiniDocs</a>
           <a href="#services">Services</a>
           <a href="#work">The work</a>
           <a href="#planning">Shoot planning</a>
@@ -284,6 +291,74 @@ export default function MilpitasRealEstateMediaPage() {
                   ))}
                 </div>
               </aside>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="minidocs"
+          aria-labelledby="minidocs-heading"
+          className="mx-auto max-w-7xl scroll-mt-6 px-5 pb-16 lg:px-8 sm:pb-20"
+        >
+          <div className="rounded-[2.5rem] bg-[#203f34] p-6 text-[#f8f4eb] sm:p-10 lg:p-12 [&_a:focus-visible]:!outline-[#f8f4eb]">
+            <div className="grid gap-6 lg:grid-cols-[1fr_0.9fr] lg:items-end lg:gap-14">
+              <div>
+                <p className="inline-flex items-center gap-2 rounded-full bg-[#a44730] px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-white">
+                  <Film className="h-4 w-4" aria-hidden="true" />
+                  Featured: MiniDocs
+                </p>
+                <h2
+                  id="minidocs-heading"
+                  className="mt-5 font-serif text-4xl leading-tight tracking-tight sm:text-5xl"
+                >
+                  Give your listing
+                  <br />
+                  <span className="text-[#e6bf9d]">a story worth sharing.</span>
+                </h2>
+              </div>
+              <p className="leading-8 text-[#d4ded5]">
+                A MiniDoc is a short documentary about the listing. It goes beyond the walkthrough
+                to show the home, the area around it and the people behind the sale, from a
+                long-time owner to the agent preparing the launch.
+              </p>
+            </div>
+            <div className="mt-10 grid gap-5 md:grid-cols-2">
+              {SJREP_MINIDOCS.map((video) => (
+                <figure key={video.youtubeId} className="rounded-[2rem] bg-[#2a4a3f] p-3">
+                  <SjrepMinidocPlayer
+                    video={video}
+                    sizes="(max-width: 768px) 90vw, 44vw"
+                    buttonClassName="bg-[#edcfb8] text-[#203f34]"
+                    frameClassName="rounded-[1.5rem] [&_button:focus-visible]:outline [&_button:focus-visible]:outline-2 [&_button:focus-visible]:outline-offset-[-6px] [&_button:focus-visible]:outline-[#f8f4eb]"
+                  />
+                  <figcaption className="px-3 pb-3 pt-5">
+                    <p className="text-lg font-bold">
+                      {video.title} · {video.place}
+                    </p>
+                    <p className="mt-2 text-sm leading-6 text-[#d4ded5]">{video.summary}</p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+              <a
+                href={SJREP.minidocInquiry}
+                className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-[#edcfb8] px-6 py-3.5 font-bold text-[#203f34]"
+              >
+                <Mail className="h-4 w-4" aria-hidden="true" /> Ask about a MiniDoc
+              </a>
+              <a
+                href={SJREP.booking}
+                className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full border border-[#d4ded5]/40 px-6 py-3.5 font-bold"
+              >
+                Book a shoot <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+              <a
+                href={SJREP.phoneHref}
+                className="inline-flex items-center justify-center gap-2 px-2 py-3 text-sm font-bold text-[#e6bf9d] sm:ml-auto"
+              >
+                <Phone className="h-4 w-4" aria-hidden="true" /> 408-483-0688
+              </a>
             </div>
           </div>
         </section>

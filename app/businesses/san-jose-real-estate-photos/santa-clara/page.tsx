@@ -1,8 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowDown, ArrowUpRight, Check, Plus } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Check, Mail, Plus } from 'lucide-react';
+import { SjrepMinidocPlayer } from '@/components/businesses/sjrep-minidoc-player';
 import {
   SJREP,
+  SJREP_MINIDOCS,
   SJREP_ROUTES,
   type SjrepFaq,
   sjrepMetadata,
@@ -72,6 +74,10 @@ const faqs: SjrepFaq[] = [
   {
     q: 'Can I book photography alone, or do I need a package?',
     a: 'The official pricing page lists individual services as well as residential packages. Photography alone may suit a simple brief; a package can combine the media needed for a broader launch. Send the property size and requested deliverables to Thomas, and review the current order before choosing.',
+  },
+  {
+    q: 'Can I add a MiniDoc to a Santa Clara listing?',
+    a: 'Yes. A MiniDoc is a short listing documentary that tells the story of the home, its setting and the people behind the sale, alongside the usual property coverage. Ask about a MiniDoc before booking so the interviews, locations and filming time can be planned with Thomas, then confirm the final scope and delivery schedule for your launch.',
   },
   {
     q: 'Is Santa Clara inside the service area?',
@@ -147,6 +153,9 @@ export default function SantaClaraRealEstateMediaPage() {
             aria-label="Page navigation"
             className="order-3 flex w-full items-center gap-6 border-t border-[#d8dfdb] pt-4 text-sm font-semibold md:order-none md:w-auto md:border-0 md:pt-0"
           >
+            <a href="#minidocs" className="hover:text-[#136e69]">
+              MiniDocs
+            </a>
             <a href="#services" className="hover:text-[#136e69]">
               Services
             </a>
@@ -260,6 +269,90 @@ export default function SantaClaraRealEstateMediaPage() {
                   View the complete portfolio
                 </a>
               </p>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="minidocs"
+          aria-labelledby="minidocs-heading"
+          className="scroll-mt-6 bg-[#182c36] text-[#faf9f5] [&_a:focus-visible]:!outline-[#faf9f5]"
+        >
+          <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:py-24">
+            <div className="lg:sticky lg:top-8 lg:self-start">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#a2d4c9]">
+                Featured / MiniDocs
+              </p>
+              <h2
+                id="minidocs-heading"
+                className="mt-4 text-3xl font-semibold leading-tight tracking-[-0.04em] sm:text-5xl"
+              >
+                More than a tour.
+                <br />
+                <span className="text-[#a2d4c9]">A listing with a story.</span>
+              </h2>
+              <p className="mt-6 text-base leading-7 text-[#d0dcd9]">
+                MiniDocs are short listing documentaries. Alongside the rooms, they capture what a
+                walkthrough leaves out: the neighborhood, the life the home has held and the agent
+                guiding it to market.
+              </p>
+              <ul className="mt-6 space-y-3 text-sm leading-6 text-[#d0dcd9]">
+                {[
+                  'A centerpiece for the property website, YouTube and social launch',
+                  'Seller and agent interviews planned before filming day',
+                  'Combined with your photography, aerials and 3D coverage',
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <Check className="mt-1 h-4 w-4 shrink-0 text-[#a2d4c9]" aria-hidden="true" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a
+                  href={SJREP.minidocInquiry}
+                  className={`${button} bg-[#b8dfd3] text-[#182c36] hover:bg-white`}
+                >
+                  <Mail className="h-4 w-4" aria-hidden="true" /> Ask about a MiniDoc
+                </a>
+                <a
+                  href={SJREP.booking}
+                  className={`${button} border border-[#4c636a] hover:bg-white/10`}
+                >
+                  Book a shoot <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                </a>
+              </div>
+              <p className="mt-5 text-sm text-[#d0dcd9]">
+                Prefer to talk it through?{' '}
+                <a href={SJREP.phoneHref} className="font-semibold underline underline-offset-4">
+                  Call {SJREP.phone}
+                </a>
+              </p>
+            </div>
+            <div className="space-y-10">
+              {SJREP_MINIDOCS.map((video, index) => (
+                <figure key={video.youtubeId}>
+                  <SjrepMinidocPlayer
+                    video={video}
+                    sizes="(min-width: 1024px) 680px, 92vw"
+                    buttonClassName="bg-[#b8dfd3] text-[#182c36]"
+                    frameClassName="[&_button:focus-visible]:outline [&_button:focus-visible]:outline-2 [&_button:focus-visible]:outline-offset-[-6px] [&_button:focus-visible]:outline-[#faf9f5]"
+                  />
+                  <figcaption className="mt-4 grid gap-2 border-t border-[#4c636a] pt-4 sm:grid-cols-[2.5rem_1fr]">
+                    <span className="text-xs font-bold tracking-widest text-[#a2d4c9]">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <span>
+                      <span className="block text-lg font-semibold">
+                        {video.title}, {video.place}
+                      </span>
+                      <span className="mt-1 block text-sm leading-6 text-[#d0dcd9]">
+                        {video.summary} {video.length}.
+                      </span>
+                    </span>
+                  </figcaption>
+                </figure>
+              ))}
             </div>
           </div>
         </section>

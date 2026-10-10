@@ -17,7 +17,40 @@ export const SJREP = {
   socialLaunchpad: 'https://sanjoserealestatephotos.com/social_launchpad',
   socialStrategyCall:
     'https://api.leadconnectorhq.com/widget/bookings/social-launchpad-strategy-call',
+  // Swap for a dedicated GoHighLevel form or calendar once one exists for MiniDocs.
+  minidocInquiry:
+    'mailto:info@sanjoserealestatephotos.com?subject=MiniDoc%20inquiry&body=Property%20address%3A%0AListing%20agent%3A%0ATarget%20launch%20date%3A%0AThe%20story%20behind%20the%20listing%3A%0A',
 } as const;
+
+export interface SjrepMinidoc {
+  youtubeId: string;
+  title: string;
+  place: string;
+  length: string;
+  poster: string;
+  summary: string;
+}
+
+export const SJREP_MINIDOCS: SjrepMinidoc[] = [
+  {
+    youtubeId: 'qBWkYwN12n0',
+    title: '6035 Whitehaven Court',
+    place: 'Silver Creek, San Jose',
+    length: '6:14',
+    poster: '/san-jose-real-estate-photos/minidoc-whitehaven.webp',
+    summary:
+      'The home, the Silver Creek setting and the lifestyle around it, told together with the agent behind the launch.',
+  },
+  {
+    youtubeId: 'Ws-TPajkDl4',
+    title: '10620 Glenview Avenue',
+    place: 'Cupertino',
+    length: '10:49',
+    poster: '/san-jose-real-estate-photos/minidoc-glenview.webp',
+    summary:
+      'A seller returns to a home tied to his family since 1961, while the listing agent shares the work of preparing it for its next chapter.',
+  },
+];
 
 const routeBase = '/businesses/san-jose-real-estate-photos';
 const publisherUrl = 'https://nearbybizfinder.com';
@@ -91,6 +124,7 @@ export function sjrepStructuredData(
     'Listing launch marketing',
   ];
   const serviceOffers = [
+    { name: 'MiniDocs listing mini-documentaries', url: SJREP.minidocInquiry },
     ...propertyServiceNames.map((name) => ({ name, url: SJREP.booking })),
     { name: 'Social Launchpad ongoing agent content', url: SJREP.socialStrategyCall },
   ];

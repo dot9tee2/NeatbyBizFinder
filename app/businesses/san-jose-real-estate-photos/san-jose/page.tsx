@@ -16,8 +16,10 @@ import {
   Play,
   Check,
 } from 'lucide-react';
+import { SjrepMinidocPlayer } from '@/components/businesses/sjrep-minidoc-player';
 import {
   SJREP,
+  SJREP_MINIDOCS,
   SJREP_ROUTES,
   sjrepMetadata,
   sjrepStructuredData,
@@ -103,6 +105,10 @@ const services = [
 
 const faqs: SjrepFaq[] = [
   {
+    q: 'What is a MiniDoc, and how is it different from a listing film?',
+    a: 'A listing film shows the property in motion. A MiniDoc, or listing mini-documentary, adds the story: the seller, the agent, the neighborhood and the reasons the home matters, edited into a short documentary. The published Whitehaven and Glenview examples run about six and eleven minutes. Plan the story, the people on camera and the filming time with Thomas before booking.',
+  },
+  {
     q: 'What should I book for a San Jose listing?',
     a: 'Start with the property size, type and launch date, then choose the media that explains it best. Photography introduces the rooms; video connects them; a 3D tour and floor plan help viewers understand the layout. Add aerial coverage, a property website or social content for a specific marketing purpose. Confirm package inclusions and upgrades in the current booking flow.',
   },
@@ -179,6 +185,9 @@ export default function SanJoseRealEstateMediaPage() {
             aria-label="Main navigation"
             className="flex w-full flex-wrap items-center gap-x-6 gap-y-3 text-sm md:w-auto"
           >
+            <a href="#minidocs" className={`text-[#e4e8ee] hover:text-[#d8b576] ${focus}`}>
+              MiniDocs
+            </a>
             <a href="#services" className={`text-[#e4e8ee] hover:text-[#d8b576] ${focus}`}>
               Services
             </a>
@@ -249,6 +258,78 @@ export default function SanJoseRealEstateMediaPage() {
             <div className="flex flex-col justify-between gap-4 border-t border-white/25 pt-5 text-xs text-[#e1e5eb] sm:flex-row sm:items-end sm:text-sm">
               <p>Photography / Film / Aerial / 3D / Floor plans / Marketing</p>
               <p className="sm:text-right">Portfolio image: 1941 Deodara Drive, Los Altos</p>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="minidocs"
+          aria-labelledby="minidocs-heading"
+          className="scroll-mt-6 border-t border-[#d8b576]/35 py-16 sm:py-24"
+        >
+          <div className="mx-auto max-w-7xl px-5 lg:px-10">
+            <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end lg:gap-20">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#d8b576]">
+                  Featured offer · MiniDocs
+                </p>
+                <h2
+                  id="minidocs-heading"
+                  className="mt-5 font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl"
+                >
+                  The story behind
+                  <br />
+                  <span className="text-[#e5c58f]">the listing.</span>
+                </h2>
+              </div>
+              <div className="space-y-5 text-lg leading-8 text-[#c6ceda]">
+                <p>
+                  A MiniDoc is a short listing documentary that goes beyond the walkthrough. It
+                  brings together the home, its neighborhood, the people connected to it and the
+                  agent bringing it to market, so viewers remember the property and the story behind
+                  it.
+                </p>
+                <p className="text-base leading-7">
+                  Use it as the centerpiece of a launch: on the property website, YouTube, social
+                  channels and in seller conversations. The story, interviews and filming time are
+                  planned with Thomas before the shoot.
+                </p>
+              </div>
+            </div>
+            <div className="mt-12 grid gap-10 md:grid-cols-2 md:gap-8">
+              {SJREP_MINIDOCS.map((video) => (
+                <figure key={video.youtubeId}>
+                  <SjrepMinidocPlayer
+                    video={video}
+                    sizes="(max-width: 768px) 90vw, 45vw"
+                    buttonClassName="bg-[#d8b576] text-[#101827]"
+                    frameClassName="ring-1 ring-white/15 [&_button:focus-visible]:outline [&_button:focus-visible]:outline-2 [&_button:focus-visible]:outline-offset-[-6px] [&_button:focus-visible]:outline-[#d8b576]"
+                  />
+                  <figcaption className="mt-5">
+                    <p className="font-serif text-2xl">
+                      {video.title}
+                      <span className="block font-sans text-xs uppercase tracking-[0.2em] text-[#d8b576]">
+                        {video.place} · {video.length}
+                      </span>
+                    </p>
+                    <p className="mt-3 leading-7 text-[#b9c3d2]">{video.summary}</p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+            <div className="mt-12 flex flex-col gap-3 border-t border-white/20 pt-8 sm:flex-row sm:items-center">
+              <a href={SJREP.minidocInquiry} className={goldButton}>
+                <Mail className="h-4 w-4" aria-hidden="true" /> Ask about a MiniDoc
+              </a>
+              <a href={SJREP.booking} className={outlineButton}>
+                Book a shoot <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+              <a
+                href={SJREP.phoneHref}
+                className={`inline-flex items-center gap-2 px-2 py-3 text-sm text-[#e5c58f] sm:ml-auto ${focus}`}
+              >
+                <Phone className="h-4 w-4" aria-hidden="true" /> Or call Thomas: 408-483-0688
+              </a>
             </div>
           </div>
         </section>
@@ -407,11 +488,11 @@ export default function SanJoseRealEstateMediaPage() {
             </div>
             <div className="mt-9 flex flex-col justify-between gap-5 border-t border-white/20 pt-6 sm:flex-row">
               <a
-                href="https://www.youtube.com/watch?v=qBWkYwN12n0"
+                href="#minidocs"
                 className={`inline-flex items-center gap-3 text-sm font-semibold text-[#e5c58f] ${focus}`}
               >
-                <Play className="h-4 w-4" aria-hidden="true" /> Watch 6035 Whitehaven Court, San
-                Jose <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                <Play className="h-4 w-4" aria-hidden="true" /> Watch the Whitehaven & Glenview
+                MiniDocs <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
               <a
                 href={SJREP.portfolio}
