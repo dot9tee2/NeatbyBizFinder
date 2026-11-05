@@ -14,7 +14,6 @@ import {
   Phone,
   Mail,
   Play,
-  Check,
 } from 'lucide-react';
 import { SjrepMinidocPlayer } from '@/components/businesses/sjrep-minidoc-player';
 import {
@@ -28,7 +27,7 @@ import {
 
 const slug = 'san-jose';
 const description =
-  'San Jose real estate photography, cinematic video, drone, 3D tours, floor plans and listing marketing. Plan a residential or commercial shoot with Thomas.';
+  'Real Estate Photography San Jose: Showcase properties with photos, video, drone imagery & 3D tours. SJREP helps agents present listings beautifully.';
 
 const pageMetadata = sjrepMetadata(
   'San Jose',
@@ -36,7 +35,7 @@ const pageMetadata = sjrepMetadata(
   description,
   '/san-jose-real-estate-photos/deodara-exterior.webp',
 );
-const pageTitle = 'San Jose Real Estate Photography, Video & 3D | SJREP';
+const pageTitle = 'Real Estate Photography San Jose | SJREP';
 export const metadata = {
   ...pageMetadata,
   title: pageTitle,
@@ -49,96 +48,88 @@ const services = [
     n: '01',
     icon: Camera,
     title: 'HDR listing photography',
-    label: 'The first impression',
-    body: 'Give buyers a clear first look at the property, from the approach to its most important rooms. HDR photography brings interior and exterior views into a coordinated listing set. Share the features that deserve attention before the shoot: a renovated kitchen, a flexible room, outdoor living or an unusual connection between spaces.',
+    body: 'Give buyers a clear first look at the property, from the exterior approach to its most important rooms. HDR real estate photography creates a coordinated set of interior and exterior images. Share the features you want highlighted before the shoot, such as a renovated kitchen, flexible living space or outdoor area.',
   },
   {
     n: '02',
     icon: Film,
     title: 'Cinematic property video',
-    label: 'The story in motion',
-    body: 'A property film connects the spaces that still images introduce. Choose a cinematic tour for atmosphere and movement, or discuss an agent-guided story tour when your explanation adds context. Plan the route, key features and any spoken introduction ahead of time so the finished film has a clear narrative.',
+    body: 'A real estate video connects the spaces introduced in still photographs. Choose a cinematic property film for movement and atmosphere, or discuss an agent-guided tour when your explanation adds useful context. Plan the route, key features and any spoken introduction before filming.',
   },
   {
     n: '03',
     icon: Plane,
     title: 'Drone photography & video',
-    label: 'The wider perspective',
-    body: 'Aerial stills and clips can explain a lot, exterior layout or the relationship between a building and its surroundings. Discuss the views you need when booking. Flight feasibility depends on the specific address, airspace, weather and safe operating conditions; an aerial request should always include a practical alternative if flight is unavailable.',
+    body: "Aerial real estate photography can show the property's exterior layout, grounds and relationship to nearby surroundings. Share the address and desired views when booking. Flight availability depends on airspace, weather and safe operating conditions; discuss a ground-level alternative if a flight is not possible.",
   },
   {
     n: '04',
     icon: ScanLine,
     title: '3D tours & floor plans',
-    label: 'The space, understood',
     body: 'Let viewers explore the layout after the first impression. The residential service includes Zillow 3D tours with its packages and offers iGUIDE upgrades with measured plans and dimensions. Compare the tour format, measurement needs and intended use before selecting an option, especially for a multi-level property or commercial space.',
   },
   {
     n: '05',
     icon: LayoutTemplate,
     title: 'Custom property websites',
-    label: 'One destination for the listing',
-    body: 'Bring photography, film, tours and property information into a dedicated presentation. A property website gives your campaign a destination to share in emails, social posts and printed material. Provide the approved description, feature list and agent contact details so the page tells the same story as the rest of your launch.',
+    body: 'Bring property photos, video, tours and listing details together in a dedicated presentation. A custom property website gives agents one destination to share in emails, social posts and printed materials. Provide approved property information and contact details for a consistent launch.',
   },
   {
     n: '06',
     icon: Smartphone,
     title: 'Social reels & agent content',
-    label: 'A story made for the feed',
-    body: 'Vertical property reels and agent introductions serve a different viewing experience from a full listing film. Decide which features lead the reel, who will appear on camera and where it will be posted. Agent-focused content can introduce your approach as well as the property; confirm each format and deliverable in the booking.',
+    body: 'Short vertical property reels and agent introductions are designed for social viewing, rather than replacing a full listing film. Choose the features to highlight, decide who will appear on camera and confirm the intended platforms and deliverables before recording.',
   },
   {
     n: '07',
     icon: WandSparkles,
     title: 'Virtual presentation',
-    label: 'Help viewers see the possibilities',
-    body: 'Virtual staging, decluttering and twilight edits can support a presentation when an empty room or a daytime exterior needs another treatment. Agree on the selected images and the intended changes first. Keep original photographs available and clearly identify altered imagery wherever your listing platform or marketing use requires it.',
+    body: 'Virtual staging, decluttering and twilight edits can help present a room or exterior in a different way. Agree on the images and requested changes before editing. Keep original photographs available and identify altered imagery wherever listing platforms or advertising rules require it.',
   },
   {
     n: '08',
     icon: Megaphone,
     title: 'Listing-launch marketing',
-    label: 'Put the assets to work',
-    body: 'A strong media set needs a plan for release. Discuss neighborhood features, launch materials and marketing support alongside the shoot so you know which assets are included and which are add-ons. Match the work to your channels and timeline, with accurate property information and a consistent way for interested viewers to contact you.',
+    body: 'Plan how your listing media will be shared after the shoot. Discuss launch materials, neighborhood details and marketing support so you know which assets are included and which are optional. Match the deliverables to your channels, timeline and accurate property information.',
   },
 ];
 
 const faqs: SjrepFaq[] = [
   {
     q: 'What is a MiniDoc, and how is it different from a listing film?',
-    a: 'A listing film shows the property in motion. A MiniDoc, or listing mini-documentary, adds the story: the seller, the agent, the neighborhood and the reasons the home matters, edited into a short documentary. The published Whitehaven and Glenview examples run about six and eleven minutes. MiniDocs are inquiry-only: plan the story, the people on camera and the filming time with Thomas first, with delivery timing agreed at booking.',
+    a: 'A listing film shows a property in motion. A MiniDoc adds a story around the home, seller, agent and neighborhood, edited as a short documentary. Published examples run about six and eleven minutes. MiniDocs are inquiry-only, so plan the story, people on camera and filming time with Thomas before booking.',
   },
   {
-    q: 'What should I book for a San Jose listing?',
-    a: 'Start with the property size, type and launch date, then choose the media that explains it best. Photography introduces the rooms; video connects them; a 3D tour and floor plan help viewers understand the layout. Add aerial coverage, a property website or social content for a specific marketing purpose. Confirm package inclusions and upgrades in the current booking flow.',
+    q: 'What should I book for a San Jose property listing?',
+    a: 'Start with the property type, size and launch date. Photography introduces the rooms, video connects the spaces, and a 3D tour or floor plan helps viewers understand the layout. Add aerial coverage, a property website or social content when it supports a specific marketing goal. Confirm package details and upgrades in the booking flow.',
   },
   {
-    q: 'Are Zillow 3D and iGUIDE the same service?',
-    a: 'They are separate options. The official residential page lists Zillow 3D with every package and offers iGUIDE upgrades with measured plans and dimensions. Tell Thomas whether you need an interactive walkthrough, dimensional information or both. Confirm the selected system, deliverable format and any measurement requirements before booking rather than assuming all tours include the same plans.',
+    q: 'Are Zillow 3D tours and iGUIDE the same service?',
+    a: 'No. They are separate options. The residential page lists Zillow 3D tours with its packages and offers iGUIDE upgrades with measured plans and dimensions. Tell Thomas whether you need an interactive walkthrough, dimensional information or both, and confirm the selected deliverables before booking.',
   },
   {
-    q: 'Can you photograph occupied homes, condos and commercial spaces?',
-    a: 'The business offers residential and commercial media. For an occupied home, arrange the rooms and clear the shooting route before arrival. For a condo, provide building access, parking and any shared-area permissions. Commercial projects should identify the spaces to cover, hours of access, people who may appear and whether ongoing construction or documentation is involved.',
+    q: 'Can you photograph occupied homes, condos and commercial properties?',
+    a: 'SJREP offers residential and commercial media. For an occupied home, arrange rooms and clear the shooting route. For a condo, provide building access, parking details and any shared-area permissions. For commercial work, identify the spaces, access hours, people who may appear and any documentation requirements.',
   },
   {
-    q: 'Is drone coverage possible at every San Jose address?',
-    a: 'No address should be treated as a guaranteed flight. Aerial work depends on airspace, weather, visibility, access and safe operating conditions. Send the exact property address and describe the shots you want before the appointment. Discuss ground-level exterior coverage or another presentation option if the requested aerial footage cannot be captured.',
+    q: 'Is drone photography available at every San Jose address?',
+    a: "No. Aerial work depends on the property's airspace, weather, visibility, access and safe operating conditions. Send the exact address and describe the views you want before the appointment. If a flight is unavailable, discuss ground-level exterior photography or another suitable option.",
   },
   {
-    q: 'When should I expect the finished files?',
-    a: 'The published terms state photo delivery by 2pm the next business day and video or 3D delivery within two to three business days. Confirm your selected products and intended launch date with Thomas, particularly for combined orders, special edits or rush requests. Allow time to review the media and complete your listing materials before publication.',
+    q: 'When will I receive the finished photos and videos?',
+    a: 'Published terms state that photos are delivered by 2 p.m. the next business day, while video and 3D files are delivered within two to three business days. Confirm timing for combined orders, special edits or rush requests with Thomas before booking.',
   },
   {
-    q: 'How do I prepare for a video shoot or an agent introduction?',
-    a: 'Prepare the whole filming route, switch off fans and screens, and arrange for occupants to be off-site for property video as directed by the checklist. For an agent segment, agree on the message, length and location in advance. Rehearse the key points without trying to describe every room; let the property footage carry the visual detail.',
+    q: 'How should I prepare for a real estate video shoot?',
+    a: 'Prepare the filming route, switch off fans and screens, and follow the pre-shoot checklist for occupant arrangements. If an agent introduction is planned, agree on the message, length and location in advance. A short, clear introduction works best when the property footage provides the visual detail.',
   },
   {
-    q: 'Does listing media include ongoing social management?',
-    a: 'Recurring agent content is a distinct Social Launchpad service. It includes topic research, scripting, Riverside teleprompter recording, editing, captions and delivery. Optional distribution and batch filming are separate options. Discuss the ongoing plan through the strategy-call path; do not assume that a one-property shoot includes a monthly content program or posting service.',
+    q: 'Does listing photography include ongoing social media management?',
+    a: 'No. Ongoing agent content is a separate Social Launchpad service. It includes topic research, scripting, Riverside teleprompter recording, editing, captions and delivery. Optional distribution and batch filming are separate options. Confirm the program scope through a strategy call.',
   },
   {
-    q: 'How far from San Jose can I book, and what if plans change?',
-    a: 'Serving the South Bay and Silicon Valley, including San Jose, Santa Clara and Milpitas. Send the property address to confirm scheduling and any travel requirements. If your property or schedule changes, contact Thomas promptly and review the official terms for cancellation, rescheduling, access and return-visit policies before relying on a new appointment.',
+    q: 'Which areas do you serve outside San Jose?',
+    a: 'SJREP serves the South Bay and Silicon Valley, including San Jose, Santa Clara and Milpitas. Send the property address to confirm availability and travel requirements. For schedule changes, review the published booking terms for cancellation, rescheduling, access and return visits.',
   },
 ];
 
@@ -234,21 +225,19 @@ export default function SanJoseRealEstateMediaPage() {
               <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#e5c58f] sm:text-sm">
                 San Jose, California · Residential & commercial
               </p>
-              <h1 className="mt-6 font-serif text-[3.4rem] leading-[1.04] tracking-[-0.035em] sm:text-7xl lg:text-[5.6rem]">
-                Every property
-                <br />
-                has a story.
-                <br />
-                <span className="text-[#e5c58f]">Make yours visible.</span>
+              <h1 className="mt-6 font-serif text-4xl leading-[1.04] tracking-[-0.035em] sm:text-6xl lg:text-7xl">
+                Professional Real Estate Photography{' '}
+                <span className="text-[#e5c58f]">in San Jose</span>
               </h1>
               <p className="mt-7 max-w-xl text-lg leading-8 text-[#e1e5eb]">
-                Real estate photography, cinematic video, drone, 3D tours and marketing for San Jose
-                listings. Build a complete presentation with Thomas at San Jose Real Estate Photos,
-                from the first image to the launch.
+                Showcase San Jose properties with real estate photography, video, drone imagery and
+                3D tours. SJREP helps agents create clear listing media for homes and commercial
+                spaces, from the first photo to launch day.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a href={SJREP.booking} className={goldButton}>
-                  Plan & book your shoot <ArrowUpRight className="h-5 w-5" aria-hidden="true" />
+                  Plan & book your real estate shoot{' '}
+                  <ArrowUpRight className="h-5 w-5 shrink-0" aria-hidden="true" />
                 </a>
                 <a href={SJREP.phoneHref} className={outlineButton}>
                   <Phone className="h-4 w-4" aria-hidden="true" /> 408-483-0688
@@ -271,28 +260,25 @@ export default function SanJoseRealEstateMediaPage() {
             <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end lg:gap-20">
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#d8b576]">
-                  Featured offer · MiniDocs
+                  MiniDocs
                 </p>
                 <h2
                   id="minidocs-heading"
                   className="mt-5 font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl"
                 >
-                  The story behind
-                  <br />
-                  <span className="text-[#e5c58f]">the listing.</span>
+                  A Story <span className="text-[#e5c58f]">Worth Remembering</span>
                 </h2>
               </div>
               <div className="space-y-5 text-lg leading-8 text-[#c6ceda]">
                 <p>
-                  A MiniDoc is a short listing documentary that goes beyond the walkthrough. It
-                  brings together the home, its neighborhood, the people connected to it and the
-                  agent bringing it to market, so viewers remember the property and the story behind
-                  it.
+                  A MiniDoc is a short property documentary that brings together the home, its
+                  setting, the people connected to it and the agent presenting it. It gives viewers
+                  more context than a standard walkthrough and helps make the listing memorable.
                 </p>
                 <p className="text-base leading-7">
-                  Use it as the centerpiece of a launch: on the property website, YouTube, social
-                  channels and in seller conversations. The story, interviews and filming time are
-                  planned with Thomas before the shoot.
+                  Use a MiniDoc as a feature of your property launch across a dedicated website,
+                  YouTube, social media and seller presentations. Thomas plans the story, interview
+                  approach and filming time with you before the shoot.
                 </p>
               </div>
             </div>
@@ -338,26 +324,23 @@ export default function SanJoseRealEstateMediaPage() {
           <div className="mx-auto grid max-w-7xl gap-8 px-5 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20 lg:px-10">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.23em] text-[#765723]">
-                A complete listing presentation
+                Listing presentation
               </p>
               <h2 className="mt-5 font-serif text-4xl leading-tight sm:text-5xl">
-                Make the space clear.
-                <br />
-                Make the launch coherent.
+                One Clear Story Across Every Listing Format
               </h2>
             </div>
             <div className="space-y-5 text-lg leading-8 text-[#45505f]">
               <p>
-                A buyer may find your San Jose listing through a photo gallery, a short reel or a
-                shared property link. Each should lead to a useful understanding of the same home.
-                Plan the photography, motion, walkthrough and marketing together so the features you
-                highlight carry through every format.
+                Buyers may discover a San Jose property through listing photos, a short video or a
+                shared property link. Coordinate photography, video, tours and marketing so every
+                format presents the same home clearly and consistently.
               </p>
               <p>
-                Start with the property and the audience. An occupied home needs a preparation plan;
-                a condo needs access coordination; a commercial space may need measured
-                documentation and repeat visits. Thomas offers media for these different briefs,
-                with the scope agreed before the appointment.
+                Start with the property, its audience and your launch goals. An occupied home may
+                need a preparation plan, a condo may require access coordination, and a commercial
+                property may need measured documentation or repeat visits. Confirm the scope before
+                the appointment.
               </p>
               <a
                 href={SJREP.pricing}
@@ -375,17 +358,15 @@ export default function SanJoseRealEstateMediaPage() {
             <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#d8b576]">
-                  The media collection
+                  Real estate media services
                 </p>
                 <h2 className="mt-5 max-w-2xl font-serif text-4xl leading-tight sm:text-5xl">
-                  Eight ways to tell
-                  <br />
-                  the property’s story.
+                  Real Estate Media Services for Every Property
                 </h2>
               </div>
               <p className="max-w-sm leading-7 text-[#b9c3d2]">
-                Choose the mix around your listing. Confirm the included products, optional upgrades
-                and final formats in your order.
+                Choose the media that fits your listing. Confirm package inclusions, optional
+                upgrades and final file formats in the booking process.
               </p>
             </div>
             <div className="mt-12 border-t border-white/20">
@@ -396,12 +377,11 @@ export default function SanJoseRealEstateMediaPage() {
                 >
                   <span className="pt-1 text-sm text-[#d8b576]">{service.n}</span>
                   <div>
-                    <div className="mb-3 flex items-center gap-3 text-[#d8b576]">
-                      <service.icon className="h-5 w-5" strokeWidth={1.5} aria-hidden="true" />
-                      <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em]">
-                        {service.label}
-                      </p>
-                    </div>
+                    <service.icon
+                      className="mb-3 h-5 w-5 text-[#d8b576]"
+                      strokeWidth={1.5}
+                      aria-hidden="true"
+                    />
                     <h3 className="font-serif text-2xl sm:text-3xl">{service.title}</h3>
                   </div>
                   <p className="leading-7 text-[#c6ceda] sm:col-start-2 lg:col-start-auto">
@@ -418,18 +398,16 @@ export default function SanJoseRealEstateMediaPage() {
             <div className="grid gap-7 lg:grid-cols-2 lg:items-end">
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#d8b576]">
-                  Portfolio / Still & moving
+                  Portfolio
                 </p>
                 <h2 className="mt-5 font-serif text-4xl leading-tight sm:text-5xl">
-                  See how the formats
-                  <br />
-                  work together.
+                  Explore Real Estate Photography & Video Examples
                 </h2>
               </div>
               <p className="max-w-lg leading-7 text-[#c6ceda] lg:ml-auto">
-                Explore genuine work from the business’s portfolio. These examples show its visual
-                approach; the captions identify the source properties so you can compare photography
-                and film with a clear reference.
+                View selected work from the SJREP portfolio to see how photography, video and aerial
+                formats can work together. Property captions identify the example locations and help
+                you understand the type of presentation created for each listing.
               </p>
             </div>
             <div className="mt-10 grid gap-8 md:grid-cols-[1.15fr_0.85fr]">
@@ -445,9 +423,9 @@ export default function SanJoseRealEstateMediaPage() {
                 </div>
                 <figcaption className="mt-4 flex flex-wrap items-center justify-between gap-3">
                   <span className="font-serif text-xl">
-                    1941 Deodara Drive{' '}
+                    1941 Deodara Drive, Los Altos{' '}
                     <span className="block font-sans text-xs text-[#b9c3d2]">
-                      Los Altos · Portfolio photography & film
+                      Property photography & film
                     </span>
                   </span>
                   <a
@@ -473,7 +451,7 @@ export default function SanJoseRealEstateMediaPage() {
                   <span className="font-serif text-xl">
                     6 Woodridge Court{' '}
                     <span className="block font-sans text-xs text-[#b9c3d2]">
-                      Portfolio photography & story tour
+                      Aerial photography & property story tour
                     </span>
                   </span>
                   <a
@@ -512,19 +490,15 @@ export default function SanJoseRealEstateMediaPage() {
             <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.23em] text-[#765723]">
-                  The San Jose shoot brief
+                  Local service area
                 </p>
                 <h2 className="mt-5 font-serif text-4xl leading-tight sm:text-5xl">
-                  Good planning
-                  <br />
-                  starts before
-                  <br />
-                  the camera arrives.
+                  Real Estate Photography Across the South Bay
                 </h2>
                 <p className="mt-6 leading-7 text-[#45505f]">
-                  Serving the South Bay and Silicon Valley, including San Jose, Santa Clara and
-                  Milpitas. Send the property address to confirm scheduling and any travel
-                  requirements.
+                  SJREP serves the South Bay and Silicon Valley, including San Jose, Santa Clara and
+                  Milpitas. Share the property address, preferred date and media requirements to
+                  confirm availability, scheduling and any travel arrangements.
                 </p>
                 <div className="mt-7 flex flex-wrap gap-x-5 gap-y-3 text-sm font-semibold text-[#765723]">
                   <Link
@@ -543,34 +517,35 @@ export default function SanJoseRealEstateMediaPage() {
               </div>
               <div className="space-y-7">
                 <article className="border-t border-[#c6c1b7] pt-6">
-                  <h3 className="font-serif text-2xl">Residential: match the media to the home</h3>
+                  <h3 className="font-serif text-2xl">
+                    Residential Photography: Plan Around the Home
+                  </h3>
                   <p className="mt-3 leading-7 text-[#45505f]">
                     For a detached home, identify the exterior angles, living spaces and outdoor
-                    features that explain daily use. For a townhome or condo, show how floors
-                    connect and arrange entry through gates, elevators or shared corridors. Tell
-                    Thomas which areas are private, occupied or excluded, and secure approval for
-                    shared amenities before putting them in the shot list.
+                    features that help buyers understand the property. For a townhome or condo, plan
+                    how to show connected floors and arrange access through gates, elevators or
+                    shared corridors. Note occupied or private areas and obtain permission for
+                    shared amenities.
                   </p>
                 </article>
                 <article className="border-t border-[#c6c1b7] pt-6">
-                  <h3 className="font-serif text-2xl">Commercial: define the purpose first</h3>
+                  <h3 className="font-serif text-2xl">
+                    Commercial Property Photography: Define the Brief
+                  </h3>
                   <p className="mt-3 leading-7 text-[#45505f]">
-                    A broker’s listing, an owner’s property record and a contractor’s progress
-                    report need different coverage. Commercial services include interiors,
-                    exteriors, aerial media, iGUIDE, measured plans and construction documentation.
-                    Specify the audience, usable rooms, operational restrictions and repeat-visit
-                    needs; confirm whether the output is for marketing, comparison over time or
-                    another agreed purpose.
+                    Commercial listings, owner records and construction progress reports require
+                    different types of coverage. Projects may include interiors, exteriors, aerial
+                    media, iGUIDE, measured plans and progress documentation. Explain the intended
+                    audience, access limits, spaces to photograph and any repeat-visit requirements.
                   </p>
                 </article>
                 <article className="border-t border-[#c6c1b7] pt-6">
-                  <h3 className="font-serif text-2xl">Choose a package by deliverables</h3>
+                  <h3 className="font-serif text-2xl">Choose a Package by Its Deliverables</h3>
                   <p className="mt-3 leading-7 text-[#45505f]">
-                    Use the current pricing page to compare packages for the property’s size. Write
-                    down the photographs, tour, plan, video versions and launch assets you need,
-                    then check them against the order. Ask about optional edits and formats before
-                    purchasing. A defined media list makes a quote more useful than choosing a
-                    package name alone.
+                    Compare current packages against the property&apos;s size and the media you
+                    need. List the photos, video versions, tour, floor plan and launch assets
+                    required, then confirm each item in the order. Ask about optional edits and
+                    formats before purchasing so the quote reflects your actual project.
                   </p>
                 </article>
               </div>
@@ -581,32 +556,32 @@ export default function SanJoseRealEstateMediaPage() {
         <section className="py-16 sm:py-24">
           <div className="mx-auto max-w-7xl px-5 lg:px-10">
             <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#d8b576]">
-              From brief to launch
+              Booking process
             </p>
             <h2 className="mt-5 font-serif text-4xl sm:text-5xl">
-              Four steps. One considered presentation.
+              A Clear Process From Brief to Listing Launch
             </h2>
             <div className="mt-10 grid gap-x-10 gap-y-8 md:grid-cols-2 lg:grid-cols-4">
               {[
                 [
                   '01',
-                  'Share the brief',
-                  'Send the address, approximate size, residential or commercial use, preferred date and launch deadline. Describe access, occupied areas and the features you want to communicate.',
+                  'Share the Property Brief',
+                  'Send the property address, approximate size, residential or commercial use, preferred date and launch deadline. Include access details, occupied areas and the features you want the media to communicate.',
                 ],
                 [
                   '02',
-                  'Prepare the property',
-                  'Declutter surfaces, arrange rooms, check lighting, clear exterior views and secure pets. For video, follow the off-site occupancy guidance and turn off fans and screens. Use the official checklist.',
+                  'Prepare the Property',
+                  'Clear surfaces, arrange rooms, check lighting and tidy exterior views before the appointment. Secure pets and follow the pre-shoot checklist. For video, review occupancy guidance and switch off fans and screens where requested.',
                 ],
                 [
                   '03',
-                  'Capture the complete scope',
-                  'Provide entry instructions and a reachable contact. Have the property ready at the agreed time. Review any access or weather changes with Thomas so the shoot can follow the confirmed scope.',
+                  'Capture the Agreed Media',
+                  'Provide entry instructions and a reachable contact for shoot day. Have the property ready at the confirmed time and review access or weather changes with Thomas so the session follows the agreed scope.',
                 ],
                 [
                   '04',
-                  'Review & release',
-                  'Published terms state photos by 2pm the next business day, with video and 3D within two to three business days. Confirm the schedule, review the deliverables and check property information before launch.',
+                  'Review and Release the Files',
+                  'Published terms state that photos are delivered by 2 p.m. the next business day, while video and 3D deliverables take two to three business days. Confirm timing for your selected products, review the files and check property details before launch.',
                 ],
               ].map(([n, title, body]) => (
                 <article key={n} className="border-t border-white/25 pt-6">
@@ -631,22 +606,19 @@ export default function SanJoseRealEstateMediaPage() {
           <div className="mx-auto grid max-w-7xl gap-8 px-5 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20 lg:px-10">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#d8b576]">
-                Beyond one listing
+                Ongoing agent content
               </p>
               <h2 className="mt-5 font-serif text-4xl leading-tight sm:text-5xl">
-                Keep your expertise
-                <br />
-                in the conversation.
+                Keep Your Real Estate Expertise in View
               </h2>
             </div>
             <div>
-              <h3 className="text-xl font-semibold">Social Launchpad for ongoing agent content</h3>
+              <h3 className="text-xl font-semibold">Social Launchpad for Ongoing Agent Content</h3>
               <p className="mt-4 leading-7 text-[#c6ceda]">
-                Build a recurring content routine around your knowledge as an agent. Social
-                Launchpad covers topic research, scripting, Riverside teleprompter recording,
-                editing, captions and delivery. Optional distribution and batch filming can be
-                discussed separately. This is an ongoing content program, with its own scope and
-                booking conversation alongside your property shoots.
+                Build a repeatable content routine around your knowledge as a real estate agent.
+                Social Launchpad includes topic research, scripting, Riverside teleprompter
+                recording, editing, captions and delivery. Optional distribution and batch filming
+                can be discussed separately from individual property shoots.
               </p>
               <div className="mt-6 flex flex-wrap gap-5">
                 <a href={SJREP.socialStrategyCall} className={goldButton}>
@@ -667,18 +639,13 @@ export default function SanJoseRealEstateMediaPage() {
         <section className="bg-[#f5f1e9] py-16 text-[#101827] sm:py-24 [&_a:focus-visible]:!outline-[#765723] [&_summary:focus-visible]:!outline-[#765723]">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-[0.65fr_1.35fr] lg:gap-20 lg:px-10">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.23em] text-[#765723]">
-                Before you book
-              </p>
+              <p className="text-xs font-bold uppercase tracking-[0.23em] text-[#765723]">FAQs</p>
               <h2 className="mt-5 font-serif text-4xl leading-tight sm:text-5xl">
-                Useful answers
-                <br />
-                for your next
-                <br />
-                San Jose shoot.
+                Real Estate Photography FAQs
               </h2>
               <p className="mt-6 leading-7 text-[#45505f]">
-                Have a specific brief? Talk through it with Thomas before finalizing the order.
+                Have a specific property or launch brief? Review these answers and contact Thomas to
+                confirm the right services, schedule and deliverables.
               </p>
               <a
                 href={SJREP.emailHref}
@@ -711,17 +678,13 @@ export default function SanJoseRealEstateMediaPage() {
         <section className="py-16 sm:py-24">
           <div className="mx-auto max-w-7xl px-5 lg:px-10">
             <div className="max-w-4xl">
-              <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#d8b576]">
-                Your next listing starts here
-              </p>
-              <h2 className="mt-5 font-serif text-4xl leading-tight sm:text-6xl">
-                Let’s make the property
-                <br />
-                <span className="text-[#d8b576]">worth a closer look.</span>
+              <h2 className="font-serif text-4xl leading-tight sm:text-6xl">
+                Make Your Next <span className="text-[#d8b576]">Property Listing Stand Out</span>
               </h2>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-[#c6ceda]">
-                Choose Residential or Commercial in the official booking flow, or contact Thomas
-                with your address, media needs and target date.
+                Choose Residential or Commercial in the booking flow, or contact Thomas with the
+                property address, media requirements and target launch date. Confirm the package,
+                schedule and deliverables before placing your order.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a href={SJREP.booking} className={goldButton}>
@@ -731,10 +694,6 @@ export default function SanJoseRealEstateMediaPage() {
                   <Phone className="h-4 w-4" aria-hidden="true" /> Call 408-483-0688
                 </a>
               </div>
-              <p className="mt-6 flex items-center gap-2 text-sm text-[#b9c3d2]">
-                <Check className="h-4 w-4 text-[#d8b576]" aria-hidden="true" /> Booking and project
-                arrangements are handled directly by the business.
-              </p>
             </div>
           </div>
         </section>
@@ -744,9 +703,6 @@ export default function SanJoseRealEstateMediaPage() {
         <div className="mx-auto grid max-w-7xl gap-8 px-5 md:grid-cols-2 lg:grid-cols-[1.1fr_1.2fr_0.8fr] lg:px-10">
           <div>
             <p className="font-serif text-xl text-[#e5c58f]">San Jose Real Estate Photos</p>
-            <p className="mt-3 max-w-sm text-sm leading-6 text-[#b9c3d2]">
-              Property photography, film, tours and marketing for San Jose and nearby communities.
-            </p>
             <a
               href={SJREP.gbp}
               className={`mt-4 inline-block text-sm underline underline-offset-4 ${focus}`}
