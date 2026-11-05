@@ -27,115 +27,126 @@ import {
 
 const slug = 'milpitas';
 const description =
-  'Plan your Milpitas listing with HDR photos, video, drone, 3D tours, floor plans and marketing from San Jose Real Estate Photos. Book residential or commercial media.';
+  'Real Estate Photography Milpitas for listings, homes and commercial spaces. Explore HDR photos, video, drone imagery, 3D tours and floor plans with SJREP.';
 
-export const metadata = sjrepMetadata(
+const pageMetadata = sjrepMetadata(
   'Milpitas',
   slug,
   description,
   '/san-jose-real-estate-photos/woodridge-exterior.webp',
 );
+const pageTitle = 'Real Estate Photography Milpitas | SJREP';
+export const metadata = {
+  ...pageMetadata,
+  title: pageTitle,
+  openGraph: { ...pageMetadata.openGraph, title: pageTitle },
+  twitter: { ...pageMetadata.twitter, title: pageTitle },
+};
 
 const services = [
   {
     icon: Camera,
-    title: 'HDR photography',
-    body: 'Give buyers a clear view of the property through interior and exterior listing photographs. Plan the essential rooms, outdoor spaces and details in advance, so the shoot reflects the spaces you need to explain.',
+    title: 'HDR Real Estate Photography',
+    body: 'Show interior and exterior spaces with clear, balanced listing images. Plan the essential rooms, outdoor areas and standout details before the appointment so the photographs answer the questions buyers are likely to have.',
   },
   {
     icon: Film,
-    title: 'Property films & story tours',
-    body: 'Use a cinematic property film to introduce the home in motion, or discuss an agent-guided story tour. Choose the story, featured spaces and on-camera involvement before filming, with the intended viewing channel in mind.',
+    title: 'Property Films and Story Tours',
+    body: 'Introduce the home through cinematic real estate videography or discuss an agent-guided story tour. Choose the story, featured spaces and on-camera plan before filming, with the intended viewing platform in mind.',
   },
   {
     icon: Plane,
-    title: 'Drone photos & video',
-    body: 'Add an aerial perspective when it helps communicate the property and its surroundings. Photography and video clips are available; the final flight plan depends on the address, conditions, permissions and safe operation on the day.',
+    title: 'Drone Photography and Video',
+    body: 'Add aerial photography for real estate when the property and location benefit from a wider perspective. Drone photos and video depend on the address, airspace, weather, permissions and safe operating conditions.',
   },
   {
     icon: ScanLine,
-    title: '3D tours & floor plans',
-    body: 'Help viewers explore the layout through Zillow 3D and interactive plans. Discuss an iGUIDE upgrade when measured plans and dimensions matter. Confirm the selected tour system, deliverables and measurement needs when you order.',
+    title: '3D Virtual Tours and Floor Plans',
+    body: 'Give prospective buyers an interactive way to explore the layout with 3D tours and floor plans. Ask about Zillow 3D and the iGUIDE upgrade when measured plans or dimensions are important to your listing.',
   },
   {
     icon: Monitor,
-    title: 'Custom property websites',
-    body: 'Bring photographs, films and property information into a dedicated listing destination. Decide which assets and contact details belong on the site, then use the property link consistently across your launch materials and conversations.',
+    title: 'Custom Property Websites',
+    body: 'Present property photographs, video and listing information in a dedicated online destination. Confirm which assets and contact details should appear, then use the property link across your listing and launch materials.',
   },
   {
     icon: Smartphone,
-    title: 'Reels & agent content',
-    body: 'Create vertical social reels, agent introductions and property-focused content for your launch. Discuss who will appear, the message and the intended platforms, so the filming plan accounts for both the property and your presentation.',
+    title: 'Reels and Agent Content',
+    body: 'Create vertical reels, agent introductions and property-focused social content for your next launch. Agree on the message, people appearing on camera and target platforms so filming supports your presentation.',
   },
   {
     icon: Sparkles,
-    title: 'Virtual presentation edits',
-    body: 'Virtual twilight, staging and decluttering can support selected images. Agree which photographs need edits and how the finished versions will be used. Keep original images available and identify virtual changes appropriately wherever the media is published.',
+    title: 'Virtual Staging and Image Edits',
+    body: 'Virtual staging, twilight edits and decluttering can help selected images communicate a space. Identify the photographs that need editing and disclose virtual changes appropriately wherever the finished media is published.',
   },
   {
     icon: Layers3,
-    title: 'Listing launch marketing',
-    body: 'Extend the shoot into a coordinated launch with listing-marketing support and neighborhood features. Review the actual materials in your chosen package and supply accurate property information, agent branding and the publication schedule before production begins.',
+    title: 'Listing Launch Marketing',
+    body: 'Coordinate listing media with neighborhood features, property content and a clear publication plan. Provide accurate property details, agent branding and the intended schedule before production begins.',
   },
 ];
 
 const faqs: SjrepFaq[] = [
   {
-    q: 'Can I book a property shoot in Milpitas?',
-    a: 'Yes. Serving the South Bay and Silicon Valley, including San Jose, Santa Clara and Milpitas. Send the property address to confirm scheduling and any travel requirements. Include access arrangements and your preferred date so Thomas can confirm the visit and the services you need.',
+    q: 'Can I book a real estate photography session in Milpitas?',
+    a: 'Yes. Send the property address, preferred date and services you need. SJREP can confirm scheduling, access arrangements and any travel requirements for your Milpitas property.',
   },
   {
-    q: 'What does a MiniDoc add to a Milpitas listing launch?',
-    a: 'A MiniDoc turns the listing into a short documentary, with the home, its surroundings and the people behind it on camera. It gives your launch a story to share on the property website, YouTube and social channels. Send an inquiry with the address and launch date so Thomas can plan the interviews and filming time, with delivery timing agreed at booking.',
+    q: 'What is included in real estate photography services?',
+    a: 'Services may include HDR interior and exterior photos, property films, drone imagery, 3D tours, floor plans, property websites and agent content. Available packages and individual deliverables vary, so confirm the current options before ordering.',
   },
   {
-    q: 'Should I book individual services or a launch package?',
-    a: 'Start with your publication plan. Individual services suit a defined requirement, while a package can coordinate several listing assets. The current lineup includes Launchpad Lite, Launchpad Essential, Social Agent and Launchpad Pro. Compare the live inclusions, property-size selection and optional upgrades on the official pricing page before choosing.',
+    q: 'Can I book residential and commercial property photography?',
+    a: 'Yes. Residential and commercial media can be discussed based on the property, intended audience and required coverage. For commercial or recurring documentation, share site access details, restrictions and the project schedule.',
   },
   {
-    q: 'What is the difference between Zillow 3D and iGUIDE?',
-    a: 'The residential service page lists Zillow 3D tours and interactive floor plans, with Zillow 3D included in every residential package. iGUIDE is an upgrade with measured plans and dimensions. Tell Thomas what you need to show or measure, then confirm the system and final files in your order.',
+    q: 'Do you offer drone photography for real estate in Milpitas?',
+    a: 'Aerial photography and video may be available when the address, airspace, weather, permissions and operating conditions allow. Share the exact property address so suitability can be reviewed before the shoot.',
   },
   {
-    q: 'How soon will I receive the photographs and other media?',
-    a: 'The published terms state photograph delivery by 2pm the next business day, with video and 3D delivery within 2–3 business days. Plan your launch around the relevant deliverables and confirm the schedule when booking. Ask about rush options before assuming every asset will arrive with the photographs.',
+    q: 'Are 3D virtual tours and floor plans available?',
+    a: 'SJREP lists Zillow 3D tours and interactive floor plans, with iGUIDE available as an upgrade for measured plans and dimensions. Confirm the selected system and final deliverables when placing your order.',
   },
   {
-    q: 'What should I prepare before the appointment?',
-    a: 'Follow the official pre-shoot checklist: declutter rooms, prepare lighting, clear exterior areas, secure pets and arrange access in advance. For video, the checklist calls for occupants to be off-site and fans and screens to be off. Share entry instructions and any building or property restrictions before the shoot.',
+    q: 'How soon will I receive the photos and videos?',
+    a: 'Published terms specify photographs by 2 p.m. the next business day and video or 3D media within 2–3 business days. Confirm your deadline and any rush request when booking.',
   },
   {
-    q: 'Can you photograph a commercial property or document a project?',
-    a: 'Yes. The commercial offering includes interior and exterior photography, aerial coverage, commercial iGUIDE, measured plans and construction-progress documentation. Custom and recurring work can be discussed. Use the Commercial path in the booking system and explain the site, intended audience, access limits and documentation schedule.',
+    q: 'Can virtual staging be added to listing photos?',
+    a: 'Virtual staging, twilight edits and decluttering can be discussed for selected images. Identify the photographs that need edits and make sure virtual changes are represented appropriately when the images are published.',
   },
   {
-    q: 'Is Social Launchpad included in a property shoot?',
-    a: 'Social Launchpad is a separate ongoing agent-content option. It includes topic research, scripting, teleprompter recording, editing, captions and delivery. Optional distribution and batch filming are separate services. A listing shoot may include selected reels or agent content, so confirm those deliverables independently from an ongoing content plan.',
+    q: 'What should I prepare before the property shoot?',
+    a: 'Declutter rooms, prepare lighting, clear exterior areas, secure pets and arrange access. For video, plan for occupants to be off-site and fans and screens to be off. Review the official checklist before the appointment.',
   },
   {
-    q: 'What should I confirm about drone work, changes and usage rights?',
-    a: 'Confirm aerial suitability for the exact address, along with access, weather considerations and the shoot scope. The published terms describe cancellation and rescheduling requirements, potential additional charges and licensed client usage after payment. Read the current terms before ordering, and discuss any unusual usage or scheduling need directly with Thomas.',
+    q: 'Is Social Launchpad part of a standard property shoot?',
+    a: 'No. Social Launchpad is a separate ongoing agent-content option. Selected reels or agent content may be discussed for a property launch, but confirm those deliverables separately from an ongoing content plan.',
+  },
+  {
+    q: 'What should I know before booking drone work?',
+    a: 'Drone suitability depends on the exact address, airspace, weather, permissions and safe operating conditions. Confirm the shoot scope and review current booking, cancellation, rescheduling and usage terms before ordering.',
   },
 ];
 
 const comparison = [
   {
     number: '01',
-    label: 'Show the property',
-    assets: 'HDR photos + a property film',
-    body: 'Use still images for an easy first look and a film when movement helps explain the spaces. Specify the features you want to feature rather than adding every available format automatically.',
+    label: 'Show the Property',
+    assets: 'HDR photography + a property film',
+    body: 'Use bright, balanced listing photographs for the first impression and a film to show how the rooms connect. Prioritize the features buyers should notice instead of adding formats without a clear purpose.',
   },
   {
     number: '02',
-    label: 'Explain the layout',
-    assets: '3D tour + the right floor plan',
-    body: 'Give viewers a way to investigate how rooms connect. If dimensions are important to your purpose, discuss measured plans and the iGUIDE option before selecting a tour or package.',
+    label: 'Explain the Layout',
+    assets: '3D virtual tour + floor plan',
+    body: 'Help viewers understand room flow and the relationship between spaces. If measured dimensions matter, ask about iGUIDE and confirm the plan type and tour deliverables before booking.',
   },
   {
     number: '03',
-    label: 'Prepare the launch',
+    label: 'Prepare the Launch',
     assets: 'Property website + reels + marketing',
-    body: 'Choose a destination for the complete listing and supporting content for the channels you will use. Agree on the launch sequence, agent details and required materials before the shoot.',
+    body: 'Bring the listing assets together on a dedicated property destination, then prepare supporting content for the channels you plan to use. Confirm agent details, launch timing and required materials in advance.',
   },
 ];
 
@@ -218,21 +229,20 @@ export default function MilpitasRealEstateMediaPage() {
                 Milpitas, California
               </p>
               <h1 className="mt-6 font-serif text-5xl leading-[1.04] tracking-[-0.035em] sm:text-6xl lg:text-7xl">
-                Real estate media.
-                <br />
-                <span className="text-[#a44730]">Ready for your Milpitas launch.</span>
+                Real Estate Photography in Milpitas,{' '}
+                <span className="text-[#a44730]">Made to Move Listings</span>
               </h1>
               <p className="mt-7 max-w-xl text-lg leading-8 text-[#526459]">
-                A useful listing starts with a clear plan. Bring photography, films, aerials, 3D
-                tours, floor plans and marketing together around the property you are presenting and
-                the audience you want to reach.
+                Present every property with clear, compelling media. SJREP brings real estate
+                photography, property films, drone imagery, 3D tours and floor plans together to
+                help Milpitas agents prepare listings for launch.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                 <a
                   href={SJREP.booking}
                   className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-[#a44730] px-6 py-3.5 font-bold text-white"
                 >
-                  Plan & book your shoot <ArrowUpRight className="h-5 w-5" aria-hidden="true" />
+                  Plan &amp; Book Your Shoot <ArrowUpRight className="h-5 w-5" aria-hidden="true" />
                 </a>
                 <a
                   href={SJREP.phoneHref}
@@ -242,16 +252,11 @@ export default function MilpitasRealEstateMediaPage() {
                   Talk to Thomas
                 </a>
               </div>
-              <p className="mt-5 text-sm leading-6 text-[#526459]">
-                Residential listings, commercial spaces and agent content.
-                <br />
-                Book directly with San Jose Real Estate Photos.
-              </p>
-              <a href="#choose" className="mt-9 inline-flex items-center gap-3 text-sm font-bold">
+              <a href="#brief" className="mt-9 inline-flex items-center gap-3 text-sm font-bold">
                 <span className="grid h-9 w-9 place-items-center rounded-full border border-[#203f34]/25">
                   <ArrowDown className="h-4 w-4" aria-hidden="true" />
                 </span>
-                Start with what you need to show
+                Start with the property
               </a>
             </div>
             <div>
@@ -273,19 +278,30 @@ export default function MilpitasRealEstateMediaPage() {
                   </a>
                 </figcaption>
               </figure>
-              <aside className="relative mt-6 rounded-[2rem] bg-[#203f34] p-7 text-[#f8f4eb] lg:-ml-12 lg:mt-7 lg:mr-10">
+              <aside
+                id="brief"
+                className="relative mt-6 scroll-mt-6 rounded-[2rem] bg-[#203f34] p-7 text-[#f8f4eb] lg:-ml-12 lg:mt-7 lg:mr-10"
+              >
                 <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#e6bf9d]">
                   Your starting brief
                 </p>
+                <h2 className="mt-3 font-serif text-2xl">
+                  Start With the Property. Build the Right Media Plan.
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-[#d4ded5]">
+                  Every listing has a different story to tell. Share the address, property type,
+                  size, access details and launch goals so the shoot can focus on the spaces,
+                  features and information your audience needs.
+                </p>
                 <div className="mt-5 grid gap-4 sm:grid-cols-3">
                   {[
-                    ['01', 'The address', 'Property type, size and access.'],
-                    ['02', 'The audience', 'Buyers, tenants or your next client.'],
-                    ['03', 'The launch', 'Channels, deliverables and timing.'],
+                    ['01', 'The property', 'Home type, size, key features and access.'],
+                    ['02', 'The audience', 'Buyers, tenants, investors or your next client.'],
+                    ['03', 'The launch', 'Deliverables, platforms and preferred timing.'],
                   ].map(([number, title, body]) => (
                     <div key={number}>
                       <p className="font-serif text-3xl text-[#e6bf9d]">{number}</p>
-                      <h2 className="mt-2 font-bold">{title}</h2>
+                      <h3 className="mt-2 font-bold">{title}</h3>
                       <p className="mt-1 text-sm leading-6 text-[#d4ded5]">{body}</p>
                     </div>
                   ))}
@@ -305,21 +321,21 @@ export default function MilpitasRealEstateMediaPage() {
               <div>
                 <p className="inline-flex items-center gap-2 rounded-full bg-[#a44730] px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-white">
                   <Film className="h-4 w-4" aria-hidden="true" />
-                  Featured: MiniDocs
+                  Featured storytelling
                 </p>
                 <h2
                   id="minidocs-heading"
                   className="mt-5 font-serif text-4xl leading-tight tracking-tight sm:text-5xl"
                 >
-                  Give your listing
-                  <br />
-                  <span className="text-[#e6bf9d]">a story worth sharing.</span>
+                  Give Your Milpitas Listing a{' '}
+                  <span className="text-[#e6bf9d]">Story Worth Sharing</span>
                 </h2>
               </div>
               <p className="leading-8 text-[#d4ded5]">
-                A MiniDoc is a short documentary about the listing. It goes beyond the walkthrough
-                to show the home, the area around it and the people behind the sale, from a
-                long-time owner to the agent preparing the launch.
+                A MiniDoc is a short documentary built around a property and the people connected to
+                it. Go beyond a standard walkthrough with the home, its setting and the people
+                behind the sale brought together in a story agents can share across listing and
+                social channels.
               </p>
             </div>
             <div className="mt-10 grid gap-5 md:grid-cols-2">
@@ -345,7 +361,7 @@ export default function MilpitasRealEstateMediaPage() {
                 href={SJREP.minidocInquiry}
                 className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-[#edcfb8] px-6 py-3.5 font-bold text-[#203f34]"
               >
-                <Mail className="h-4 w-4" aria-hidden="true" /> Ask about a MiniDoc
+                <Mail className="h-4 w-4" aria-hidden="true" /> Ask About a MiniDoc
               </a>
               <a
                 href={SJREP.booking}
@@ -370,11 +386,12 @@ export default function MilpitasRealEstateMediaPage() {
                 Choose by purpose
               </p>
               <h2 className="mt-4 font-serif text-4xl leading-tight tracking-tight sm:text-5xl">
-                One property. Several ways to understand it.
+                One Property. A Clear Plan for Every Format.
               </h2>
               <p className="mt-5 text-lg leading-8 text-[#526459]">
-                The right mix follows your brief. These combinations are starting points for a
-                conversation, with the final inclusions confirmed in your order.
+                Choose media around the story you need to tell. These combinations are starting
+                points; final deliverables and package inclusions are confirmed when you place your
+                order.
               </p>
             </div>
             <div className="mt-10 grid gap-5 lg:grid-cols-3">
@@ -399,8 +416,13 @@ export default function MilpitasRealEstateMediaPage() {
                 The complete service menu
               </p>
               <h2 className="mt-4 font-serif text-4xl tracking-tight sm:text-5xl">
-                Build a complete view of the listing.
+                Real Estate Photography and Media Services in Milpitas
               </h2>
+              <p className="mt-5 leading-8 text-[#526459]">
+                Build a complete view of your listing with services selected for the property, your
+                audience and your marketing plan. Discuss the required coverage and confirm current
+                package details before ordering.
+              </p>
             </div>
             <a
               href={SJREP.pricing}
@@ -439,22 +461,20 @@ export default function MilpitasRealEstateMediaPage() {
                   See the work
                 </p>
                 <h2 className="mt-4 max-w-xl font-serif text-4xl tracking-tight sm:text-5xl">
-                  Look at the spaces.
-                  <br />
-                  Then picture your own brief.
+                  Explore Real Property Photography. Plan Your Own.
                 </h2>
               </div>
               <div className="lg:self-end">
                 <p className="leading-7 text-[#d4ded5]">
-                  Explore genuine photographs from the business portfolio, then discuss the style
-                  and coverage your Milpitas property needs. Captions identify the published
-                  project; these examples illustrate the work available across the wider area.
+                  Review photographs, films and reels from the SJREP portfolio to understand the
+                  available style and coverage. Examples may feature projects across the wider
+                  service area; discuss the specific media your Milpitas property needs.
                 </p>
                 <a
                   href={SJREP.portfolio}
                   className="mt-5 inline-flex items-center gap-2 font-bold text-[#e6bf9d]"
                 >
-                  More photographs, films & reels{' '}
+                  Explore More Photographs, Films and Reels{' '}
                   <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </a>
               </div>
@@ -516,21 +536,21 @@ export default function MilpitasRealEstateMediaPage() {
                 Residential
               </p>
               <h2 className="mt-4 font-serif text-3xl tracking-tight sm:text-4xl">
-                Make the home easy to explore.
+                Make Every Home Easier to Explore
               </h2>
               <p className="mt-5 leading-8 text-[#526459]">
-                Start with the rooms, exterior features and layout that need to be understood. For a
-                home, condo or townhome, share access instructions and tell Thomas about occupied
-                rooms, shared areas or spaces that must be included. Add agent content or virtual
-                edits where they serve the launch.
+                From houses and condos to townhomes, residential real estate photography should make
+                the rooms, exterior features and layout easy to understand. Share access
+                instructions, occupied spaces and must-capture details before the shoot. Add video,
+                3D tours or virtual staging when they support the listing.
               </p>
               <p className="mt-4 leading-8 text-[#526459]">
-                Choose from Launchpad Lite, Launchpad Essential, Social Agent and Launchpad Pro, or
-                discuss individual services. Package scope and pricing vary with the property; check
-                the current selection and upgrades before booking.
+                Choose a current Launchpad package or discuss individual services. Package scope and
+                pricing can vary by property and selected upgrades, so review the live options
+                before booking.
               </p>
               <a href={SJREP.booking} className="mt-6 inline-flex items-center gap-2 font-bold">
-                Book residential media <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                Book Residential Media <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
               </a>
             </article>
             <article className="rounded-[2.5rem] bg-[#eaece3] p-8 sm:p-10">
@@ -538,21 +558,21 @@ export default function MilpitasRealEstateMediaPage() {
                 Commercial
               </p>
               <h2 className="mt-4 font-serif text-3xl tracking-tight sm:text-4xl">
-                Document the space and its purpose.
+                Show the Space, Its Features and Its Purpose
               </h2>
               <p className="mt-5 leading-8 text-[#526459]">
-                Commercial media supports brokers, owners, builders, contractors and asset managers.
-                Interior and exterior photography, aerial coverage, commercial iGUIDE and measured
-                plans can be discussed around the site’s use and the information your audience
-                needs.
+                Commercial real estate photography can support brokers, owners, builders,
+                contractors and asset managers. Discuss interior and exterior images, aerial
+                coverage, commercial iGUIDE or measured floor plans based on the site and the
+                information your audience needs.
               </p>
               <p className="mt-4 leading-8 text-[#526459]">
-                For construction progress or recurring documentation, define the areas to capture,
-                visit schedule and project contact. Supply site restrictions and access requirements
-                early. The booking system has a separate Commercial path for this work.
+                For construction progress or recurring documentation, define the areas, visit
+                schedule, site restrictions and project contact in advance. Use the Commercial
+                booking path to outline the scope.
               </p>
               <a href={SJREP.booking} className="mt-6 inline-flex items-center gap-2 font-bold">
-                Discuss commercial coverage <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                Discuss Commercial Coverage <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
               </a>
             </article>
           </div>
@@ -565,34 +585,36 @@ export default function MilpitasRealEstateMediaPage() {
                 From listing to launch
               </p>
               <h2 className="mt-4 font-serif text-3xl tracking-tight sm:text-4xl">
-                Give every finished asset a place to go.
+                Give Every Finished Asset a Clear Destination
               </h2>
               <p className="mt-5 leading-8 text-[#4f5548]">
-                Photographs, video, tours and a property website work best with a publication plan.
-                Bring your listing details, agent contact information and brand assets, then decide
-                which channels need complete property coverage and which need a short introduction.
+                Photography, video, 3D tours and a property website work best when they support one
+                publication plan. Prepare listing details, agent contact information and brand
+                assets, then decide which channels need full property coverage and which need a
+                short introduction.
               </p>
               <p className="mt-4 leading-8 text-[#4f5548]">
-                Discuss listing-launch marketing, neighborhood features and the reels or agent
-                introductions you want produced. Keep the deliverable list specific: the selected
-                property-shoot assets should match your launch date and the materials you will
-                actually publish.
+                Discuss listing-launch marketing, neighborhood features, reels and agent
+                introductions. Keep the deliverables aligned with your launch date and the materials
+                you intend to publish.
               </p>
             </div>
             <aside className="bg-[#a44730] p-8 text-white sm:p-10 [&_a:focus-visible]:!outline-[#f8f4eb]">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#f4dccc]">
                 An ongoing option
               </p>
-              <h3 className="mt-4 font-serif text-3xl tracking-tight">Social Launchpad</h3>
+              <h3 className="mt-4 font-serif text-3xl tracking-tight">
+                Social Launchpad for Ongoing Agent Content
+              </h3>
               <p className="mt-5 leading-8 text-[#f8e8dc]">
-                For an agent who needs content beyond a single listing, Social Launchpad offers
-                topic research, scripting, teleprompter recording, editing, captions and delivery.
-                Review this as a separate ongoing plan. Optional distribution and batch filming have
-                their own scope.
+                For agents who need content beyond a single property, Social Launchpad is a separate
+                ongoing option that can include topic research, scripting, teleprompter recording,
+                editing, captions and delivery. Confirm the plan scope, batch-filming options and
+                any distribution needs directly.
               </p>
               <div className="mt-6 flex flex-wrap gap-x-6 gap-y-4 text-sm font-bold">
                 <a href={SJREP.socialLaunchpad} className="inline-flex items-center gap-2">
-                  Explore the program <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                  Explore Social Launchpad <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </a>
                 <a href={SJREP.socialStrategyCall} className="inline-flex items-center gap-2">
                   Book a strategy call <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
@@ -606,39 +628,39 @@ export default function MilpitasRealEstateMediaPage() {
           <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-[0.75fr_1.25fr] lg:px-8">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#a44730]">
-                Plan the appointment
+                Plan your appointment
               </p>
               <h2 className="mt-4 font-serif text-4xl tracking-tight sm:text-5xl">
-                A little preparation makes the brief clearer.
+                Prepare the Brief Before Shoot Day
               </h2>
               <p className="mt-5 leading-8 text-[#526459]">
-                Set the shoot date with the finished-media schedule in mind. Confirm the property
-                and your selected services before coordinating cleaners, occupants, access and the
-                listing launch.
+                Set the appointment with your listing deadline and finished-media schedule in mind.
+                Confirm the property, selected services, access and preparation requirements before
+                coordinating occupants, cleaners and launch activity.
               </p>
               <a
                 href={SJREP.checklist}
                 className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#203f34]/30 px-5 py-3 text-sm font-bold"
               >
-                Read the pre-shoot checklist <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                Read the Pre-Shoot Checklist <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
             <div className="space-y-7">
               {[
                 [
                   '01',
-                  'Confirm the brief and access',
-                  'Send the address, property size, selected services and preferred date. Identify entry instructions, parking, building rules and any rooms or exterior features that must be captured. For agent video, agree on the message and on-camera plan.',
+                  'Confirm the Brief and Access',
+                  'Send the property address, size, selected services and preferred date. Include entry instructions, parking, building rules and must-capture areas. For agent video, agree on the message and on-camera plan before the appointment.',
                 ],
                 [
                   '02',
-                  'Prepare the rooms and exterior',
-                  'Use the official checklist to declutter, arrange lighting, remove distractions and clear the exterior. Secure pets. The video checklist asks for occupants to be off-site and fans and screens to be off; organize those details ahead of the visit.',
+                  'Prepare the Rooms and Exterior',
+                  'Declutter rooms, arrange lighting, clear outdoor areas and secure pets by following the official pre-shoot checklist. For video appointments, plan for occupants to be off-site and fans and screens to be switched off.',
                 ],
                 [
                   '03',
-                  'Allow time for the complete delivery',
-                  'The published terms specify photographs by 2pm the next business day and video/3D within 2–3 business days. Confirm your deadline and any rush request when booking. Review the terms for payment, changes and client usage before ordering.',
+                  'Plan for the Finished Media',
+                  'Published terms specify photographs by 2 p.m. the next business day and video or 3D media within 2–3 business days. Confirm the required deadline, rush options, payment terms and usage details when booking.',
                 ],
               ].map(([number, title, body]) => (
                 <article
@@ -667,11 +689,13 @@ export default function MilpitasRealEstateMediaPage() {
                 <MapPin className="h-4 w-4" aria-hidden="true" />
                 Milpitas service coverage
               </p>
-              <h2 className="mt-3 font-serif text-3xl">Share the address. Confirm the plan.</h2>
+              <h2 className="mt-3 font-serif text-3xl">
+                Share the Property Address. Confirm the Shoot Plan.
+              </h2>
               <p className="mt-4 leading-7 text-[#526459]">
-                Serving the South Bay and Silicon Valley, including San Jose, Santa Clara and
-                Milpitas. Send the property address to confirm scheduling and any travel
-                requirements, especially when aerial work or multiple visits are part of the brief.
+                SJREP serves Milpitas and the wider South Bay and Silicon Valley area, including San
+                Jose and Santa Clara. Send the property address to confirm availability, scheduling
+                and any travel requirements, especially for aerial work or multi-visit projects.
               </p>
             </div>
             <a
@@ -679,7 +703,7 @@ export default function MilpitasRealEstateMediaPage() {
               className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-[#203f34] px-6 py-3.5 font-bold text-white"
             >
               <Mail className="h-4 w-4" aria-hidden="true" />
-              Send your property brief
+              Send Your Property Brief
             </a>
           </div>
         </section>
@@ -690,7 +714,7 @@ export default function MilpitasRealEstateMediaPage() {
               Before you book
             </p>
             <h2 className="mt-4 font-serif text-4xl tracking-tight sm:text-5xl">
-              Milpitas real estate media FAQ
+              Milpitas Real Estate Photography FAQs
             </h2>
           </div>
           <div className="space-y-3">
@@ -726,13 +750,12 @@ export default function MilpitasRealEstateMediaPage() {
                 Your next listing starts here
               </p>
               <h2 className="mt-4 max-w-2xl font-serif text-4xl tracking-tight sm:text-5xl">
-                Bring the property.
-                <br />
-                Let’s plan the media.
+                Ready to Plan Your Milpitas Property Media?
               </h2>
               <p className="mt-5 max-w-xl leading-8 text-[#d4ded5]">
-                Book your Milpitas residential or commercial shoot directly, or contact Thomas to
-                work through the services, access and launch schedule.
+                Book a residential or commercial property shoot, or contact Thomas to discuss the
+                photography, video, drone coverage and listing media that fit your property and
+                launch schedule.
               </p>
             </div>
             <div className="flex flex-col gap-3">
@@ -740,7 +763,7 @@ export default function MilpitasRealEstateMediaPage() {
                 href={SJREP.booking}
                 className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-[#edcfb8] px-6 py-4 font-bold text-[#203f34]"
               >
-                Book a property shoot <ArrowUpRight className="h-5 w-5" aria-hidden="true" />
+                Book a Property Shoot <ArrowUpRight className="h-5 w-5" aria-hidden="true" />
               </a>
               <a
                 href={SJREP.phoneHref}

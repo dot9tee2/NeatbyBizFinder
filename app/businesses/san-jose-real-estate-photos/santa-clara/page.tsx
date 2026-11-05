@@ -13,99 +13,260 @@ import {
 
 const slug = 'santa-clara';
 const description =
-  'Real estate photography, films, drone, 3D tours, floor plans and listing marketing in Santa Clara, CA. Plan residential or commercial media with Thomas.';
+  'Professional real estate photography in Santa Clara, CA. Explore HDR photos, drone photography, 3D virtual tours, property videos and floor plans.';
 
-export const metadata = sjrepMetadata(
+const pageMetadata = sjrepMetadata(
   'Santa Clara',
   slug,
   description,
   '/san-jose-real-estate-photos/san-miguel-02.webp',
 );
+const pageTitle = 'Real Estate Photography Santa Clara, CA | San Jose Real Estate Photos';
+export const metadata = {
+  ...pageMetadata,
+  title: pageTitle,
+  openGraph: { ...pageMetadata.openGraph, title: pageTitle },
+  twitter: { ...pageMetadata.twitter, title: pageTitle },
+};
 
 const services = [
   {
-    title: 'HDR photography',
-    use: 'The complete visual record',
-    text: 'Build the listing around interior and exterior photographs that show room connections, finishes and usable outdoor space. Identify the priority rooms before the shoot so the photo sequence introduces the property clearly, from its approach to its most useful details.',
+    title: 'Residential Real Estate Photography',
+    use: 'Show the character of every room.',
+    paragraphs: [
+      'Professional residential real estate photography helps homeowners, real estate agents, and property sellers present homes with clear, attractive images.',
+      'Coverage can include living rooms, kitchens, bedrooms, bathrooms, entryways, exterior elevations, and outdoor entertainment spaces.',
+      'Careful composition highlights important architectural features while maintaining a natural representation of the property.',
+      'For homeowners and agents seeking property photography in Santa Clara, CA, professional images provide essential visual material for MLS listings, property websites, brochures, and digital advertising.',
+      'A thoughtfully organized photo gallery allows prospective buyers to explore the property in a logical sequence.',
+    ],
   },
   {
-    title: 'Cinematic property films',
-    use: 'Movement, scale and atmosphere',
-    text: 'A property film gives viewers a guided progression through the home or commercial space. Choose a cinematic tour or discuss an agent-guided story tour. Share the features to explain, your preferred speaking role and where the finished film will be published.',
+    title: 'Commercial Real Estate Photography',
+    use: 'Present the space with clarity and purpose.',
+    paragraphs: [
+      'Commercial real estate photography focuses on the details that matter to prospective tenants, investors, business owners, and property managers.',
+      'San Jose Real Estate Photos provides commercial interior and exterior photography for offices, retail properties, industrial spaces, multifamily buildings, and other commercial assignments.',
+      'Effective commercial property photography in Santa Clara can highlight building entrances, office layouts, common areas, parking facilities, architectural features, and surrounding property context.',
+      "A well-planned photo collection makes commercial marketing materials more informative and helps viewers assess a property's suitability before arranging a visit.",
+    ],
   },
   {
-    title: 'Drone photos & video',
-    use: 'A wider view of the property',
-    text: 'Aerial images can connect the building, grounds and surrounding context in a way ground-level coverage cannot. Ask for stills, clips or both. Discuss flight suitability during booking; weather, airspace and safe operating conditions affect whether aerial capture can proceed.',
+    title: 'HDR Real Estate Photography',
+    use: 'Balanced lighting. Natural detail. Clearer interiors.',
+    paragraphs: [
+      'HDR real estate photography combines exposures to better represent areas with different brightness levels, such as a sunlit window and a darker interior.',
+      'This technique helps preserve detail across highlights and shadows while maintaining a consistent visual appearance.',
+      'Professional HDR photography is particularly useful for open-plan living spaces, rooms with large windows, architectural interiors, and properties featuring distinctive natural lighting.',
+      'Each image should emphasize accurate presentation, balanced contrast, and clearly visible architectural details.',
+      'For real estate agents seeking professional listing photographs, HDR photography provides a versatile foundation for property marketing.',
+    ],
   },
   {
-    title: 'Interactive 3D tours',
-    use: 'Explore before the appointment',
-    text: 'Zillow 3D tours help prospective visitors move through the layout remotely. The residential service page lists Zillow 3D with every package, while iGUIDE is an upgrade. Confirm the selected tour platform, hosting and deliverables so the experience fits your listing channels.',
+    title: 'Drone Photography for Real Estate',
+    use: 'Show the property in its wider setting.',
+    paragraphs: [
+      'Ground-level photography reveals the building, while aerial images can show how a property relates to its surrounding environment.',
+      'Professional real estate drone photography in Santa Clara can provide elevated views of exterior architecture, landscaped grounds, property boundaries, parking areas, and nearby surroundings.',
+      "Aerial images are particularly useful when location, outdoor space, site access, or overall building scale contributes to the listing's appeal.",
+      'Drone video can also complement a cinematic property tour by introducing the building from an elevated perspective.',
+      'All aerial photography must be planned around weather, airspace regulations, necessary authorizations, and safe operating conditions.',
+    ],
   },
   {
-    title: 'Floor plans & dimensions',
-    use: 'Make the layout legible',
-    text: 'Floor plans help viewers understand room relationships that photographs alone may leave unclear. Zillow interactive plans and iGUIDE measured plans serve different needs. Explain whether your priority is buyer orientation, documented dimensions or commercial space planning, then confirm the appropriate plan scope.',
+    title: '3D Virtual Property Tours',
+    use: 'Let visitors explore before they arrive.',
+    paragraphs: [
+      "Interactive 3D virtual property tours offer an additional way to understand a home's layout and room connections without an immediate in-person appointment.",
+      'San Jose Real Estate Photos offers Zillow 3D Home Tours and iGUIDE options for properties requiring a more detailed interactive presentation.',
+      'A 3D experience can help prospective buyers and tenants explore different areas of the property at their own pace.',
+      'For agents interested in real estate photography with 3D tours, combining photographs and interactive walkthroughs provides both curated visual highlights and a more exploratory viewing experience.',
+      'Confirm the selected tour platform, available features, hosting arrangements, and floor plan requirements before booking.',
+    ],
   },
   {
-    title: 'Custom property websites',
-    use: 'One place for the presentation',
-    text: 'Bring photography, film, tour links and property information into a dedicated listing destination. Prepare the address, approved description, agent details and contact path before launch. Discuss branded or other required versions and how the website will connect with your existing marketing.',
+    title: 'Real Estate Floor Plans',
+    use: 'Make the layout easy to understand.',
+    paragraphs: [
+      'Photographs show how a room looks. Floor plans help explain how the entire property is organized.',
+      'Professional real estate floor plans illustrate room relationships, circulation routes, entrances, and the overall arrangement of interior spaces.',
+      'Interactive plans can complement virtual tours, while measured floor plans provide additional documentation for buyers, tenants, and commercial decision-makers.',
+      'For residential properties, a floor plan helps viewers understand how bedrooms, kitchens, living areas, and outdoor spaces connect.',
+      'For commercial buildings, measured plans may support leasing presentations, space planning, and property documentation.',
+      'Floor plan formats and measurement inclusions should be confirmed for each assignment.',
+    ],
   },
   {
-    title: 'Social reels & agent content',
-    use: 'Introduce the listing in a feed',
-    text: 'Vertical reels and agent introductions give a property a format suited to social viewing. Plan the opening idea, features and any on-camera delivery before filming. Confirm orientation and edit scope; a property reel, agent introduction and longer guided tour are separate creative choices.',
+    title: 'Real Estate Videography',
+    use: 'Create a guided experience through the property.',
+    paragraphs: [
+      'Professional real estate videography introduces motion, pacing, and visual storytelling into property marketing.',
+      'A cinematic property video can communicate how a home flows from one room to another while drawing attention to important design features.',
+      'Video is also useful for commercial property presentations, agent-led tours, and promotional campaigns.',
+      'San Jose Real Estate Photos offers cinematic listing videos, guided story tours, and shorter social media formats.',
+      'Before filming, identify the target audience, important rooms, preferred video style, and intended publishing platforms.',
+      'A carefully planned video complements traditional photography rather than simply repeating the same views.',
+    ],
   },
   {
-    title: 'Virtual presentation edits',
-    use: 'Show a considered possibility',
-    text: 'Virtual staging, decluttering and twilight edits offer different ways to present a photograph. Select the images and purpose with Thomas, and keep edited versions identifiable when publishing. Digital changes should support a clear presentation without obscuring the property’s actual condition or included features.',
+    title: 'Virtual Staging Services',
+    use: 'Help viewers imagine a furnished space.',
+    paragraphs: [
+      'Vacant rooms can sometimes make it difficult for prospective buyers to visualize furniture placement or understand the intended use of an area.',
+      'Virtual staging adds digital furniture and decorative elements to suitable property images, creating a visual concept of how a space might be arranged.',
+      'San Jose Real Estate Photos also offers presentation edits such as virtual decluttering and twilight-style photography.',
+      'These tools can support residential property marketing when used appropriately.',
+      'Digitally staged images should be clearly identified, and edits should not misrepresent permanent features, property conditions, or items included in a sale.',
+    ],
   },
   {
-    title: 'Listing-launch marketing',
-    use: 'Put the assets to work',
-    text: 'Neighborhood features and listing marketing support can extend the shoot into a more coordinated launch. Share your audience, announcement date and intended channels. Confirm which launch assets, copy or marketing add-ons belong in your order and which publishing steps your team will handle.',
+    title: 'Real Estate Listing Websites & Marketing Media',
+    use: 'Bring every marketing asset together.',
+    paragraphs: [
+      'A dedicated real estate listing website creates a central location for presenting property photographs, cinematic videos, virtual tours, floor plans, and approved listing information.',
+      'Instead of distributing disconnected media files, agents can guide interested visitors toward a more organized presentation.',
+      'San Jose Real Estate Photos also provides social media reels, agent-focused content, and listing marketing support.',
+      'A coordinated media package can help maintain consistent visual messaging across a property website, social platforms, marketing emails, and other listing channels.',
+      'The appropriate combination depends on the property, audience, and marketing objectives.',
+    ],
   },
 ];
 
 const faqs: SjrepFaq[] = [
   {
-    q: 'Can I book photography alone, or do I need a package?',
-    a: 'The official pricing page lists individual services as well as residential packages. Photography alone may suit a simple brief; a package can combine the media needed for a broader launch. Send the property size and requested deliverables to Thomas, and review the current order before choosing.',
+    q: 'What real estate photography services are available in Santa Clara?',
+    a: 'San Jose Real Estate Photos offers residential and commercial photography, HDR listing images, drone photography, property videos, Zillow 3D tours, iGUIDE options, measured floor plans, and listing marketing assets.\n\nServices can be booked individually or combined through available packages. The appropriate selection depends on the property type, size, and intended use of the finished media.',
   },
   {
-    q: 'Can I add a MiniDoc to a Santa Clara listing?',
-    a: 'Yes. A MiniDoc is a short listing documentary that tells the story of the home, its setting and the people behind the sale, alongside the usual property coverage. Ask about a MiniDoc before booking so the interviews, locations and filming time can be planned with Thomas, with delivery timing agreed at booking.',
+    q: 'How do I choose the best real estate photography services in Santa Clara?',
+    a: "Start by reviewing the photographer's portfolio, image quality, service offerings, booking process, and current delivery terms.\n\nLook for accurate interior photography, balanced lighting, consistent editing, and experience with the type of property you plan to market.\n\nThe best choice is a provider whose experience, deliverables, communication, and pricing align with your property's requirements.",
   },
   {
-    q: 'Is Santa Clara inside the service area?',
-    a: 'Yes. Serving the South Bay and Silicon Valley, including San Jose, Santa Clara and Milpitas. Send the property address to confirm scheduling and any travel requirements.',
+    q: 'What is included in real estate photography packages in Santa Clara?',
+    a: 'Package inclusions depend on the selected service level.\n\nSan Jose Real Estate Photos offers residential packages ranging from essential listing media to broader marketing systems with photos, videos, aerial coverage, 3D tours, floor plans, and additional launch materials.\n\nPricing can vary according to square footage and selected services. Review the current package details before booking.',
   },
   {
-    q: 'How should I arrange a shoot in an occupied home or shared building?',
-    a: 'Agree on access with the occupant and arrange keys, parking, entry codes and any building permissions before the appointment. Tell Thomas about lifts, reserved amenities and restricted areas. The published checklist asks occupants to be off-site for video shoots, so plan a suitable window with everyone involved.',
+    q: 'Do I need drone photography for my real estate listing?',
+    a: "Drone photography can be useful when a property's location, exterior setting, landscape, parking, or overall site arrangement is important to its presentation.\n\nIt is often considered for larger residential properties and commercial buildings.\n\nNot every listing requires aerial imagery. Flight availability also depends on weather, airspace restrictions, authorization requirements, and safety considerations.",
   },
   {
-    q: 'What is the difference between Zillow 3D and iGUIDE?',
-    a: 'The residential offering lists Zillow 3D and interactive floor plans, with iGUIDE available as an upgrade for measured plans and dimensions. Choose according to how viewers need to explore or understand the space. Confirm the current platform features, measurement scope and hosting terms directly when ordering.',
+    q: 'Can I book real estate photography with 3D tours and floor plans?',
+    a: 'Yes. Photography, interactive 3D tours, and floor plans can be combined as part of a property media package.\n\nZillow 3D offers an interactive viewing experience, while iGUIDE provides additional measured documentation options.\n\nConfirm the tour platform and required deliverables when scheduling your shoot.',
   },
   {
-    q: 'When will the finished photos, video and 3D tour be ready?',
-    a: 'The published terms state photo delivery by 2pm the next business day and video or 3D delivery within 2–3 business days. Discuss your go-live date before booking and confirm timing for your chosen edits and extras. Ask about rush options if the usual schedule does not fit.',
+    q: 'Are commercial real estate photography services available in Santa Clara?',
+    a: 'Yes. Commercial real estate media services are available for offices, retail locations, industrial properties, multifamily buildings, and other commercial assignments.\n\nCoverage may include exterior photography, interior photography, drone imagery, measured floor plans, and interactive 3D documentation.\n\nCustom project requirements should be discussed before booking.',
   },
   {
-    q: 'Do you photograph commercial properties as well?',
-    a: 'Yes. Commercial services include interior and exterior photography, aerial coverage, iGUIDE, measured plans and construction progress documentation. Use the Commercial booking path or discuss a custom brief with Thomas. Specify the spaces, intended audience, access restrictions and whether the work is one visit or recurring documentation.',
+    q: 'Can virtual staging be added to my property photographs?',
+    a: 'Virtual staging and other presentation edits may be available as additional services.\n\nVirtual staging is often used for vacant or lightly furnished properties to illustrate potential furniture arrangements.\n\nChoose appropriate source photographs and ensure digitally altered images are accurately labeled and comply with applicable listing rules.',
   },
   {
-    q: 'Can I add drone coverage or virtual staging after selecting a package?',
-    a: 'Discuss add-ons before the shoot so the capture plan and quote include the right inputs. Aerial work depends on operating conditions, and virtual edits need suitable source photographs. Confirm the selected images, edit purpose and delivery date; availability or inclusion should not be assumed from a package name.',
+    q: 'How should I prepare my property, and when will the final media be ready?',
+    a: 'Before the appointment, clean the property, organize visible spaces, coordinate access, and identify the rooms or features that should receive particular attention.\n\nPublished scheduling terms identify standard turnaround periods for photographs and other media, but the confirmed delivery time depends on the services ordered and any requested edits.\n\nShare your listing launch deadline during booking so that expectations are clear.',
   },
   {
-    q: 'Who handles publishing and usage of the finished media?',
-    a: 'Confirm the handoff and publishing responsibilities in your order, especially for property websites and marketing add-ons. The published terms retain copyright with the provider and license client usage after payment. Read the current terms for your intended use and ask about uses beyond the agreed listing or project scope.',
+    q: 'Can I find a real estate photographer near me in San Jose, Sunnyvale, or Silicon Valley?',
+    a: "San Jose Real Estate Photos serves Santa Clara and surrounding South Bay and Silicon Valley communities.\n\nThe business's portfolio includes work in Sunnyvale, Los Altos, and other nearby markets.\n\nIf you're searching for real estate photography in San Jose, real estate photography in Sunnyvale, or a real estate photographer in Silicon Valley, provide your property address to confirm scheduling, service availability, and any applicable travel requirements.",
+  },
+];
+
+const preparation = [
+  {
+    label: '01 / PROPERTY ACCESS',
+    title: 'Coordinate the photography appointment.',
+    paragraphs: [
+      'Make sure the photographer can access every area included in the shoot. For occupied residential properties, coordinate the appointment with homeowners or tenants in advance.',
+      'For condominiums, apartments, and commercial buildings, arrange parking instructions, entry codes, elevator access, and any required permissions.',
+      'Identify restricted spaces, building regulations, or special requirements before the appointment. Clear communication helps make the photography session more organized and reduces unnecessary interruptions.',
+    ],
+  },
+  {
+    label: '02 / PROPERTY PRESENTATION',
+    title: 'Prepare the space for professional photography.',
+    paragraphs: [
+      'Small preparation details can significantly influence the final appearance of real estate photographs.',
+      'Organize furniture, remove unnecessary items from countertops, clean windows, and make sure the primary living spaces are ready to photograph.',
+      'For exterior photography, tidy landscaping and remove vehicles or temporary objects that obstruct important views.',
+      'Commercial spaces should have accessible entrances, organized work areas, and appropriately prepared common spaces.',
+      "Professional photography aims to present the property's actual features clearly and attractively, without creating misleading expectations.",
+    ],
+  },
+  {
+    label: '03 / MEDIA DELIVERY',
+    title: 'Plan your listing launch.',
+    paragraphs: [
+      'Real estate photography is often one component of a larger property marketing schedule.',
+      'Before the shoot, determine when photographs, videos, 3D tours, and supporting materials will be needed.',
+      'If your launch includes virtual staging, cinematic video, or additional marketing edits, confirm the production and delivery schedule for each item.',
+      'Coordinate the completion of your media with your MLS listing, property website, social media announcements, and marketing materials.',
+      'A planned handoff helps ensure your property is ready to be presented consistently across different channels.',
+    ],
+  },
+];
+
+const packages = [
+  {
+    title: 'A clear residential listing',
+    paragraphs: [
+      'For residential properties, begin with professional HDR interior and exterior photographs.',
+      "Complement the image collection with an interactive 3D walkthrough and a floor plan to help potential buyers understand the home's layout.",
+      'Additional drone photography or cinematic video may be appropriate when the location, exterior setting, or property features benefit from wider visual coverage.',
+    ],
+  },
+  {
+    title: 'A comprehensive listing launch',
+    paragraphs: [
+      'For agents planning a more extensive marketing campaign, combine listing photography with professional video, aerial coverage, virtual tours, and short-form social content.',
+      'A custom listing website can organize these assets into one destination.',
+      'Agent-focused reels or guided property tours can also introduce a more personal element to the campaign.',
+    ],
+  },
+  {
+    title: 'A commercial property presentation',
+    paragraphs: [
+      'Commercial projects often require a different approach from residential listings.',
+      "Prioritize interior and exterior photography, site context, building access, parking areas, and floor plan documentation according to the project's marketing goals.",
+      'For large buildings or more complex assignments, measured floor plans, 3D walkthroughs, and aerial imagery can provide additional context.',
+      'Custom commercial quotes allow the photography scope to be tailored to the property.',
+    ],
+  },
+];
+
+const projects = [
+  {
+    image: 'san-miguel-02.webp',
+    alt: 'Open-plan kitchen and dining room at San Miguel Avenue in Sunnyvale',
+    title: 'San Miguel Avenue, Sunnyvale',
+    summary:
+      'Residential listing photography featuring bright interiors, connected living areas, and thoughtfully composed room photographs.',
+  },
+  {
+    image: 'montecito-03.webp',
+    alt: 'Open living and dining room at Montecito Vista Drive',
+    title: 'Montecito Vista Drive',
+    summary:
+      'Professional condominium photography highlighting interior spaces, architectural details, and the overall property layout.',
+  },
+  {
+    image: 'deodara-exterior.webp',
+    alt: 'Twilight backyard at Deodara Drive in Los Altos',
+    title: 'Deodara Drive, Los Altos',
+    summary:
+      'Premium real estate photography and property marketing visuals designed to present a distinctive residential listing.',
+  },
+];
+
+const videoCaptions = [
+  {
+    title: 'Whitehaven Court, Silver Creek, San Jose',
+    summary:
+      'A property documentary exploring the home, its location, and the lifestyle connected to the surrounding community.',
+  },
+  {
+    title: 'Glenview Avenue, Cupertino',
+    summary:
+      "A story-focused property film incorporating the home's history and the perspectives of people involved in its sale.",
   },
 ];
 
@@ -191,82 +352,86 @@ export default function SantaClaraRealEstateMediaPage() {
             <div>
               <p className={eyebrow}>Property media / Santa Clara, CA</p>
               <h1 className="mt-5 max-w-xl text-[clamp(2.8rem,5vw,4.5rem)] font-semibold leading-[1.04] tracking-[-0.065em]">
-                A clearer view.
-                <br />
-                <span className="text-[#136e69]">A complete listing.</span>
+                Real Estate Photography <span className="text-[#136e69]">in Santa Clara, CA</span>
               </h1>
-              <p className="mt-7 max-w-xl text-lg leading-8 text-[#4d5c64]">
-                Real estate photography and videography in Santa Clara, with drone coverage, 3D
-                tours, floor plans and the marketing pieces that carry a property from capture to
-                launch.
+              <p className="mt-5 max-w-xl text-xl font-semibold leading-8 text-[#4d5c64]">
+                Make every space worth a second look.
               </p>
               <p className="mt-4 max-w-xl text-base leading-7 text-[#4d5c64]">
-                Work with Thomas at San Jose Real Estate Photos to assemble the right presentation
-                for a home, commercial space or agent-led listing. Start with what the viewer needs
-                to understand, then choose the media that explains it.
+                A great property presentation begins with photographs that help people understand
+                what makes a space special. San Jose Real Estate Photos provides real estate
+                photography services in Santa Clara, combining professional interior and exterior
+                photography with cinematic videos, drone coverage, interactive 3D tours, and floor
+                plans.
+              </p>
+              <p className="mt-4 max-w-xl text-base leading-7 text-[#4d5c64]">
+                Whether you&apos;re marketing a residential home, preparing a commercial property
+                for leasing, or creating a complete real estate listing campaign, the right visuals
+                can make your property easier to explore and more engaging to potential buyers and
+                tenants.
+              </p>
+              <p className="mt-4 max-w-xl text-base leading-7 text-[#4d5c64]">
+                Work with a professional real estate photographer in Santa Clara, CA who understands
+                the importance of composition, natural lighting, accurate room presentation, and
+                consistent visual storytelling. From the first exterior photograph to the final
+                property tour, each asset should contribute to a clear and compelling listing.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
                   href={SJREP.booking}
                   className={`${button} bg-[#182c36] text-white hover:bg-[#136e69]`}
                 >
-                  Plan your shoot <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                  Book a Property Shoot <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </a>
                 <a
                   href={SJREP.phoneHref}
                   className={`${button} border border-[#aebbb8] hover:bg-white`}
                 >
-                  {SJREP.phone}
+                  Call: {SJREP.phone}
                 </a>
               </div>
               <a
                 href="#services"
                 className="mt-10 inline-flex items-center gap-2 text-sm font-semibold text-[#136e69]"
               >
-                Explore the full media menu <ArrowDown className="h-4 w-4" aria-hidden="true" />
+                Explore Residential and Commercial Real Estate Media Services{' '}
+                <ArrowDown className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
             <div className="relative">
               <div className="mb-3 flex justify-between border-t border-[#aebbb8] pt-3 text-[10px] font-bold uppercase tracking-[0.18em] text-[#58676e]">
-                <span>Selected provider portfolio</span>
-                <span>01 — 03</span>
+                <span>Selected real estate photography portfolio</span>
+                <span>01–03</span>
               </div>
-              <div className="grid grid-cols-[1.2fr_0.8fr] gap-3">
-                <figure className="row-span-2">
-                  <div className="relative h-full min-h-[340px] overflow-hidden bg-[#e2e8e3] sm:min-h-[460px]">
-                    <Image
-                      src="/san-jose-real-estate-photos/san-miguel-02.webp"
-                      alt="Open-plan kitchen and dining room at San Miguel Avenue in Sunnyvale"
-                      fill
-                      priority
-                      sizes="(min-width: 1024px) 340px, 60vw"
-                      className="object-cover"
-                    />
-                  </div>
-                </figure>
-                <figure className="relative min-h-[163px] overflow-hidden bg-[#e2e8e3] sm:min-h-[223px]">
-                  <Image
-                    src="/san-jose-real-estate-photos/san-miguel-01.webp"
-                    alt="Bright bedroom at the San Miguel Avenue property in Sunnyvale"
-                    fill
-                    sizes="(min-width: 1024px) 225px, 40vw"
-                    className="object-cover"
-                  />
-                </figure>
-                <figure className="relative min-h-[163px] overflow-hidden bg-[#e2e8e3] sm:min-h-[223px]">
-                  <Image
-                    src="/san-jose-real-estate-photos/montecito-03.webp"
-                    alt="Open living and dining room at the provider’s Montecito Vista Drive portfolio property"
-                    fill
-                    sizes="(min-width: 1024px) 225px, 40vw"
-                    className="object-cover"
-                  />
-                </figure>
+              <div className="grid gap-5 sm:grid-cols-2">
+                {projects.map((project, index) => (
+                  <figure key={project.image} className={index === 0 ? 'sm:col-span-2' : undefined}>
+                    <div className="relative aspect-[16/10] overflow-hidden bg-[#e2e8e3]">
+                      <Image
+                        src={'/san-jose-real-estate-photos/' + project.image}
+                        alt={project.alt}
+                        fill
+                        priority={index === 0}
+                        sizes={
+                          index === 0
+                            ? '(min-width: 1024px) 560px, 94vw'
+                            : '(min-width: 640px) 46vw, 94vw'
+                        }
+                        className="object-cover"
+                      />
+                    </div>
+                    <figcaption className="mt-3 text-sm leading-6 text-[#58676e]">
+                      <span className="block font-semibold text-[#182c36]">
+                        {String(index + 1).padStart(2, '0')} — {project.title}
+                      </span>
+                      {project.summary}
+                    </figcaption>
+                  </figure>
+                ))}
               </div>
               <p className="mt-3 text-xs leading-5 text-[#58676e]">
-                Portfolio examples: San Miguel Avenue, Sunnyvale, and Montecito Vista Drive.{' '}
                 <a href={SJREP.portfolio} className="font-semibold underline underline-offset-4">
-                  View the complete portfolio
+                  Explore the Complete Photography Portfolio
                 </a>
               </p>
             </div>
@@ -279,28 +444,45 @@ export default function SantaClaraRealEstateMediaPage() {
           className="scroll-mt-6 bg-[#182c36] text-[#faf9f5] [&_a:focus-visible]:!outline-[#faf9f5]"
         >
           <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:py-24">
-            <div className="lg:sticky lg:top-8 lg:self-start">
+            <div className="lg:self-start">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#a2d4c9]">
-                Featured / MiniDocs
+                Featured / Real estate videography &amp; storytelling
               </p>
               <h2
                 id="minidocs-heading"
                 className="mt-4 text-3xl font-semibold leading-tight tracking-[-0.04em] sm:text-5xl"
               >
-                More than a tour.
-                <br />
-                <span className="text-[#a2d4c9]">A listing with a story.</span>
+                A property is more than its photographs.
               </h2>
-              <p className="mt-6 text-base leading-7 text-[#d0dcd9]">
-                MiniDocs are short listing documentaries. Alongside the rooms, they capture what a
-                walkthrough leaves out: the neighborhood, the life the home has held and the agent
-                guiding it to market.
+              <p className="mt-4 text-base leading-7 text-[#d0dcd9]">
+                Bring the listing to life through motion and perspective.
+              </p>
+              <p className="mt-4 text-base leading-7 text-[#d0dcd9]">
+                Photography introduces a property, but carefully produced video can help viewers
+                understand how its spaces connect, how natural light moves through the rooms, and
+                what makes the surrounding setting distinctive.
+              </p>
+              <p className="mt-4 text-base leading-7 text-[#d0dcd9]">
+                Through professional real estate videography, San Jose Real Estate Photos creates
+                property films, agent-guided tours, and listing documentaries that bring another
+                dimension to real estate marketing.
+              </p>
+              <p className="mt-4 text-base leading-7 text-[#d0dcd9]">
+                A cinematic walkthrough can lead viewers from the front entrance into the main
+                living spaces, transition toward outdoor amenities, and provide a stronger sense of
+                the property&apos;s design.
+              </p>
+              <p className="mt-4 text-base leading-7 text-[#d0dcd9]">
+                For listings that deserve more personal storytelling, MiniDocs offer a
+                documentary-style approach that can incorporate the property&apos;s history,
+                neighborhood, and people involved in bringing it to market.
               </p>
               <ul className="mt-6 space-y-3 text-sm leading-6 text-[#d0dcd9]">
                 {[
-                  'A centerpiece for the property website, YouTube and social launch',
-                  'Seller and agent interviews planned before filming day',
-                  'Combined with your photography, aerials and 3D coverage',
+                  'Cinematic property videos for residential and commercial marketing.',
+                  'Agent-guided walkthroughs and property storytelling.',
+                  'Drone footage and interior video combined into a cohesive presentation.',
+                  'Short-form video content for social media and listing promotions.',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <Check className="mt-1 h-4 w-4 shrink-0 text-[#a2d4c9]" aria-hidden="true" />
@@ -313,7 +495,7 @@ export default function SantaClaraRealEstateMediaPage() {
                   href={SJREP.minidocInquiry}
                   className={`${button} bg-[#b8dfd3] text-[#182c36] hover:bg-white`}
                 >
-                  <Mail className="h-4 w-4" aria-hidden="true" /> Ask about a MiniDoc
+                  <Mail className="h-4 w-4" aria-hidden="true" /> Discuss Your Property Video
                 </a>
                 <a
                   href={SJREP.booking}
@@ -330,6 +512,9 @@ export default function SantaClaraRealEstateMediaPage() {
               </p>
             </div>
             <div className="space-y-10">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#a2d4c9]">
+                Featured video projects
+              </p>
               {SJREP_MINIDOCS.map((video, index) => (
                 <figure key={video.youtubeId}>
                   <SjrepMinidocPlayer
@@ -344,10 +529,10 @@ export default function SantaClaraRealEstateMediaPage() {
                     </span>
                     <span>
                       <span className="block text-lg font-semibold">
-                        {video.title}, {video.place}
+                        {videoCaptions[index].title}
                       </span>
                       <span className="mt-1 block text-sm leading-6 text-[#d0dcd9]">
-                        {video.summary} {video.length}.
+                        {videoCaptions[index].summary} {video.length}.
                       </span>
                     </span>
                   </figcaption>
@@ -361,55 +546,39 @@ export default function SantaClaraRealEstateMediaPage() {
           <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:py-20">
             <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
               <div>
-                <p className={eyebrow}>Before the camera arrives</p>
+                <p className={eyebrow}>Before the photography session</p>
                 <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-[-0.04em] sm:text-4xl">
-                  Good media starts
-                  <br className="hidden sm:block" /> with a good brief.
+                  A better photo shoot begins before the camera arrives.
                 </h2>
               </div>
-              <p className={`${body} max-w-2xl`}>
-                For a Santa Clara shoot, send the address, approximate square footage, property type
-                and intended launch date. Explain what matters: a connected living area, a refreshed
-                kitchen, outdoor use, office circulation or tenant-ready space. These priorities
-                guide the capture plan and help separate essential deliverables from optional
-                additions.
-              </p>
+              <div className="max-w-2xl space-y-3">
+                <p className={body}>
+                  Preparation plays an important role in professional real estate listing
+                  photography in Santa Clara. A clean, accessible, well-presented property allows
+                  the photographer to concentrate on capturing the rooms, architectural features,
+                  and exterior areas that matter most.
+                </p>
+                <p className={body}>
+                  Before scheduling your appointment, share the property address, approximate square
+                  footage, building type, and preferred listing launch date. Mention any distinctive
+                  amenities or spaces that require particular attention.
+                </p>
+              </div>
             </div>
             <div className="mt-10 grid gap-8 border-t border-[#c8d4cd] pt-8 md:grid-cols-3">
-              <article>
-                <p className="text-xs font-bold tracking-[0.18em] text-[#136e69]">01 / ACCESS</p>
-                <h3 className="mt-3 text-xl font-semibold">Coordinate the visit</h3>
-                <p className={`${body} mt-3`}>
-                  For an occupied property, agree on a clear appointment window with the residents.
-                  For a condominium, office or shared building, arrange entry codes, parking, lift
-                  access and permissions for common areas. Identify any spaces that must stay
-                  private. Tell Thomas about security procedures or limited access before the
-                  booking is finalized.
-                </p>
-              </article>
-              <article>
-                <p className="text-xs font-bold tracking-[0.18em] text-[#136e69]">
-                  02 / PRESENTATION
-                </p>
-                <h3 className="mt-3 text-xl font-semibold">Prepare the actual space</h3>
-                <p className={`${body} mt-3`}>
-                  Clear counters and floor paths, tidy visible storage, check lighting and move
-                  vehicles away from the intended exterior views. Secure pets and finish cleaning
-                  before arrival. For video, the checklist calls for occupants off-site, with fans
-                  and screens off. Use the business’s room-by-room checklist to prepare the whole
-                  property consistently.
-                </p>
-              </article>
-              <article>
-                <p className="text-xs font-bold tracking-[0.18em] text-[#136e69]">03 / HANDOFF</p>
-                <h3 className="mt-3 text-xl font-semibold">Plan the release</h3>
-                <p className={`${body} mt-3`}>
-                  Allow time to receive, review and publish the ordered assets. The terms list
-                  photos by 2pm the next business day and video or 3D within 2–3 business days.
-                  Confirm the schedule for your order, including virtual edits and launch extras.
-                  Flag a deadline early and ask about available rush options.
-                </p>
-              </article>
+              {preparation.map((step) => (
+                <article key={step.label}>
+                  <p className="text-xs font-bold tracking-[0.18em] text-[#136e69]">{step.label}</p>
+                  <h3 className="mt-3 text-xl font-semibold">{step.title}</h3>
+                  <div className="mt-3 space-y-3">
+                    {step.paragraphs.map((text) => (
+                      <p key={text} className={body}>
+                        {text}
+                      </p>
+                    ))}
+                  </div>
+                </article>
+              ))}
             </div>
             <a
               href={SJREP.checklist}
@@ -426,15 +595,21 @@ export default function SantaClaraRealEstateMediaPage() {
         >
           <div className="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end">
             <div>
-              <p className={eyebrow}>The media inventory</p>
+              <p className={eyebrow}>The real estate media inventory</p>
               <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-[-0.04em] sm:text-4xl">
-                Every format has a job.
+                Every property deserves the right perspective.
               </h2>
             </div>
-            <p className={`${body} max-w-md`}>
-              Combine services around your audience and launch plan. Confirm quantities, formats and
-              inclusions with Thomas before the shoot.
-            </p>
+            <div className="max-w-md space-y-3">
+              <p className={body}>
+                San Jose Real Estate Photos offers residential and commercial real estate media
+                services throughout Santa Clara and surrounding Silicon Valley communities.
+              </p>
+              <p className={body}>
+                Choose individual services or combine complementary formats to create a more
+                complete property presentation.
+              </p>
+            </div>
           </div>
           <div className="border-t-2 border-[#182c36]">
             {services.map((service, index) => (
@@ -449,7 +624,13 @@ export default function SantaClaraRealEstateMediaPage() {
                   <h3 className="text-xl font-semibold tracking-[-0.02em]">{service.title}</h3>
                   <p className="mt-2 text-sm text-[#136e69]">{service.use}</p>
                 </div>
-                <p className={body}>{service.text}</p>
+                <div className="space-y-3">
+                  {service.paragraphs.map((text) => (
+                    <p key={text} className={body}>
+                      {text}
+                    </p>
+                  ))}
+                </div>
               </article>
             ))}
           </div>
@@ -458,47 +639,55 @@ export default function SantaClaraRealEstateMediaPage() {
         <section className="border-y border-[#d8dfdb] bg-white">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-8 lg:grid-cols-[1fr_1fr] lg:gap-16 lg:py-20">
             <div>
-              <p className={eyebrow}>Scope first. Package second.</p>
+              <p className={eyebrow}>Real estate photography packages / Santa Clara</p>
               <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-[-0.04em] sm:text-4xl">
-                Choose for the property,
-                <br />
-                not just the package name.
+                Choose the media that fits your property.
               </h2>
-              <p className={`${body} mt-6`}>
-                The current residential lineup includes Launchpad Lite, Launchpad Essential, Social
-                Agent and Launchpad Pro, alongside individual services. Pricing depends on property
-                size and your selections. Compare the current inclusions and confirm which tour,
-                film, aerial or marketing elements are included, optional or quoted separately.
-              </p>
+              <div className="mt-6 space-y-3">
+                <p className={body}>A thoughtful package begins with the listing&apos;s needs.</p>
+                <p className={body}>
+                  Not every property requires identical photography or marketing coverage.
+                </p>
+                <p className={body}>
+                  A smaller residential listing may benefit from professional HDR photographs, a 3D
+                  walkthrough, and a floor plan. A larger home may call for cinematic video, drone
+                  imagery, and a more comprehensive launch presentation.
+                </p>
+                <p className={body}>
+                  San Jose Real Estate Photos provides several residential package options,
+                  including Listing Launchpad Lite, Listing Launchpad Essential, Listing Launchpad
+                  Social Agent, and Listing Launchpad Pro.
+                </p>
+                <p className={body}>
+                  Individual services and custom commercial media options are also available.
+                </p>
+                <p className={body}>
+                  The right real estate photography package in Santa Clara depends on property size,
+                  media requirements, and the intended marketing approach.
+                </p>
+              </div>
               <a
                 href={SJREP.pricing}
                 className={`${button} mt-7 border border-[#aebbb8] hover:bg-[#eef3ef]`}
               >
-                Review current packages & pricing{' '}
+                Review Current Packages and Pricing{' '}
                 <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
             <div className="border-l-2 border-[#136e69] pl-6 sm:pl-8">
-              {[
-                [
-                  'A clear residential listing',
-                  'Start with the required photo coverage and a tour that explains the layout. Add a plan, film or aerial view where it answers a specific buyer question.',
-                ],
-                [
-                  'An agent-led launch',
-                  'Plan the property media and your on-camera story together. Discuss reels, an introduction, a dedicated website and the marketing pieces needed for launch day.',
-                ],
-                [
-                  'A commercial assignment',
-                  'Use the Commercial booking path for interiors, exteriors, aerials, iGUIDE or measured plans. For construction progress or recurring documentation, define the visit schedule and reporting views in a custom brief.',
-                ],
-              ].map(([title, text]) => (
+              {packages.map(({ title, paragraphs }) => (
                 <article
                   key={title}
                   className="border-b border-[#d8dfdb] py-5 first:pt-0 last:border-0 last:pb-0"
                 >
                   <h3 className="text-lg font-semibold">{title}</h3>
-                  <p className={`${body} mt-2`}>{text}</p>
+                  <div className="mt-2 space-y-3">
+                    {paragraphs.map((text) => (
+                      <p key={text} className={body}>
+                        {text}
+                      </p>
+                    ))}
+                  </div>
                 </article>
               ))}
             </div>
@@ -510,38 +699,52 @@ export default function SantaClaraRealEstateMediaPage() {
             <figure>
               <div className="relative aspect-[4/3] overflow-hidden bg-[#e2e8e3]">
                 <Image
-                  src="/san-jose-real-estate-photos/deodara-exterior.webp"
-                  alt="Twilight backyard photography at Deodara Drive in Los Altos"
+                  src="/san-jose-real-estate-photos/san-miguel-01.webp"
+                  alt="Bright bedroom at the San Miguel Avenue property in Sunnyvale"
                   fill
                   sizes="(min-width: 1024px) 620px, 100vw"
                   className="object-cover"
                 />
               </div>
               <figcaption className="mt-3 flex flex-wrap justify-between gap-2 text-xs text-[#58676e]">
-                <span>Portfolio / Deodara Drive, Los Altos</span>
+                <span>Portfolio / San Miguel Avenue, Sunnyvale</span>
                 <a href={SJREP.portfolio} className="font-semibold underline underline-offset-4">
                   Explore photos, films & reels
                 </a>
               </figcaption>
             </figure>
             <div>
-              <p className={eyebrow}>Beyond the listing</p>
+              <p className={eyebrow}>Beyond the property listing</p>
               <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-[-0.04em] sm:text-4xl">
-                Keep your agent voice
-                <br />
-                in the conversation.
+                Give your real estate marketing a consistent visual identity.
               </h2>
-              <p className={`${body} mt-6`}>
-                Social Launchpad is a separate ongoing content service for agents who want a regular
-                presence between property launches. It covers topic research, scripting, Riverside
-                teleprompter recording, editing, captions and delivery. Optional distribution and
-                batch filming can be discussed separately.
-              </p>
-              <p className={`${body} mt-4`}>
-                Use a strategy call to explain your audience, topics and recording routine. A
-                recurring agent-content plan has a different brief from a single listing reel;
-                confirm the monthly scope and publishing responsibilities before you begin.
-              </p>
+              <div className="mt-6 space-y-3">
+                <p className={body}>
+                  A single property shoot can provide media for more than one marketing channel.
+                </p>
+                <p className={body}>
+                  Professional photographs can support websites, brochures, social announcements,
+                  and agent presentations. Cinematic videos and short-form reels can introduce
+                  listings in formats suited to different online audiences.
+                </p>
+                <p className={body}>
+                  For real estate professionals working throughout Santa Clara and Silicon Valley,
+                  consistent visual presentation is also an opportunity to develop recognizable
+                  agent branding.
+                </p>
+                <p className={body}>
+                  San Jose Real Estate Photos offers social and agent-content services for
+                  professionals seeking marketing material beyond individual property launches.
+                </p>
+                <p className={body}>
+                  The Social Launchpad service can include content research, scripting, recording,
+                  editing, captions, and prepared media assets, depending on the agreed scope.
+                </p>
+                <p className={body}>
+                  Property marketing and ongoing agent branding serve different purposes, so each
+                  should have a clear content plan.
+                </p>
+              </div>
               <div className="mt-7 flex flex-wrap gap-x-6 gap-y-4 text-sm font-bold">
                 <a
                   href={SJREP.socialStrategyCall}
@@ -550,7 +753,7 @@ export default function SantaClaraRealEstateMediaPage() {
                   Book a strategy call <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </a>
                 <a href={SJREP.socialLaunchpad} className="underline underline-offset-4">
-                  See Social Launchpad
+                  Explore Agent Marketing and Media Services
                 </a>
               </div>
             </div>
@@ -560,13 +763,13 @@ export default function SantaClaraRealEstateMediaPage() {
         <section id="questions" className="scroll-mt-6 border-y border-[#d8dfdb] bg-[#eef3ef]">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-8 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16 lg:py-20">
             <div>
-              <p className={eyebrow}>Useful answers</p>
+              <p className={eyebrow}>Frequently asked questions</p>
               <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-[-0.04em] sm:text-4xl">
-                Before you book.
+                Everything you should know before booking.
               </h2>
               <p className={`${body} mt-5`}>
-                These details help you scope a Santa Clara appointment. For property-specific
-                requirements, contact Thomas directly.
+                These answers address common questions about professional real estate photography
+                services in Santa Clara, California.
               </p>
               <a
                 href={SJREP.emailHref}
@@ -585,7 +788,13 @@ export default function SantaClaraRealEstateMediaPage() {
                       aria-hidden="true"
                     />
                   </summary>
-                  <p className={`${body} pb-6 pr-6`}>{faq.a}</p>
+                  <div className="space-y-3 pb-6 pr-6">
+                    {faq.a.split('\n\n').map((text) => (
+                      <p key={text} className={body}>
+                        {text}
+                      </p>
+                    ))}
+                  </div>
                 </details>
               ))}
             </div>
@@ -596,30 +805,45 @@ export default function SantaClaraRealEstateMediaPage() {
           <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-8 lg:grid-cols-[1fr_0.8fr] lg:items-center lg:gap-20 lg:py-20">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#a2d4c9]">
-                Your next property / Santa Clara
+                Your next property / Santa Clara, California
               </p>
               <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-[-0.04em] sm:text-4xl">
-                Tell Thomas what
-                <br />
-                you’re bringing to market.
+                Your property has a story. Present it with purpose.
               </h2>
-              <p className="mt-6 max-w-xl text-base leading-7 text-[#d0dcd9]">
-                Share the address, size, access plan and target release date. Choose Residential or
-                Commercial in the booking portal, then confirm your media scope and current terms.
-                Serving the South Bay and Silicon Valley, including San Jose, Santa Clara and
-                Milpitas.
-              </p>
+              <div className="mt-6 max-w-xl space-y-3 text-base leading-7 text-[#d0dcd9]">
+                <p>
+                  Professional real estate photography is about more than producing attractive
+                  images. It helps potential buyers and tenants understand the property, explore
+                  important features, and decide whether they want to learn more.
+                </p>
+                <p>
+                  From residential real estate photography and commercial property coverage to HDR
+                  photography, drone imagery, cinematic video, 3D virtual tours, and floor plans,
+                  San Jose Real Estate Photos brings together the visual elements needed for a
+                  coordinated property presentation.
+                </p>
+                <p>
+                  Whether you&apos;re preparing a home for sale, promoting a commercial space, or
+                  organizing a complete listing campaign, begin by sharing your property&apos;s
+                  address, square footage, preferred timeline, and media requirements.
+                </p>
+                <p>
+                  Build a photography plan around the property and the people you want to reach.
+                </p>
+              </div>
               <a
                 href={SJREP.booking}
                 className={`${button} mt-8 bg-[#b8dfd3] text-[#182c36] hover:bg-white`}
               >
-                Open shoot booking <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                Book Your Real Estate Photography Session{' '}
+                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
             <div className="border-t border-[#4c636a] pt-7 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#a2d4c9]">
-                Direct contact
+                Direct Contact
               </p>
+              <p className="mt-4 font-semibold">{SJREP.name}</p>
               <a
                 href={SJREP.phoneHref}
                 className="mt-5 block text-2xl font-semibold tracking-tight hover:text-[#a2d4c9]"
@@ -633,16 +857,21 @@ export default function SantaClaraRealEstateMediaPage() {
                 {SJREP.email}
               </a>
               <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-sm text-[#d0dcd9]">
-                <a href={SJREP.site} className="underline underline-offset-4">
-                  Official website
+                <a href={SJREP.site} className="break-all underline underline-offset-4">
+                  {SJREP.site}
                 </a>
                 <a href={SJREP.gbp} className="underline underline-offset-4">
                   Google business profile
                 </a>
               </div>
-              <p className="mt-7 flex items-start gap-2 text-sm leading-6 text-[#d0dcd9]">
-                <Check className="mt-1 h-4 w-4 shrink-0 text-[#a2d4c9]" aria-hidden="true" />
-                Residential media, commercial assignments and ongoing agent content.
+              <p className="mt-4 text-sm leading-6 text-[#d0dcd9]">
+                Service Area: Santa Clara, San Jose, Sunnyvale, and surrounding Silicon Valley
+                communities, subject to scheduling confirmation.
+              </p>
+              <p className="mt-4 text-sm leading-6 text-[#d0dcd9]">
+                Services: Residential Photography | Commercial Photography | HDR Photography | Drone
+                Photography | Real Estate Videography | 3D Tours | Floor Plans | Virtual Staging |
+                Property Marketing
               </p>
             </div>
           </div>
@@ -655,7 +884,7 @@ export default function SantaClaraRealEstateMediaPage() {
             San Jose Real Estate Photos
             <br />
             <span className="mt-1 block text-xs font-normal text-[#58676e]">
-              Property media for Santa Clara, California
+              Professional Real Estate Photography &amp; Media Services — Santa Clara, CA
             </span>
           </p>
           <nav
